@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Most Enterprise AI Deployments Fail — Yugam Blog</title>
+  <meta name="description" content="After watching dozens of organizations spend millions on AI pilots that never scale, I've identified the three patterns that kill deployments. The fix isn't more technology." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --primary:#1a3a4a; --accent:#FF6B35; --bg:#FFFFFF; --text:#1F2937; --light-bg:#F9FAFB; --border:#E5E7EB; --muted:#6B7280; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; color:var(--text); background:var(--bg); line-height:1.6; }
+    h1,h2,h3,h4 { font-family:'Poppins',sans-serif; line-height:1.25; }
+    a { text-decoration:none; color:inherit; }
+    .container { max-width:1100px; margin:0 auto; padding:0 24px; }
+    nav { background:var(--primary); position:sticky; top:0; z-index:100; box-shadow:0 2px 12px rgba(0,0,0,0.15); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; height:68px; }
+    .nav-logo { color:#fff; font-family:'Poppins',sans-serif; font-size:1.5rem; font-weight:800; }
+    .nav-logo span { color:var(--accent); }
+    .nav-links { display:flex; gap:8px; list-style:none; align-items:center; }
+    .nav-links a { color:rgba(255,255,255,0.8); font-size:0.875rem; font-weight:500; padding:8px 12px; border-radius:6px; transition:all 0.2s; }
+    .nav-links a:hover { color:#fff; background:rgba(255,255,255,0.08); }
+    .nav-cta { background:var(--accent) !important; color:#fff !important; padding:8px 20px !important; border-radius:6px; font-weight:600 !important; }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; }
+    .hamburger span { width:24px; height:2px; background:#fff; border-radius:2px; }
+
+    /* ARTICLE LAYOUT */
+    .article-header { background:linear-gradient(135deg, var(--primary) 0%, #0f2434 100%); padding:72px 0 60px; }
+    .breadcrumb { font-size:0.8rem; color:rgba(255,255,255,0.5); margin-bottom:20px; }
+    .breadcrumb a { color:rgba(255,255,255,0.5); transition:color 0.2s; }
+    .breadcrumb a:hover { color:var(--accent); }
+    .breadcrumb span { margin:0 8px; }
+    .article-category { display:inline-block; background:rgba(255,107,53,0.15); color:var(--accent); font-size:0.75rem; font-weight:700; padding:5px 14px; border-radius:20px; margin-bottom:18px; border:1px solid rgba(255,107,53,0.25); letter-spacing:1px; text-transform:uppercase; }
+    .article-title { font-size:2.4rem; font-weight:800; color:#fff; margin-bottom:20px; max-width:760px; line-height:1.2; }
+    .article-meta { display:flex; gap:20px; align-items:center; flex-wrap:wrap; }
+    .meta-author { display:flex; gap:10px; align-items:center; }
+    .author-thumb { width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .author-thumb img { width:100%; height:100%; object-fit:cover; }
+    .author-meta-name { font-size:0.875rem; font-weight:600; color:#fff; }
+    .author-meta-title { font-size:0.78rem; color:rgba(255,255,255,0.55); }
+    .meta-divider { color:rgba(255,255,255,0.3); }
+    .meta-date { font-size:0.85rem; color:rgba(255,255,255,0.6); }
+    .meta-read { font-size:0.85rem; color:rgba(255,255,255,0.6); }
+
+    /* ARTICLE BODY */
+    .article-layout { display:grid; grid-template-columns:1fr 300px; gap:72px; align-items:start; padding:72px 0; }
+    .article-body { max-width:700px; }
+    .article-body p { font-size:1.05rem; color:var(--text); line-height:1.85; margin-bottom:24px; }
+    .article-body h2 { font-size:1.5rem; font-weight:700; color:var(--primary); margin-top:48px; margin-bottom:16px; }
+    .article-body h3 { font-size:1.2rem; font-weight:700; color:var(--primary); margin-top:36px; margin-bottom:12px; }
+    .article-body strong { color:var(--primary); font-weight:700; }
+    .article-body ul, .article-body ol { padding-left:24px; margin-bottom:24px; }
+    .article-body li { font-size:1rem; color:var(--text); line-height:1.8; margin-bottom:8px; }
+    .article-body blockquote { border-left:4px solid var(--accent); padding:16px 24px; background:rgba(255,107,53,0.04); border-radius:0 8px 8px 0; margin:32px 0; }
+    .article-body blockquote p { font-size:1.1rem; font-style:italic; color:var(--primary); margin-bottom:0; font-weight:600; }
+    .article-callout { background:var(--light-bg); border-radius:12px; padding:28px; margin:36px 0; border:1px solid var(--border); }
+    .article-callout h4 { font-size:0.85rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+    .article-callout p { font-size:0.95rem; color:var(--text); margin-bottom:0; }
+    .article-number { display:inline-block; background:var(--accent); color:#fff; font-family:'Poppins',sans-serif; font-size:0.8rem; font-weight:700; width:28px; height:28px; border-radius:50%; text-align:center; line-height:28px; margin-right:10px; }
+    .back-to-blog { display:inline-flex; align-items:center; gap:8px; font-size:0.875rem; font-weight:600; color:var(--muted); margin-bottom:36px; }
+    .back-to-blog:hover { color:var(--accent); }
+
+    /* AUTHOR BOX */
+    .author-box { background:var(--light-bg); border-radius:16px; padding:32px; margin-top:60px; display:flex; gap:20px; }
+    .author-box-photo { width:72px; height:72px; border-radius:50%; background:var(--border); display:flex; align-items:center; justify-content:center; font-size:1.8rem; flex-shrink:0; overflow:hidden; }
+    .author-box-photo img { width:100%; height:100%; object-fit:cover; }
+    .author-box-name { font-size:1rem; font-weight:700; color:var(--primary); margin-bottom:4px; }
+    .author-box-title { font-size:0.8rem; color:var(--accent); font-weight:600; margin-bottom:10px; }
+    .author-box-bio { font-size:0.875rem; color:var(--muted); line-height:1.65; margin-bottom:14px; }
+    .author-box-links { display:flex; gap:12px; }
+    .author-box-link { font-size:0.8rem; font-weight:600; color:var(--accent); }
+
+    /* SIDEBAR */
+    .article-sidebar { position:sticky; top:100px; }
+    .sidebar-toc { background:var(--light-bg); border-radius:14px; padding:24px; margin-bottom:24px; }
+    .sidebar-toc h4 { font-size:0.8rem; font-weight:700; color:var(--primary); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:16px; }
+    .toc-list { list-style:none; }
+    .toc-list li { padding:6px 0; border-bottom:1px solid var(--border); }
+    .toc-list li:last-child { border-bottom:none; }
+    .toc-list a { font-size:0.85rem; color:var(--muted); transition:color 0.2s; display:block; }
+    .toc-list a:hover { color:var(--accent); }
+    .cta-widget { background:var(--primary); border-radius:14px; padding:28px; color:#fff; margin-bottom:24px; }
+    .cta-widget h4 { font-size:1rem; font-weight:700; margin-bottom:10px; }
+    .cta-widget p { font-size:0.85rem; color:rgba(255,255,255,0.7); margin-bottom:20px; line-height:1.65; }
+    .cta-widget a { display:block; background:var(--accent); color:#fff; text-align:center; padding:12px; border-radius:8px; font-weight:700; font-size:0.875rem; transition:all 0.2s; }
+    .cta-widget a:hover { background:#e55a25; }
+
+    /* RELATED */
+    .related-section { background:var(--light-bg); padding:72px 0; }
+    .related-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .related-card { background:#fff; border:1px solid var(--border); border-radius:14px; padding:28px; opacity:0.7; }
+    .related-card-label { font-size:0.72rem; font-weight:700; color:var(--muted); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; }
+    .related-card h3 { font-size:1rem; font-weight:700; color:var(--primary); line-height:1.4; }
+
+    footer { background:var(--primary); color:rgba(255,255,255,0.75); padding:64px 0 28px; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; margin-bottom:48px; }
+    .footer-logo { color:#fff; font-family:'Poppins',sans-serif; font-size:1.4rem; font-weight:800; margin-bottom:14px; display:block; }
+    .footer-logo span { color:var(--accent); }
+    .footer-brand p { font-size:0.875rem; line-height:1.75; color:rgba(255,255,255,0.6); }
+    .footer-col h4 { color:#fff; font-size:0.9rem; font-weight:700; margin-bottom:16px; }
+    .footer-col a { display:block; color:rgba(255,255,255,0.6); font-size:0.85rem; margin-bottom:10px; transition:color 0.2s; }
+    .footer-col a:hover { color:var(--accent); }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:24px; display:flex; justify-content:space-between; font-size:0.8rem; color:rgba(255,255,255,0.4); }
+
+    @media (max-width:900px) {
+      .article-layout { grid-template-columns:1fr; }
+      .article-sidebar { position:static; }
+      .article-title { font-size:1.9rem; }
+      .related-grid { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr 1fr; gap:32px; }
+    }
+    @media (max-width:600px) {
+      .hamburger { display:flex; }
+      .nav-links { display:none; flex-direction:column; position:absolute; top:68px; left:0; right:0; background:var(--primary); padding:20px 24px; gap:4px; border-top:1px solid rgba(255,255,255,0.1); }
+      .nav-links.open { display:flex; }
+      .article-title { font-size:1.6rem; }
+      .author-box { flex-direction:column; }
+      .footer-grid { grid-template-columns:1fr; }
+      .footer-bottom { flex-direction:column; gap:12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Yug<span>am</span></a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="trainings.html">Trainings</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html" class="nav-cta">Book a Call</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HEADER -->
+  <div class="article-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>/</span>
+        <a href="blog.html">Blog</a><span>/</span>
+        Why AI Deployments Fail
+      </div>
+      <div class="article-category">AI Strategy</div>
+      <h1 class="article-title">Why Most Enterprise AI Deployments Fail (And How to Fix It)</h1>
+      <div class="article-meta">
+        <div class="meta-author">
+          <div class="author-thumb">
+            <!-- REPLACE with: <img src="assets/rohit-maskara.jpg" alt="Rohit Maskara" /> -->
+            <span>👤</span>
+          </div>
+          <div>
+            <div class="author-meta-name">Rohit Maskara</div>
+            <div class="author-meta-title">Founder, Yugam</div>
+          </div>
+        </div>
+        <span class="meta-divider">·</span>
+        <span class="meta-date">June 3, 2026</span>
+        <span class="meta-divider">·</span>
+        <span class="meta-read">5 min read</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE CONTENT -->
+  <div class="container">
+    <div class="article-layout">
+      <article class="article-body">
+        <a href="blog.html" class="back-to-blog">← Back to Blog</a>
+
+        <p>I've watched dozens of organizations spend $500K — sometimes millions — on AI implementations that sit unused six months after launch. The tools were fine. The vendors were credible. The demos were impressive.</p>
+
+        <p>The problem was never the AI. It was everything around it.</p>
+
+        <p>After 12+ years in operations and strategy, and after leading transformation projects at KPMG, Meta, and now Yugam, I've seen the same three failure patterns repeat across industries, company sizes, and geographies. Understanding them is the first step to avoiding them.</p>
+
+        <blockquote>
+          <p>"AI transformation is 20% technology and 80% organizational change. Most organizations invest in exactly the wrong ratio."</p>
+        </blockquote>
+
+        <h2 id="pattern1"><span class="article-number">1</span> Technology-First Thinking</h2>
+
+        <p>The most common failure pattern: an organization sees a competitor using AI, or watches a vendor demo, and decides they need to "do AI" — without first defining what problem they're solving.</p>
+
+        <p>This shows up in two ways. The first is <strong>tool proliferation</strong>: teams buy AI tools for individual use cases without a coherent strategy. You end up with five different vendors, three overlapping capabilities, and no one quite sure what's actually deployed in production.</p>
+
+        <p>The second is <strong>pilot paralysis</strong>: organizations run impressive pilots that demonstrate AI can do something interesting, but struggle to justify scaling because the pilot wasn't designed to answer the right business question. When the ask is "can AI help us?" you'll always get yes. The question that matters is "does this solve a problem worth $X to fix at a cost of $Y?"</p>
+
+        <div class="article-callout">
+          <h4>The Fix</h4>
+          <p>Start with your three biggest operational bottlenecks. For each one, ask: what does fixing this unlock, and what would it cost to fix with automation? Only then assess whether AI is the right tool. You'll eliminate 60% of potential projects before spending a dollar — and the ones that survive will actually ship.</p>
+        </div>
+
+        <h2 id="pattern2"><span class="article-number">2</span> Underestimating the Organizational Change</h2>
+
+        <p>This is the pattern I see kill the most projects. A technically successful AI deployment — agents working correctly, automations running cleanly — fails because the humans who are supposed to use it don't.</p>
+
+        <p>Sometimes it's fear: "this AI is replacing my job." Sometimes it's skepticism: "the last technology initiative didn't work either." Sometimes it's simply inertia: the new workflow requires more clicks than the old one, and people quietly revert.</p>
+
+        <p>Most AI implementations budget 90% of their resources for the technology and 10% for change management. The ratio should be closer to 60/40 — especially in the first 90 days after launch, when adoption habits are formed.</p>
+
+        <p>I've seen six-figure automation investments fail because no one thought to ask the team using it whether the new process actually fit their day. I've also seen far simpler implementations deliver 10x ROI because someone took the time to involve the team in designing it.</p>
+
+        <div class="article-callout">
+          <h4>The Fix</h4>
+          <p>Involve end users in the design phase — not just as feedback recipients, but as co-designers. When people have helped build something, they defend it. Create visible early wins that the team can point to. And measure adoption separately from technical performance: a tool that works but isn't used has delivered zero value.</p>
+        </div>
+
+        <h2 id="pattern3"><span class="article-number">3</span> No Clear Success Metrics Before Launch</h2>
+
+        <p>If you can't answer "how will we know this worked?" before deploying, you'll never be able to justify expanding it — or know when to cut your losses.</p>
+
+        <p>Vague success metrics are seductive because they protect you from failure. "AI will improve our customer experience" sounds like a goal. It isn't. It's a direction. What does improved customer experience mean? What does it cost today? What would it cost with AI? Over what timeline? Measured how?</p>
+
+        <p>Without these anchors, AI projects drift. They get evaluated on anecdote rather than data. A senior leader says "I heard someone say it was helpful" and the project survives another quarter without clarity. When budget pressure hits, it gets cut — because no one can demonstrate what it's actually delivering.</p>
+
+        <div class="article-callout">
+          <h4>The Fix</h4>
+          <p>Define your success metrics in the strategy phase, before a single line of code is written. Pick three metrics maximum: one efficiency metric (time saved, errors reduced), one business impact metric (cost saved, revenue influenced), and one adoption metric (% of team using it, frequency). Measure your baseline before deployment so you have something to compare against.</p>
+        </div>
+
+        <h2 id="conclusion">The Pattern Behind the Patterns</h2>
+
+        <p>If you look at all three failures, they share a root cause: organizations treat AI as a technology problem when it's actually a strategy and change problem.</p>
+
+        <p>The organizations that get AI right are almost always the ones that spend more time on the front end — understanding the problem, aligning stakeholders, defining what success looks like — before they ever touch a vendor. They move slower at the beginning and much faster at the end.</p>
+
+        <p>The good news: all three patterns are fixable. They require discipline, not magic. And the organizations willing to approach AI transformation with the same rigor they'd bring to any major operational change are consistently the ones that see compounding returns.</p>
+
+        <p><strong>If you're currently stuck in any of these patterns, I'd be glad to talk through your specific situation.</strong> A 30-minute conversation can usually clarify where the real bottleneck is.</p>
+
+        <!-- AUTHOR BOX -->
+        <div class="author-box">
+          <div class="author-box-photo">
+            <!-- REPLACE with: <img src="assets/rohit-maskara.jpg" alt="Rohit Maskara" /> -->
+            <span>👤</span>
+          </div>
+          <div>
+            <div class="author-box-name">Rohit Maskara</div>
+            <div class="author-box-title">Founder, Yugam · AI Transformation Consultant</div>
+            <p class="author-box-bio">Rohit helps organizations navigate AI transformation — moving from pilots to production-ready systems. With 12+ years in operations and strategy at Meta, Facebook, and KPMG, he combines business acumen with technical understanding to drive measurable outcomes.</p>
+            <div class="author-box-links">
+              <a href="about.html" class="author-box-link">About Rohit →</a>
+              <a href="https://www.linkedin.com/in/rohitmaskara" target="_blank" rel="noopener" class="author-box-link" style="margin-left:16px;">LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:48px; padding-top:48px; border-top:1px solid var(--border);">
+          <a href="blog.html" style="font-size:0.9rem; font-weight:600; color:var(--muted);">← Back to all articles</a>
+        </div>
+      </article>
+
+      <!-- SIDEBAR -->
+      <div class="article-sidebar">
+        <div class="sidebar-toc">
+          <h4>In This Article</h4>
+          <ul class="toc-list">
+            <li><a href="#pattern1">1. Technology-First Thinking</a></li>
+            <li><a href="#pattern2">2. Underestimating Org Change</a></li>
+            <li><a href="#pattern3">3. No Clear Success Metrics</a></li>
+            <li><a href="#conclusion">The Pattern Behind the Patterns</a></li>
+          </ul>
+        </div>
+
+        <div class="cta-widget">
+          <h4>Recognizing one of these patterns?</h4>
+          <p>A 30-minute conversation can clarify where your AI initiative is stuck and what to do next.</p>
+          <!-- REPLACE HREF with your booking link -->
+          <a href="mailto:maskyrohit@gmail.com?subject=AI%20Strategy%20Question">Book a Free Call →</a>
+        </div>
+
+        <div class="sidebar-toc">
+          <h4>About the Author</h4>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.65; margin-bottom:12px;">Rohit Maskara is the founder of Yugam. 12+ years in operations &amp; strategy at Meta, KPMG, and Vedanta.</p>
+          <a href="about.html" style="font-size:0.85rem; font-weight:600; color:var(--accent);">Read full bio →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <section class="related-section">
+    <div class="container">
+      <h2 style="font-size:1.5rem; font-weight:700; color:var(--primary); margin-bottom:32px;">More from the Blog</h2>
+      <div class="related-grid">
+        <div class="related-card">
+          <div class="related-card-label">Coming Soon · Agentic AI</div>
+          <h3>From Chatbots to Agents: What the Shift Means for Enterprise Teams</h3>
+        </div>
+        <div class="related-card">
+          <div class="related-card-label">Coming Soon · Change Management</div>
+          <h3>The Change Management Playbook Nobody Talks About in AI Projects</h3>
+        </div>
+        <div class="related-card">
+          <div class="related-card-label">Coming Soon · Operations</div>
+          <h3>How I Think About ROI for Workflow Automation</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">Yug<span>am</span></a>
+          <p>AI transformation consulting for organizations ready to move beyond pilots.</p>
+        </div>
+        <div class="footer-col"><h4>Services</h4><a href="services.html">AI Strategy</a><a href="services.html">Agentic AI</a><a href="trainings.html">Trainings</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="blog.html">Blog</a><a href="resources.html">Resources</a></div>
+        <div class="footer-col"><h4>Contact</h4><a href="contact.html">Get in Touch</a><a href="mailto:maskyrohit@gmail.com">maskyrohit@gmail.com</a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 Yugam. All rights reserved.</span><span>yugam.io</span></div>
+    </div>
+  </footer>
+
+  <script>function toggleMenu(){ document.getElementById('navLinks').classList.toggle('open'); }</script>
+</body>
+</html>

@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yugam — AI Transformation & Enterprise Automation | Rohit Kumar Maskara</title>
+  <meta name="description" content="Rohit Kumar Maskara helps enterprise teams move from AI pilots to production-ready systems. Strategic AI implementation, agentic AI deployment, workflow automation, and corporate trainings. Based in Singapore." />
+  <link rel="canonical" href="https://yugam.io" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─── */
+    :root {
+      --primary:      #111827;
+      --accent:       #C8922A;
+      --accent-dark:  #A87420;
+      --accent-light: #E8A93C;
+      --gold-tint:    #FDF6E8;
+      --gold-tint-2:  #FAF0D7;
+      --bg:           #FFFFFF;
+      --alt-bg:       #FAFAF7;
+      --text:         #111827;
+      --muted:        #6B7280;
+      --border:       #ECEAE4;
+      --border-dark:  #D8D4CB;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; line-height: 1.2; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    /* ─── LAYOUT ─── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 88px 0; }
+    .section-tag { font-size: 0.72rem; font-weight: 700; color: var(--accent); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 10px; }
+    .section-title { font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 14px; }
+    .section-sub { font-size: 1rem; color: var(--muted); max-width: 580px; line-height: 1.75; }
+    .section-header { margin-bottom: 56px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+    .section-header.spread { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; }
+
+    /* ─── BUTTONS ─── */
+    .btn { display: inline-block; padding: 13px 26px; border-radius: 8px; font-weight: 600; font-size: 0.925rem; transition: all 0.2s; border: 2px solid transparent; cursor: pointer; font-family: 'Poppins', sans-serif; }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(200,146,42,0.3); }
+    .btn-outline { background: transparent; color: var(--accent); border-color: var(--accent); }
+    .btn-outline:hover { background: var(--accent); color: #fff; }
+    .btn-outline-dark { background: transparent; color: var(--primary); border-color: var(--border-dark); }
+    .btn-outline-dark:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .btn-sm { padding: 9px 20px; font-size: 0.85rem; }
+
+    /* ─── NAV ─── */
+    nav {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-text { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 400; letter-spacing: 0.22em; color: var(--primary); }
+    .nav-links { display: flex; gap: 4px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: 0.875rem; font-weight: 500; padding: 7px 12px; border-radius: 6px; transition: all 0.2s; }
+    .nav-links a:hover { color: var(--primary); background: var(--alt-bg); }
+    .nav-cta { background: var(--accent) !important; color: #fff !important; border-radius: 7px; font-weight: 700 !important; padding: 8px 18px !important; }
+    .nav-cta:hover { background: var(--accent-dark) !important; color: #fff !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .hamburger span { width: 22px; height: 2px; background: var(--primary); border-radius: 2px; }
+    .mobile-menu { display: none; background: var(--bg); padding: 16px 24px 24px; border-top: 1px solid var(--border); }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; color: var(--muted); font-size: 0.95rem; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-cta { background: var(--accent) !important; color: #fff !important; border-radius: 8px; padding: 12px 20px !important; text-align: center; font-weight: 700; margin-top: 8px; display: block; }
+    /* ─── SOCIALS SECTION ─── */
+    .socials-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px; }
+    .social-card { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px 12px 20px; border: 1px solid var(--border); border-radius: 14px; background: var(--bg); transition: all 0.25s; color: var(--primary); }
+    .social-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(200,146,42,0.12); }
+    .social-card:hover .social-card-icon { color: var(--accent); }
+    .social-card-icon { width: 32px; height: 32px; color: var(--muted); flex-shrink: 0; transition: color 0.25s; }
+    .social-card-icon svg { width: 100%; height: 100%; fill: currentColor; }
+    .social-card-name { font-size: 0.75rem; font-weight: 700; color: var(--primary); }
+    .social-card-handle { font-size: 0.68rem; color: var(--muted); }
+    body { padding-top: 64px; }
+
+    /* ─── HERO ─── */
+    #home { background: var(--bg); padding: 96px 0 80px; position: relative; overflow: hidden; }
+    #home::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(200,146,42,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    #home::after {
+      content: '';
+      position: absolute; bottom: -40px; left: -40px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(200,146,42,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { display: grid; grid-template-columns: 1fr 340px; gap: 64px; align-items: center; position: relative; z-index: 1; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-tint); border: 1px solid #E8D5A8; color: var(--accent-dark); font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 22px; }
+    .hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+    .yugam-define { font-size: 0.82rem; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .yugam-script { font-size: 1rem; color: var(--accent); line-height: 1; }
+    .yugam-define em { color: var(--primary); font-style: italic; font-weight: 500; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+    #home h1 { font-size: 2.9rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; line-height: 1.13; }
+    #home h1 em { color: var(--accent); font-style: normal; }
+    .hero-text > p { font-size: 1.05rem; color: var(--muted); max-width: 520px; line-height: 1.8; margin-bottom: 36px; }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-stats { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 52px; padding-top: 36px; border-top: 1px solid var(--border); }
+    .hero-stat { padding: 0 20px; border-right: 1px solid var(--border); }
+    .hero-stat:first-child { padding-left: 0; }
+    .hero-stat:last-child { border-right: none; }
+    .stat-num { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 4px; line-height: 1.45; white-space: nowrap; }
+    .stat-label-gold { color: var(--accent); font-weight: 600; font-size: 0.72rem; margin-top: 4px; white-space: nowrap; }
+    .hero-photo-wrap { position: relative; }
+    .hero-photo-frame {
+      width: 300px; height: 360px; border-radius: 20px;
+      background: var(--gold-tint);
+      border: 2px solid #E8D5A8;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
+    .hero-photo-placeholder { text-align: center; color: var(--muted); padding: 32px; }
+    .hero-photo-placeholder .ph-icon { font-size: 48px; margin-bottom: 14px; }
+    .hero-photo-placeholder p { font-size: 0.78rem; line-height: 1.6; }
+    .hero-photo-placeholder code { font-size: 0.7rem; background: var(--gold-tint-2); padding: 3px 6px; border-radius: 4px; display: block; margin-top: 8px; color: var(--accent-dark); }
+    .hero-badge {
+      position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--primary); color: #fff; font-size: 0.78rem; font-weight: 600;
+      padding: 8px 18px; border-radius: 24px; white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(17,24,39,0.18);
+    }
+
+    /* ─── DIVIDER ─── */
+    .gold-divider { height: 3px; background: linear-gradient(90deg, var(--gold-tint-2), var(--accent), var(--gold-tint-2)); opacity: 0.6; }
+
+    /* ─── SERVICES ─── */
+    #services { background: var(--alt-bg); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .svc-card { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 28px 24px; transition: all 0.25s; }
+    .svc-card:hover { box-shadow: 0 8px 28px rgba(200,146,42,0.12); transform: translateY(-3px); border-color: var(--accent); }
+    .svc-card.gold { background: var(--accent); border-color: var(--accent); }
+    .svc-icon { width: 48px; height: 48px; border-radius: 11px; background: var(--gold-tint); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 18px; border: 1px solid #E8D5A8; }
+    .svc-card.gold .svc-icon { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.2); }
+    .svc-card h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 9px; }
+    .svc-card.gold h3 { color: #fff; }
+    .svc-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
+    .svc-card.gold p { color: rgba(255,255,255,0.78); }
+    .svc-link { font-size: 0.82rem; font-weight: 700; color: var(--accent); display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s; }
+    .svc-link:hover { gap: 9px; }
+    .svc-card.gold .svc-link { color: #fff; }
+
+    /* ─── PROCESS ─── */
+    #process { background: var(--bg); }
+    .process-track { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
+    .process-track::before {
+      content: ''; position: absolute;
+      top: 34px; left: 10%; right: 10%; height: 2px;
+      background: linear-gradient(90deg, var(--accent), rgba(200,146,42,0.15));
+      z-index: 0;
+    }
+    .step { text-align: center; padding: 0 10px; position: relative; z-index: 1; }
+    .step-circle {
+      width: 68px; height: 68px; border-radius: 50%;
+      background: var(--bg); color: var(--accent);
+      font-family: 'Poppins', sans-serif; font-size: 1.3rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px; border: 2px solid var(--accent);
+      box-shadow: 0 0 0 6px var(--gold-tint);
+    }
+    .step h4 { font-size: 0.9rem; font-weight: 700; color: var(--primary); margin-bottom: 7px; }
+    .step p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--alt-bg); }
+    .about-grid { display: grid; grid-template-columns: 320px 1fr; gap: 72px; align-items: start; }
+    .about-photo {
+      width: 100%; aspect-ratio: 4/5; border-radius: 20px;
+      background: var(--gold-tint); border: 2px solid #E8D5A8;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; margin-bottom: 24px;
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
+    .about-photo-placeholder { text-align: center; color: var(--muted); padding: 32px 20px; }
+    .about-photo-placeholder .ph-icon { font-size: 48px; margin-bottom: 12px; }
+    .about-quick { background: var(--bg); border-radius: 14px; padding: 22px; border: 1px solid var(--border); }
+    .about-quick h5 { font-size: 0.72rem; font-weight: 700; color: var(--accent-dark); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+    .qf { display: flex; gap: 10px; margin-bottom: 12px; font-size: 0.85rem; align-items: flex-start; }
+    .qf-icon { color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+    .qf-text { color: var(--muted); line-height: 1.45; }
+    .qf-text strong { color: var(--text); }
+    .about-text h2 { font-size: 1.85rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
+    .about-text p { font-size: 0.975rem; color: var(--text); line-height: 1.82; margin-bottom: 20px; }
+    .about-text p strong { color: var(--primary); }
+    .about-text em { color: var(--accent-dark); font-style: italic; font-weight: 500; }
+    .principles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
+    .principle { background: var(--bg); border-radius: 10px; padding: 20px; border: 1px solid var(--border); border-left: 4px solid var(--accent); }
+    .p-num { font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .principle h4 { font-size: 0.9rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+    .principle p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .cred-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 28px; }
+    .cred-item { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .cred-period { font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+    .cred-item h5 { font-size: 0.875rem; font-weight: 700; color: var(--primary); margin-bottom: 2px; }
+    .cred-item p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    /* ─── TRAININGS ─── */
+    #trainings { background: var(--gold-tint); border-top: 1px solid #E8D5A8; border-bottom: 1px solid #E8D5A8; }
+    .trainings-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .training-card { background: var(--bg); border: 1px solid #E8D5A8; border-radius: 14px; padding: 28px; transition: all 0.25s; }
+    .training-card:hover { box-shadow: 0 8px 28px rgba(200,146,42,0.12); transform: translateY(-2px); border-color: var(--accent); }
+    .t-icon { font-size: 2rem; margin-bottom: 14px; }
+    .training-card h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 7px; }
+    .training-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+    .t-meta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+    .t-meta-item { font-size: 0.75rem; color: var(--muted); }
+    .t-meta-item strong { color: var(--primary); display: block; font-size: 0.8rem; }
+    .t-link { font-size: 0.82rem; font-weight: 700; color: var(--accent); display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s; }
+    .t-link:hover { gap: 9px; }
+
+    /* ─── RESOURCES ─── */
+    #resources { background: var(--bg); }
+    .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .res-card { background: var(--alt-bg); border: 1px solid var(--border); border-radius: 13px; padding: 24px; display: flex; gap: 14px; align-items: flex-start; transition: all 0.25s; }
+    .res-card:hover { box-shadow: 0 6px 24px rgba(200,146,42,0.1); transform: translateY(-2px); border-color: var(--accent); background: var(--bg); }
+    .res-icon { font-size: 1.75rem; flex-shrink: 0; }
+    .res-type { font-size: 0.68rem; font-weight: 700; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; }
+    .res-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--primary); margin-bottom: 5px; }
+    .res-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+    .newsletter-strip { background: var(--gold-tint); border: 1px solid #E8D5A8; border-radius: 14px; padding: 36px 40px; margin-top: 40px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+    .newsletter-strip h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+    .newsletter-strip p { font-size: 0.875rem; color: var(--muted); }
+    .newsletter-form { display: flex; gap: 10px; min-width: 340px; flex-wrap: wrap; }
+    .newsletter-form input { flex: 1; padding: 11px 14px; border: 1px solid #E8D5A8; border-radius: 8px; font-size: 0.875rem; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-width: 180px; }
+    .newsletter-form input:focus { outline: none; border-color: var(--accent); }
+    .newsletter-form button { background: var(--accent); color: #fff; border: none; padding: 11px 22px; border-radius: 8px; font-weight: 700; cursor: pointer; font-family: 'Poppins', sans-serif; white-space: nowrap; font-size: 0.875rem; transition: all 0.2s; }
+    .newsletter-form button:hover { background: var(--accent-dark); }
+
+    /* ─── BLOG ─── */
+    #blog { background: var(--alt-bg); }
+    .blog-card { background: var(--bg); border: 2px solid var(--accent); border-radius: 16px; padding: 36px; max-width: 720px; }
+    .blog-tag { display: inline-block; background: var(--gold-tint); color: var(--accent-dark); font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 12px; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; border: 1px solid #E8D5A8; }
+    .blog-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px; }
+    .blog-card h3 { font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; line-height: 1.35; }
+    .blog-card p { font-size: 0.925rem; color: var(--muted); line-height: 1.75; margin-bottom: 20px; }
+    .blog-read { font-size: 0.9rem; font-weight: 700; color: var(--accent); display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+    .blog-read:hover { gap: 10px; }
+    .coming-soon-posts { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; max-width: 720px; }
+    .cs-post { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .cs-post h4 { font-size: 0.875rem; font-weight: 600; color: var(--primary); }
+    .cs-badge { font-size: 0.7rem; font-weight: 700; color: var(--muted); background: var(--alt-bg); padding: 3px 10px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; border: 1px solid var(--border); }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--bg); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 380px; gap: 64px; align-items: start; }
+    .contact-form { background: var(--alt-bg); border: 1px solid var(--border); border-radius: 18px; padding: 40px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--primary); margin-bottom: 7px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 11px 14px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 0.875rem; font-family: 'Inter', sans-serif;
+      transition: border 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(200,146,42,0.1); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit { width: 100%; background: var(--accent); color: #fff; border: none; padding: 15px; border-radius: 8px; font-weight: 700; font-size: 0.975rem; cursor: pointer; font-family: 'Poppins', sans-serif; transition: all 0.2s; margin-top: 4px; }
+    .form-submit:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(200,146,42,0.3); }
+    .form-note { font-size: 0.75rem; color: var(--muted); margin-top: 12px; text-align: center; }
+
+    .contact-info h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
+    .contact-method { display: flex; gap: 14px; align-items: flex-start; padding: 18px; background: var(--alt-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; transition: all 0.2s; }
+    .contact-method:hover { border-color: var(--accent); background: var(--gold-tint); }
+    .cm-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--gold-tint); border: 1px solid #E8D5A8; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .cm-label { font-size: 0.7rem; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+    .cm-value { font-size: 0.9rem; font-weight: 600; color: var(--primary); }
+    .cm-value a { color: var(--primary); transition: color 0.2s; }
+    .cm-value a:hover { color: var(--accent); }
+    .cm-sub { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+    .response-box { background: var(--gold-tint); border: 1px solid #E8D5A8; border-radius: 12px; padding: 18px; margin-top: 20px; }
+    .response-box h4 { font-size: 0.875rem; font-weight: 700; color: var(--accent-dark); margin-bottom: 6px; }
+    .response-box p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--primary); padding: 48px 0 28px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; margin-bottom: 32px; }
+    .footer-logo { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+    .footer-logo-mark { display: flex; align-items: center; gap: 10px; }
+    .footer-logo-text { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 400; letter-spacing: 0.22em; color: #fff; }
+    .footer-logo-tagline { font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.22em; color: var(--accent); padding-left: 30px; }
+    .footer-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { color: rgba(255,255,255,0.5); font-size: 0.85rem; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--accent); }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social a { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 0.78rem; transition: all 0.2s; }
+    .footer-social a:hover { background: var(--accent); color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 22px; display: flex; justify-content: space-between; font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo-wrap { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { max-width: 280px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .newsletter-strip { grid-template-columns: 1fr; gap: 20px; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 64px 0; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .trainings-grid { grid-template-columns: 1fr; }
+      .resources-grid { grid-template-columns: 1fr 1fr; }
+      .process-track { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .process-track::before { display: none; }
+      .principles { grid-template-columns: 1fr; }
+      .cred-row { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 20px 0; }
+      .hero-stat:nth-child(3) { border-right: none; }
+      .hero-stat:nth-child(4) { padding-left: 0; }
+      .socials-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; }
+      #home h1 { font-size: 2.1rem; }
+      .section-title { font-size: 1.65rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .resources-grid { grid-template-columns: 1fr; }
+      .process-track { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .newsletter-form { min-width: unset; }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 20px 0; }
+      .hero-stat { border-right: none; border-bottom: 1px solid var(--border); padding: 12px 0; }
+      .hero-stat:last-child { border-bottom: none; }
+      .hero-stat:first-child { padding-left: 0; }
+      .socials-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#home" class="nav-logo">
+          <svg width="20" height="26" viewBox="0 0 56 74" fill="none" aria-hidden="true">
+            <line x1="10" y1="10" x2="28" y2="34" stroke="#C8922A" stroke-width="3" stroke-linecap="round"/>
+            <line x1="46" y1="10" x2="28" y2="34" stroke="#C8922A" stroke-width="3" stroke-linecap="round"/>
+            <line x1="28" y1="34" x2="28" y2="66" stroke="#C8922A" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="10" cy="10" r="6" fill="#C8922A"/>
+            <circle cx="46" cy="10" r="6" fill="#C8922A"/>
+            <circle cx="28" cy="34" r="7.5" fill="#C8922A"/>
+            <circle cx="28" cy="66" r="6" fill="#C8922A"/>
+          </svg>
+          <span class="nav-logo-text">YUGAM</span>
+        </a>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#trainings">Trainings</a>
+          <a href="#resources">Resources</a>
+          <a href="#blog">Blog</a>
+          <a href="#socials">Follow</a>
+          <!-- REPLACE href with your booking link e.g. https://cal.com/rohitmaskara -->
+          <a href="#contact" class="nav-cta">Book a Call</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#services" onclick="closeMenu()">Services</a>
+      <a href="#about" onclick="closeMenu()">About</a>
+      <a href="#trainings" onclick="closeMenu()">Trainings</a>
+      <a href="#resources" onclick="closeMenu()">Resources</a>
+      <a href="#blog" onclick="closeMenu()">Blog</a>
+      <a href="#socials" onclick="closeMenu()">Follow</a>
+      <a href="#contact" class="mobile-cta" onclick="closeMenu()">Book a Call</a>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section id="home">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-eyebrow">AI Transformation Consulting</div>
+          <div class="yugam-define">
+            <span class="yugam-script">युगम्</span>
+            <span>·</span>
+            <span>Yugam</span>
+            <span>·</span>
+            <span>Sanskrit for <em>a defining new age or epoch</em></span>
+          </div>
+          <h1>The <em>AI Yugam</em> is here.<br>Is your organization<br>ready to step in?</h1>
+          <p>Rohit helps enterprise teams move from AI pilots to production-ready systems — combining 15+ years in operations and strategy with hands-on implementation that delivers measurable outcomes.</p>
+          <div class="hero-ctas">
+            <!-- REPLACE href with your booking link -->
+            <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+            <a href="#services" class="btn btn-outline-dark">See How I Help</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="stat-num">15 yrs</div>
+              <div class="stat-label">Ops · CX · Product · Consulting</div>
+            </div>
+            <div class="hero-stat">
+              <div class="stat-num">Meta</div>
+              <div class="stat-label">Sr. Program<br>Manager</div>
+            </div>
+            <div class="hero-stat">
+              <div class="stat-num">KPMG</div>
+              <div class="stat-label">Sr.<br>Consultant</div>
+            </div>
+            <div class="hero-stat">
+              <div class="stat-num">ISB</div>
+              <div class="stat-label">MBA Ops<br>& Finance</div>
+            </div>
+            <div class="hero-stat">
+              <div class="stat-num">Global</div>
+              <div class="stat-label">Perspective</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-photo-wrap">
+          <div class="hero-photo-frame">
+            <!--
+              ADD YOUR HEADSHOT:
+              1. Save as: yugam-website/assets/rohit.jpg
+              2. Replace this block with:
+              <img src="assets/rohit.jpg" alt="Rohit Kumar Maskara" />
+            -->
+            <div class="hero-photo-placeholder">
+              <div class="ph-icon">📸</div>
+              <p>Add your headshot here</p>
+              <code>assets/rohit.jpg</code>
+            </div>
+          </div>
+          <div class="hero-badge">Singapore · Global Reach</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="gold-divider"></div>
+
+  <!-- ─── SERVICES ─── -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Services</div>
+        <h2 class="section-title">How I Help Organizations<br>Enter the AI Yugam</h2>
+        <p class="section-sub">Strategy-first, hands-on implementation, measurable outcomes. From mapping your AI roadmap to deploying autonomous agents at scale.</p>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card">
+          <div class="svc-icon">🗺️</div>
+          <h3>AI Implementation Strategy</h3>
+          <p>Map your AI transformation with clear ROI projections, realistic timelines, and success metrics leadership can stand behind.</p>
+          <a href="#contact" class="svc-link">Get started →</a>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">🤖</div>
+          <h3>Agentic AI Deployment</h3>
+          <p>Build and deploy autonomous AI agents that handle complex processes 24/7, seamlessly integrated with your existing stack.</p>
+          <a href="#contact" class="svc-link">Get started →</a>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">⚙️</div>
+          <h3>Workflow Automation</h3>
+          <p>Eliminate repetitive manual work and save your teams 10+ hours per week with intelligent automation built for your processes.</p>
+          <a href="#contact" class="svc-link">Get started →</a>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">🎓</div>
+          <h3>AI Training & Workshops</h3>
+          <p>Upskill your team with corporate workshops, webinars, and seminars — from AI-curious leadership to technical practitioners.</p>
+          <a href="#trainings" class="svc-link">See formats →</a>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">🔧</div>
+          <h3>Custom AI Solutions</h3>
+          <p>Unique challenges need tailored solutions. Custom AI systems and integrations built for your industry and constraints.</p>
+          <a href="#contact" class="svc-link">Get started →</a>
+        </div>
+        <div class="svc-card gold">
+          <div class="svc-icon">💬</div>
+          <h3>Not Sure Where to Start?</h3>
+          <p>A 30-minute conversation usually clarifies your best first step. No pitch, no commitment.</p>
+          <!-- REPLACE href with your booking link -->
+          <a href="#contact" class="svc-link">Book a free call →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROCESS ─── -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-tag">The Process</div>
+        <h2 class="section-title">How Every Engagement Works</h2>
+        <p class="section-sub">A structured five-phase approach — because the discipline is what makes transformation stick.</p>
+      </div>
+      <div class="process-track">
+        <div class="step">
+          <div class="step-circle">01</div>
+          <h4>Discovery</h4>
+          <p>Understand your business, workflows, and AI readiness</p>
+        </div>
+        <div class="step">
+          <div class="step-circle">02</div>
+          <h4>Strategy</h4>
+          <p>Build a roadmap with ROI projections and timeline</p>
+        </div>
+        <div class="step">
+          <div class="step-circle">03</div>
+          <h4>Design</h4>
+          <p>Detailed architecture for your AI systems</p>
+        </div>
+        <div class="step">
+          <div class="step-circle">04</div>
+          <h4>Implement</h4>
+          <p>Deploy and integrate with minimal disruption</p>
+        </div>
+        <div class="step">
+          <div class="step-circle">05</div>
+          <h4>Optimize</h4>
+          <p>Monitor, refine, and scale as you grow</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="about-photo">
+            <!--
+              ADD YOUR HEADSHOT:
+              <img src="assets/rohit.jpg" alt="Rohit Kumar Maskara" />
+            -->
+            <div class="about-photo-placeholder">
+              <div class="ph-icon">📸</div>
+              <p style="font-size:0.78rem; color:var(--muted);">Replace with your headshot<br><code style="font-size:0.7rem; background:var(--gold-tint-2); padding:2px 6px; border-radius:4px; color:var(--accent-dark);">assets/rohit.jpg</code></p>
+            </div>
+          </div>
+          <div class="about-quick">
+            <h5>Quick Facts</h5>
+            <div class="qf"><span class="qf-icon">📍</span><span class="qf-text"><strong>Based in</strong> Singapore</span></div>
+            <div class="qf"><span class="qf-icon">🏢</span><span class="qf-text"><strong>Previously:</strong> Senior PM, Meta</span></div>
+            <div class="qf"><span class="qf-icon">🎓</span><span class="qf-text"><strong>MBA</strong> Indian School of Business</span></div>
+            <div class="qf"><span class="qf-icon">⚡</span><span class="qf-text">Green Belt Six Sigma</span></div>
+            <div class="qf"><span class="qf-icon">✉️</span><span class="qf-text"><a href="mailto:maskyrohit@gmail.com" style="color:var(--accent);">maskyrohit@gmail.com</a></span></div>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <div class="section-tag">About</div>
+          <h2>Hi, I'm Rohit Kumar Maskara.</h2>
+
+          <p>I work with organizations to transform how they operate through strategic AI implementation and intelligent automation. For the past <strong>15+ years</strong>, I've worked on one core problem: <em>how do we make organizations more efficient, more agile, and more effective?</em></p>
+
+          <p>At Meta, I spent 8 years optimizing global customer experience operations, most recently as Senior Program Manager. At KPMG, I led transformation projects for Fortune 500 companies — redesigning processes that saved clients millions. At Vedanta Aluminium, I led production optimization that <strong>reduced scrap by 44%</strong> and energy consumption by 20%.</p>
+
+          <p>What I've learned across all of it: <strong>the best technology solutions fail without the right organizational setup.</strong> Success in the AI Yugam isn't about the coolest tools — it's about the right people, processes, and mindset to use them. That insight is why I started Yugam.</p>
+
+          <div class="principles">
+            <div class="principle">
+              <div class="p-num">Principle 01</div>
+              <h4>Strategy Before Technology</h4>
+              <p>Start with "what problems are we solving?" — not "which AI tool should we buy?"</p>
+            </div>
+            <div class="principle">
+              <div class="p-num">Principle 02</div>
+              <h4>Organizational Alignment</h4>
+              <p>The human side gets as much attention as the technical side. Always.</p>
+            </div>
+            <div class="principle">
+              <div class="p-num">Principle 03</div>
+              <h4>Measurable Outcomes</h4>
+              <p>Hours saved, revenue unlocked, efficiency gained — not "we deployed 5 agents."</p>
+            </div>
+            <div class="principle">
+              <div class="p-num">Principle 04</div>
+              <h4>Hands-On Implementation</h4>
+              <p>I'm not an advisor who disappears. I work with teams to build, test, and deploy.</p>
+            </div>
+          </div>
+
+          <div class="cred-row">
+            <div class="cred-item">
+              <div class="cred-period">2018 – 2026</div>
+              <h5>Senior Program Manager</h5>
+              <p>Meta · Customer Experience Strategy & Operations · Singapore</p>
+            </div>
+            <div class="cred-item">
+              <div class="cred-period">2012 – 2016</div>
+              <h5>Consultant → Senior Consultant</h5>
+              <p>KPMG · Fortune 500 Transformation · India</p>
+            </div>
+            <div class="cred-item">
+              <div class="cred-period">2010 – 2012</div>
+              <h5>Production Manager</h5>
+              <p>Vedanta Aluminium · INR 9cr+ annual savings</p>
+            </div>
+            <div class="cred-item">
+              <div class="cred-period">Education</div>
+              <h5>MBA — Indian School of Business</h5>
+              <p>Ops & Finance · B.Tech Industrial Engineering · Six Sigma Green Belt</p>
+            </div>
+          </div>
+
+          <div style="margin-top:32px;">
+            <a href="#contact" class="btn btn-primary">Let's Work Together</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRAININGS ─── -->
+  <section id="trainings">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Trainings & Speaking</div>
+        <h2 class="section-title">Bring the AI Yugam<br>to Your Team</h2>
+        <p class="section-sub">Corporate workshops, webinars, seminars, and conference talks — tailored for your audience, from leadership to technical teams. Your team learns from someone who's done this at enterprise scale.</p>
+      </div>
+      <div class="trainings-grid">
+        <div class="training-card">
+          <div class="t-icon">🏢</div>
+          <h3>Corporate Workshops</h3>
+          <p>Full-day or half-day interactive sessions built around your team's actual workflows. Participants leave with a real plan, not slides.</p>
+          <div class="t-meta">
+            <div class="t-meta-item"><strong>4–8 hours</strong>Duration</div>
+            <div class="t-meta-item"><strong>10–50 people</strong>Group size</div>
+            <div class="t-meta-item"><strong>In-person / Virtual</strong>Format</div>
+          </div>
+          <a href="#contact" class="t-link">Book a workshop →</a>
+        </div>
+        <div class="training-card">
+          <div class="t-icon">💻</div>
+          <h3>Webinars & Online Trainings</h3>
+          <p>Live or recorded sessions on AI topics for your organization. Includes Q&A and post-session materials. Scalable to large teams.</p>
+          <div class="t-meta">
+            <div class="t-meta-item"><strong>60–120 min</strong>Duration</div>
+            <div class="t-meta-item"><strong>Up to 500</strong>Participants</div>
+            <div class="t-meta-item"><strong>Virtual</strong>Format</div>
+          </div>
+          <a href="#contact" class="t-link">Schedule a webinar →</a>
+        </div>
+        <div class="training-card">
+          <div class="t-icon">🎯</div>
+          <h3>Seminars & Masterclasses</h3>
+          <p>Intensive deep-dives for senior teams. Small groups for maximum engagement on specific AI challenges.</p>
+          <div class="t-meta">
+            <div class="t-meta-item"><strong>Full day</strong>Duration</div>
+            <div class="t-meta-item"><strong>8–20 people</strong>Group size</div>
+            <div class="t-meta-item"><strong>In-person preferred</strong>Format</div>
+          </div>
+          <a href="#contact" class="t-link">Inquire →</a>
+        </div>
+        <div class="training-card">
+          <div class="t-icon">🎤</div>
+          <h3>Conference & Event Speaking</h3>
+          <p>Keynotes, panels, or fireside chats. Topics tailored to your event theme and audience — in-person or virtually.</p>
+          <div class="t-meta">
+            <div class="t-meta-item"><strong>20–60 min</strong>Duration</div>
+            <div class="t-meta-item"><strong>Any size</strong>Audience</div>
+            <div class="t-meta-item"><strong>Flexible</strong>Format</div>
+          </div>
+          <a href="#contact" class="t-link">Invite as speaker →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RESOURCES ─── -->
+  <section id="resources">
+    <div class="container">
+      <div class="section-header spread">
+        <div>
+          <div class="section-tag">Resources</div>
+          <h2 class="section-title" style="margin-bottom:0;">Free Tools to Get Started</h2>
+        </div>
+        <a href="#contact" class="btn btn-outline btn-sm">Request any resource</a>
+      </div>
+      <div class="resources-grid">
+        <div class="res-card">
+          <div class="res-icon">📋</div>
+          <div>
+            <div class="res-type">Playbook</div>
+            <h4>AI Implementation Playbook</h4>
+            <p>Step-by-step guide from stakeholder alignment to measuring ROI. Built from real enterprise deployments.</p>
+          </div>
+        </div>
+        <div class="res-card">
+          <div class="res-icon">✅</div>
+          <div>
+            <div class="res-type">Checklist</div>
+            <h4>Workflow Automation Checklist</h4>
+            <p>40-point checklist to identify automation opportunities across your organization.</p>
+          </div>
+        </div>
+        <div class="res-card">
+          <div class="res-icon">🧮</div>
+          <div>
+            <div class="res-type">Tool</div>
+            <h4>ROI Calculator for Automation</h4>
+            <p>Input your process data; get projected time savings and cost impact.</p>
+          </div>
+        </div>
+        <div class="res-card">
+          <div class="res-icon">🤖</div>
+          <div>
+            <div class="res-type">Guide</div>
+            <h4>Agentic AI Essentials</h4>
+            <p>How autonomous agents work, where they create value, and how to scope your first deployment.</p>
+          </div>
+        </div>
+        <div class="res-card">
+          <div class="res-icon">🔄</div>
+          <div>
+            <div class="res-type">Framework</div>
+            <h4>Change Management for AI</h4>
+            <p>Stakeholder mapping, communication planning, and adoption tracking for AI rollouts.</p>
+          </div>
+        </div>
+        <div class="res-card">
+          <div class="res-icon">📖</div>
+          <div>
+            <div class="res-type">Reference</div>
+            <h4>AI & Automation Glossary</h4>
+            <p>Plain-language definitions for 80+ terms. Share with your leadership team before AI discussions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="newsletter-strip">
+        <div>
+          <h3>Get Weekly AI Insights</h3>
+          <p>Practical notes on AI transformation, new resources, and lessons from real deployments — in your inbox weekly. No spam.</p>
+        </div>
+        <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" action="/thank-you.html">
+          <input type="hidden" name="form-name" value="newsletter" />
+          <input type="email" name="email" placeholder="your@email.com" required />
+          <button type="submit">Subscribe →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BLOG ─── -->
+  <section id="blog">
+    <div class="container">
+      <div class="section-header spread">
+        <div>
+          <div class="section-tag">Blog</div>
+          <h2 class="section-title" style="margin-bottom:0;">AI &amp; Enterprise Insights</h2>
+        </div>
+        <a href="blog-post-why-ai-deployments-fail.html" class="btn btn-outline btn-sm">Read latest post</a>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-tag">AI Strategy</div>
+        <div class="blog-meta">June 3, 2026 · 5 min read</div>
+        <h3>Why Most Enterprise AI Deployments Fail (And How to Fix It)</h3>
+        <p>After watching dozens of organizations spend millions on AI pilots that never scale, I've identified three patterns that kill deployments before they reach production. The fix isn't more technology — it's organizational clarity.</p>
+        <a href="blog-post-why-ai-deployments-fail.html" class="blog-read">Read full article →</a>
+      </div>
+
+      <div class="coming-soon-posts">
+        <div class="cs-post">
+          <h4>From Chatbots to Agents: What the Shift Means for Enterprise Teams</h4>
+          <span class="cs-badge">Coming Soon</span>
+        </div>
+        <div class="cs-post">
+          <h4>The Change Management Playbook Nobody Talks About in AI Projects</h4>
+          <span class="cs-badge">Coming Soon</span>
+        </div>
+        <div class="cs-post">
+          <h4>How I Think About ROI for Workflow Automation</h4>
+          <span class="cs-badge">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Get in Touch</div>
+        <h2 class="section-title">Let's Talk</h2>
+        <p class="section-sub">Exploring AI strategy, booking a training, or have a question? Fill this out — I respond within 24 hours.</p>
+      </div>
+
+      <div class="contact-grid">
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" action="/thank-you.html">
+          <input type="hidden" name="form-name" value="contact" />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company">Company</label>
+              <input type="text" id="company" name="company" placeholder="Your organization" />
+            </div>
+            <div class="form-group">
+              <label for="subject">I'm interested in *</label>
+              <select id="subject" name="subject" required>
+                <option value="" disabled selected>Select one</option>
+                <option>AI Consulting Engagement</option>
+                <option>Training / Workshop</option>
+                <option>Speaking Engagement</option>
+                <option>General Question</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" placeholder="Tell me about your situation and what you'd like to discuss..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+          <p class="form-note">I'll respond within 24 hours. Your information is never shared.</p>
+        </form>
+
+        <div class="contact-info">
+          <h3>Other ways to reach me</h3>
+          <div class="contact-method">
+            <div class="cm-icon">✉️</div>
+            <div>
+              <div class="cm-label">Email</div>
+              <div class="cm-value"><a href="mailto:maskyrohit@gmail.com">maskyrohit@gmail.com</a></div>
+              <div class="cm-sub">Best for detailed inquiries</div>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="cm-icon">📅</div>
+            <div>
+              <div class="cm-label">Book a Call</div>
+              <!-- REPLACE href with your booking link -->
+              <div class="cm-value"><a href="#contact">Schedule a meeting</a></div>
+              <div class="cm-sub">30-min discovery calls available</div>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="cm-icon">💼</div>
+            <div>
+              <div class="cm-label">LinkedIn</div>
+              <div class="cm-value"><a href="https://linkedin.com/in/rohitmaskara" target="_blank" rel="noopener">linkedin.com/in/rohitmaskara</a></div>
+              <div class="cm-sub">Connect professionally</div>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="cm-icon">📍</div>
+            <div>
+              <div class="cm-label">Location</div>
+              <div class="cm-value">Singapore</div>
+              <div class="cm-sub">In-person across Asia · Virtual globally</div>
+            </div>
+          </div>
+          <div class="response-box">
+            <h4>⏱️ 24-Hour Response</h4>
+            <p>I personally read and respond to every message within 24 hours on business days. No auto-responders.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SOCIALS ─── -->
+  <section id="socials" style="background: var(--alt-bg);">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-tag">Follow Along</div>
+        <h2 class="section-title">Find Me Online</h2>
+        <p class="section-sub">Sharing insights on AI transformation, enterprise strategy, and the journey of building Yugam — across these platforms.</p>
+      </div>
+      <div class="socials-grid">
+
+        <!-- REPLACE href="#" with your LinkedIn profile URL -->
+        <a href="https://www.linkedin.com/company/yugamsystems/" target="_blank" rel="noopener" class="social-card" title="LinkedIn">
+          <div class="social-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="social-card-name">LinkedIn</div>
+          <div class="social-card-handle">@yugamsystems</div>
+        </a>
+
+        <!-- REPLACE href="#" with your YouTube channel URL -->
+        <a href="https://youtube.com/@ai_yugam_official?si=o97iX_iygURHzpOA" target="_blank" rel="noopener" class="social-card" title="YouTube">
+          <div class="social-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <div class="social-card-name">YouTube</div>
+          <div class="social-card-handle">@ai_yugam_official</div>
+        </a>
+
+        <!-- REPLACE href="#" with your X/Twitter profile URL -->
+        <a href="https://x.com/yugam_ai" target="_blank" rel="noopener" class="social-card" title="X / Twitter">
+          <div class="social-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </div>
+          <div class="social-card-name">X</div>
+          <div class="social-card-handle">@yugam_ai</div>
+        </a>
+
+        <a href="https://www.instagram.com/yugam.ai.official/" target="_blank" rel="noopener" class="social-card" title="Instagram">
+          <div class="social-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+          <div class="social-card-name">Instagram</div>
+          <div class="social-card-handle">@yugam.ai.official</div>
+        </a>
+
+        <a href="https://www.threads.com/@yugam.ai.official" target="_blank" rel="noopener" class="social-card" title="Threads">
+          <div class="social-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.5 12.01v-.017c.024-3.503.886-6.34 2.56-8.428C5.745 1.388 8.48.192 12.017.169h.016c2.764.018 5.141.802 6.999 2.329 1.808 1.478 2.963 3.494 3.434 5.998l-2.463.418c-.372-1.979-1.225-3.553-2.537-4.673-1.292-1.102-3.037-1.666-5.188-1.68h-.012c-2.728.018-4.866.938-6.354 2.735-1.422 1.714-2.148 4.128-2.168 7.178v.014c.018 3.119.729 5.556 2.112 7.245 1.322 1.617 3.426 2.452 6.254 2.471h.008c2.562-.018 4.44-.721 5.788-2.149 1.45-1.538 2.125-3.823 2.007-6.792-.01-.236-.028-.468-.055-.694a5.228 5.228 0 00-.198-.912c-.52-1.584-1.697-2.538-3.363-2.737-.283.848-.636 1.578-1.054 2.172-.625.876-1.385 1.437-2.268 1.672a4.093 4.093 0 01-1.044.133c-.886 0-1.688-.27-2.318-.781-.7-.565-1.071-1.348-1.048-2.2.025-.929.458-1.71 1.22-2.207.695-.45 1.618-.666 2.82-.66.375.003.745.02 1.107.053-.194-.636-.598-1.068-1.228-1.315-.557-.217-1.261-.317-2.155-.306l-.009.001a5.24 5.24 0 00-.512.028 5.38 5.38 0 00-.491.08l-.475-2.413a7.896 7.896 0 01.711-.124 7.893 7.893 0 01.755-.043c1.294-.015 2.385.175 3.337.574 1.648.682 2.68 1.945 2.983 3.645.047.228.086.461.115.696.03.225.058.642.078 1.065.142 3.623-.74 6.405-2.624 8.271-1.753 1.735-4.106 2.618-6.998 2.636z"/></svg>
+          </div>
+          <div class="social-card-name">Threads</div>
+          <div class="social-card-handle">@yugam.ai.official</div>
+        </a>
+
+        <!-- REPLACE href="#" with your Reddit profile URL -->
+        <a href="#" class="social-card" title="Reddit">
+          <div class="social-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+          </div>
+          <div class="social-card-name">Reddit</div>
+          <div class="social-card-handle">Coming soon</div>
+        </a>
+
+        <!-- REPLACE href="#" with your TikTok profile URL -->
+        <a href="#" class="social-card" title="TikTok">
+          <div class="social-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.11 8.11 0 004.84 1.59V6.83a4.85 4.85 0 01-1.07-.14z"/></svg>
+          </div>
+          <div class="social-card-name">TikTok</div>
+          <div class="social-card-handle">Coming soon</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-mark">
+              <svg width="20" height="26" viewBox="0 0 56 74" fill="none" aria-hidden="true">
+                <line x1="10" y1="10" x2="28" y2="34" stroke="#C8922A" stroke-width="3" stroke-linecap="round"/>
+                <line x1="46" y1="10" x2="28" y2="34" stroke="#C8922A" stroke-width="3" stroke-linecap="round"/>
+                <line x1="28" y1="34" x2="28" y2="66" stroke="#C8922A" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="10" cy="10" r="6" fill="#C8922A"/>
+                <circle cx="46" cy="10" r="6" fill="#C8922A"/>
+                <circle cx="28" cy="34" r="7.5" fill="#C8922A"/>
+                <circle cx="28" cy="66" r="6" fill="#C8922A"/>
+              </svg>
+              <span class="footer-logo-text">YUGAM</span>
+            </div>
+            <div class="footer-logo-tagline">AI &nbsp;·&nbsp; DATA &nbsp;·&nbsp; IMPACT</div>
+          </div>
+          <div class="footer-tagline">Helping organizations step into the AI Yugam</div>
+        </div>
+        <div class="footer-nav">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#trainings">Trainings</a>
+          <a href="#resources">Resources</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/company/yugamsystems/" target="_blank" rel="noopener" title="LinkedIn">in</a>
+          <a href="https://x.com/yugam_ai" target="_blank" rel="noopener" title="X">𝕏</a>
+          <a href="https://youtube.com/@ai_yugam_official?si=o97iX_iygURHzpOA" target="_blank" rel="noopener" title="YouTube">▶</a>
+          <a href="mailto:maskyrohit@gmail.com" title="Email">✉</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Yugam Systems Pte. Ltd. · Singapore</span>
+        <span>yugam.io</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+    document.addEventListener('click', function(e) {
+      const nav = document.getElementById('navbar');
+      if (!nav.contains(e.target)) closeMenu();
+    });
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
