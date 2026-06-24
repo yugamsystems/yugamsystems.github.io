@@ -42,25 +42,27 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); line-height: 1.6; color: var(--text); background: var(--bg); padding-top: 64px; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 var(--spacing-lg); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-lg); }
 
-    h1 { font-family: var(--font-heading); font-size: 2.4rem; font-weight: 700; margin-bottom: var(--spacing-lg); line-height: 1.2; letter-spacing: -0.02em; }
+    h1 { font-family: var(--font-heading); font-size: 2.8rem; font-weight: 700; margin-bottom: var(--spacing-lg); line-height: 1.15; letter-spacing: -0.02em; }
     h1 .gold { color: var(--accent); }
-    h2 { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; margin-bottom: var(--spacing-lg); }
+    h2 { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 700; margin-bottom: var(--spacing-xl); line-height: 1.2; }
     h3 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin-bottom: var(--spacing-md); }
     h4 { font-family: var(--font-heading); font-size: 1.125rem; font-weight: 700; margin-bottom: var(--spacing-sm); }
 
     button {
       background: var(--accent); color: #FFFFFF; border: 2px solid var(--accent);
-      padding: 13px 26px; border-radius: var(--radius-md); font-size: 0.95rem;
-      font-weight: 600; cursor: pointer; font-family: var(--font-heading);
+      padding: 15px 32px; border-radius: var(--radius-md); font-size: 0.95rem;
+      font-weight: 700; cursor: pointer; font-family: var(--font-heading);
       transition: var(--transition-normal);
     }
-    button:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201, 154, 58, 0.3); }
+    button:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201, 154, 58, 0.4); }
+    button:active { transform: translateY(0); }
 
-    header { position: fixed; top: 0; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); box-shadow: 0 1px 12px rgba(0,0,0,0.06); height: 64px; display: flex; align-items: center; z-index: 1000; }
-    .header-content { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 var(--spacing-lg); max-width: 1100px; margin: 0 auto; }
+    header { position: fixed; top: 0; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); box-shadow: 0 2px 16px rgba(0,0,0,0.08); height: 64px; display: flex; align-items: center; z-index: 1000; }
+    .header-content { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 var(--spacing-lg); max-width: 1200px; margin: 0 auto; }
 
     .nav-logo { display: flex; align-items: center; gap: var(--spacing-md); text-decoration: none; }
     .nav-logo-symbol { width: 32px; height: 32px; flex-shrink: 0; }
@@ -68,122 +70,133 @@
     @keyframes pulse { 0%, 100% { opacity: 0.9; } 50% { opacity: 1; } }
     .nav-logo-text { font-family: var(--font-heading); font-size: 1rem; font-weight: 300; letter-spacing: 0.35em; color: var(--primary); }
 
-    nav a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; margin: 0 var(--spacing-lg); padding: 7px 12px; border-radius: var(--radius-sm); transition: var(--transition-normal); }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; margin: 0 var(--spacing-xl); padding: 8px 12px; border-radius: var(--radius-sm); transition: var(--transition-normal); }
     nav a:hover { color: var(--primary); background: var(--alt-bg); }
 
-    section { padding: var(--spacing-4xl) 0; }
-    .hero { background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); }
-    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4xl); align-items: center; }
-    .hero-content h1 { margin-bottom: var(--spacing-lg); }
-    .hero-content p { font-size: 1.05rem; color: var(--muted); margin-bottom: var(--spacing-2xl); line-height: 1.75; }
-    .cta-buttons { display: flex; gap: var(--spacing-md); }
+    section { padding: var(--spacing-4xl) 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+
+    .hero { background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); padding: 60px 0 var(--spacing-4xl); }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--spacing-4xl); align-items: center; }
+    .hero-content h1 { margin-bottom: var(--spacing-xl); }
+    .hero-content p { font-size: 1.1rem; color: var(--muted); margin-bottom: var(--spacing-3xl); line-height: 1.8; }
+    .cta-buttons { display: flex; gap: var(--spacing-lg); }
     .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
     .btn-outline:hover { background: var(--accent); color: #FFFFFF; }
 
-    .card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: var(--spacing-lg); transition: var(--transition-normal); }
-    .card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(201, 154, 58, 0.12); }
+    .founder-card { text-align: center; background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); border: 1px solid var(--border); border-radius: var(--radius-2xl); padding: var(--spacing-3xl) var(--spacing-2xl); }
+    .founder-card img { width: 220px; height: 220px; border-radius: var(--radius-2xl); object-fit: cover; margin: 0 auto var(--spacing-2xl); box-shadow: 0 8px 32px rgba(0,0,0,0.12); border: 3px solid var(--bg); }
+    .founder-name { font-weight: 700; font-size: 1.35rem; margin-bottom: var(--spacing-xs); }
+    .founder-title { color: var(--accent); font-size: 1rem; font-weight: 600; margin-bottom: var(--spacing-lg); }
+    .expertise-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); justify-content: center; margin-bottom: var(--spacing-xl); }
+    .tag { background: var(--alt-bg); color: var(--text); padding: 6px 14px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; border: 1px solid var(--border); }
+    .credentials { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
 
-    .founder-card { text-align: center; }
-    .founder-card img { width: 180px; height: 180px; border-radius: var(--radius-2xl); object-fit: cover; margin: 0 auto var(--spacing-lg); }
-    .founder-name { font-weight: 700; font-size: 1.25rem; margin-bottom: var(--spacing-xs); }
-    .founder-title { color: var(--muted); font-size: 0.95rem; margin-bottom: var(--spacing-lg); }
-    .expertise-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-xs); justify-content: center; margin-bottom: var(--spacing-md); }
-    .tag { background: var(--alt-bg); color: var(--muted); padding: 6px 12px; border-radius: var(--radius-sm); font-size: 0.8rem; }
-    .credentials { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
-
-    .section-label { font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: var(--spacing-2xl); }
+    .section-label { font-size: 0.7rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: var(--spacing-2xl); }
 
     .readiness { background: var(--bg); }
-    .readiness-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4xl); align-items: center; margin-top: var(--spacing-3xl); }
-    .readiness-list { display: flex; flex-direction: column; gap: var(--spacing-md); }
-    .readiness-item { display: flex; gap: var(--spacing-md); }
-    .readiness-item strong { color: var(--accent); min-width: 20px; }
-    .readiness-item p { color: var(--muted); line-height: 1.6; }
-    .readiness-insight { background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); border: 2px solid var(--accent); border-radius: var(--radius-xl); padding: var(--spacing-xl); text-align: center; }
-    .readiness-insight p { font-size: 0.95rem; color: var(--text); line-height: 1.7; margin: 0; }
+    .readiness-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4xl); align-items: start; margin-top: var(--spacing-3xl); }
+    .readiness-list { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
+    .readiness-item { display: flex; gap: var(--spacing-lg); align-items: flex-start; }
+    .readiness-item .icon { font-size: 2.4rem; color: var(--accent); flex-shrink: 0; }
+    .readiness-item p { color: var(--muted); line-height: 1.7; }
+    .readiness-item p strong { color: var(--text); display: block; margin-bottom: var(--spacing-sm); }
+    .readiness-insight { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); border-radius: var(--radius-2xl); padding: var(--spacing-3xl); text-align: center; color: #FFFFFF; box-shadow: 0 8px 32px rgba(201, 154, 58, 0.2); }
+    .readiness-insight p { font-size: 1.1rem; color: #FFFFFF; line-height: 1.8; margin: 0; }
 
     .timeline-section { background: var(--alt-bg); }
-    .timeline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-2xl); margin-top: var(--spacing-3xl); position: relative; }
-    .timeline-grid::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--accent) 0%, var(--accent) 48%, transparent 48%, transparent 52%, var(--accent) 52%, var(--accent) 100%); z-index: 0; }
-    .timeline-card { background: var(--bg); border: 2px solid var(--accent); border-radius: var(--radius-xl); padding: var(--spacing-lg); text-align: center; position: relative; z-index: 1; }
-    .phase-label { font-size: 0.85rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: var(--spacing-sm); }
-    .phase-weeks { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: var(--spacing-md); }
-    .phase-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: var(--spacing-md); }
-    .phase-items { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .timeline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-2xl); margin-top: var(--spacing-3xl); position: relative; padding: var(--spacing-3xl) 0; }
+    .timeline-grid::before { content: ''; position: absolute; top: 24px; left: 12.5%; right: 12.5%; height: 3px; background: linear-gradient(to right, var(--accent) 0%, var(--accent) 45%, transparent 45%, transparent 55%, var(--accent) 55%, var(--accent) 100%); z-index: 0; }
+    .timeline-card { background: var(--bg); border: 2px solid var(--accent); border-radius: var(--radius-2xl); padding: var(--spacing-2xl); text-align: center; position: relative; z-index: 1; transition: var(--transition-normal); }
+    .timeline-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(201, 154, 58, 0.2); }
+    .phase-label { font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: var(--spacing-sm); }
+    .phase-weeks { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: var(--spacing-md); }
+    .phase-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: var(--spacing-md); }
+    .phase-items { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
 
     .diagnostics { background: var(--bg); }
-    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--spacing-2xl); margin-top: var(--spacing-3xl); }
-    .tool-card { padding: var(--spacing-lg); border-radius: var(--radius-2xl); border: 1px solid var(--border); transition: var(--transition-normal); }
-    .tool-card:hover { border-color: var(--accent); background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--spacing-2xl); margin-top: var(--spacing-3xl); }
+    .tool-card { padding: var(--spacing-2xl); border-radius: var(--radius-2xl); border: 1px solid var(--border); transition: var(--transition-normal); background: var(--bg); }
+    .tool-card:hover { border-color: var(--accent); background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(201, 154, 58, 0.15); }
     .tool-card.featured { border: 2px solid var(--accent); background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); }
-    .tool-icon { font-size: 32px; margin-bottom: var(--spacing-md); }
-    .tool-title { font-weight: 700; font-size: 1rem; margin-bottom: var(--spacing-sm); color: var(--text); }
-    .tool-description { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .tool-icon { font-size: 2.2rem; margin-bottom: var(--spacing-lg); color: var(--accent); }
+    .tool-title { font-weight: 700; font-size: 1.05rem; margin-bottom: var(--spacing-md); color: var(--text); }
+    .tool-description { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin-bottom: var(--spacing-lg); }
 
     .calculator-section { background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); }
-    .calculator-container { max-width: 500px; margin: var(--spacing-2xl) auto; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: var(--spacing-lg); }
+    .calculator-container { max-width: 580px; margin: var(--spacing-3xl) auto; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-2xl); padding: var(--spacing-2xl); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
     .calc-input-group { margin-bottom: var(--spacing-2xl); }
-    .calc-input-group label { display: block; font-weight: 600; margin-bottom: var(--spacing-sm); color: var(--text); }
-    .calc-input-group input, .calc-input-group select { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 0.95rem; }
-    .calc-button { width: 100%; margin-top: var(--spacing-md); }
-    .calc-result { margin-top: var(--spacing-2xl); padding: var(--spacing-lg); background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); border: 2px solid var(--accent); border-radius: var(--radius-xl); display: none; }
+    .calc-input-group label { display: block; font-weight: 600; margin-bottom: var(--spacing-sm); color: var(--text); font-size: 0.95rem; }
+    .calc-input-group input, .calc-input-group select { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 0.95rem; background: var(--bg); }
+    .calc-button { width: 100%; margin-top: var(--spacing-lg); }
+    .calc-result { margin-top: var(--spacing-2xl); padding: var(--spacing-2xl); background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); border-radius: var(--radius-xl); display: none; color: #FFFFFF; }
     .calc-result.show { display: block; }
-    .result-item { margin-bottom: var(--spacing-md); padding-bottom: var(--spacing-md); border-bottom: 1px solid var(--border); }
+    .result-item { margin-bottom: var(--spacing-2xl); padding-bottom: var(--spacing-2xl); border-bottom: 1px solid rgba(255,255,255,0.2); }
     .result-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .result-label { font-size: 0.9rem; color: var(--muted); margin-bottom: 4px; }
-    .result-value { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+    .result-label { font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .result-value { font-size: 1.6rem; font-weight: 700; color: #FFFFFF; }
 
     .portfolio { background: var(--bg); }
-    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-2xl); margin-top: var(--spacing-3xl); }
-    .case-study { border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; transition: var(--transition-normal); }
-    .case-study:hover { box-shadow: 0 8px 24px rgba(201, 154, 58, 0.12); border-color: var(--accent); }
-    .case-study-header { background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); padding: var(--spacing-lg); border-bottom: 1px solid var(--border); }
-    .industry-tag { display: inline-block; background: var(--accent); color: #FFFFFF; padding: 4px 12px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; margin-bottom: var(--spacing-md); }
-    .case-study-title { font-weight: 700; font-size: 1.125rem; margin-bottom: var(--spacing-sm); color: var(--text); }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--spacing-3xl); margin-top: var(--spacing-3xl); }
+    .case-study { border: 1px solid var(--border); border-radius: var(--radius-2xl); overflow: hidden; transition: var(--transition-normal); background: var(--bg); }
+    .case-study:hover { box-shadow: 0 12px 40px rgba(201, 154, 58, 0.15); border-color: var(--accent); }
+    .case-study-header { background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); padding: var(--spacing-2xl); border-bottom: 1px solid var(--border); }
+    .industry-tag { display: inline-block; background: var(--accent); color: #FFFFFF; padding: 5px 14px; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 700; margin-bottom: var(--spacing-lg); text-transform: uppercase; letter-spacing: 0.5px; }
+    .case-study-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 0; color: var(--text); }
     .case-study-body { padding: var(--spacing-2xl); }
-    .metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); margin-bottom: var(--spacing-2xl); }
-    .metric-row:last-child { margin-bottom: 0; }
+    .case-study-section { margin-bottom: var(--spacing-2xl); }
+    .case-study-section:last-child { margin-bottom: 0; }
+    .case-study-section-title { font-weight: 700; font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: var(--spacing-md); }
+    .case-study-section-content { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: var(--spacing-lg); }
+    .metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); }
     .metric { background: var(--alt-bg); padding: var(--spacing-md); border-radius: var(--radius-md); }
-    .metric-label { font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .metric-before { color: var(--muted); font-size: 0.95rem; }
-    .metric-after { font-weight: 700; color: var(--text); font-size: 1.25rem; margin-top: 4px; }
-    .case-study-section { margin-bottom: var(--spacing-lg); }
-    .case-study-section-title { font-weight: 700; font-size: 0.9rem; color: var(--text); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: var(--spacing-sm); }
-    .case-study-section-content { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .metric-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+    .metric-before { color: var(--muted); font-size: 0.9rem; }
+    .metric-after { font-weight: 700; color: var(--accent); font-size: 1.35rem; margin-top: 4px; }
     .tech-stack { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); margin-top: var(--spacing-sm); }
-    .tech-tag { background: var(--border); padding: 4px 8px; border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--muted); }
+    .tech-tag { background: var(--alt-bg); padding: 5px 10px; border-radius: var(--radius-sm); font-size: 0.75rem; color: var(--muted); border: 1px solid var(--border); }
 
     .insights { background: var(--alt-bg); }
-    .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-2xl); margin-top: var(--spacing-3xl); }
-    .insight-card { background: var(--bg); padding: var(--spacing-lg); border-radius: var(--radius-xl); border: 1px solid var(--border); }
-    .insight-tag { display: inline-block; background: #E5C88D; color: #6B3B0A; padding: 4px 12px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; margin-bottom: var(--spacing-md); }
-    .insight-title { font-weight: 700; font-size: 1rem; margin-bottom: var(--spacing-sm); color: var(--text); }
-    .insight-excerpt { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-2xl); margin-top: var(--spacing-3xl); }
+    .insight-card { background: var(--bg); padding: var(--spacing-2xl); border-radius: var(--radius-2xl); border: 1px solid var(--border); transition: var(--transition-normal); cursor: pointer; }
+    .insight-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(201, 154, 58, 0.15); }
+    .insight-tag { display: inline-block; background: var(--accent-light); color: #6B3B0A; padding: 5px 12px; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 700; margin-bottom: var(--spacing-lg); text-transform: uppercase; letter-spacing: 0.5px; }
+    .insight-title { font-weight: 700; font-size: 1.1rem; margin-bottom: var(--spacing-md); color: var(--text); }
+    .insight-excerpt { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
 
-    .newsletter { background: var(--bg); }
-    .newsletter-content { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl); align-items: center; }
-    .newsletter-form { display: flex; flex-direction: column; gap: var(--spacing-sm); }
-    .newsletter-form input { padding: 13px 16px; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 0.95rem; font-family: var(--font-body); }
-    .newsletter-form button { margin-top: var(--spacing-md); }
+    .newsletter { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); color: #FFFFFF; }
+    .newsletter h2 { color: #FFFFFF; margin-bottom: var(--spacing-lg); }
+    .newsletter p { color: rgba(255,255,255,0.9); }
+    .newsletter-content { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4xl); align-items: center; }
+    .newsletter-left { }
+    .newsletter-form { display: flex; flex-direction: column; gap: var(--spacing-md); }
+    .newsletter-form input { padding: 14px 18px; border: 2px solid rgba(255,255,255,0.3); border-radius: var(--radius-md); font-size: 0.95rem; font-family: var(--font-body); background: rgba(255,255,255,0.1); color: #FFFFFF; }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.6); }
+    .newsletter-form button { background: #FFFFFF; color: var(--accent); border: 2px solid #FFFFFF; font-weight: 700; }
+    .newsletter-form button:hover { background: var(--accent-light); color: var(--primary); border-color: var(--accent-light); }
+    .newsletter-form p { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin: 0; }
 
-    footer { padding: var(--spacing-2xl); background: var(--primary); color: #FFFFFF; text-align: center; }
-    .social-links { display: flex; justify-content: center; gap: var(--spacing-lg); margin-top: var(--spacing-lg); }
-    .social-links a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); color: #FFFFFF; text-decoration: none; transition: background 0.2s; font-size: 18px; }
-    .social-links a:hover { background: rgba(255,255,255,0.2); }
+    footer { padding: var(--spacing-3xl) 0 var(--spacing-2xl); background: var(--primary); color: #FFFFFF; text-align: center; border-top: 1px solid var(--border); }
+    .social-links { display: flex; justify-content: center; gap: var(--spacing-2xl); margin-top: var(--spacing-2xl); }
+    .social-links a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.12); color: #FFFFFF; text-decoration: none; transition: background 0.2s, transform 0.2s; font-size: 20px; }
+    .social-links a:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
 
     @media (max-width: 768px) {
       h1 { font-size: 2rem; }
-      h2 { font-size: 1.5rem; }
+      h2 { font-size: 1.6rem; }
       .hero-grid, .readiness-grid, .newsletter-content { grid-template-columns: 1fr; }
-      .timeline-grid { grid-template-columns: 1fr; }
+      .timeline-grid { grid-template-columns: 1fr; gap: var(--spacing-3xl); }
+      .timeline-grid::before { display: none; }
       .cta-buttons { flex-direction: column; }
+      .timeline-card { padding: var(--spacing-lg); }
       section { padding: var(--spacing-3xl) 0; }
+      .hero { padding: 40px 0 var(--spacing-3xl); }
     }
   </style>
 </head>
 <body>
   <header>
-    <div style="width: 100%; padding: 0 var(--spacing-lg); display: flex; justify-content: space-between; align-items: center;">
+    <div style="width: 100%; padding: 0 var(--spacing-lg); display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto;">
       <a href="/" class="nav-logo">
         <svg class="nav-logo-symbol" viewBox="0 0 56 74" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line x1="10" y1="10" x2="28" y2="34" stroke="#C99A3A" stroke-width="2.5" stroke-linecap="round"/>
@@ -197,8 +210,9 @@
         <span class="nav-logo-text">YUGAM</span>
       </a>
       <nav>
+        <a href="#readiness">Readiness</a>
+        <a href="#methodology">Methodology</a>
         <a href="#work">Work</a>
-        <a href="#resources">Resources</a>
         <a href="#insights">Insights</a>
       </nav>
     </div>
@@ -212,10 +226,10 @@
           <p>I work with operations leaders, founders, and tech teams to reinvent workflows with production-quality AI. Systems that ship, scale, and move the needle.</p>
           <div class="cta-buttons">
             <button onclick="alert('Book a call: maskyrohit@gmail.com')">Schedule Discovery Call</button>
-            <button class="btn-outline" onclick="window.location.href='/resources/risk-playbook.html'">Download Risk Playbook</button>
+            <button class="btn-outline" onclick="window.location.href='/resources/risk-playbook.html'">Risk Playbook</button>
           </div>
         </div>
-        <div class="card founder-card">
+        <div class="founder-card">
           <img src="founder-photo.jpg" alt="Rohit Maskara" />
           <div class="founder-name">Rohit Maskara</div>
           <div class="founder-title">AI Transformation Consultant</div>
@@ -230,25 +244,25 @@
     </div>
   </section>
 
-  <section class="readiness">
+  <section class="readiness" id="readiness">
     <div class="container">
       <div class="section-label">Foundation Assessment</div>
       <h2>Before Implementation: Is Your Organization Ready?</h2>
-      <p style="color: var(--muted); font-size: 1.05rem;">Production-quality AI requires more than technology. You need the foundation.</p>
+      <p style="color: var(--muted); font-size: 1.05rem; margin-bottom: var(--spacing-2xl);">Production-quality AI requires more than technology. You need the foundation.</p>
 
       <div class="readiness-grid">
         <div class="readiness-list">
           <div class="readiness-item">
-            <strong style="font-size: 1.5rem;"><i class="ti ti-chart-bar" style="color: var(--accent);"></i></strong>
-            <p><strong>Data Organization:</strong> Is your data structured, documented, and accessible? Or fragmented across systems?</p>
+            <div class="icon"><i class="ti ti-chart-bar"></i></div>
+            <p><strong>Data Organization</strong> Is your data structured, documented, and accessible? Or fragmented across systems?</p>
           </div>
           <div class="readiness-item">
-            <strong style="font-size: 1.5rem;"><i class="ti ti-clipboard" style="color: var(--accent);"></i></strong>
-            <p><strong>Process Clarity:</strong> Do you have documented SOPs and knowledge bases? Or does process live in people's heads?</p>
+            <div class="icon"><i class="ti ti-clipboard"></i></div>
+            <p><strong>Process Clarity</strong> Do you have documented SOPs and knowledge bases? Or does process live in people's heads?</p>
           </div>
           <div class="readiness-item">
-            <strong style="font-size: 1.5rem;"><i class="ti ti-users" style="color: var(--accent);"></i></strong>
-            <p><strong>Team Readiness:</strong> Are your teams prepared to work WITH AI? Or will they resist/misuse it?</p>
+            <div class="icon"><i class="ti ti-users"></i></div>
+            <p><strong>Team Readiness</strong> Are your teams prepared to work WITH AI? Or will they resist/misuse it?</p>
           </div>
         </div>
         <div class="readiness-insight">
@@ -258,11 +272,11 @@
     </div>
   </section>
 
-  <section class="timeline-section">
+  <section class="timeline-section" id="methodology">
     <div class="container">
       <div class="section-label">Methodology</div>
       <h2>How Yugam Works: Implementation Timeline</h2>
-      <p style="color: var(--muted); font-size: 1.05rem;">A structured, measured approach. From readiness to scale.</p>
+      <p style="color: var(--muted); font-size: 1.05rem; margin-bottom: var(--spacing-2xl);">A structured, measured approach. From readiness to scale.</p>
 
       <div class="timeline-grid">
         <div class="timeline-card">
@@ -290,7 +304,7 @@
           <div class="phase-items">Full deployment • Staff training • Governance framework • Executive reporting</div>
         </div>
       </div>
-      <p style="color: var(--muted); font-size: 0.95rem; text-align: center; margin-top: var(--spacing-2xl);"><strong>Week 13+:</strong> Monthly check-ins, optimization, and scaling as the business evolves.</p>
+      <p style="color: var(--muted); font-size: 0.95rem; text-align: center; margin-top: var(--spacing-3xl);"><strong>Week 13+:</strong> Monthly check-ins, optimization, and scaling as the business evolves.</p>
     </div>
   </section>
 
@@ -298,42 +312,42 @@
     <div class="container">
       <div class="section-label">Diagnostic Tools</div>
       <h2>Free AI Diagnostics: Understand Your Readiness</h2>
-      <p style="color: var(--muted); font-size: 1.05rem;">Start here. No strings. See where you stand.</p>
+      <p style="color: var(--muted); font-size: 1.05rem; margin-bottom: var(--spacing-2xl);">Start here. No strings. See where you stand.</p>
 
       <div class="tools-grid">
         <div class="tool-card featured">
-          <div class="tool-icon"><i class="ti ti-alert-circle" style="color: var(--accent);"></i></div>
+          <div class="tool-icon"><i class="ti ti-alert-circle"></i></div>
           <div class="tool-title">Implementation Risk Assessment</div>
           <div class="tool-description">Map your AI project against our 4-failure-mode framework. See which risks are most critical for you.</div>
-          <button style="width: 100%; margin-top: var(--spacing-md); background: var(--accent);" onclick="window.location.href='/resources/risk-playbook.html'">Access Tool</button>
+          <button style="width: 100%; background: var(--accent);" onclick="window.location.href='/resources/risk-playbook.html'">Access Tool</button>
         </div>
         <div class="tool-card">
-          <div class="tool-icon"><i class="ti ti-target" style="color: var(--accent);"></i></div>
+          <div class="tool-icon"><i class="ti ti-target"></i></div>
           <div class="tool-title">AI Opportunity Finder</div>
           <div class="tool-description">Quick scan of your operations. Identifies top 3 workflows where AI can create the most value.</div>
         </div>
         <div class="tool-card">
-          <div class="tool-icon"><i class="ti ti-database" style="color: var(--accent);"></i></div>
+          <div class="tool-icon"><i class="ti ti-database"></i></div>
           <div class="tool-title">Data Readiness Scan</div>
           <div class="tool-description">Assess the quality and organization of your data. Reveals what's production-ready and what needs work.</div>
         </div>
         <div class="tool-card">
-          <div class="tool-icon"><i class="ti ti-refresh" style="color: var(--accent);"></i></div>
+          <div class="tool-icon"><i class="ti ti-refresh"></i></div>
           <div class="tool-title">Implementation Complexity Score</div>
           <div class="tool-description">Based on your team size, current tech stack, and organizational readiness. Realistic effort estimate.</div>
         </div>
         <div class="tool-card">
-          <div class="tool-icon"><i class="ti ti-coin" style="color: var(--accent);"></i></div>
+          <div class="tool-icon"><i class="ti ti-coin"></i></div>
           <div class="tool-title">Cost-to-Deploy Calculator</div>
           <div class="tool-description">Input your scope. See realistic costs, timeline, resource needs, and ROI payback period.</div>
         </div>
         <div class="tool-card">
-          <div class="tool-icon"><i class="ti ti-users-group" style="color: var(--accent);"></i></div>
+          <div class="tool-icon"><i class="ti ti-users-group"></i></div>
           <div class="tool-title">Team Readiness Check</div>
           <div class="tool-description">Assess your team's AI literacy, adoption readiness, and training needs before implementation.</div>
         </div>
         <div class="tool-card">
-          <div class="tool-icon"><i class="ti ti-trending-up" style="color: var(--accent);"></i></div>
+          <div class="tool-icon"><i class="ti ti-trending-up"></i></div>
           <div class="tool-title">Competitive Advantage Assessment</div>
           <div class="tool-description">Compare your AI readiness to competitors. Find areas where AI adoption could give you an edge.</div>
         </div>
@@ -343,8 +357,8 @@
 
   <section class="calculator-section">
     <div class="container">
-      <h2 style="text-align: center;">AI Impact Assessment Calculator</h2>
-      <p style="color: var(--muted); font-size: 1.05rem; text-align: center;">Tell me about your business. I'll estimate AI impact and implementation reality for you.</p>
+      <h2 style="text-align: center; color: var(--text);">AI Impact Assessment Calculator</h2>
+      <p style="color: var(--muted); font-size: 1.05rem; text-align: center; margin-bottom: var(--spacing-2xl);">Quick 4-field calculator. Get realistic deployment estimates for your business.</p>
 
       <div class="calculator-container">
         <div class="calc-input-group">
@@ -366,20 +380,20 @@
         <button type="button" class="calc-button" onclick="calculateImpact()">Calculate Impact</button>
 
         <div class="calc-result" id="result">
-          <div class="result-item"><div class="result-label">Estimated Implementation Timeline</div><div class="result-value" id="timeline">12–16 weeks</div></div>
-          <div class="result-item"><div class="result-label">Realistic First-Year Cost Range</div><div class="result-value" id="cost">$150K–$300K</div></div>
-          <div class="result-item"><div class="result-label">Expected ROI (Year 1–2)</div><div class="result-value" id="roi">3.5x–5.2x</div></div>
-          <div class="result-item"><div class="result-label">Estimated Payback Period</div><div class="result-value" id="payback">6–9 months</div></div>
+          <div class="result-item"><div class="result-label">Timeline</div><div class="result-value" id="timeline">12–16 weeks</div></div>
+          <div class="result-item"><div class="result-label">Cost Range</div><div class="result-value" id="cost">$150K–$300K</div></div>
+          <div class="result-item"><div class="result-label">Expected ROI (Y1–2)</div><div class="result-value" id="roi">3.5x–5.2x</div></div>
+          <div class="result-item"><div class="result-label">Payback Period</div><div class="result-value" id="payback">6–9 months</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="portfolio">
+  <section class="portfolio" id="work">
     <div class="container">
       <div class="section-label">Case Studies</div>
       <h2>How AI Has Moved the Needle: Recent Implementations</h2>
-      <p style="color: var(--muted); font-size: 1.05rem;">Real examples. Anonymized clients. Documented results.</p>
+      <p style="color: var(--muted); font-size: 1.05rem; margin-bottom: var(--spacing-2xl);">Real examples. Anonymized clients. Documented results.</p>
 
       <div class="portfolio-grid">
         <div class="case-study">
@@ -390,17 +404,17 @@
           <div class="case-study-body">
             <div class="case-study-section">
               <div class="case-study-section-title">Problem</div>
-              <div class="case-study-section-content">Mid-market logistics company relied on manual demand forecasting, leading to frequent stockouts and overstock situations. Monthly inventory planning took 3 days of analyst time.</div>
+              <div class="case-study-section-content">Mid-market logistics company relied on manual demand forecasting. 3 days per month of analyst time, 68% accuracy.</div>
               <div class="metric-row" style="margin-top: var(--spacing-md);">
-                <div class="metric"><div class="metric-label">Forecast Accuracy</div><div class="metric-before">Before: 68%</div></div>
-                <div class="metric"><div class="metric-label">Planning Time</div><div class="metric-before">Before: 72 hours</div></div>
+                <div class="metric"><div class="metric-label">Accuracy</div><div class="metric-before">68%</div></div>
+                <div class="metric"><div class="metric-label">Time/month</div><div class="metric-before">72 hrs</div></div>
               </div>
             </div>
             <div class="case-study-section">
               <div class="case-study-section-title">Solution</div>
-              <div class="case-study-section-content">AI-powered demand forecasting model + automated inventory optimization workflow.</div>
+              <div class="case-study-section-content">AI-powered forecasting + automated inventory optimization</div>
               <div class="tech-stack">
-                <span class="tech-tag">Python</span><span class="tech-tag">LLMs</span><span class="tech-tag">Zapier</span><span class="tech-tag">Sheets API</span>
+                <span class="tech-tag">Python</span><span class="tech-tag">LLMs</span><span class="tech-tag">Zapier</span><span class="tech-tag">API</span>
               </div>
             </div>
             <div class="case-study-section">
@@ -410,7 +424,7 @@
                 <div class="metric"><div class="metric-label">Time Saved</div><div class="metric-after">-85%</div></div>
               </div>
               <div class="metric-row">
-                <div class="metric"><div class="metric-label">Stockout Reduction</div><div class="metric-after">-62%</div></div>
+                <div class="metric"><div class="metric-label">Stockout ↓</div><div class="metric-after">-62%</div></div>
                 <div class="metric"><div class="metric-label">Annual Savings</div><div class="metric-after">$240K</div></div>
               </div>
             </div>
@@ -425,28 +439,28 @@
           <div class="case-study-body">
             <div class="case-study-section">
               <div class="case-study-section-title">Problem</div>
-              <div class="case-study-section-content">Legal team manually reviewed every vendor contract—average 4 hours per contract. Inconsistent risk flagging. Bottleneck in deal closing.</div>
+              <div class="case-study-section-content">Legal team manually reviewed every vendor contract. 4 hours per contract, inconsistent risk flagging.</div>
               <div class="metric-row" style="margin-top: var(--spacing-md);">
-                <div class="metric"><div class="metric-label">Review Time</div><div class="metric-before">Before: 4 hours</div></div>
-                <div class="metric"><div class="metric-label">Risk Consistency</div><div class="metric-before">Before: 71%</div></div>
+                <div class="metric"><div class="metric-label">Review Time</div><div class="metric-before">4 hrs</div></div>
+                <div class="metric"><div class="metric-label">Consistency</div><div class="metric-before">71%</div></div>
               </div>
             </div>
             <div class="case-study-section">
               <div class="case-study-section-title">Solution</div>
-              <div class="case-study-section-content">AI-powered contract analysis tool with risk flagging, clause extraction, and negotiation recommendations.</div>
+              <div class="case-study-section-content">AI contract analysis with risk flagging, clause extraction, negotiation recommendations</div>
               <div class="tech-stack">
-                <span class="tech-tag">Claude API</span><span class="tech-tag">Document Processing</span><span class="tech-tag">Web App</span>
+                <span class="tech-tag">Claude API</span><span class="tech-tag">Doc Processing</span><span class="tech-tag">Web App</span>
               </div>
             </div>
             <div class="case-study-section">
               <div class="case-study-section-title">Results</div>
               <div class="metric-row">
-                <div class="metric"><div class="metric-label">Review Time</div><div class="metric-after">24 min</div></div>
-                <div class="metric"><div class="metric-label">Risk Consistency</div><div class="metric-after">98%</div></div>
+                <div class="metric"><div class="metric-label">Time/Review</div><div class="metric-after">24 min</div></div>
+                <div class="metric"><div class="metric-label">Consistency</div><div class="metric-after">98%</div></div>
               </div>
               <div class="metric-row">
-                <div class="metric"><div class="metric-label">Deals Closed Faster</div><div class="metric-after">+40%</div></div>
-                <div class="metric"><div class="metric-label">Legal Bandwidth Freed</div><div class="metric-after">~20 hrs/week</div></div>
+                <div class="metric"><div class="metric-label">Deal Closure</div><div class="metric-after">+40%</div></div>
+                <div class="metric"><div class="metric-label">Bandwidth Freed</div><div class="metric-after">20 hrs/wk</div></div>
               </div>
             </div>
           </div>
@@ -455,33 +469,33 @@
         <div class="case-study">
           <div class="case-study-header">
             <span class="industry-tag">SaaS</span>
-            <div class="case-study-title">Customer Support Triage & Response</div>
+            <div class="case-study-title">Customer Support Triage</div>
           </div>
           <div class="case-study-body">
             <div class="case-study-section">
               <div class="case-study-section-title">Problem</div>
-              <div class="case-study-section-content">Support team overwhelmed with repetitive questions. Average response time 8+ hours. No prioritization framework. Agents burned out.</div>
+              <div class="case-study-section-content">Support team overwhelmed. 8+ hour response time, no prioritization, high agent burnout.</div>
               <div class="metric-row" style="margin-top: var(--spacing-md);">
-                <div class="metric"><div class="metric-label">Avg Response Time</div><div class="metric-before">Before: 8.2 hrs</div></div>
-                <div class="metric"><div class="metric-label">CSAT Score</div><div class="metric-before">Before: 72%</div></div>
+                <div class="metric"><div class="metric-label">Response Time</div><div class="metric-before">8.2 hrs</div></div>
+                <div class="metric"><div class="metric-label">CSAT</div><div class="metric-before">72%</div></div>
               </div>
             </div>
             <div class="case-study-section">
               <div class="case-study-section-title">Solution</div>
-              <div class="case-study-section-content">AI-powered ticket triage, auto-response for common questions, intelligent routing, and suggested answers for agents.</div>
+              <div class="case-study-section-content">AI ticket triage, auto-response for common questions, intelligent routing</div>
               <div class="tech-stack">
-                <span class="tech-tag">Claude API</span><span class="tech-tag">Zendesk Integration</span><span class="tech-tag">Custom Workflow</span>
+                <span class="tech-tag">Claude API</span><span class="tech-tag">Zendesk</span><span class="tech-tag">Workflow</span>
               </div>
             </div>
             <div class="case-study-section">
               <div class="case-study-section-title">Results</div>
               <div class="metric-row">
                 <div class="metric"><div class="metric-label">Response Time</div><div class="metric-after">1.8 hrs</div></div>
-                <div class="metric"><div class="metric-label">CSAT Score</div><div class="metric-after">91%</div></div>
+                <div class="metric"><div class="metric-label">CSAT</div><div class="metric-after">91%</div></div>
               </div>
               <div class="metric-row">
-                <div class="metric"><div class="metric-label">AI-Handled Tickets</div><div class="metric-after">47%</div></div>
-                <div class="metric"><div class="metric-label">Agent Burnout</div><div class="metric-after">-68%</div></div>
+                <div class="metric"><div class="metric-label">AI-Handled</div><div class="metric-after">47%</div></div>
+                <div class="metric"><div class="metric-label">Burnout</div><div class="metric-after">-68%</div></div>
               </div>
             </div>
           </div>
@@ -490,14 +504,14 @@
     </div>
   </section>
 
-  <section class="insights">
+  <section class="insights" id="insights">
     <div class="container">
       <div class="section-label">Thought Leadership</div>
       <h2>Latest Insights</h2>
-      <p style="color: var(--muted); font-size: 1.05rem;">Frameworks, patterns, and reality checks for SMB AI leaders.</p>
+      <p style="color: var(--muted); font-size: 1.05rem; margin-bottom: var(--spacing-2xl);">Frameworks, patterns, and reality checks for SMB AI leaders.</p>
 
       <div class="insights-grid">
-        <div class="insight-card" onclick="window.location.href='/resources/risk-playbook.html'" style="cursor: pointer;">
+        <div class="insight-card" onclick="window.location.href='/resources/risk-playbook.html'">
           <span class="insight-tag">Framework</span>
           <div class="insight-title">The 4 Failure Modes That Kill AI Projects</div>
           <div class="insight-excerpt">Most SMBs don't fail because of bad tech. They fail because they miss the organizational readiness piece. Here's what I've seen derail projects most often—and how to avoid it.</div>
@@ -519,14 +533,14 @@
   <section class="newsletter">
     <div class="container">
       <div class="newsletter-content">
-        <div>
+        <div class="newsletter-left">
           <h2>Stay In The Loop</h2>
-          <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.8;">Weekly frameworks, patterns, and reality checks for AI leaders. No hype. Just what actually works for SMBs.</p>
+          <p style="font-size: 1.05rem; line-height: 1.8;">Weekly frameworks, patterns, and reality checks for AI leaders. No hype. Just what actually works for SMBs.</p>
         </div>
         <div class="newsletter-form">
           <input type="email" placeholder="your@email.com" required>
           <button>Subscribe</button>
-          <p style="font-size: 0.85rem; color: var(--muted); margin-top: var(--spacing-sm);">Join 500+ operations leaders & founders. Unsubscribe anytime.</p>
+          <p>Join 500+ operations leaders & founders. Unsubscribe anytime.</p>
         </div>
       </div>
     </div>
