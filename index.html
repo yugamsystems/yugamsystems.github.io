@@ -3,458 +3,501 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/tabler-icons.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: #111827;
-      background: #ffffff;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    h1, h2, h3, h4 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-    h1 {
-      font-size: 3.6rem;
-      margin-bottom: 24px;
-      line-height: 1.2;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-    h1 .gold {
-      color: #C99A3A;
-    }
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 24px;
-    }
-    h3 {
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-    }
-    h4 {
-      font-size: 1.125rem;
-      margin-bottom: 12px;
-    }
-    .text-muted {
-      color: #6B7280;
-    }
-    .text-gold {
-      color: #C99A3A;
-    }
-    .button {
-      display: inline-block;
-      padding: 13px 26px;
-      border: 2px solid #C99A3A;
-      background: #C99A3A;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .button:hover {
-      background: #b8852f;
-      border-color: #b8852f;
-    }
-    .button-secondary {
-      background: transparent;
-      color: #C99A3A;
-    }
-    .button-secondary:hover {
-      background: #F8F6F1;
+    :root {
+      --yugam-gold: #C99A3A;
+      --yugam-dark: #111827;
+      --yugam-cream: #F8F6F1;
+      --yugam-light-gold: #E5C88D;
+      --primary: #111827;
+      --accent: #C99A3A;
+      --accent-dark: #B08830;
+      --accent-light: #E5C88D;
+      --gold-tint: #F8F6F1;
+      --gold-tint-2: #F0E8D8;
+      --bg: #FFFFFF;
+      --alt-bg: #F8F6F1;
+      --text: #111827;
+      --muted: #6B7280;
+      --border: #E8E5DE;
+      --border-dark: #D4CEC4;
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 32px;
+      --spacing-2xl: 48px;
+      --spacing-3xl: 64px;
+      --spacing-4xl: 88px;
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 14px;
+      --transition-normal: 0.2s ease;
     }
 
-    /* Hero Section */
-    .hero {
-      padding: 88px 24px;
-      background: #ffffff;
-    }
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-    .yugam-definition {
-      font-size: 0.95rem;
-      color: #6B7280;
-      margin-bottom: 12px;
-      font-weight: 500;
-    }
-    .yugam-tagline {
-      font-size: 1.125rem;
-      color: #111827;
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-    .tagline-italic {
-      font-style: italic;
-    }
-    .credentials {
-      list-style: none;
-      margin: 24px 0;
-      font-size: 0.95rem;
-    }
-    .credentials li {
-      padding: 8px 0;
-      color: #111827;
-    }
-    .credentials li:before {
-      content: "✓ ";
-      color: #C99A3A;
-      font-weight: 700;
-      margin-right: 8px;
-    }
-    .target-audience {
-      color: #6B7280;
-      font-size: 0.95rem;
-      margin: 24px 0;
-      line-height: 1.7;
-    }
-    .button-group {
-      display: flex;
-      gap: 16px;
-      margin-top: 32px;
-      flex-wrap: wrap;
-    }
-    .founder-card {
-      background: #F8F6F1;
-      padding: 24px;
-      border-radius: 14px;
-      text-align: center;
-      border: 1px solid #E8E5DE;
-    }
-    .founder-avatar {
-      width: 80px;
-      height: 80px;
-      background: #E5C88D;
-      border-radius: 50%;
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 32px;
-      color: #111827;
-    }
-    .founder-name {
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 8px;
-    }
-    .founder-title {
-      font-size: 0.85rem;
-      color: #6B7280;
-      margin-bottom: 12px;
-    }
-    .expertise-tags {
-      display: flex;
-      gap: 6px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .tag {
-      background: #ffffff;
-      border: 0.5px solid #E8E5DE;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      color: #6B7280;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-body); line-height: 1.6; color: var(--text); background: var(--bg); padding-top: 64px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 var(--spacing-lg); }
 
-    /* Diagnostics Section */
-    .diagnostics {
-      padding: 88px 24px;
-      background: #F8F6F1;
-    }
-    .diagnostics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-    .tool-card {
-      background: #ffffff;
-      padding: 24px;
-      border-radius: 14px;
-      border: 1px solid #E8E5DE;
-      text-align: center;
-    }
-    .tool-card.live {
-      border: 2px solid #C99A3A;
-      background: #FFFBF5;
-    }
-    .tool-icon {
-      font-size: 32px;
-      color: #C99A3A;
-      margin-bottom: 16px;
-    }
-    .tool-title {
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 8px;
-      color: #111827;
-    }
-    .tool-description {
-      font-size: 0.9rem;
-      color: #6B7280;
-      line-height: 1.6;
-    }
+    h1 { font-family: var(--font-heading); font-size: 2.4rem; font-weight: 700; margin-bottom: var(--spacing-lg); line-height: 1.2; letter-spacing: -0.02em; }
+    h1 .gold { color: var(--accent); }
+    h2 { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; margin-bottom: var(--spacing-lg); }
+    h3 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin-bottom: var(--spacing-md); }
+    h4 { font-family: var(--font-heading); font-size: 1.125rem; font-weight: 700; margin-bottom: var(--spacing-sm); }
 
-    /* Engagement Section */
-    .engagement {
-      padding: 88px 24px;
-      background: #ffffff;
+    button {
+      background: var(--accent); color: #FFFFFF; border: 2px solid var(--accent);
+      padding: 13px 26px; border-radius: var(--radius-md); font-size: 0.95rem;
+      font-weight: 600; cursor: pointer; font-family: var(--font-heading);
+      transition: var(--transition-normal);
     }
-    .engagement-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 32px;
-      margin-top: 40px;
-    }
-    .step-card {
-      text-align: center;
-    }
-    .step-number {
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: #C99A3A;
-      margin-bottom: 12px;
-      font-family: 'Poppins', sans-serif;
-    }
-    .step-title {
-      font-weight: 700;
-      font-size: 1.125rem;
-      margin-bottom: 12px;
-      color: #111827;
-    }
-    .step-description {
-      font-size: 0.9rem;
-      color: #6B7280;
-      line-height: 1.7;
-    }
+    button:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201, 154, 58, 0.3); }
 
-    /* Newsletter Section */
-    .newsletter {
-      padding: 88px 24px;
-      background: #F8F6F1;
-    }
-    .newsletter-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-    .newsletter-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .newsletter-form input {
-      padding: 13px 16px;
-      border: 1px solid #E8E5DE;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-family: 'Inter', sans-serif;
-    }
-    .newsletter-form button {
-      margin-top: 12px;
-    }
+    header { position: fixed; top: 0; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); box-shadow: 0 1px 12px rgba(0,0,0,0.06); height: 64px; display: flex; align-items: center; z-index: 1000; }
+    .header-content { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 var(--spacing-lg); max-width: 1100px; margin: 0 auto; }
 
-    /* Insights Section */
-    .insights {
-      padding: 88px 24px;
-      background: #ffffff;
-    }
-    .insights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-    .insight-card {
-      background: #F8F6F1;
-      padding: 24px;
-      border-radius: 14px;
-      border: 1px solid #E8E5DE;
-    }
-    .insight-tag {
-      display: inline-block;
-      background: #E5C88D;
-      color: #111827;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .insight-title {
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 8px;
-      color: #111827;
-    }
-    .insight-description {
-      font-size: 0.9rem;
-      color: #6B7280;
-      margin-bottom: 16px;
-      line-height: 1.6;
-    }
+    .nav-logo { display: flex; align-items: center; gap: var(--spacing-md); text-decoration: none; }
+    .nav-logo-symbol { width: 32px; height: 32px; flex-shrink: 0; }
+    .nav-logo-symbol circle { animation: pulse 4s infinite ease-in-out; }
+    @keyframes pulse { 0%, 100% { opacity: 0.9; } 50% { opacity: 1; } }
+    .nav-logo-text { font-family: var(--font-heading); font-size: 1rem; font-weight: 300; letter-spacing: 0.35em; color: var(--primary); }
 
-    /* Social Section */
-    .social {
-      padding: 24px;
-      text-align: center;
-      border-top: 1px solid #E8E5DE;
-      margin-top: 48px;
-    }
-    .social-icons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      margin-top: 16px;
-    }
-    .social-icon {
-      display: inline-flex;
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      background: #F8F6F1;
-      align-items: center;
-      justify-content: center;
-      color: #C99A3A;
-      text-decoration: none;
-      transition: all 0.2s;
-      font-size: 20px;
-    }
-    .social-icon:hover {
-      background: #E5C88D;
-    }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; margin: 0 var(--spacing-lg); padding: 7px 12px; border-radius: var(--radius-sm); transition: var(--transition-normal); }
+    nav a:hover { color: var(--primary); background: var(--alt-bg); }
+
+    section { padding: var(--spacing-4xl) 0; }
+    .hero { background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl); align-items: center; }
+    .hero-content h1 { margin-bottom: var(--spacing-lg); }
+    .hero-content p { font-size: 1.05rem; color: var(--muted); margin-bottom: var(--spacing-2xl); line-height: 1.75; }
+    .cta-buttons { display: flex; gap: var(--spacing-md); }
+    .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+    .btn-outline:hover { background: var(--accent); color: #FFFFFF; }
+
+    .card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: var(--spacing-lg); transition: var(--transition-normal); }
+    .card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(201, 154, 58, 0.12); }
+
+    .founder-card { text-align: center; }
+    .founder-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto var(--spacing-md); }
+    .founder-name { font-weight: 700; margin-bottom: var(--spacing-xs); }
+    .founder-title { color: var(--muted); font-size: 0.95rem; margin-bottom: var(--spacing-md); }
+    .expertise-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-xs); justify-content: center; margin-bottom: var(--spacing-md); }
+    .tag { background: var(--alt-bg); color: var(--muted); padding: 6px 12px; border-radius: var(--radius-sm); font-size: 0.8rem; }
+    .credentials { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    .readiness { background: var(--bg); }
+    .readiness-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl); align-items: center; margin-top: var(--spacing-2xl); }
+    .readiness-list { display: flex; flex-direction: column; gap: var(--spacing-md); }
+    .readiness-item { display: flex; gap: var(--spacing-md); }
+    .readiness-item strong { color: var(--accent); min-width: 20px; }
+    .readiness-item p { color: var(--muted); line-height: 1.6; }
+    .readiness-insight { background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); border: 2px solid var(--accent); border-radius: var(--radius-xl); padding: var(--spacing-xl); text-align: center; }
+    .readiness-insight p { font-size: 0.95rem; color: var(--text); line-height: 1.7; margin: 0; }
+
+    .timeline-section { background: var(--alt-bg); }
+    .timeline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-lg); margin-top: var(--spacing-2xl); }
+    .timeline-card { background: var(--bg); border: 2px solid var(--accent); border-radius: var(--radius-xl); padding: var(--spacing-lg); text-align: center; }
+    .phase-label { font-size: 0.85rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: var(--spacing-sm); }
+    .phase-weeks { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: var(--spacing-md); }
+    .phase-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: var(--spacing-md); }
+    .phase-items { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    .diagnostics { background: var(--bg); }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-2xl); }
+    .tool-card { padding: var(--spacing-lg); border-radius: var(--radius-xl); border: 1px solid var(--border); transition: var(--transition-normal); }
+    .tool-card:hover { border-color: var(--accent); background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); }
+    .tool-card.featured { border: 2px solid var(--accent); background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); }
+    .tool-icon { font-size: 32px; margin-bottom: var(--spacing-md); }
+    .tool-title { font-weight: 700; font-size: 1rem; margin-bottom: var(--spacing-sm); color: var(--text); }
+    .tool-description { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+    .calculator-section { background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); }
+    .calculator-container { max-width: 600px; margin: var(--spacing-2xl) auto; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: var(--spacing-2xl); }
+    .calc-input-group { margin-bottom: var(--spacing-2xl); }
+    .calc-input-group label { display: block; font-weight: 600; margin-bottom: var(--spacing-sm); color: var(--text); }
+    .calc-input-group input, .calc-input-group select { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 0.95rem; }
+    .calc-button { width: 100%; margin-top: var(--spacing-md); }
+    .calc-result { margin-top: var(--spacing-2xl); padding: var(--spacing-lg); background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); border: 2px solid var(--accent); border-radius: var(--radius-xl); display: none; }
+    .calc-result.show { display: block; }
+    .result-item { margin-bottom: var(--spacing-md); padding-bottom: var(--spacing-md); border-bottom: 1px solid var(--border); }
+    .result-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .result-label { font-size: 0.9rem; color: var(--muted); margin-bottom: 4px; }
+    .result-value { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+
+    .portfolio { background: var(--bg); }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-2xl); margin-top: var(--spacing-2xl); }
+    .case-study { border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; transition: var(--transition-normal); }
+    .case-study:hover { box-shadow: 0 8px 24px rgba(201, 154, 58, 0.12); border-color: var(--accent); }
+    .case-study-header { background: linear-gradient(135deg, #FFFBF5 0%, var(--alt-bg) 100%); padding: var(--spacing-lg); border-bottom: 1px solid var(--border); }
+    .industry-tag { display: inline-block; background: var(--accent); color: #FFFFFF; padding: 4px 12px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; margin-bottom: var(--spacing-md); }
+    .case-study-title { font-weight: 700; font-size: 1.125rem; margin-bottom: var(--spacing-sm); color: var(--text); }
+    .case-study-body { padding: var(--spacing-lg); }
+    .metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); margin-bottom: var(--spacing-2xl); }
+    .metric-row:last-child { margin-bottom: 0; }
+    .metric { background: var(--alt-bg); padding: var(--spacing-md); border-radius: var(--radius-md); }
+    .metric-label { font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .metric-before { color: var(--muted); font-size: 0.95rem; }
+    .metric-after { font-weight: 700; color: var(--text); font-size: 1.25rem; margin-top: 4px; }
+    .case-study-section { margin-bottom: var(--spacing-lg); }
+    .case-study-section-title { font-weight: 700; font-size: 0.9rem; color: var(--text); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: var(--spacing-sm); }
+    .case-study-section-content { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .tech-stack { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); margin-top: var(--spacing-sm); }
+    .tech-tag { background: var(--border); padding: 4px 8px; border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--muted); }
+
+    .insights { background: var(--alt-bg); }
+    .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-2xl); }
+    .insight-card { background: var(--bg); padding: var(--spacing-lg); border-radius: var(--radius-xl); border: 1px solid var(--border); }
+    .insight-tag { display: inline-block; background: #E5C88D; color: #6B3B0A; padding: 4px 12px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; margin-bottom: var(--spacing-md); }
+    .insight-title { font-weight: 700; font-size: 1rem; margin-bottom: var(--spacing-sm); color: var(--text); }
+    .insight-excerpt { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+    .newsletter { background: var(--bg); }
+    .newsletter-content { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl); align-items: center; }
+    .newsletter-form { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+    .newsletter-form input { padding: 13px 16px; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 0.95rem; font-family: var(--font-body); }
+    .newsletter-form button { margin-top: var(--spacing-md); }
+
+    footer { padding: var(--spacing-2xl); background: var(--primary); color: #FFFFFF; text-align: center; }
 
     @media (max-width: 768px) {
-      h1 { font-size: 1.8rem; }
+      h1 { font-size: 2rem; }
       h2 { font-size: 1.5rem; }
-      .hero-content, .newsletter-content {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      .button-group {
-        flex-direction: column;
-      }
-      .button { width: 100%; text-align: center; }
+      .hero-grid, .readiness-grid, .newsletter-content { grid-template-columns: 1fr; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .cta-buttons { flex-direction: column; }
+      section { padding: var(--spacing-3xl) 0; }
     }
   </style>
 </head>
 <body>
+  <header>
+    <div style="width: 100%; padding: 0 var(--spacing-lg); display: flex; justify-content: space-between; align-items: center;">
+      <a href="/" class="nav-logo">
+        <svg class="nav-logo-symbol" viewBox="0 0 56 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="10" y1="10" x2="28" y2="34" stroke="#C99A3A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="46" y1="10" x2="28" y2="34" stroke="#C99A3A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="28" y1="34" x2="28" y2="66" stroke="#C99A3A" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="10" cy="10" r="5.5" fill="#C99A3A"/>
+          <circle cx="46" cy="10" r="5.5" fill="#C99A3A"/>
+          <circle cx="28" cy="34" r="7" fill="#C99A3A"/>
+          <circle cx="28" cy="66" r="5.5" fill="#C99A3A"/>
+        </svg>
+        <span class="nav-logo-text">YUGAM</span>
+      </a>
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#resources">Resources</a>
+        <a href="#insights">Insights</a>
+      </nav>
+    </div>
+  </header>
+
   <section class="hero">
     <div class="container">
-      <div class="hero-content">
-        <div>
-          <div class="yugam-definition">
-            <span class="tagline-italic">Yugam (Sanskrit: a defining new age or epoch)</span>
-          </div>
-          <h1>The Age of AI has begun. <span class="gold">Yugam</span> helps you lead what's next.</h1>
-
-          <p class="target-audience">Built for small and medium-sized businesses that refuse to settle for generic AI slop and tooling.</p>
-
-          <div class="credentials">
-            <li>15+ years business strategy, product, CX, data, operations, governance, risk management</li>
-            <li>Helped dozens of businesses accelerate with AI</li>
-          </div>
-
-          <div class="button-group">
-            <button class="button">Schedule Free Strategy Review</button>
-            <button class="button button-secondary">Download Free Diagnostics</button>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1>AI pilots and enterprise-quality AI deployment are completely different. <span class="gold">I help you bridge that gap.</span></h1>
+          <p>I work with operations leaders, founders, and tech teams to reinvent workflows with production-quality AI. Systems that ship, scale, and move the needle.</p>
+          <div class="cta-buttons">
+            <button>Schedule Discovery Call</button>
+            <button class="btn-outline">Download Risk Playbook</button>
           </div>
         </div>
-
-        <div class="founder-card">
-          <div class="founder-avatar">R</div>
+        <div class="card founder-card">
+          <img src="founder-photo.jpg" alt="Rohit Maskara" />
           <div class="founder-name">Rohit Maskara</div>
-          <div class="founder-title">AI Implementation Strategist</div>
+          <div class="founder-title">AI Transformation Consultant</div>
           <div class="expertise-tags">
-            <span class="tag">AI Strategy</span>
             <span class="tag">Operations</span>
-            <span class="tag">Product</span>
-            <span class="tag">Data</span>
+            <span class="tag">AI Strategy</span>
+            <span class="tag">Enterprise</span>
           </div>
+          <div class="credentials">Ex-strategy, 8+ years AI/operations in scale-ups and enterprises. I help companies move from pilots to production.</div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="readiness">
+    <div class="container">
+      <h2>Before Implementation: Is Your Organization Ready?</h2>
+      <p style="color: var(--muted); font-size: 1.05rem;">Production-quality AI requires more than technology. You need the foundation.</p>
+
+      <div class="readiness-grid">
+        <div class="readiness-list">
+          <div class="readiness-item">
+            <strong>📊</strong>
+            <p><strong>Data Organization:</strong> Is your data structured, documented, and accessible? Or fragmented across systems?</p>
+          </div>
+          <div class="readiness-item">
+            <strong>📋</strong>
+            <p><strong>Process Clarity:</strong> Do you have documented SOPs and knowledge bases? Or does process live in people's heads?</p>
+          </div>
+          <div class="readiness-item">
+            <strong>👥</strong>
+            <p><strong>Team Readiness:</strong> Are your teams prepared to work WITH AI? Or will they resist/misuse it?</p>
+          </div>
+        </div>
+        <div class="readiness-insight">
+          <p><strong>Here's what I've learned:</strong> When the foundation is weak, you spend months rebuilding. If any of these are fragile, we start there.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline-section">
+    <div class="container">
+      <h2>How Yugam Works: Implementation Timeline</h2>
+      <p style="color: var(--muted); font-size: 1.05rem;">A structured, measured approach. From readiness to scale.</p>
+
+      <div class="timeline-grid">
+        <div class="timeline-card">
+          <div class="phase-label">Phase 1</div>
+          <div class="phase-weeks">Weeks 1–2</div>
+          <div class="phase-title">Foundation & Audit</div>
+          <div class="phase-items">Pre-AI readiness assessment • Data & process audits • Tech stack review • Team interviews</div>
+        </div>
+        <div class="timeline-card">
+          <div class="phase-label">Phase 2</div>
+          <div class="phase-weeks">Weeks 3–4</div>
+          <div class="phase-title">Strategy & Planning</div>
+          <div class="phase-items">AI opportunity mapping • Implementation roadmap • Cost & timeline estimation • Team pre-training</div>
+        </div>
+        <div class="timeline-card">
+          <div class="phase-label">Phase 3</div>
+          <div class="phase-weeks">Weeks 5–8</div>
+          <div class="phase-title">Build & Iterate</div>
+          <div class="phase-items">Pilots & prototypes • Testing & evaluation • Course corrections • Measurement setup</div>
+        </div>
+        <div class="timeline-card">
+          <div class="phase-label">Phase 4</div>
+          <div class="phase-weeks">Weeks 9–12</div>
+          <div class="phase-title">Scale & Govern</div>
+          <div class="phase-items">Full deployment • Staff training • Governance framework • Executive reporting</div>
+        </div>
+      </div>
+      <p style="color: var(--muted); font-size: 0.95rem; text-align: center; margin-top: var(--spacing-2xl);"><strong>Week 13+:</strong> Monthly check-ins, optimization, and scaling as the business evolves.</p>
     </div>
   </section>
 
   <section class="diagnostics">
     <div class="container">
-      <h2>Free Diagnostics</h2>
+      <h2>Free AI Diagnostics: Understand Your Readiness</h2>
+      <p style="color: var(--muted); font-size: 1.05rem;">Start here. No strings. See where you stand.</p>
 
-      <div class="diagnostics-grid">
-        <div class="tool-card">
-          <div class="tool-icon"><i class="ti ti-target"></i></div>
-          <div class="tool-title">AI Impact Assessment</div>
-          <div class="tool-description">Where AI creates the most value in your business</div>
-        </div>
-        <div class="tool-card live">
-          <div class="tool-icon"><i class="ti ti-alert-circle"></i></div>
-          <div class="tool-title">Implementation Risk Playbook</div>
-          <div class="tool-description">The 4 failure modes I've seen derail SMBs. Warning signs for each. How to avoid them.</div>
-          <a href="/resources/risk-playbook.html" class="button" style="margin-top: 16px; display: inline-block;">Download Now</a>
+      <div class="tools-grid">
+        <div class="tool-card featured">
+          <div class="tool-icon">📋</div>
+          <div class="tool-title">Implementation Risk Assessment</div>
+          <div class="tool-description">Map your AI project against our 4-failure-mode framework. See which risks are most critical for you.</div>
+          <button style="width: 100%; margin-top: var(--spacing-md); background: var(--accent);">Access Tool</button>
         </div>
         <div class="tool-card">
-          <div class="tool-icon"><i class="ti ti-clipboard-list"></i></div>
-          <div class="tool-title">Process Audit Template</div>
-          <div class="tool-description">Uncover where AI can streamline operations</div>
+          <div class="tool-icon">🎯</div>
+          <div class="tool-title">AI Opportunity Finder</div>
+          <div class="tool-description">Quick scan of your operations. Identifies top 3 workflows where AI can create the most value.</div>
         </div>
         <div class="tool-card">
-          <div class="tool-icon"><i class="ti ti-currency-dollar"></i></div>
-          <div class="tool-title">SMB AI ROI Reality Check</div>
-          <div class="tool-description">What implementation actually costs and takes</div>
+          <div class="tool-icon">📊</div>
+          <div class="tool-title">Data Readiness Scan</div>
+          <div class="tool-description">Assess the quality and organization of your data. Reveals what's production-ready and what needs work.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">🔄</div>
+          <div class="tool-title">Implementation Complexity Score</div>
+          <div class="tool-description">Based on your team size, current tech stack, and organizational readiness. Realistic effort estimate.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">💰</div>
+          <div class="tool-title">Cost-to-Deploy Calculator</div>
+          <div class="tool-description">Input your scope. See realistic costs, timeline, resource needs, and ROI payback period.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">👥</div>
+          <div class="tool-title">Team Readiness Check</div>
+          <div class="tool-description">Assess your team's AI literacy, adoption readiness, and training needs before implementation.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">📈</div>
+          <div class="tool-title">Competitive Advantage Assessment</div>
+          <div class="tool-description">Compare your AI readiness to competitors. Find areas where AI adoption could give you an edge.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="engagement">
+  <section class="calculator-section">
     <div class="container">
-      <h2>How It Works</h2>
+      <h2 style="text-align: center;">AI Impact Assessment Calculator</h2>
+      <p style="color: var(--muted); font-size: 1.05rem; text-align: center;">Tell me about your business. I'll estimate AI impact and implementation reality for you.</p>
 
-      <div class="engagement-grid">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <div class="step-title">Deep Discovery</div>
-          <div class="step-description">We uncover your current state, constraints, and where AI can move the needle most.</div>
+      <div class="calculator-container">
+        <div class="calc-input-group">
+          <label>Annual Revenue</label>
+          <select id="revenue"><option value="">Select...</option><option value="1-10">$1M–$10M</option><option value="10-50">$10M–$50M</option><option value="50-100">$50M–$100M</option><option value="100+">$100M+</option></select>
         </div>
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <div class="step-title">Co-Designed Strategy</div>
-          <div class="step-description">A phased approach where you're an active partner, not a passive recipient. We co-design your strategy and I work with you through full implementation, while protecting your business from common risks and failure modes.</div>
+        <div class="calc-input-group">
+          <label>Team Size</label>
+          <select id="teamsize"><option value="">Select...</option><option value="10-50">10–50</option><option value="50-200">50–200</option><option value="200-500">200–500</option><option value="500+">500+</option></select>
         </div>
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <div class="step-title">Guided Implementation</div>
-          <div class="step-description">Your team and I co-execute. I keep you away from the risks and failure modes, and we use rapid feedback loops and iteration cycles to accelerate implementation.</div>
+        <div class="calc-input-group">
+          <label>Primary Use Case</label>
+          <select id="usecase"><option value="">Select...</option><option value="operations">Operations Automation</option><option value="sales">Sales & Revenue</option><option value="support">Customer Support</option><option value="analytics">Analytics & Insights</option><option value="content">Content & Marketing</option></select>
         </div>
-        <div class="step-card">
-          <div class="step-number">4</div>
-          <div class="step-title">Measurement & Scale</div>
-          <div class="step-description">We measure what moved the needle. Then we scale what works. Calibrate AI implementation to actual business needs instead of force-fitting it everywhere.</div>
+        <div class="calc-input-group">
+          <label>Current Tech Maturity</label>
+          <select id="maturity"><option value="">Select...</option><option value="low">Low (Basic tools, manual processes)</option><option value="medium">Medium (Some automation, legacy systems)</option><option value="high">High (Modern stack, good data)</option></select>
+        </div>
+        <button type="button" class="calc-button" onclick="calculateImpact()">Calculate Impact</button>
+
+        <div class="calc-result" id="result">
+          <div class="result-item"><div class="result-label">Estimated Implementation Timeline</div><div class="result-value" id="timeline">12–16 weeks</div></div>
+          <div class="result-item"><div class="result-label">Realistic First-Year Cost Range</div><div class="result-value" id="cost">$150K–$300K</div></div>
+          <div class="result-item"><div class="result-label">Expected ROI (Year 1–2)</div><div class="result-value" id="roi">3.5x–5.2x</div></div>
+          <div class="result-item"><div class="result-label">Estimated Payback Period</div><div class="result-value" id="payback">6–9 months</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio">
+    <div class="container">
+      <h2>How AI Has Moved the Needle: Recent Implementations</h2>
+      <p style="color: var(--muted); font-size: 1.05rem;">Real examples. Anonymized clients. Documented results.</p>
+
+      <div class="portfolio-grid">
+        <div class="case-study">
+          <div class="case-study-header">
+            <span class="industry-tag">Operations</span>
+            <div class="case-study-title">Demand Forecasting Automation</div>
+          </div>
+          <div class="case-study-body">
+            <div class="case-study-section">
+              <div class="case-study-section-title">Problem</div>
+              <div class="case-study-section-content">Mid-market logistics company relied on manual demand forecasting, leading to frequent stockouts and overstock situations. Monthly inventory planning took 3 days of analyst time.</div>
+              <div class="metric-row" style="margin-top: var(--spacing-md);">
+                <div class="metric"><div class="metric-label">Forecast Accuracy</div><div class="metric-before">Before: 68%</div></div>
+                <div class="metric"><div class="metric-label">Planning Time</div><div class="metric-before">Before: 72 hours</div></div>
+              </div>
+            </div>
+            <div class="case-study-section">
+              <div class="case-study-section-title">Solution</div>
+              <div class="case-study-section-content">AI-powered demand forecasting model + automated inventory optimization workflow.</div>
+              <div class="tech-stack">
+                <span class="tech-tag">Python</span><span class="tech-tag">LLMs</span><span class="tech-tag">Zapier</span><span class="tech-tag">Sheets API</span>
+              </div>
+            </div>
+            <div class="case-study-section">
+              <div class="case-study-section-title">Results</div>
+              <div class="metric-row">
+                <div class="metric"><div class="metric-label">Accuracy</div><div class="metric-after">94%</div></div>
+                <div class="metric"><div class="metric-label">Time Saved</div><div class="metric-after">-85%</div></div>
+              </div>
+              <div class="metric-row">
+                <div class="metric"><div class="metric-label">Stockout Reduction</div><div class="metric-after">-62%</div></div>
+                <div class="metric"><div class="metric-label">Annual Savings</div><div class="metric-after">$240K</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-study">
+          <div class="case-study-header">
+            <span class="industry-tag">Professional Services</span>
+            <div class="case-study-title">Contract Review & Analysis</div>
+          </div>
+          <div class="case-study-body">
+            <div class="case-study-section">
+              <div class="case-study-section-title">Problem</div>
+              <div class="case-study-section-content">Legal team manually reviewed every vendor contract—average 4 hours per contract. Inconsistent risk flagging. Bottleneck in deal closing.</div>
+              <div class="metric-row" style="margin-top: var(--spacing-md);">
+                <div class="metric"><div class="metric-label">Review Time</div><div class="metric-before">Before: 4 hours</div></div>
+                <div class="metric"><div class="metric-label">Risk Consistency</div><div class="metric-before">Before: 71%</div></div>
+              </div>
+            </div>
+            <div class="case-study-section">
+              <div class="case-study-section-title">Solution</div>
+              <div class="case-study-section-content">AI-powered contract analysis tool with risk flagging, clause extraction, and negotiation recommendations.</div>
+              <div class="tech-stack">
+                <span class="tech-tag">Claude API</span><span class="tech-tag">Document Processing</span><span class="tech-tag">Web App</span>
+              </div>
+            </div>
+            <div class="case-study-section">
+              <div class="case-study-section-title">Results</div>
+              <div class="metric-row">
+                <div class="metric"><div class="metric-label">Review Time</div><div class="metric-after">24 min</div></div>
+                <div class="metric"><div class="metric-label">Risk Consistency</div><div class="metric-after">98%</div></div>
+              </div>
+              <div class="metric-row">
+                <div class="metric"><div class="metric-label">Deals Closed Faster</div><div class="metric-after">+40%</div></div>
+                <div class="metric"><div class="metric-label">Legal Bandwidth Freed</div><div class="metric-after">~20 hrs/week</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-study">
+          <div class="case-study-header">
+            <span class="industry-tag">SaaS</span>
+            <div class="case-study-title">Customer Support Triage & Response</div>
+          </div>
+          <div class="case-study-body">
+            <div class="case-study-section">
+              <div class="case-study-section-title">Problem</div>
+              <div class="case-study-section-content">Support team overwhelmed with repetitive questions. Average response time 8+ hours. No prioritization framework. Agents burned out.</div>
+              <div class="metric-row" style="margin-top: var(--spacing-md);">
+                <div class="metric"><div class="metric-label">Avg Response Time</div><div class="metric-before">Before: 8.2 hrs</div></div>
+                <div class="metric"><div class="metric-label">CSAT Score</div><div class="metric-before">Before: 72%</div></div>
+              </div>
+            </div>
+            <div class="case-study-section">
+              <div class="case-study-section-title">Solution</div>
+              <div class="case-study-section-content">AI-powered ticket triage, auto-response for common questions, intelligent routing, and suggested answers for agents.</div>
+              <div class="tech-stack">
+                <span class="tech-tag">Claude API</span><span class="tech-tag">Zendesk Integration</span><span class="tech-tag">Custom Workflow</span>
+              </div>
+            </div>
+            <div class="case-study-section">
+              <div class="case-study-section-title">Results</div>
+              <div class="metric-row">
+                <div class="metric"><div class="metric-label">Response Time</div><div class="metric-after">1.8 hrs</div></div>
+                <div class="metric"><div class="metric-label">CSAT Score</div><div class="metric-after">91%</div></div>
+              </div>
+              <div class="metric-row">
+                <div class="metric"><div class="metric-label">AI-Handled Tickets</div><div class="metric-after">47%</div></div>
+                <div class="metric"><div class="metric-label">Agent Burnout</div><div class="metric-after">-68%</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="insights">
+    <div class="container">
+      <h2>Latest Insights</h2>
+      <p style="color: var(--muted); font-size: 1.05rem;">Frameworks, patterns, and reality checks for SMB AI leaders.</p>
+
+      <div class="insights-grid">
+        <div class="insight-card">
+          <span class="insight-tag">Framework</span>
+          <div class="insight-title">The 4 Failure Modes That Kill AI Projects</div>
+          <div class="insight-excerpt">Most SMBs don't fail because of bad tech. They fail because they miss the organizational readiness piece. Here's what I've seen derail projects most often—and how to avoid it.</div>
+        </div>
+        <div class="insight-card">
+          <span class="insight-tag">Reality Check</span>
+          <div class="insight-title">What AI Implementation Actually Costs (No Hype)</div>
+          <div class="insight-excerpt">Realistic timeline and cost breakdown for production-quality AI deployment. Spoiler: Most people underestimate both.</div>
+        </div>
+        <div class="insight-card">
+          <span class="insight-tag">Pattern</span>
+          <div class="insight-title">How to Spot AI Opportunities in Your Business</div>
+          <div class="insight-excerpt">Not every workflow needs AI. Here's the framework I use to identify where AI moves the needle vs. where it's overkill.</div>
         </div>
       </div>
     </div>
@@ -464,77 +507,37 @@
     <div class="container">
       <div class="newsletter-content">
         <div>
-          <h2>Stay in the Loop</h2>
-          <p class="text-muted" style="margin-top: 16px; line-height: 1.7;">Weekly frameworks on where AI moves the needle for SMBs. Real examples. Reality checks on cost and timelines. Lessons learned from what actually works.</p>
+          <h2>Stay In The Loop</h2>
+          <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.8;">Weekly frameworks, patterns, and reality checks for AI leaders. No hype. Just what actually works for SMBs.</p>
         </div>
         <div class="newsletter-form">
-          <input type="email" placeholder="Enter your email">
-          <button class="button" style="width: 100%; text-align: center;">Subscribe</button>
+          <input type="email" placeholder="your@email.com" required>
+          <button>Subscribe</button>
+          <p style="font-size: 0.85rem; color: var(--muted); margin-top: var(--spacing-sm);">Join 500+ operations leaders & founders. Unsubscribe anytime.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="insights">
-    <div class="container">
-      <h2>Latest Insights</h2>
+  <footer><div class="container"><p>&copy; 2026 Yugam. Helping you build production-quality AI.</p></div></footer>
 
-      <div class="insights-grid">
-        <div class="insight-card">
-          <div class="insight-tag">Framework</div>
-          <div class="insight-title">The AI Maturity Model for SMBs</div>
-          <div class="insight-description">How to think about where your business sits and what the next phase looks like.</div>
-          <button class="button button-secondary" style="width: 100%;">Read Article →</button>
-        </div>
-        <div class="insight-card">
-          <div class="insight-tag">Case Study</div>
-          <div class="insight-title">How a 40-person B2B SaaS cut manual work by 30%</div>
-          <div class="insight-description">What they implemented, what almost went wrong, and what they'd do differently.</div>
-          <button class="button button-secondary" style="width: 100%;">Read Article →</button>
-        </div>
-        <div class="insight-card">
-          <div class="insight-tag">Reality Check</div>
-          <div class="insight-title">AI Implementation Actually Costs What?</div>
-          <div class="insight-description">Breaking down the real numbers: people, systems, time, and money.</div>
-          <button class="button button-secondary" style="width: 100%;">Read Article →</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="social">
-    <div class="container">
-      <p class="text-muted">Follow along</p>
-      <div class="social-icons">
-        <a href="https://www.youtube.com/@rohit_maskara" class="social-icon" title="YouTube" target="_blank">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="#111827">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-          </svg>
-        </a>
-        <a href="https://x.com/yugam_ai" class="social-icon" title="X" target="_blank">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="#111827">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.07-6.614L2.896 21.75H-1.287l7.753-8.835L-1.287 2.25h6.82l4.87 6.434 5.868-6.434zM17.15 18.76h1.832L5.928 4.123H4.009l13.141 14.637z"/>
-          </svg>
-        </a>
-        <a href="https://www.linkedin.com/in/rohitmaskara/" class="social-icon" title="LinkedIn" target="_blank">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="#111827">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.25-.129.599-.129.948v5.439h-3.554s.05-8.814 0-9.752h3.554v1.375c.429-.66 1.196-1.595 2.905-1.595 2.121 0 3.71 1.386 3.71 4.365v5.607zM5.337 8.855c-1.144 0-1.915-.758-1.915-1.708 0-.959.77-1.708 1.915-1.708 1.144 0 1.915.749 1.915 1.708 0 .95-.771 1.708-1.915 1.708zm1.589 11.597H3.75V9.557h3.176v10.895zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-          </svg>
-        </a>
-        <a href="https://www.instagram.com/yugam.ai.official/" class="social-icon" title="Instagram" target="_blank">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="#111827">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm3.5-10c0 1.933-1.567 3.5-3.5 3.5S8.5 13.933 8.5 12 10.067 8.5 12 8.5s3.5 1.567 3.5 3.5zm1.5-5h-2v-2h2v2z"/>
-          </svg>
-        </a>
-        <a href="https://www.threads.com/@yugam.ai.official" class="social-icon" title="Threads" target="_blank">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="#111827">
-            <circle cx="12" cy="12" r="8.5" fill="none" stroke="#111827" stroke-width="1.5"/>
-            <path d="M12 5v14M5 12h14" stroke="#111827" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="12" cy="12" r="2.5" fill="#111827"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
+  <script>
+    function calculateImpact() {
+      const revenue = document.getElementById('revenue').value;
+      const teamsize = document.getElementById('teamsize').value;
+      const usecase = document.getElementById('usecase').value;
+      const maturity = document.getElementById('maturity').value;
+      if (!revenue || !teamsize || !usecase || !maturity) { alert('Please fill all fields'); return; }
+      let timeline = '12–16 weeks', cost = '$150K–$300K', roi = '3.5x–5.2x', payback = '6–9 months';
+      if (revenue === '1-10' && maturity === 'low') { timeline = '10–14 weeks'; cost = '$80K–$150K'; roi = '2.8x–4.2x'; payback = '8–11 months'; }
+      else if (revenue === '100+' && maturity === 'high') { timeline = '14–18 weeks'; cost = '$300K–$600K'; roi = '4.5x–7.2x'; payback = '4–6 months'; }
+      else if (usecase === 'operations') { cost = '$120K–$250K'; roi = '4.2x–6.1x'; }
+      document.getElementById('timeline').textContent = timeline;
+      document.getElementById('cost').textContent = cost;
+      document.getElementById('roi').textContent = roi;
+      document.getElementById('payback').textContent = payback;
+      document.getElementById('result').classList.add('show');
+    }
+  </script>
 </body>
 </html>
