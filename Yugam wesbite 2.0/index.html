@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yugam — AI Transformation Consulting</title>
+    <meta name="description" content="Yugam: A new age of AI transformation. Readiness-first consulting for organizations navigating the AI transition.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --deep: #1A1612;
+            --deep-text: #E8E1D8;
+
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+            --max-width: 1200px;
+            --section-pad: 140px;
+            --card-radius: 8px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ============ TYPOGRAPHY ============ */
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+        h1 { font-size: 56px; line-height: 1.15; }
+        h2 { font-size: 40px; line-height: 1.2; margin-bottom: 20px; }
+        h3 { font-size: 24px; line-height: 1.3; }
+
+        .label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--drift);
+            margin-bottom: 16px;
+            display: block;
+        }
+        .label--accent { color: var(--teak); }
+
+        .subheading {
+            font-size: 18px;
+            color: var(--bark);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+        .subheading--center { margin: 0 auto; text-align: center; }
+
+        /* ============ BUTTONS ============ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 300ms ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn--primary {
+            background: var(--teak);
+            color: var(--stone);
+        }
+        .btn--primary:hover {
+            background: var(--teak-hover);
+            transform: translateY(-1px);
+        }
+        .btn--secondary {
+            background: transparent;
+            color: var(--charcoal);
+            border: 1.5px solid var(--clay);
+        }
+        .btn--secondary:hover {
+            border-color: var(--bark);
+            transform: translateY(-1px);
+        }
+
+        /* ============ SCROLL REVEAL ============ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 800ms ease-out, transform 800ms ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 120ms; }
+        .reveal-delay-2 { transition-delay: 240ms; }
+        .reveal-delay-3 { transition-delay: 360ms; }
+        .reveal-delay-4 { transition-delay: 480ms; }
+
+        /* ============ NAVIGATION ============ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            transition: all 400ms ease;
+        }
+        .nav--scrolled {
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 var(--clay);
+            padding: 14px 0;
+        }
+        .nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav__logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .nav__logo-text {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            color: var(--ink);
+        }
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+        .nav__link {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--bark);
+            text-decoration: none;
+            transition: color 300ms ease;
+            font-weight: 500;
+        }
+        .nav__link:hover, .nav__link--active { color: var(--teak); }
+
+        .nav__hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .nav__hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--ink);
+            margin: 5px 0;
+            transition: all 300ms ease;
+        }
+
+        .nav__mobile {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--stone);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+        .nav__mobile.open { display: flex; }
+        .nav__mobile a {
+            font-family: var(--font-serif);
+            font-size: 32px;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .nav__mobile a:hover { color: var(--teak); }
+        .nav__mobile-close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: var(--ink);
+            cursor: pointer;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            padding: 200px 0 var(--section-pad);
+            background: var(--stone);
+        }
+        .hero .container {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            gap: 64px;
+            align-items: center;
+        }
+        .hero__content { max-width: 580px; }
+        .hero__headline { margin-bottom: 24px; }
+        .hero__text {
+            margin-bottom: 36px;
+            color: var(--bark);
+            font-size: 17px;
+        }
+        .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+        .hero__founder { text-align: center; }
+        .hero__photo-frame {
+            display: inline-block;
+            margin-bottom: 28px;
+        }
+        .hero__photo {
+            display: block;
+            width: 320px;
+            height: 320px;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 50%;
+            filter: grayscale(1) sepia(0.2) contrast(1.1) brightness(1.02);
+        }
+        .hero__name {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            color: var(--ink);
+            margin-bottom: 4px;
+        }
+        .hero__title {
+            font-size: 14px;
+            color: var(--drift);
+            margin-bottom: 16px;
+        }
+        .hero__tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .hero__tag {
+            font-size: 11px;
+            font-family: var(--font-mono);
+            padding: 5px 12px;
+            background: var(--sand);
+            color: var(--bark);
+            border-radius: 20px;
+            letter-spacing: 0.02em;
+        }
+        .hero__bio {
+            font-size: 14px;
+            color: var(--drift);
+            max-width: 320px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ============ READINESS ============ */
+        .readiness {
+            padding: var(--section-pad) 0;
+            background: var(--stone-light);
+        }
+        .readiness .container {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            gap: 64px;
+            align-items: start;
+        }
+        .readiness__heading { margin-bottom: 20px; }
+        .readiness__intro {
+            margin-bottom: 40px;
+            color: var(--bark);
+        }
+        .criteria { display: flex; flex-direction: column; gap: 32px; }
+        .criterion {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .criterion__icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--sand);
+            border-radius: 8px;
+            color: var(--teak);
+            font-size: 22px;
+        }
+        .criterion__title {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 4px;
+            font-size: 16px;
+        }
+        .criterion__desc {
+            font-size: 15px;
+            color: var(--bark);
+            line-height: 1.6;
+        }
+
+        .readiness__quote-card {
+            background: var(--sand);
+            padding: 48px;
+            border-radius: var(--card-radius);
+            border-left: 3px solid var(--teak);
+            position: sticky;
+            top: 120px;
+        }
+        .readiness__quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 24px;
+            color: var(--ink);
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        .readiness__quote-support {
+            font-size: 15px;
+            color: var(--drift);
+            line-height: 1.6;
+        }
+
+        /* ============ THRESHOLD ============ */
+        .threshold {
+            background: var(--deep);
+            padding: 100px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        .threshold__symbol {
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: center;
+        }
+        .threshold__vesica {
+            opacity: 0;
+            transform: scale(0.6);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+        .threshold--animate .threshold__vesica {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .threshold__text {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 22px;
+            color: var(--deep-text);
+            opacity: 0;
+            transition: opacity 1s ease-out 0.6s;
+        }
+        .threshold--animate .threshold__text {
+            opacity: 1;
+        }
+        .threshold__sub {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--drift);
+            margin-top: 16px;
+            opacity: 0;
+            transition: opacity 1s ease-out 1s;
+        }
+        .threshold--animate .threshold__sub {
+            opacity: 1;
+        }
+
+        /* ============ METHODOLOGY ============ */
+        .methodology {
+            padding: var(--section-pad) 0;
+            background: var(--stone);
+        }
+        .methodology__header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .methodology__header h2 { margin-bottom: 16px; }
+        .methodology__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+        }
+        .phase-card {
+            background: var(--sand);
+            padding: 32px;
+            border-radius: var(--card-radius);
+            transition: transform 300ms ease, box-shadow 300ms ease;
+        }
+        .phase-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
+        }
+        .phase-card__number {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--teak);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .phase-card__title {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--charcoal);
+            margin-bottom: 4px;
+        }
+        .phase-card__weeks {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--drift);
+            margin-bottom: 16px;
+        }
+        .phase-card__list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .phase-card__list li {
+            font-size: 14px;
+            color: var(--bark);
+            padding-left: 16px;
+            position: relative;
+        }
+        .phase-card__list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--clay);
+        }
+        .methodology__footnote {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: var(--drift);
+            font-style: italic;
+        }
+
+        /* ============ TOOLS ============ */
+        .tools {
+            padding: var(--section-pad) 0;
+            background: var(--stone-light);
+        }
+        .tools__header { margin-bottom: 56px; }
+        .tools__header h2 { margin-bottom: 12px; }
+        .tools__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .tool-card {
+            background: var(--sand);
+            padding: 32px;
+            border-radius: var(--card-radius);
+            transition: transform 300ms ease, box-shadow 300ms ease;
+        }
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
+        }
+        .tool-card--featured {
+            grid-column: 1 / -1;
+            border-left: 3px solid var(--teak);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 32px;
+        }
+        .tool-card__title {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 17px;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+        }
+        .tool-card__desc {
+            font-size: 15px;
+            color: var(--bark);
+            line-height: 1.6;
+        }
+
+        /* ============ CALCULATOR ============ */
+        .calculator {
+            padding: var(--section-pad) 0;
+            background: var(--stone);
+        }
+        .calculator__header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .calculator__header h2 { margin-bottom: 12px; }
+        .calculator__form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .calculator__inputs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+        }
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--sand);
+            border: 1.5px solid var(--clay);
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            color: var(--charcoal);
+            appearance: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%239B9183' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            transition: border-color 300ms ease;
+        }
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--teak);
+        }
+        .calculator__submit {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 48px;
+        }
+
+        .calculator__results {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .calculator__results.show { display: block; }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        .result-card {
+            text-align: center;
+            background: var(--sand);
+            padding: 28px 16px;
+            border-radius: var(--card-radius);
+        }
+        .result-card__value {
+            font-family: var(--font-mono);
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--teak);
+            margin-bottom: 8px;
+        }
+        .result-card__label {
+            font-size: 13px;
+            color: var(--drift);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .calculator__disclaimer {
+            text-align: center;
+            font-size: 13px;
+            color: var(--drift);
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+        .calculator__cta {
+            text-align: center;
+        }
+        .calculator__cta a {
+            color: var(--teak);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 300ms ease;
+        }
+        .calculator__cta a:hover { color: var(--teak-hover); }
+
+        /* ============ CASE STUDIES ============ */
+        .case-studies {
+            padding: var(--section-pad) 0;
+            background: var(--stone-light);
+        }
+        .case-studies__header { margin-bottom: 56px; }
+        .case-studies__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .case-card {
+            background: var(--stone);
+            padding: 36px;
+            border-radius: var(--card-radius);
+            transition: transform 300ms ease, box-shadow 300ms ease;
+        }
+        .case-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
+        }
+        .case-card__tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 12px;
+            background: var(--sand);
+            color: var(--bark);
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .case-card__title {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            color: var(--ink);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .case-card__problem {
+            font-size: 14px;
+            color: var(--bark);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .case-card__metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .metric {
+            text-align: center;
+            padding: 12px 8px;
+            border-radius: 6px;
+        }
+        .metric--before {
+            background: var(--sand);
+        }
+        .metric--after {
+            background: rgba(139, 105, 20, 0.08);
+        }
+        .metric__value {
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        .metric--before .metric__value { color: var(--drift); }
+        .metric--after .metric__value { color: var(--teak); }
+        .metric__label {
+            font-size: 11px;
+            color: var(--drift);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .case-card__solution {
+            font-size: 14px;
+            color: var(--bark);
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .case-card__tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .tech-tag {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            padding: 3px 8px;
+            background: var(--sand);
+            color: var(--drift);
+            border-radius: 4px;
+        }
+
+        /* ============ INSIGHTS ============ */
+        .insights {
+            padding: var(--section-pad) 0;
+            background: var(--stone);
+        }
+        .insights__header { margin-bottom: 56px; }
+        .insights__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .insight-card {
+            padding: 36px;
+            background: var(--sand);
+            border-radius: var(--card-radius);
+            transition: transform 300ms ease, box-shadow 300ms ease;
+        }
+        .insight-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
+        }
+        .insight-card__tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 12px;
+            background: var(--stone);
+            color: var(--bark);
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .insight-card__title {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            color: var(--ink);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .insight-card__excerpt {
+            font-size: 15px;
+            color: var(--bark);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .insight-card__link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--teak);
+            text-decoration: none;
+            transition: color 300ms ease;
+        }
+        .insight-card__link:hover { color: var(--teak-hover); }
+
+        /* ============ NEWSLETTER ============ */
+        .newsletter {
+            padding: var(--section-pad) 0;
+            background: var(--sand);
+        }
+        .newsletter .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+        .newsletter__heading {
+            margin-bottom: 16px;
+        }
+        .newsletter__desc {
+            color: var(--bark);
+            font-size: 16px;
+        }
+        .newsletter__form {
+            display: flex;
+            gap: 12px;
+        }
+        .newsletter__input {
+            flex: 1;
+            padding: 14px 16px;
+            background: var(--stone);
+            border: 1.5px solid var(--clay);
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            color: var(--charcoal);
+            transition: border-color 300ms ease;
+        }
+        .newsletter__input::placeholder { color: var(--drift); }
+        .newsletter__input:focus {
+            outline: none;
+            border-color: var(--teak);
+        }
+        .newsletter__note {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--drift);
+        }
+        .newsletter__thanks {
+            display: none;
+            font-family: var(--font-serif);
+            font-size: 22px;
+            color: var(--ink);
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            padding: 80px 0;
+            background: var(--stone);
+            border-top: 1px solid var(--clay);
+        }
+        .footer .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer__copy {
+            font-size: 14px;
+            color: var(--drift);
+        }
+        .footer__social {
+            display: flex;
+            gap: 20px;
+        }
+        .footer__social a {
+            color: var(--bark);
+            font-size: 20px;
+            transition: color 300ms ease;
+            text-decoration: none;
+        }
+        .footer__social a:hover { color: var(--teak); }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            h1 { font-size: 44px; }
+            h2 { font-size: 34px; }
+            .methodology__grid { grid-template-columns: repeat(2, 1fr); }
+            .case-studies__grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --section-pad: 80px; }
+            h1 { font-size: 36px; }
+            h2 { font-size: 30px; }
+            .container { padding: 0 20px; }
+
+            .nav__links { display: none; }
+            .nav__hamburger { display: block; }
+
+            .hero { padding: 140px 0 80px; }
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .hero__content { max-width: 100%; }
+            .hero__founder { order: -1; }
+            .hero__photo { width: 200px; height: 240px; }
+
+            .readiness .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .readiness__quote-card { position: static; }
+
+            .methodology__grid { grid-template-columns: 1fr; }
+            .tools__grid { grid-template-columns: 1fr; }
+            .tool-card--featured {
+                grid-template-columns: 1fr;
+                grid-column: auto;
+            }
+
+            .calculator__inputs { grid-template-columns: 1fr; }
+            .results-grid { grid-template-columns: repeat(2, 1fr); }
+
+            .insights__grid { grid-template-columns: 1fr; }
+
+            .newsletter .container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .newsletter__form { flex-direction: column; }
+
+            .footer .container {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav" id="nav">
+        <div class="container">
+            <a href="#" class="nav__logo">
+                <svg width="20" height="32" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="nav__logo-text">Yugam</span>
+            </a>
+            <ul class="nav__links">
+                <li><a href="#readiness" class="nav__link">Readiness</a></li>
+                <li><a href="#methodology" class="nav__link">Methodology</a></li>
+                <li><a href="#tools" class="nav__link">Tools</a></li>
+                <li><a href="#case-studies" class="nav__link">Case Studies</a></li>
+                <li><a href="#insights" class="nav__link">Insights</a></li>
+                <li><a href="mailto:maskyrohit@gmail.com" class="btn btn--primary" style="padding: 10px 20px; font-size: 13px;">Work With Us</a></li>
+            </ul>
+            <button class="nav__hamburger" onclick="document.querySelector('.nav__mobile').classList.add('open')" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="nav__mobile" id="mobileMenu">
+        <button class="nav__mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close menu">&times;</button>
+        <a href="#readiness" onclick="this.parentElement.classList.remove('open')">Readiness</a>
+        <a href="#methodology" onclick="this.parentElement.classList.remove('open')">Methodology</a>
+        <a href="#tools" onclick="this.parentElement.classList.remove('open')">Tools</a>
+        <a href="#case-studies" onclick="this.parentElement.classList.remove('open')">Case Studies</a>
+        <a href="#insights" onclick="this.parentElement.classList.remove('open')">Insights</a>
+        <a href="mailto:maskyrohit@gmail.com" class="btn btn--primary">Work With Us</a>
+    </div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero__content">
+                <span class="label reveal">AI Transformation Consulting</span>
+                <h1 class="hero__headline reveal reveal-delay-1">The bridge between where your business is — and where AI can take it.</h1>
+                <p class="hero__text reveal reveal-delay-2">Most AI initiatives fail not because the technology is wrong, but because the organization wasn't ready. Yugam starts with the foundation — data, process, people — before recommending any tools. Precision over hype. Readiness before technology.</p>
+                <div class="hero__actions reveal reveal-delay-3">
+                    <a href="mailto:maskyrohit@gmail.com" class="btn btn--primary">Schedule a Discovery Call</a>
+                    <a href="resources/risk-playbook.html" class="btn btn--secondary">Download Risk Playbook</a>
+                </div>
+            </div>
+            <div class="hero__founder reveal reveal-delay-2">
+                <div class="hero__photo-frame">
+                    <img src="founder-photo.jpg" alt="Rohit Kumar Maskara, AI Transformation Architect" class="hero__photo">
+                </div>
+                <div class="hero__name">Rohit Kumar Maskara</div>
+                <div class="hero__title">AI Transformation Architect</div>
+                <div class="hero__tags">
+                    <span class="hero__tag">Operations</span>
+                    <span class="hero__tag">AI Strategy</span>
+                    <span class="hero__tag">Risk & Governance</span>
+                    <span class="hero__tag">Customer Experience</span>
+                    <span class="hero__tag">Product Management</span>
+                    <span class="hero__tag">Program Management</span>
+                    <span class="hero__tag">Scaled Operations</span>
+                    <span class="hero__tag">AI Deployment</span>
+                </div>
+                <p class="hero__bio">15+ years across manufacturing floors, Fortune 500 governance systems, and global technology operations. MBA in Operations Strategy &amp; Finance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== READINESS ==================== -->
+    <section class="readiness" id="readiness">
+        <div class="container">
+            <div class="readiness__content">
+                <span class="label label--accent reveal">Foundation Assessment</span>
+                <h2 class="readiness__heading reveal reveal-delay-1">Before Implementation: Is Your Organization Ready?</h2>
+                <p class="readiness__intro reveal reveal-delay-2">Every AI engagement begins here. Not with technology selection, not with vendor demos — with an honest assessment of whether the ground beneath your organization can support what you want to build.</p>
+                <div class="criteria">
+                    <div class="criterion reveal reveal-delay-2">
+                        <div class="criterion__icon"><i class="ti ti-database"></i></div>
+                        <div>
+                            <div class="criterion__title">Data Organization</div>
+                            <div class="criterion__desc">Is your data structured, documented, and accessible? Or scattered across spreadsheets, inboxes, and tribal knowledge?</div>
+                        </div>
+                    </div>
+                    <div class="criterion reveal reveal-delay-3">
+                        <div class="criterion__icon"><i class="ti ti-list-check"></i></div>
+                        <div>
+                            <div class="criterion__title">Process Clarity</div>
+                            <div class="criterion__desc">Are your standard operating procedures documented? Or does critical knowledge live in people's heads, vulnerable to turnover?</div>
+                        </div>
+                    </div>
+                    <div class="criterion reveal reveal-delay-4">
+                        <div class="criterion__icon"><i class="ti ti-users"></i></div>
+                        <div>
+                            <div class="criterion__title">Team Readiness</div>
+                            <div class="criterion__desc">Are your teams prepared to work alongside AI? Or will adoption stall because the change was imposed, not enabled?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="readiness__aside">
+                <div class="readiness__quote-card reveal">
+                    <div class="readiness__quote">"Here's what I've learned: when the foundation is weak, you spend months rebuilding."</div>
+                    <div class="readiness__quote-support">If any of these three are fragile — data, process, or people — that's where Yugam starts. Every time. Without exception.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== THRESHOLD ==================== -->
+    <section class="threshold" id="threshold">
+        <div class="container">
+            <div class="threshold__symbol">
+                <svg width="48" height="80" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg" class="threshold__vesica">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+            </div>
+            <div class="threshold__text">This is where the new age begins.</div>
+            <div class="threshold__sub">युगम् — a new era, a coming together</div>
+        </div>
+    </section>
+
+    <!-- ==================== METHODOLOGY ==================== -->
+    <section class="methodology" id="methodology">
+        <div class="container">
+            <div class="methodology__header reveal">
+                <span class="label label--accent">The Framework</span>
+                <h2>A Structured Path From Readiness to Scale</h2>
+                <p class="subheading subheading--center">No shortcuts. No magic prompts. A disciplined 12-week framework that gets AI into production — and keeps it there.</p>
+            </div>
+            <div class="methodology__grid">
+                <div class="phase-card reveal">
+                    <div class="phase-card__number">01</div>
+                    <div class="phase-card__title">Foundation & Audit</div>
+                    <div class="phase-card__weeks">Weeks 1–2</div>
+                    <ul class="phase-card__list">
+                        <li>Pre-AI readiness assessment</li>
+                        <li>Data & process audits</li>
+                        <li>Tech stack review</li>
+                        <li>Team interviews</li>
+                    </ul>
+                </div>
+                <div class="phase-card reveal reveal-delay-1">
+                    <div class="phase-card__number">02</div>
+                    <div class="phase-card__title">Strategy & Planning</div>
+                    <div class="phase-card__weeks">Weeks 3–4</div>
+                    <ul class="phase-card__list">
+                        <li>AI opportunity mapping</li>
+                        <li>Implementation roadmap</li>
+                        <li>Cost & timeline estimation</li>
+                        <li>Team pre-training</li>
+                    </ul>
+                </div>
+                <div class="phase-card reveal reveal-delay-2">
+                    <div class="phase-card__number">03</div>
+                    <div class="phase-card__title">Build & Iterate</div>
+                    <div class="phase-card__weeks">Weeks 5–8</div>
+                    <ul class="phase-card__list">
+                        <li>Pilots & prototypes</li>
+                        <li>Testing & evaluation</li>
+                        <li>Course corrections</li>
+                        <li>Measurement setup</li>
+                    </ul>
+                </div>
+                <div class="phase-card reveal reveal-delay-3">
+                    <div class="phase-card__number">04</div>
+                    <div class="phase-card__title">Scale & Govern</div>
+                    <div class="phase-card__weeks">Weeks 9–12</div>
+                    <ul class="phase-card__list">
+                        <li>Full deployment</li>
+                        <li>Staff training</li>
+                        <li>Governance framework</li>
+                        <li>Executive reporting</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="methodology__footnote reveal">Week 13+: Monthly check-ins, optimization, and scaling as your business evolves.</p>
+        </div>
+    </section>
+
+    <!-- ==================== DIAGNOSTIC TOOLS ==================== -->
+    <section class="tools" id="tools">
+        <div class="container">
+            <div class="tools__header reveal">
+                <h2>Free AI Diagnostics: Understand Your Readiness</h2>
+                <p class="subheading">Start here. No strings attached. See exactly where you stand before any conversation.</p>
+            </div>
+            <div class="tools__grid">
+                <div class="tool-card tool-card--featured reveal">
+                    <div>
+                        <div class="tool-card__title">Implementation Risk Assessment</div>
+                        <div class="tool-card__desc">Map your AI project against the 4-failure-mode framework. Understand where the real risks are before you commit resources.</div>
+                    </div>
+                    <a href="resources/risk-playbook.html" class="btn btn--primary">Get the Playbook</a>
+                </div>
+                <div class="tool-card reveal">
+                    <div class="tool-card__title">AI Opportunity Finder</div>
+                    <div class="tool-card__desc">Identify where in your operations AI creates the highest leverage.</div>
+                </div>
+                <div class="tool-card reveal reveal-delay-1">
+                    <div class="tool-card__title">Data Readiness Scan</div>
+                    <div class="tool-card__desc">Assess the quality, structure, and accessibility of your data assets.</div>
+                </div>
+                <div class="tool-card reveal reveal-delay-2">
+                    <div class="tool-card__title">Implementation Complexity Score</div>
+                    <div class="tool-card__desc">Estimate integration depth, change management burden, and technical complexity.</div>
+                </div>
+                <div class="tool-card reveal reveal-delay-3">
+                    <div class="tool-card__title">Cost-to-Deploy Calculator</div>
+                    <div class="tool-card__desc">Get a realistic cost estimate based on your stack, team size, and use case.</div>
+                </div>
+                <div class="tool-card reveal">
+                    <div class="tool-card__title">Team Readiness Check</div>
+                    <div class="tool-card__desc">Evaluate your team's AI literacy, process discipline, and change readiness.</div>
+                </div>
+                <div class="tool-card reveal reveal-delay-1">
+                    <div class="tool-card__title">Competitive Advantage Assessment</div>
+                    <div class="tool-card__desc">Understand where AI gives your competitors an edge and which gaps are urgent.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CALCULATOR ==================== -->
+    <section class="calculator" id="calculator">
+        <div class="container">
+            <div class="calculator__header reveal">
+                <h2>What Could AI Actually Deliver For You?</h2>
+                <p class="subheading subheading--center">Answer four questions and get a directional estimate — no email required.</p>
+            </div>
+            <div class="calculator__form reveal">
+                <div class="calculator__inputs">
+                    <div class="form-group">
+                        <label for="revenue">Annual Revenue</label>
+                        <select id="revenue">
+                            <option value="">Select range</option>
+                            <option value="1-10">$1M – $10M</option>
+                            <option value="10-50">$10M – $50M</option>
+                            <option value="50-100">$50M – $100M</option>
+                            <option value="100+">$100M+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="teamSize">Team Size</label>
+                        <select id="teamSize">
+                            <option value="">Select range</option>
+                            <option value="10-50">10 – 50</option>
+                            <option value="50-200">50 – 200</option>
+                            <option value="200-500">200 – 500</option>
+                            <option value="500+">500+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="useCase">Primary Use Case</label>
+                        <select id="useCase">
+                            <option value="">Select use case</option>
+                            <option value="operations">Operations Automation</option>
+                            <option value="sales">Sales & Revenue</option>
+                            <option value="support">Customer Support</option>
+                            <option value="analytics">Analytics & Insights</option>
+                            <option value="content">Content & Marketing</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="maturity">AI Maturity</label>
+                        <select id="maturity">
+                            <option value="">Select level</option>
+                            <option value="low">Low — No AI in production</option>
+                            <option value="medium">Medium — Some pilots running</option>
+                            <option value="high">High — AI in production workflows</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="calculator__submit">
+                    <button class="btn btn--primary" onclick="calculateImpact()">Calculate Impact</button>
+                </div>
+            </div>
+            <div class="calculator__results" id="results">
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-card__value" id="resTimeline">—</div>
+                        <div class="result-card__label">Timeline</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-card__value" id="resInvestment">—</div>
+                        <div class="result-card__label">Investment</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-card__value" id="resROI">—</div>
+                        <div class="result-card__label">Expected ROI</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-card__value" id="resPayback">—</div>
+                        <div class="result-card__label">Payback Period</div>
+                    </div>
+                </div>
+                <p class="calculator__disclaimer">These are directional estimates based on comparable implementations. Actual outcomes depend on organizational readiness and execution.</p>
+                <div class="calculator__cta">
+                    <a href="mailto:maskyrohit@gmail.com">Discuss Your Numbers — Book a Call →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CASE STUDIES ==================== -->
+    <section class="case-studies" id="case-studies">
+        <div class="container">
+            <div class="case-studies__header reveal">
+                <h2>How AI Has Moved the Needle</h2>
+            </div>
+            <div class="case-studies__grid">
+                <!-- Case 1 -->
+                <div class="case-card reveal">
+                    <span class="case-card__tag">Operations</span>
+                    <h3 class="case-card__title">Demand Forecasting Automation</h3>
+                    <p class="case-card__problem">Manual forecasting consuming 3 days of analyst time monthly, delivering 68% accuracy with frequent stockouts.</p>
+                    <div class="case-card__metrics">
+                        <div class="metric metric--before">
+                            <div class="metric__value">68%</div>
+                            <div class="metric__label">Accuracy</div>
+                        </div>
+                        <div class="metric metric--after">
+                            <div class="metric__value">94%</div>
+                            <div class="metric__label">Accuracy</div>
+                        </div>
+                        <div class="metric metric--before">
+                            <div class="metric__value">3 days</div>
+                            <div class="metric__label">Per Cycle</div>
+                        </div>
+                        <div class="metric metric--after">
+                            <div class="metric__value">85%</div>
+                            <div class="metric__label">Time Saved</div>
+                        </div>
+                    </div>
+                    <p class="case-card__solution">AI-powered forecasting with automated inventory optimization. $240K annual savings, stockouts reduced 62%.</p>
+                    <div class="case-card__tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">LLMs</span>
+                        <span class="tech-tag">Zapier</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                </div>
+                <!-- Case 2 -->
+                <div class="case-card reveal reveal-delay-1">
+                    <span class="case-card__tag">Professional Services</span>
+                    <h3 class="case-card__title">Contract Review & Analysis</h3>
+                    <p class="case-card__problem">4 hours per contract review with 71% consistency. Deal velocity slowing as volume increased.</p>
+                    <div class="case-card__metrics">
+                        <div class="metric metric--before">
+                            <div class="metric__value">4 hrs</div>
+                            <div class="metric__label">Per Review</div>
+                        </div>
+                        <div class="metric metric--after">
+                            <div class="metric__value">24 min</div>
+                            <div class="metric__label">Per Review</div>
+                        </div>
+                        <div class="metric metric--before">
+                            <div class="metric__value">71%</div>
+                            <div class="metric__label">Consistency</div>
+                        </div>
+                        <div class="metric metric--after">
+                            <div class="metric__value">98%</div>
+                            <div class="metric__label">Consistency</div>
+                        </div>
+                    </div>
+                    <p class="case-card__solution">AI contract analysis with automated risk flagging. 40% faster deal closure, 20 hrs/week freed.</p>
+                    <div class="case-card__tech-tags">
+                        <span class="tech-tag">Claude API</span>
+                        <span class="tech-tag">Doc Processing</span>
+                        <span class="tech-tag">Web App</span>
+                    </div>
+                </div>
+                <!-- Case 3 -->
+                <div class="case-card reveal reveal-delay-2">
+                    <span class="case-card__tag">SaaS</span>
+                    <h3 class="case-card__title">Customer Support Triage & Response</h3>
+                    <p class="case-card__problem">8+ hour response times, 72% CSAT, agent burnout from repetitive tier-1 queries.</p>
+                    <div class="case-card__metrics">
+                        <div class="metric metric--before">
+                            <div class="metric__value">8+ hrs</div>
+                            <div class="metric__label">Response Time</div>
+                        </div>
+                        <div class="metric metric--after">
+                            <div class="metric__value">12 min</div>
+                            <div class="metric__label">Response Time</div>
+                        </div>
+                        <div class="metric metric--before">
+                            <div class="metric__value">72%</div>
+                            <div class="metric__label">CSAT</div>
+                        </div>
+                        <div class="metric metric--after">
+                            <div class="metric__value">91%</div>
+                            <div class="metric__label">CSAT</div>
+                        </div>
+                    </div>
+                    <p class="case-card__solution">AI triage and response drafting. 60% of tickets auto-resolved, agent focus shifted to complex cases.</p>
+                    <div class="case-card__tech-tags">
+                        <span class="tech-tag">NLP Pipeline</span>
+                        <span class="tech-tag">Claude API</span>
+                        <span class="tech-tag">Zendesk</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== INSIGHTS ==================== -->
+    <section class="insights" id="insights">
+        <div class="container">
+            <div class="insights__header reveal">
+                <span class="label label--accent">Thought Leadership</span>
+                <h2>Frameworks. Not Takes.</h2>
+            </div>
+            <div class="insights__grid">
+                <div class="insight-card reveal">
+                    <span class="insight-card__tag">Framework</span>
+                    <h3 class="insight-card__title">The 4 Failure Modes That Kill AI Projects</h3>
+                    <p class="insight-card__excerpt">Why 70% of AI initiatives fail — and why the answer has almost nothing to do with the technology itself. A framework for diagnosing organizational readiness before you write a single line of code.</p>
+                    <a href="resources/risk-playbook.html" class="insight-card__link">Read Framework →</a>
+                </div>
+                <div class="insight-card reveal reveal-delay-1">
+                    <span class="insight-card__tag">Reality Check</span>
+                    <h3 class="insight-card__title">What AI Implementation Actually Costs</h3>
+                    <p class="insight-card__excerpt">Realistic timelines and cost breakdowns for production-quality AI deployment. The numbers most vendors won't share and most consultants gloss over.</p>
+                    <a href="#" class="insight-card__link">Read Framework →</a>
+                </div>
+                <div class="insight-card reveal reveal-delay-2">
+                    <span class="insight-card__tag">Pattern</span>
+                    <h3 class="insight-card__title">How to Spot AI Opportunities in Your Business</h3>
+                    <p class="insight-card__excerpt">A practical framework for identifying where AI creates genuine leverage versus where it adds complexity. Start with the process, not the tool.</p>
+                    <a href="#" class="insight-card__link">Read Framework →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== NEWSLETTER ==================== -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter__content reveal">
+                <h2 class="newsletter__heading">Stay In The Loop</h2>
+                <p class="newsletter__desc">Weekly frameworks, patterns, and reality checks for AI leaders. No hype. Just what actually works for SMBs navigating the AI transition.</p>
+            </div>
+            <div class="newsletter__right reveal reveal-delay-1">
+                <form class="newsletter__form" id="newsletterForm" onsubmit="handleSubscribe(event)">
+                    <input type="email" class="newsletter__input" placeholder="your@email.com" required>
+                    <button type="submit" class="btn btn--primary">Subscribe</button>
+                </form>
+                <p class="newsletter__note">Join 500+ operations leaders & founders. Unsubscribe anytime.</p>
+                <div class="newsletter__thanks" id="newsletterThanks">
+                    Thank you. You're in the loop.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__copy">© 2026 Yugam. Helping you build production-quality AI.</div>
+            <div class="footer__social">
+                <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+                <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="ti ti-brand-youtube"></i></a>
+                <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><i class="ti ti-brand-x"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal with fallback
+        function revealVisible() {
+            document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight + 60) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        revealVisible();
+        window.addEventListener('scroll', revealVisible, { passive: true });
+
+        // Threshold animation
+        const thresholdObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('threshold--animate');
+                    thresholdObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const thresholdEl = document.querySelector('.threshold');
+        if (thresholdEl) thresholdObserver.observe(thresholdEl);
+
+        // Nav scroll behavior
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 80) {
+                nav.classList.add('nav--scrolled');
+            } else {
+                nav.classList.remove('nav--scrolled');
+            }
+
+            // Active nav link
+            const sections = document.querySelectorAll('section[id]');
+            let current = '';
+            sections.forEach(section => {
+                const top = section.offsetTop - 120;
+                if (window.scrollY >= top) current = section.id;
+            });
+            document.querySelectorAll('.nav__link').forEach(link => {
+                link.classList.remove('nav__link--active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('nav__link--active');
+                }
+            });
+        });
+
+        // Calculator
+        function calculateImpact() {
+            const revenue = document.getElementById('revenue').value;
+            const teamSize = document.getElementById('teamSize').value;
+            const useCase = document.getElementById('useCase').value;
+            const maturity = document.getElementById('maturity').value;
+
+            if (!revenue || !teamSize || !useCase || !maturity) {
+                return;
+            }
+
+            const revMap = { '1-10': 1, '10-50': 2, '50-100': 3, '100+': 4 };
+            const teamMap = { '10-50': 1, '50-200': 2, '200-500': 3, '500+': 4 };
+            const matMap = { 'low': 1, 'medium': 2, 'high': 3 };
+
+            const r = revMap[revenue];
+            const t = teamMap[teamSize];
+            const m = matMap[maturity];
+
+            const baseWeeks = 8 + (r * 2) + (t * 1) - (m * 2);
+            const weeks = Math.max(6, Math.min(20, baseWeeks));
+            const timeline = weeks + '–' + (weeks + 4) + ' wks';
+
+            const costBase = [25, 75, 150, 300];
+            const costLow = costBase[r - 1] * (m === 3 ? 0.7 : m === 2 ? 0.85 : 1);
+            const costHigh = costLow * 1.6;
+            const investment = '$' + Math.round(costLow) + 'K–$' + Math.round(costHigh) + 'K';
+
+            const roiBase = 2 + (m * 0.8) + (r * 0.3);
+            const roi = roiBase.toFixed(1) + '–' + (roiBase + 1.5).toFixed(1) + 'x';
+
+            const paybackBase = 14 - (m * 3) + (r * 1);
+            const payback = Math.max(3, Math.round(paybackBase)) + '–' + Math.max(6, Math.round(paybackBase + 4)) + ' mo';
+
+            document.getElementById('resTimeline').textContent = timeline;
+            document.getElementById('resInvestment').textContent = investment;
+            document.getElementById('resROI').textContent = roi;
+            document.getElementById('resPayback').textContent = payback;
+            document.getElementById('results').classList.add('show');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Newsletter
+        function handleSubscribe(e) {
+            e.preventDefault();
+            document.getElementById('newsletterForm').style.display = 'none';
+            document.querySelector('.newsletter__note').style.display = 'none';
+            document.getElementById('newsletterThanks').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
