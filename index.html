@@ -1394,6 +1394,9 @@
         }
         revealVisible();
         window.addEventListener('scroll', revealVisible, { passive: true });
+        window.addEventListener('load', revealVisible);
+        setTimeout(revealVisible, 100);
+        setTimeout(revealVisible, 500);
 
         // Threshold animation
         const thresholdObserver = new IntersectionObserver((entries) => {
