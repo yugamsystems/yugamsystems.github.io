@@ -1435,12 +1435,13 @@
             <div class="contact__inner reveal">
                 <h2 class="contact__heading">Let's talk.</h2>
                 <p class="contact__desc">Tell me a little about your business and what you're trying to figure out. I'll get back to you within a day.</p>
-                <form class="contact__form" id="contactForm" onsubmit="handleContact(event)">
+                <form class="contact__form" id="contactForm" name="contact" method="POST" data-netlify="true" onsubmit="handleContact(event)">
+                    <input type="hidden" name="form-name" value="contact">
                     <div class="contact__fields">
-                        <input type="text" class="contact__input" placeholder="Your name" required>
-                        <input type="email" class="contact__input" placeholder="your@email.com" required>
+                        <input type="text" name="name" class="contact__input" placeholder="Your name" required>
+                        <input type="email" name="email" class="contact__input" placeholder="your@email.com" required>
                     </div>
-                    <textarea class="contact__textarea" placeholder="What are you working on? What's the challenge?" rows="4" required></textarea>
+                    <textarea name="message" class="contact__textarea" placeholder="What are you working on? What's the challenge?" rows="4" required></textarea>
                     <button type="submit" class="btn btn--primary">Send Message</button>
                 </form>
                 <div class="contact__thanks" id="contactThanks">
@@ -1562,9 +1563,20 @@
         // Contact form
         function handleContact(e) {
             e.preventDefault();
-            document.getElementById('contactForm').style.display = 'none';
-            document.querySelector('.contact__desc').style.display = 'none';
-            document.getElementById('contactThanks').style.display = 'block';
+            const form = document.getElementById('contactForm');
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(form)).toString()
+            }).then(() => {
+                form.style.display = 'none';
+                document.querySelector('.contact__desc').style.display = 'none';
+                document.getElementById('contactThanks').style.display = 'block';
+            }).catch(() => {
+                form.style.display = 'none';
+                document.querySelector('.contact__desc').style.display = 'none';
+                document.getElementById('contactThanks').style.display = 'block';
+            });
         }
 
         // Newsletter
