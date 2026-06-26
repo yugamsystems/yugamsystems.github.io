@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitive Advantage Assessment — Yugam</title>
+    <meta name="description" content="A guided AI-powered diagnostic that identifies where AI creates competitive leverage — and where you're most exposed.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        /* Header */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header__logo-text { font-family: var(--font-serif); font-size: 20px; color: var(--ink); }
+        .header__back { font-size: 14px; color: var(--drift); text-decoration: none; transition: color 300ms ease; }
+        .header__back:hover { color: var(--teak); }
+
+        /* Cover */
+        .cover { padding: 80px 0 48px; text-align: center; }
+        .cover__label {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 20px; display: block;
+        }
+        .cover h1 { font-size: 38px; line-height: 1.2; margin-bottom: 16px; }
+        .cover__sub {
+            font-size: 17px; color: var(--bark);
+            max-width: 540px; margin: 0 auto 32px; line-height: 1.7;
+        }
+        .cover__start {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 32px; background: var(--teak); color: var(--stone);
+            border: none; border-radius: 6px; font-family: var(--font-sans);
+            font-size: 15px; font-weight: 500; cursor: pointer;
+            transition: all 300ms ease;
+        }
+        .cover__start:hover { background: var(--teak-hover); }
+
+        /* Progress */
+        .progress {
+            padding: 20px 0; border-bottom: 1px solid var(--clay);
+            position: sticky; top: 56px; background: var(--stone); z-index: 50;
+            display: none;
+        }
+        .progress.show { display: block; }
+        .progress__bar { height: 3px; background: var(--sand); border-radius: 2px; overflow: hidden; }
+        .progress__fill { height: 100%; background: var(--teak); border-radius: 2px; transition: width 500ms ease; width: 0%; }
+        .progress__text {
+            font-family: var(--font-mono); font-size: 11px;
+            color: var(--drift); margin-top: 8px; text-align: center; letter-spacing: 0.05em;
+        }
+
+        /* Question layout */
+        .assessment { padding: 48px 0 80px; display: none; }
+        .assessment.show { display: block; }
+
+        .question { display: none; animation: fadeIn 400ms ease; }
+        .question.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+        .question__number {
+            font-family: var(--font-mono); font-size: 12px;
+            color: var(--teak); margin-bottom: 16px; letter-spacing: 0.08em;
+        }
+        .question__text {
+            font-family: var(--font-serif); font-size: 28px;
+            color: var(--ink); line-height: 1.3; margin-bottom: 8px;
+        }
+        .question__why {
+            font-size: 13px; color: var(--drift); font-style: italic;
+            margin-bottom: 28px; padding-left: 16px;
+            border-left: 2px solid var(--clay); line-height: 1.6;
+        }
+
+        /* Options */
+        .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        .option {
+            padding: 18px 20px; background: var(--stone-light);
+            border: 1.5px solid var(--clay); border-radius: 8px;
+            cursor: pointer; transition: all 200ms ease;
+            display: flex; align-items: flex-start; gap: 14px;
+        }
+        .option:hover { border-color: var(--bark); background: var(--sand); }
+        .option.selected { border-color: var(--teak); background: rgba(139, 105, 20, 0.06); }
+
+        .option__radio {
+            width: 18px; height: 18px; border-radius: 50%;
+            border: 2px solid var(--clay); flex-shrink: 0; margin-top: 2px;
+            transition: all 200ms ease; position: relative;
+        }
+        .option.selected .option__radio { border-color: var(--teak); }
+        .option.selected .option__radio::after {
+            content: ''; position: absolute; top: 3px; left: 3px;
+            width: 8px; height: 8px; border-radius: 50%; background: var(--teak);
+        }
+        .option__text { font-size: 15px; color: var(--charcoal); line-height: 1.5; }
+
+        /* Freeform as inline option */
+        .option--freeform {
+            padding: 14px 20px; background: var(--stone-light);
+            border: 1.5px solid var(--clay); border-radius: 8px;
+            display: flex; flex-direction: column; gap: 0;
+        }
+        .option--freeform:hover { border-color: var(--bark); }
+        .option--freeform:focus-within { border-color: var(--teak); }
+        .option--freeform__label {
+            font-size: 14px; color: var(--drift); margin-bottom: 8px;
+        }
+        .option--freeform textarea {
+            width: 100%; padding: 0; background: transparent;
+            border: none; font-family: var(--font-sans); font-size: 14px;
+            color: var(--charcoal); resize: vertical; min-height: 60px;
+            line-height: 1.6; outline: none;
+        }
+        .option--freeform textarea::placeholder { color: var(--clay); }
+
+        /* Q1 dropdowns */
+        .context-fields { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+        .context-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .field-group label {
+            display: block; font-size: 13px; font-weight: 500;
+            color: var(--charcoal); margin-bottom: 6px;
+        }
+        .field-group select, .field-group textarea {
+            width: 100%; padding: 12px 14px; background: var(--stone-light);
+            border: 1.5px solid var(--clay); border-radius: 8px;
+            font-family: var(--font-sans); font-size: 14px; color: var(--charcoal);
+            transition: border-color 300ms ease; appearance: none; cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%239B9183' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 14px center;
+        }
+        .field-group select:focus, .field-group textarea:focus { outline: none; border-color: var(--teak); }
+        .field-group textarea {
+            appearance: none; background-image: none; resize: vertical;
+            min-height: 100px; line-height: 1.6; cursor: text;
+        }
+        .field-group textarea::placeholder { color: var(--drift); }
+        .field-group .optional-tag {
+            font-size: 11px; color: var(--drift); font-weight: 400; margin-left: 4px;
+        }
+
+        /* Navigation */
+        .question__nav {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--clay);
+        }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 24px; border-radius: 6px; font-family: var(--font-sans);
+            font-size: 14px; font-weight: 500; text-decoration: none;
+            transition: all 300ms ease; cursor: pointer; border: none;
+        }
+        .btn--primary { background: var(--teak); color: var(--stone); }
+        .btn--primary:hover { background: var(--teak-hover); }
+        .btn--primary:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn--secondary { background: transparent; color: var(--bark); border: 1.5px solid var(--clay); }
+        .btn--secondary:hover { border-color: var(--bark); }
+        .btn--large { padding: 14px 32px; font-size: 15px; }
+
+        /* Loading */
+        .loading { display: none; text-align: center; padding: 100px 0; }
+        .loading.show { display: block; }
+        .loading__spinner {
+            width: 48px; height: 48px; border: 3px solid var(--sand);
+            border-top: 3px solid var(--teak); border-radius: 50%;
+            animation: spin 1s linear infinite; margin: 0 auto 28px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading__text { font-family: var(--font-serif); font-size: 24px; color: var(--ink); margin-bottom: 8px; }
+        .loading__sub { font-size: 14px; color: var(--drift); }
+
+        /* Error */
+        .error {
+            display: none; text-align: center; padding: 40px;
+            background: #FEF2F2; border: 1px solid #FECACA;
+            border-radius: 12px; margin: 40px 0;
+        }
+        .error.show { display: block; }
+        .error__text { color: #991B1B; font-size: 15px; margin-bottom: 16px; }
+
+        /* Results */
+        .results { display: none; padding: 60px 0 80px; }
+        .results.show { display: block; }
+
+        .results__header { text-align: center; margin-bottom: 24px; }
+        .results__header h2 { margin-bottom: 8px; font-size: 34px; }
+
+        .results__summary {
+            font-size: 16px; color: var(--bark); line-height: 1.8;
+            text-align: center; max-width: 600px; margin: 0 auto 40px;
+        }
+
+        /* Scorecard */
+        .section-label {
+            font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+            color: var(--drift); margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        .scorecard {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 28px; margin-bottom: 32px;
+        }
+        .scorecard__title {
+            font-family: var(--font-serif); font-size: 20px; color: var(--ink);
+            margin-bottom: 4px;
+        }
+        .scorecard__sub {
+            font-size: 13px; color: var(--drift); font-style: italic; margin-bottom: 20px;
+        }
+        .scorecard__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .gauge {
+            background: var(--sand); border-radius: 8px; padding: 16px; text-align: center;
+        }
+        .gauge__icon { font-size: 20px; margin-bottom: 6px; }
+        .gauge__label { font-size: 12px; color: var(--bark); margin-bottom: 8px; font-weight: 500; }
+        .gauge__bar { height: 6px; background: var(--clay); border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+        .gauge__fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+        .gauge__fill--red { background: #C0392B; }
+        .gauge__fill--amber { background: #D4920B; }
+        .gauge__fill--green { background: #1D9E75; }
+        .gauge__status { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.03em; }
+        .gauge__status--red { color: #C0392B; }
+        .gauge__status--amber { color: #B07D0A; }
+        .gauge__status--green { color: #1D9E75; }
+        .gauge__note { font-size: 11px; color: var(--drift); margin-top: 6px; line-height: 1.4; }
+
+        /* Opportunity strip */
+        .strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 32px; }
+        .strip-card {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 20px;
+        }
+        .strip-card--top { border: 2px solid var(--teak); }
+        .strip-card__rank {
+            font-family: var(--font-mono); font-size: 11px; color: var(--teak);
+            letter-spacing: 0.08em; margin-bottom: 6px;
+        }
+        .strip-card__title {
+            font-weight: 500; font-size: 14px; color: var(--ink);
+            margin-bottom: 6px; line-height: 1.4;
+        }
+        .strip-card__liner {
+            font-size: 12px; color: var(--drift); line-height: 1.5;
+        }
+        .impact-badge {
+            display: inline-block; font-family: var(--font-mono);
+            font-size: 10px; letter-spacing: 0.06em;
+            padding: 2px 8px; border-radius: 10px; margin-top: 8px;
+        }
+        .impact-badge--high { background: rgba(139, 105, 20, 0.12); color: var(--teak); }
+        .impact-badge--medium { background: var(--sand); color: var(--bark); }
+        .impact-badge--low { background: var(--stone); color: var(--drift); }
+
+        .results__divider { height: 1px; background: var(--clay); margin: 36px 0; }
+
+        /* Detailed opportunity cards */
+        .opportunity {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 28px; margin-bottom: 16px;
+        }
+        .opportunity--top { border-color: var(--teak); border-width: 2px; }
+        .opportunity__rank {
+            font-family: var(--font-mono); font-size: 11px; color: var(--teak);
+            text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;
+        }
+        .opportunity__title {
+            font-family: var(--font-serif); font-size: 20px;
+            color: var(--ink); margin-bottom: 4px; line-height: 1.3;
+        }
+        .opportunity__area {
+            font-family: var(--font-mono); font-size: 11px;
+            color: var(--drift); margin-bottom: 12px;
+        }
+        .opportunity__analysis { font-size: 14px; color: var(--bark); line-height: 1.8; margin-bottom: 16px; }
+        .opportunity__section-title {
+            font-size: 11px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.05em; color: var(--drift); margin-bottom: 6px;
+        }
+        .opportunity__list { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+        .opportunity__list li {
+            font-size: 13px; color: var(--charcoal); padding-left: 14px; position: relative; line-height: 1.6;
+        }
+        .opportunity__list li::before {
+            content: ''; position: absolute; left: 0; top: 10px;
+            width: 4px; height: 4px; border-radius: 50%; background: var(--teak);
+        }
+        .opportunity__watchouts { font-size: 13px; color: var(--drift); font-style: italic; line-height: 1.6; }
+
+        /* Not recommended */
+        .results__not-recommended {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 24px; margin-bottom: 24px;
+        }
+        .results__not-recommended h3 { font-size: 18px; margin-bottom: 8px; }
+        .results__not-recommended p { font-size: 14px; color: var(--bark); line-height: 1.7; }
+
+        /* Yugam frame */
+        .yugam-frame {
+            background: var(--sand); border-radius: 12px; padding: 28px;
+            border-left: 3px solid var(--teak); margin-bottom: 32px;
+        }
+        .yugam-frame__text {
+            font-family: var(--font-serif); font-size: 17px; color: var(--ink);
+            line-height: 1.6; font-style: italic; margin-bottom: 12px;
+        }
+        .yugam-frame__cta a {
+            color: var(--teak); font-weight: 500; text-decoration: none; font-size: 14px;
+        }
+        .yugam-frame__cta a:hover { color: var(--teak-hover); }
+
+        /* Email capture */
+        .results__email {
+            text-align: center; padding: 32px; background: var(--sand);
+            border-radius: 12px; margin-bottom: 24px;
+        }
+        .results__email h3 { font-size: 20px; margin-bottom: 6px; }
+        .results__email p { color: var(--bark); font-size: 14px; margin-bottom: 16px; }
+        .results__email-form { display: flex; gap: 12px; max-width: 380px; margin: 0 auto; }
+        .results__email-input {
+            flex: 1; padding: 12px 14px; background: var(--stone);
+            border: 1.5px solid var(--clay); border-radius: 6px;
+            font-family: var(--font-sans); font-size: 14px; color: var(--charcoal);
+        }
+        .results__email-input::placeholder { color: var(--drift); }
+        .results__email-input:focus { outline: none; border-color: var(--teak); }
+        .results__email-sent { display: none; font-family: var(--font-serif); font-size: 18px; color: var(--ink); }
+
+        .results__actions {
+            display: flex; gap: 16px; justify-content: center;
+            flex-wrap: wrap; margin-top: 32px; padding-top: 24px;
+            border-top: 1px solid var(--clay);
+        }
+
+        .footer { padding: 40px 0; border-top: 1px solid var(--clay); text-align: center; }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .cover h1 { font-size: 30px; }
+            .question__text { font-size: 22px; }
+            .container { padding: 0 20px; }
+            .context-row { grid-template-columns: 1fr; }
+            .scorecard__grid { grid-template-columns: 1fr; }
+            .strip { grid-template-columns: 1fr; }
+            .opportunity { padding: 20px; }
+            .results__email-form { flex-direction: column; }
+            .results__actions { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="../index.html" class="header__back">&larr; Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="cover" id="cover">
+            <span class="cover__label">AI-Powered Diagnostic</span>
+            <h1>See where AI is already reshaping your industry &mdash; and which gaps are getting wider.</h1>
+            <p class="cover__sub">Answer 7 questions about your competitive landscape. You'll get an operations-focused assessment of where AI creates competitive leverage &mdash; and where you're most exposed.</p>
+            <button class="cover__start" onclick="startAssessment()">Start the Assessment &rarr;</button>
+            <p style="font-size: 13px; color: var(--drift); margin-top: 12px;">Takes about 4 minutes. No email required.</p>
+        </section>
+
+        <div class="progress" id="progress">
+            <div class="progress__bar"><div class="progress__fill" id="progressFill"></div></div>
+            <div class="progress__text" id="progressText">Question 1 of 7</div>
+        </div>
+
+        <section class="assessment" id="assessment"></section>
+
+        <section class="loading" id="loading">
+            <div class="loading__spinner"></div>
+            <div class="loading__text">Analyzing your competitive landscape...</div>
+            <div class="loading__sub" id="loadingSub">Analyzing your competitive dynamics</div>
+        </section>
+
+        <div class="error" id="error">
+            <div class="error__text" id="errorText">Something went wrong.</div>
+            <button class="btn btn--primary" onclick="retry()">Try Again</button>
+        </div>
+
+        <section class="results" id="results">
+            <div class="results__header"><h2>Your Competitive Advantage Profile</h2></div>
+            <div class="results__summary" id="resultsSummary"></div>
+
+            <!-- Tier 1: Scorecard -->
+            <div class="section-label">Your readiness scorecard</div>
+            <div class="scorecard">
+                <div class="scorecard__title">Competitive position</div>
+                <div class="scorecard__sub">Where are you exposed, and where are you strong?</div>
+                <div class="scorecard__grid" id="scorecardGrid"></div>
+            </div>
+
+            <!-- Tier 1: Strip -->
+            <div class="section-label">Strategic priorities at a glance</div>
+            <div class="strip" id="stripList"></div>
+
+            <div class="results__divider"></div>
+
+            <!-- Tier 2: Detailed analysis -->
+            <div class="section-label">Detailed analysis</div>
+            <div id="opportunityList"></div>
+
+            <!-- Not recommended -->
+            <div class="results__not-recommended" id="resultsNotRecommended">
+                <h3>Where not to compete on AI</h3>
+                <p id="notRecommendedText"></p>
+            </div>
+
+            <!-- Tier 3: Yugam frame -->
+            <div class="yugam-frame">
+                <div class="yugam-frame__text">"The question isn't whether your competitors are using AI. It's whether their internal processes are becoming structurally cheaper to run. AI isn't a feature war &mdash; it's a cost structure war. The companies that win over the next five years won't be the ones with the best AI features. They'll be the ones whose operations scale without proportionally scaling headcount."</div>
+                <div class="yugam-frame__cta"><a href="../index.html#contact-form">Discuss your competitive strategy with Rohit &rarr;</a></div>
+            </div>
+
+            <!-- Email capture -->
+            <div class="results__email" id="emailSection">
+                <h3>Save a copy of this assessment?</h3>
+                <p>Email yourself these results to reference later or share with your team.</p>
+                <form class="results__email-form" onsubmit="handleEmailSave(event)">
+                    <input type="email" class="results__email-input" placeholder="your@email.com" required>
+                    <button type="submit" class="btn btn--primary">Send to my inbox</button>
+                </form>
+                <div class="results__email-sent">Sent. Check your inbox.</div>
+            </div>
+
+            <div class="results__actions">
+                <button class="btn btn--secondary" onclick="startOver()">&larr; Start Over</button>
+                <a href="../index.html#contact-form" class="btn btn--primary btn--large">Discuss These Opportunities &rarr;</a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="footer"><div class="container"><p>&copy; 2026 Yugam. Helping you build production-quality AI.</p></div></footer>
+
+    <script>
+    const API_URL = 'https://yugam-ai-proxy.maskyrohit.workers.dev';
+
+    const TOTAL_QUESTIONS = 7;
+    let currentQ = 0;
+    let answers = {};
+
+    const questions = [
+        {
+            id: 'context',
+            type: 'context',
+            text: 'Tell me about your competitive landscape.',
+            why: 'Your competitive dynamics shape where AI matters most.'
+        },
+        {
+            id: 'cost_structure',
+            text: 'Think about what it costs you to deliver your product or service compared to two years ago. Is it getting more expensive, staying the same, or getting cheaper — and do you know why?',
+            why: 'AI’s deepest competitive impact isn’t features or customer experience — it’s cost structure. A competitor whose unit economics are improving 15% year over year because of process automation will eventually undercut you, outinvest you, or both.',
+            options: [
+                'Getting more expensive — labor costs, complexity, and overhead keep rising',
+                'About the same — we’ve optimized where we can but haven’t found new leverage',
+                'Getting cheaper in some areas, but gains are offset by costs elsewhere',
+                'Steadily improving — we’ve invested in efficiency and are seeing returns',
+                'I don’t actually know our unit economics well enough to answer this'
+            ],
+            freeform: 'Where do you think your competitors have a structural cost advantage over you?'
+        },
+        {
+            id: 'cx_gap',
+            text: 'Have any of your customers recently mentioned that a competitor’s experience felt faster, more personalized, or more convenient?',
+            why: 'This is the early warning system. When customers compare your experience unfavorably, AI is often the invisible driver. By the time it’s obvious, the gap is expensive to close.',
+            options: [
+                'Yes — we’re hearing this more and more, and it’s concerning',
+                'A few comments, but nothing widespread yet',
+                'Not from customers, but I’ve experienced it myself with competitors',
+                'No — our customer experience is a strength',
+                'We don’t systematically collect this kind of feedback'
+            ],
+            freeform: 'What specifically did they say, or what did you notice?'
+        },
+        {
+            id: 'leverage',
+            text: 'If your competitor could serve 50% more customers without adding 50% more staff, what would that do to your market position in two years?',
+            why: 'This is the real AI competitive question. Speed is a symptom. The underlying shift is operational leverage — the ability to scale output without linearly scaling headcount. That ratio determines who wins over 3–5 years.',
+            options: [
+                'They would dominate — our business is people-intensive and we can’t match that ratio',
+                'It would hurt — we’d lose on price and struggle to invest at their level',
+                'We could probably match it — we’re already working on operational efficiency',
+                'We’re already there — our operations scale well and AI could widen the gap',
+                'This doesn’t apply to our industry — we compete on relationships and expertise, not efficiency'
+            ],
+            freeform: 'What is the ratio of revenue per employee at your company, and is it improving?'
+        },
+        {
+            id: 'defensibility',
+            text: 'What’s the hardest thing for a competitor to copy about your business?',
+            why: 'AI equalizes things easy to copy: speed, content, analytics. It cannot replicate relationships, proprietary data, or deep domain knowledge. Understanding your moat tells us where AI strengthens vs. erodes your advantage.',
+            options: [
+                'Our relationships — customers stay because of trust and personal connections',
+                'Our data — we have proprietary information competitors can’t access',
+                'Our expertise — deep domain knowledge that takes years to build',
+                'Our operational efficiency — optimized in ways hard to replicate',
+                'Honestly, we’re fairly easy to replicate — we compete on execution'
+            ]
+        },
+        {
+            id: 'regulatory',
+            text: 'Are your competitors operating under different regulatory constraints than you — either because they’re in different jurisdictions, or because they’re interpreting the rules differently?',
+            why: 'AI governance is becoming a competitive variable. A competitor in a less-regulated market can deploy AI faster and cheaper. Some competitors move fast because they’re not thinking about compliance — which is risk they’re carrying, not advantage. Understanding this asymmetry changes your strategy.',
+            options: [
+                'Yes — competitors in other markets seem to have fewer constraints and are moving faster',
+                'We’re not sure — we haven’t compared our regulatory environment to theirs',
+                'Same regulations, but some competitors seem to be taking more risk with compliance',
+                'Our industry is heavily regulated everywhere — nobody has a regulatory advantage',
+                'We actually have a governance advantage — we’re more trusted because of our compliance posture'
+            ],
+            freeform: 'Do you see compliance as a cost or a competitive advantage?'
+        },
+        {
+            id: 'efficiency_gap',
+            text: 'If you compared the number of manual steps in your core business process today versus your most efficient competitor, where do you think the gap is?',
+            why: 'The strategic window isn’t 12–18 months of ‘should we do AI.’ It’s the daily widening of an operational gap. Every day a competitor’s process runs with 6 steps while yours runs with 14, the cumulative cost difference compounds.',
+            options: [
+                'We have no idea how efficient our competitors are operationally',
+                'We suspect they’re more streamlined but haven’t quantified the gap',
+                'We’ve benchmarked informally — they’re ahead in some areas, we’re ahead in others',
+                'We know the gap and have a plan to close it',
+                'We are the benchmark — competitors are trying to match our efficiency'
+            ],
+            freeform: 'Which of your internal processes feels most bloated compared to what it should be?'
+        }
+    ];
+
+    function startAssessment() {
+        document.getElementById('cover').style.display = 'none';
+        document.getElementById('progress').classList.add('show');
+        document.getElementById('assessment').classList.add('show');
+        renderQuestion(0);
+    }
+
+    function renderQuestion(idx) {
+        currentQ = idx;
+        const q = questions[idx];
+        const el = document.getElementById('assessment');
+        updateProgress(idx);
+
+        if (q.type === 'context') {
+            el.innerHTML = `
+                <div class="question active">
+                    <div class="question__number">Question ${idx + 1} of ${TOTAL_QUESTIONS}</div>
+                    <div class="question__text">${q.text}</div>
+                    <div class="question__why">${q.why}</div>
+                    <div class="context-fields">
+                        <div class="context-row">
+                            <div class="field-group">
+                                <label>Industry <span class="optional-tag">optional</span></label>
+                                <select id="ctx_industry" onchange="saveContext()">
+                                    <option value="">Select industry</option>
+                                    <option>Manufacturing</option>
+                                    <option>Professional Services</option>
+                                    <option>Technology / SaaS</option>
+                                    <option>Healthcare</option>
+                                    <option>Financial Services</option>
+                                    <option>Retail / E-commerce</option>
+                                    <option>Logistics / Supply Chain</option>
+                                    <option>Construction / Real Estate</option>
+                                    <option>Education</option>
+                                    <option>Media / Entertainment</option>
+                                    <option>Non-profit</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="field-group">
+                                <label>Team size <span class="optional-tag">optional</span></label>
+                                <select id="ctx_headcount" onchange="saveContext()">
+                                    <option value="">Select range</option>
+                                    <option>1–10</option>
+                                    <option>11–50</option>
+                                    <option>51–200</option>
+                                    <option>201–500</option>
+                                    <option>500+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="context-row">
+                            <div class="field-group">
+                                <label>Primary competitive pressure from? <span class="optional-tag">optional</span></label>
+                                <select id="ctx_pressure" onchange="saveContext()">
+                                    <option value="">Select pressure</option>
+                                    <option>Direct competitors our size</option>
+                                    <option>Larger incumbents with more resources</option>
+                                    <option>Smaller, more agile startups</option>
+                                    <option>Tech companies entering our space</option>
+                                    <option>We don’t have strong direct competitors</option>
+                                    <option>All of the above</option>
+                                </select>
+                            </div>
+                            <div class="field-group">
+                                <label>Current competitive position? <span class="optional-tag">optional</span></label>
+                                <select id="ctx_position" onchange="saveContext()">
+                                    <option value="">Select position</option>
+                                    <option>Market leader</option>
+                                    <option>Strong but not dominant</option>
+                                    <option>Middle of the pack</option>
+                                    <option>Falling behind</option>
+                                    <option>Entering a new market</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field-group">
+                            <label>Describe your competitive landscape</label>
+                            <textarea id="ctx_description" placeholder="Who are you most worried about, and why? What do your customers choose you for?" oninput="saveContext()">${answers.ctx_description || ''}</textarea>
+                        </div>
+                    </div>
+                    <div class="question__nav">
+                        <div></div>
+                        <button class="btn btn--primary" onclick="nextQuestion()">Next →</button>
+                    </div>
+                </div>
+            `;
+            if (answers.ctx_industry) document.getElementById('ctx_industry').value = answers.ctx_industry;
+            if (answers.ctx_headcount) document.getElementById('ctx_headcount').value = answers.ctx_headcount;
+            if (answers.ctx_pressure) document.getElementById('ctx_pressure').value = answers.ctx_pressure;
+            if (answers.ctx_position) document.getElementById('ctx_position').value = answers.ctx_position;
+        } else {
+            const selectedIdx = answers[q.id + '_idx'];
+            el.innerHTML = `
+                <div class="question active">
+                    <div class="question__number">Question ${idx + 1} of ${TOTAL_QUESTIONS}</div>
+                    <div class="question__text">${q.text}</div>
+                    <div class="question__why">${q.why}</div>
+                    <div class="options">
+                        ${q.options.map((opt, i) => `
+                            <div class="option ${selectedIdx === i ? 'selected' : ''}" onclick="selectOption('${q.id}', ${i}, this)">
+                                <div class="option__radio"></div>
+                                <div class="option__text">${escHtml(opt)}</div>
+                            </div>
+                        `).join('')}
+                        ${q.freeform ? `
+                            <div class="option--freeform">
+                                <div class="option--freeform__label">${escHtml(q.freeform)}</div>
+                                <textarea placeholder="Type here..." oninput="answers['${q.id}_free']=this.value">${answers[q.id + '_free'] || ''}</textarea>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div class="question__nav">
+                        <button class="btn btn--secondary" onclick="prevQuestion()">← Back</button>
+                        <button class="btn btn--primary" id="nextBtn" onclick="${idx === TOTAL_QUESTIONS - 1 ? 'submitAssessment()' : 'nextQuestion()'}" ${selectedIdx === undefined ? 'disabled' : ''}>
+                            ${idx === TOTAL_QUESTIONS - 1 ? 'Get My Results →' : 'Next →'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function saveContext() {
+        answers.ctx_industry = document.getElementById('ctx_industry')?.value || '';
+        answers.ctx_headcount = document.getElementById('ctx_headcount')?.value || '';
+        answers.ctx_pressure = document.getElementById('ctx_pressure')?.value || '';
+        answers.ctx_position = document.getElementById('ctx_position')?.value || '';
+        answers.ctx_description = document.getElementById('ctx_description')?.value || '';
+    }
+
+    function selectOption(qId, optIdx, el) {
+        answers[qId + '_idx'] = optIdx;
+        answers[qId + '_text'] = questions.find(q => q.id === qId).options[optIdx];
+        document.querySelectorAll('.option').forEach((o, i) => o.classList.toggle('selected', i === optIdx));
+        const nextBtn = document.getElementById('nextBtn');
+        if (nextBtn) nextBtn.disabled = false;
+    }
+
+    function nextQuestion() {
+        if (currentQ === 0) saveContext();
+        renderQuestion(currentQ + 1);
+    }
+
+    function prevQuestion() {
+        if (currentQ === 0) return;
+        if (currentQ === 1) saveContext();
+        renderQuestion(currentQ - 1);
+    }
+
+    function updateProgress(idx) {
+        const pct = ((idx + 1) / TOTAL_QUESTIONS) * 100;
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressText').textContent = `Question ${idx + 1} of ${TOTAL_QUESTIONS}`;
+    }
+
+    function buildPromptPayload() {
+        let desc = '';
+        if (answers.ctx_description) desc += answers.ctx_description;
+        let parts = [];
+        if (answers.ctx_industry) parts.push('Industry: ' + answers.ctx_industry);
+        if (answers.ctx_headcount) parts.push('Team size: ' + answers.ctx_headcount);
+        if (answers.ctx_pressure) parts.push('Primary competitive pressure: ' + answers.ctx_pressure);
+        if (answers.ctx_position) parts.push('Current competitive position: ' + answers.ctx_position);
+
+        const qResponses = questions.slice(1).map(q => {
+            let resp = q.text + '\n→ ' + (answers[q.id + '_text'] || 'Not answered');
+            if (answers[q.id + '_free']) resp += '\nAdditional context: ' + answers[q.id + '_free'];
+            return resp;
+        }).join('\n\n');
+
+        return {
+            tool: 'competitive-assessment',
+            description: desc + (parts.length ? '\n\n' + parts.join('\n') : '') + '\n\nAssessment responses:\n\n' + qResponses,
+            industry: answers.ctx_industry || '',
+            teamSize: answers.ctx_headcount || '',
+            pressure: answers.ctx_pressure || '',
+            position: answers.ctx_position || ''
+        };
+    }
+
+    function submitAssessment() {
+        document.getElementById('assessment').classList.remove('show');
+        document.getElementById('progress').classList.remove('show');
+        document.getElementById('error').classList.remove('show');
+        document.getElementById('loading').classList.add('show');
+
+        const loadingMessages = [
+            'Analyzing your competitive dynamics',
+            'Evaluating operational vulnerability',
+            'Mapping defensible positions',
+            'Assessing strategic urgency',
+            'Building your competitive profile'
+        ];
+        let msgIdx = 0;
+        const msgInterval = setInterval(() => {
+            msgIdx = (msgIdx + 1) % loadingMessages.length;
+            document.getElementById('loadingSub').textContent = loadingMessages[msgIdx];
+        }, 2500);
+
+        const payload = buildPromptPayload();
+
+        fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            clearInterval(msgInterval);
+            document.getElementById('loading').classList.remove('show');
+            if (data.error) { showError(data.error); return; }
+            renderResults(data);
+        })
+        .catch(() => {
+            clearInterval(msgInterval);
+            document.getElementById('loading').classList.remove('show');
+            showError('Could not connect to the analysis service. Please check your connection and try again.');
+        });
+    }
+
+    function showError(msg) {
+        document.getElementById('errorText').textContent = msg;
+        document.getElementById('error').classList.add('show');
+    }
+
+    function retry() {
+        document.getElementById('error').classList.remove('show');
+        document.getElementById('assessment').classList.add('show');
+        document.getElementById('progress').classList.add('show');
+        renderQuestion(TOTAL_QUESTIONS - 1);
+    }
+
+    function startOver() {
+        document.getElementById('results').classList.remove('show');
+        answers = {};
+        document.getElementById('cover').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderResults(data) {
+        document.getElementById('resultsSummary').textContent = data.summary;
+
+        // Scorecard
+        const icons = { competitive_awareness: 'ti-eye', operational_vulnerability: 'ti-alert-triangle', strategic_urgency: 'ti-clock' };
+        const labels = { competitive_awareness: 'Competitive Awareness', operational_vulnerability: 'Operational Vulnerability', strategic_urgency: 'Strategic Urgency' };
+        const statusLabels = { 'needs-work': 'Needs work', 'partially-ready': 'Partially ready', 'ready': 'Ready' };
+        const statusColors = { 'needs-work': 'red', 'partially-ready': 'amber', 'ready': 'green' };
+
+        const grid = document.getElementById('scorecardGrid');
+        if (data.readiness) {
+            grid.innerHTML = ['competitive_awareness', 'operational_vulnerability', 'strategic_urgency'].map(key => {
+                const r = data.readiness[key] || { score: 3, status: 'partially-ready', note: '' };
+                const color = statusColors[r.status] || 'amber';
+                const pct = Math.round((r.score / 5) * 100);
+                return `
+                    <div class="gauge">
+                        <div class="gauge__icon"><i class="ti ${icons[key]}" aria-hidden="true" style="color: ${color === 'red' ? '#C0392B' : color === 'green' ? '#1D9E75' : '#D4920B'}"></i></div>
+                        <div class="gauge__label">${labels[key]}</div>
+                        <div class="gauge__bar"><div class="gauge__fill gauge__fill--${color}" style="width: ${pct}%"></div></div>
+                        <div class="gauge__status gauge__status--${color}">${statusLabels[r.status] || r.status}</div>
+                        ${r.note ? `<div class="gauge__note">${escHtml(r.note)}</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+        } else {
+            document.querySelector('.scorecard').style.display = 'none';
+        }
+
+        // Opportunity strip (top 3)
+        const strip = document.getElementById('stripList');
+        const top3 = (data.opportunities || []).slice(0, 3);
+        strip.innerHTML = top3.map((opp, i) => `
+            <div class="strip-card ${i === 0 ? 'strip-card--top' : ''}">
+                <div class="strip-card__rank">#${i + 1}</div>
+                <div class="strip-card__title">${escHtml(opp.title)}</div>
+                <div class="strip-card__liner">${escHtml(opp.one_liner || opp.analysis?.substring(0, 80) + '...')}</div>
+                <span class="impact-badge impact-badge--${opp.impact}">${opp.impact} impact</span>
+            </div>
+        `).join('');
+
+        // Detailed opportunity cards
+        const list = document.getElementById('opportunityList');
+        list.innerHTML = (data.opportunities || []).map((opp, i) => {
+            const rankLabel = i === 0 ? 'Highest opportunity' : i === 1 ? 'Second highest' : i === 2 ? 'Third highest' : 'Opportunity ' + (i + 1);
+            return `
+                <div class="opportunity ${i === 0 ? 'opportunity--top' : ''}">
+                    <div class="opportunity__rank">${rankLabel}</div>
+                    <div class="opportunity__title">${escHtml(opp.title)}</div>
+                    <div class="opportunity__area">${escHtml(opp.area)}</div>
+                    <div class="opportunity__analysis">${escHtml(opp.analysis)}</div>
+                    <div class="opportunity__section-title">Where to start</div>
+                    <ul class="opportunity__list">${(opp.starts || []).map(s => `<li>${escHtml(s)}</li>`).join('')}</ul>
+                    ${opp.watchouts ? `<div class="opportunity__section-title">Watch out for</div><div class="opportunity__watchouts">${escHtml(opp.watchouts)}</div>` : ''}
+                </div>
+            `;
+        }).join('');
+
+        // Not recommended
+        document.getElementById('notRecommendedText').textContent = data.not_recommended || '';
+
+        document.getElementById('results').classList.add('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function escHtml(str) {
+        const d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+
+    function handleEmailSave(e) {
+        e.preventDefault();
+        e.target.style.display = 'none';
+        document.querySelector('.results__email p').style.display = 'none';
+        document.querySelector('.results__email-sent').style.display = 'block';
+    }
+    </script>
+</body>
+</html>

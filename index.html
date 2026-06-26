@@ -1174,23 +1174,28 @@
                 </div>
                 <div class="tool-card reveal reveal-delay-1">
                     <div class="tool-card__title">Data Readiness Scan</div>
-                    <div class="tool-card__desc">Assess the quality, structure, and accessibility of your data assets.</div>
+                    <div class="tool-card__desc">Find out if your data can actually support AI — before you spend a dollar on implementation.</div>
+                    <a href="resources/data-readiness.html" class="btn btn--primary" style="margin-top: 16px; display: inline-flex;">Scan Your Data</a>
                 </div>
                 <div class="tool-card reveal reveal-delay-2">
-                    <div class="tool-card__title">Implementation Complexity Score</div>
-                    <div class="tool-card__desc">Estimate integration depth, change management burden, and technical complexity.</div>
+                    <div class="tool-card__title">Team Readiness Check</div>
+                    <div class="tool-card__desc">AI tools only work when teams actually use them. Find out if yours will.</div>
+                    <a href="resources/team-readiness.html" class="btn btn--primary" style="margin-top: 16px; display: inline-flex;">Check Your Team</a>
                 </div>
                 <div class="tool-card reveal reveal-delay-3">
-                    <div class="tool-card__title">Cost-to-Deploy Calculator</div>
-                    <div class="tool-card__desc">Get a realistic cost estimate based on your stack, team size, and use case.</div>
+                    <div class="tool-card__title">Implementation Complexity Score</div>
+                    <div class="tool-card__desc">Before you pick a vendor or start a pilot, understand how hard this will actually be.</div>
+                    <a href="resources/complexity-score.html" class="btn btn--primary" style="margin-top: 16px; display: inline-flex;">Score Your Complexity</a>
                 </div>
                 <div class="tool-card reveal">
-                    <div class="tool-card__title">Team Readiness Check</div>
-                    <div class="tool-card__desc">Evaluate your team's AI literacy, process discipline, and change readiness.</div>
+                    <div class="tool-card__title">Cost-to-Deploy Calculator</div>
+                    <div class="tool-card__desc">Get a realistic cost estimate that includes the parts nobody tells you about.</div>
+                    <a href="resources/cost-calculator.html" class="btn btn--primary" style="margin-top: 16px; display: inline-flex;">Calculate Real Costs</a>
                 </div>
                 <div class="tool-card reveal reveal-delay-1">
                     <div class="tool-card__title">Competitive Advantage Assessment</div>
-                    <div class="tool-card__desc">Understand where AI gives your competitors an edge and which gaps are urgent.</div>
+                    <div class="tool-card__desc">See where AI is already reshaping your industry — and which gaps are getting wider.</div>
+                    <a href="resources/competitive-assessment.html" class="btn btn--primary" style="margin-top: 16px; display: inline-flex;">Assess Your Position</a>
                 </div>
             </div>
         </div>
@@ -1436,8 +1441,7 @@
             <div class="contact__inner reveal">
                 <h2 class="contact__heading">Let's talk.</h2>
                 <p class="contact__desc">Tell me a little about your business and what you're trying to figure out. I'll get back to you within a day.</p>
-                <form class="contact__form" id="contactForm" name="contact" method="POST" data-netlify="true" onsubmit="handleContact(event)">
-                    <input type="hidden" name="form-name" value="contact">
+                <form class="contact__form" id="contactForm" onsubmit="handleContact(event)">
                     <div class="contact__fields">
                         <input type="text" name="name" class="contact__input" placeholder="Your name" required>
                         <input type="email" name="email" class="contact__input" placeholder="your@email.com" required>
@@ -1565,10 +1569,11 @@
         function handleContact(e) {
             e.preventDefault();
             const form = document.getElementById('contactForm');
-            fetch('/', {
+            const data = Object.fromEntries(new FormData(form));
+            fetch('https://yugam-ai-proxy.maskyrohit.workers.dev', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(new FormData(form)).toString()
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tool: 'contact', ...data })
             }).then(() => {
                 form.style.display = 'none';
                 document.querySelector('.contact__desc').style.display = 'none';
