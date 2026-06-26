@@ -197,16 +197,19 @@
         .btn--large { padding: 14px 32px; font-size: 15px; }
 
         /* Loading */
-        .loading { display: none; text-align: center; padding: 100px 0; }
+        .loading { display: none; text-align: center; padding: 80px 0; }
         .loading.show { display: block; }
-        .loading__spinner {
-            width: 48px; height: 48px; border: 3px solid var(--sand);
-            border-top: 3px solid var(--teak); border-radius: 50%;
-            animation: spin 1s linear infinite; margin: 0 auto 28px;
+        .loading__bar-wrap {
+            max-width: 400px; margin: 0 auto 32px; height: 6px;
+            background: var(--sand); border-radius: 3px; overflow: hidden;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading__bar-fill {
+            height: 100%; background: var(--teak); border-radius: 3px;
+            width: 0%; transition: width 600ms ease;
+        }
         .loading__text { font-family: var(--font-serif); font-size: 24px; color: var(--ink); margin-bottom: 8px; }
-        .loading__sub { font-size: 14px; color: var(--drift); }
+        .loading__sub { font-size: 14px; color: var(--drift); margin-bottom: 6px; }
+        .loading__time { font-size: 12px; color: var(--clay); }
 
         /* Error */
         .error {
@@ -264,12 +267,19 @@
         .gauge__note { font-size: 11px; color: var(--drift); margin-top: 6px; line-height: 1.4; }
 
         /* Opportunity strip */
-        .strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 32px; }
+        .strip-wrap {
+            position: sticky; top: 56px; z-index: 40;
+            background: var(--stone); padding: 16px 0 8px; margin-bottom: 16px;
+        }
+        .strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
         .strip-card {
             background: var(--stone-light); border: 1px solid var(--clay);
-            border-radius: 12px; padding: 20px;
+            border-radius: 12px; padding: 16px; cursor: pointer;
+            transition: border-color 200ms ease, box-shadow 200ms ease;
         }
+        .strip-card:hover { border-color: var(--bark); box-shadow: 0 2px 8px rgba(26,22,18,0.06); }
         .strip-card--top { border: 2px solid var(--teak); }
+        .strip-card--secondary { opacity: 0.7; padding: 14px; }
         .strip-card__rank {
             font-family: var(--font-mono); font-size: 11px; color: var(--teak);
             letter-spacing: 0.08em; margin-bottom: 6px;
@@ -324,6 +334,25 @@
             width: 4px; height: 4px; border-radius: 50%; background: var(--teak);
         }
         .opportunity__watchouts { font-size: 13px; color: var(--drift); font-style: italic; line-height: 1.6; }
+        .opportunity__one-liner { font-size: 14px; color: var(--bark); margin-bottom: 12px; line-height: 1.6; }
+        .opportunity__detail { display: none; }
+        .opportunity--expanded .opportunity__detail { display: block; }
+        .opportunity__toggle {
+            font-size: 13px; color: var(--teak); cursor: pointer;
+            background: none; border: none; font-family: var(--font-sans);
+            font-weight: 500; padding: 0;
+        }
+        .opportunity__toggle:hover { color: var(--teak-hover); }
+        .opportunity--highlight { animation: highlightFlash 800ms ease; }
+        @keyframes highlightFlash {
+            0% { border-color: var(--teak); box-shadow: 0 0 0 4px rgba(139,105,20,0.15); }
+            100% { border-color: var(--clay); box-shadow: none; }
+        }
+        .opportunity--highlight.opportunity--top { animation: highlightFlashTop 800ms ease; }
+        @keyframes highlightFlashTop {
+            0% { box-shadow: 0 0 0 4px rgba(139,105,20,0.15); }
+            100% { box-shadow: none; }
+        }
 
         /* Not recommended */
         .results__not-recommended {
@@ -346,6 +375,24 @@
             color: var(--teak); font-weight: 500; text-decoration: none; font-size: 14px;
         }
         .yugam-frame__cta a:hover { color: var(--teak-hover); }
+
+        /* Cross-tool suggestions */
+        .next-assessment {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 28px; margin-bottom: 24px;
+        }
+        .next-assessment h3 { font-size: 18px; margin-bottom: 4px; }
+        .next-assessment__sub { font-size: 13px; color: var(--drift); margin-bottom: 16px; }
+        .next-assessment__cards { display: flex; flex-direction: column; gap: 12px; }
+        .next-assessment__card {
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--sand); border-radius: 8px; padding: 16px 20px; gap: 16px;
+        }
+        .next-assessment__card-text { flex: 1; }
+        .next-assessment__card-name {
+            font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 2px;
+        }
+        .next-assessment__card-why { font-size: 12px; color: var(--drift); line-height: 1.5; }
 
         /* Email capture */
         .results__email {
@@ -379,10 +426,12 @@
             .container { padding: 0 20px; }
             .context-row { grid-template-columns: 1fr; }
             .scorecard__grid { grid-template-columns: 1fr; }
+            .strip-wrap { position: static; }
             .strip { grid-template-columns: 1fr; }
             .opportunity { padding: 20px; }
             .results__email-form { flex-direction: column; }
             .results__actions { flex-direction: column; align-items: center; }
+            .next-assessment__card { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -418,9 +467,10 @@
         <section class="assessment" id="assessment"></section>
 
         <section class="loading" id="loading">
-            <div class="loading__spinner"></div>
+            <div class="loading__bar-wrap"><div class="loading__bar-fill" id="loadingBar"></div></div>
             <div class="loading__text">Analyzing your budget...</div>
-            <div class="loading__sub" id="loadingSub">Modeling visible and hidden costs</div>
+            <div class="loading__sub" id="loadingSub">Reading your responses...</div>
+            <div class="loading__time">Usually takes 10–15 seconds</div>
         </section>
 
         <div class="error" id="error">
@@ -440,11 +490,11 @@
                 <div class="scorecard__grid" id="scorecardGrid"></div>
             </div>
 
-            <!-- Tier 1: Strip -->
-            <div class="section-label">Cost overview</div>
-            <div class="strip" id="stripList"></div>
-
-            <div class="results__divider"></div>
+            <!-- Tier 1: Strip (sticky) -->
+            <div class="strip-wrap">
+                <div class="section-label" style="margin-bottom: 10px;">Cost overview</div>
+                <div class="strip" id="stripList"></div>
+            </div>
 
             <!-- Tier 2: Detailed analysis -->
             <div class="section-label">Detailed analysis</div>
@@ -460,6 +510,13 @@
             <div class="yugam-frame">
                 <div class="yugam-frame__text">"The real cost of AI isn't the technology. It's everything around it: preparing the data, connecting the systems, training the people, and maintaining it all when the initial excitement fades. And the cost nobody talks about? The governance layer. Someone has to monitor what the AI is doing, catch when it drifts, and answer for its decisions. That's not maintenance &mdash; it's accountability. Budget for it."</div>
                 <div class="yugam-frame__cta"><a href="../index.html#contact-form">Discuss your budget with Rohit &rarr;</a></div>
+            </div>
+
+            <!-- Cross-tool suggestions -->
+            <div class="next-assessment" id="nextAssessment" style="display:none;">
+                <h3>Your next assessment</h3>
+                <div class="next-assessment__sub">Based on your results, these will sharpen the picture.</div>
+                <div class="next-assessment__cards" id="nextAssessmentCards"></div>
             </div>
 
             <!-- Email capture -->
@@ -760,24 +817,35 @@
         };
     }
 
+    // --- Progress bar stages ---
+    const LOADING_STAGES = [
+        { pct: 15, text: 'Reading your responses...' },
+        { pct: 35, text: 'Modeling visible and hidden costs...' },
+        { pct: 55, text: 'Calculating internal opportunity costs...' },
+        { pct: 75, text: 'Estimating governance overhead...' },
+        { pct: 90, text: 'Building your cost profile...' }
+    ];
+    let loadingTimer = null;
+
     function submitAssessment() {
         document.getElementById('assessment').classList.remove('show');
         document.getElementById('progress').classList.remove('show');
         document.getElementById('error').classList.remove('show');
         document.getElementById('loading').classList.add('show');
 
-        const loadingMessages = [
-            'Modeling visible and hidden costs',
-            'Calculating internal opportunity costs',
-            'Estimating maintenance requirements',
-            'Assessing governance overhead',
-            'Building your cost profile'
-        ];
-        let msgIdx = 0;
-        const msgInterval = setInterval(() => {
-            msgIdx = (msgIdx + 1) % loadingMessages.length;
-            document.getElementById('loadingSub').textContent = loadingMessages[msgIdx];
-        }, 2500);
+        let stageIdx = 0;
+        document.getElementById('loadingBar').style.width = LOADING_STAGES[0].pct + '%';
+        document.getElementById('loadingSub').textContent = LOADING_STAGES[0].text;
+
+        loadingTimer = setInterval(() => {
+            stageIdx++;
+            if (stageIdx < LOADING_STAGES.length) {
+                document.getElementById('loadingBar').style.width = LOADING_STAGES[stageIdx].pct + '%';
+                document.getElementById('loadingSub').textContent = LOADING_STAGES[stageIdx].text;
+            } else {
+                document.getElementById('loadingSub').textContent = 'Almost there...';
+            }
+        }, 3500);
 
         const payload = buildPromptPayload();
 
@@ -788,13 +856,16 @@
         })
         .then(res => res.json())
         .then(data => {
-            clearInterval(msgInterval);
-            document.getElementById('loading').classList.remove('show');
-            if (data.error) { showError(data.error); return; }
-            renderResults(data);
+            clearInterval(loadingTimer);
+            document.getElementById('loadingBar').style.width = '100%';
+            setTimeout(() => {
+                document.getElementById('loading').classList.remove('show');
+                if (data.error) { showError(data.error); return; }
+                renderResults(data);
+            }, 400);
         })
         .catch(() => {
-            clearInterval(msgInterval);
+            clearInterval(loadingTimer);
             document.getElementById('loading').classList.remove('show');
             showError('Could not connect to the analysis service. Please check your connection and try again.');
         });
@@ -819,6 +890,66 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // --- Strip card click → scroll to detail ---
+    function scrollToOpportunity(rank) {
+        const target = document.querySelector(`.opportunity[data-rank="${rank}"]`);
+        if (!target) return;
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('opportunity--highlight');
+        if (!target.classList.contains('opportunity--expanded')) toggleDetail(target);
+        setTimeout(() => target.classList.remove('opportunity--highlight'), 900);
+    }
+
+    function toggleDetail(el) {
+        el.classList.toggle('opportunity--expanded');
+        const btn = el.querySelector('.opportunity__toggle');
+        if (btn) btn.textContent = el.classList.contains('opportunity--expanded') ? 'Show less ↑' : 'Read more ↓';
+    }
+
+    // --- Cross-tool suggestion rules (Cost-to-Deploy Calculator) ---
+    const CROSS_TOOL_RULES = [
+        { key: 'budget_realism', status: 'needs-work', tool: 'Implementation Complexity Score', url: 'complexity-score.html', text: 'Your cost assumptions may be underestimating complexity. Get a realistic complexity estimate.' },
+        { key: 'operational_readiness', status: 'needs-work', tool: 'Data Readiness Scan', url: 'data-readiness.html', text: 'Operational gaps often trace to data gaps. See how much data prep to actually budget for.' },
+        { key: 'sustainability', status: 'needs-work', tool: 'Team Readiness Check', url: 'team-readiness.html', text: 'Long-term sustainability depends on your team. If they won\'t adopt it, even a well-budgeted project fails.' },
+        { key: 'budget_realism', status: 'ready', tool: 'AI Opportunity Finder', url: 'ai-opportunity-finder.html', text: 'Your budget thinking is realistic. Now find which opportunities give you the best return.' },
+        { key: 'sustainability', status: 'partially-ready', tool: 'Competitive Advantage Assessment', url: 'competitive-assessment.html', text: 'Sustainability questions often connect to competitive dynamics. See where AI gives you an edge.' }
+    ];
+
+    function renderCrossToolSuggestions(data) {
+        if (!data.readiness) return;
+        const matches = [];
+        for (const rule of CROSS_TOOL_RULES) {
+            const dim = data.readiness[rule.key];
+            if (dim && dim.status === rule.status && matches.length < 2) {
+                matches.push(rule);
+            }
+        }
+        const container = document.getElementById('nextAssessment');
+        const cards = document.getElementById('nextAssessmentCards');
+        if (matches.length === 0) {
+            cards.innerHTML = `
+                <div class="next-assessment__card">
+                    <div class="next-assessment__card-text">
+                        <div class="next-assessment__card-name">Your results look strong across the board.</div>
+                        <div class="next-assessment__card-why">Ready to move from assessment to action?</div>
+                    </div>
+                    <a href="../index.html#contact-form" class="btn btn--primary" style="white-space:nowrap;">Let's Talk</a>
+                </div>`;
+        } else {
+            cards.innerHTML = matches.map(m => `
+                <div class="next-assessment__card">
+                    <div class="next-assessment__card-text">
+                        <div class="next-assessment__card-name">${escHtml(m.tool)}</div>
+                        <div class="next-assessment__card-why">${escHtml(m.text)}</div>
+                    </div>
+                    <a href="${m.url}" class="btn btn--primary" style="white-space:nowrap;">Take Assessment</a>
+                </div>
+            `).join('');
+        }
+        container.style.display = 'block';
+    }
+
+    // --- Render results ---
     function renderResults(data) {
         document.getElementById('resultsSummary').textContent = data.summary;
 
@@ -848,11 +979,11 @@
             document.querySelector('.scorecard').style.display = 'none';
         }
 
-        // Opportunity strip (top 3)
+        // Opportunity strip — ALL opportunities, 4+ muted
         const strip = document.getElementById('stripList');
-        const top3 = (data.opportunities || []).slice(0, 3);
-        strip.innerHTML = top3.map((opp, i) => `
-            <div class="strip-card ${i === 0 ? 'strip-card--top' : ''}">
+        const opps = data.opportunities || [];
+        strip.innerHTML = opps.map((opp, i) => `
+            <div class="strip-card ${i === 0 ? 'strip-card--top' : ''} ${i >= 3 ? 'strip-card--secondary' : ''}" onclick="scrollToOpportunity(${i})">
                 <div class="strip-card__rank">#${i + 1}</div>
                 <div class="strip-card__title">${escHtml(opp.title)}</div>
                 <div class="strip-card__liner">${escHtml(opp.one_liner || opp.analysis?.substring(0, 80) + '...')}</div>
@@ -860,25 +991,33 @@
             </div>
         `).join('');
 
-        // Detailed opportunity cards
+        // Detailed opportunity cards — collapsible, #1 auto-expanded
         const list = document.getElementById('opportunityList');
-        list.innerHTML = (data.opportunities || []).map((opp, i) => {
+        list.innerHTML = opps.map((opp, i) => {
             const rankLabel = i === 0 ? 'Highest opportunity' : i === 1 ? 'Second highest' : i === 2 ? 'Third highest' : 'Opportunity ' + (i + 1);
+            const expanded = i === 0;
             return `
-                <div class="opportunity ${i === 0 ? 'opportunity--top' : ''}">
+                <div class="opportunity ${i === 0 ? 'opportunity--top' : ''} ${expanded ? 'opportunity--expanded' : ''}" data-rank="${i}">
                     <div class="opportunity__rank">${rankLabel}</div>
                     <div class="opportunity__title">${escHtml(opp.title)}</div>
                     <div class="opportunity__area">${escHtml(opp.area)}</div>
-                    <div class="opportunity__analysis">${escHtml(opp.analysis)}</div>
-                    <div class="opportunity__section-title">Where to start</div>
-                    <ul class="opportunity__list">${(opp.starts || []).map(s => `<li>${escHtml(s)}</li>`).join('')}</ul>
-                    ${opp.watchouts ? `<div class="opportunity__section-title">Watch out for</div><div class="opportunity__watchouts">${escHtml(opp.watchouts)}</div>` : ''}
+                    <div class="opportunity__one-liner">${escHtml(opp.one_liner || '')}</div>
+                    <div class="opportunity__detail">
+                        <div class="opportunity__analysis">${escHtml(opp.analysis)}</div>
+                        <div class="opportunity__section-title">Where to start</div>
+                        <ul class="opportunity__list">${(opp.starts || []).map(s => `<li>${escHtml(s)}</li>`).join('')}</ul>
+                        ${opp.watchouts ? `<div class="opportunity__section-title">Watch out for</div><div class="opportunity__watchouts">${escHtml(opp.watchouts)}</div>` : ''}
+                    </div>
+                    <button class="opportunity__toggle" onclick="toggleDetail(this.parentElement)">${expanded ? 'Show less ↑' : 'Read more ↓'}</button>
                 </div>
             `;
         }).join('');
 
         // Not recommended
         document.getElementById('notRecommendedText').textContent = data.not_recommended || '';
+
+        // Cross-tool suggestions
+        renderCrossToolSuggestions(data);
 
         document.getElementById('results').classList.add('show');
         window.scrollTo({ top: 0, behavior: 'smooth' });
