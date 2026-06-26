@@ -829,6 +829,64 @@
             color: var(--ink);
         }
 
+        /* ============ CONTACT ============ */
+        .contact {
+            padding: var(--section-pad) 0;
+            background: var(--stone);
+        }
+        .contact__inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact__heading {
+            margin-bottom: 12px;
+        }
+        .contact__desc {
+            color: var(--bark);
+            margin-bottom: 32px;
+            font-size: 16px;
+        }
+        .contact__fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .contact__input, .contact__textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--sand);
+            border: 1.5px solid var(--clay);
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            color: var(--charcoal);
+            transition: border-color 300ms ease;
+        }
+        .contact__input::placeholder, .contact__textarea::placeholder { color: var(--drift); }
+        .contact__input:focus, .contact__textarea:focus {
+            outline: none;
+            border-color: var(--teak);
+        }
+        .contact__textarea {
+            margin-bottom: 20px;
+            resize: vertical;
+        }
+        .contact__thanks {
+            display: none;
+            text-align: center;
+        }
+        .contact__thanks h3 {
+            margin-bottom: 12px;
+        }
+        .contact__thanks p {
+            color: var(--bark);
+        }
+
+        @media (max-width: 768px) {
+            .contact__fields { grid-template-columns: 1fr; }
+        }
+
         /* ============ FOOTER ============ */
         .footer {
             padding: 80px 0;
@@ -931,7 +989,7 @@
                 <li><a href="#tools" class="nav__link">Tools</a></li>
                 <li><a href="#case-studies" class="nav__link">Case Studies</a></li>
                 <li><a href="#insights" class="nav__link">Insights</a></li>
-                <li><a href="mailto:maskyrohit@gmail.com" class="btn btn--primary" style="padding: 10px 20px; font-size: 13px;">Work With Us</a></li>
+                <li><a href="#contact-form" class="btn btn--primary" style="padding: 10px 20px; font-size: 13px;">Let's Talk</a></li>
             </ul>
             <button class="nav__hamburger" onclick="document.querySelector('.nav__mobile').classList.add('open')" aria-label="Open menu">
                 <span></span><span></span><span></span>
@@ -947,19 +1005,19 @@
         <a href="#tools" onclick="this.parentElement.classList.remove('open')">Tools</a>
         <a href="#case-studies" onclick="this.parentElement.classList.remove('open')">Case Studies</a>
         <a href="#insights" onclick="this.parentElement.classList.remove('open')">Insights</a>
-        <a href="mailto:maskyrohit@gmail.com" class="btn btn--primary">Work With Us</a>
+        <a href="#contact-form" class="btn btn--primary" onclick="this.parentElement.classList.remove('open')">Let's Talk</a>
     </div>
 
     <!-- ==================== HERO ==================== -->
     <section class="hero">
         <div class="container">
             <div class="hero__content">
-                <span class="label reveal">AI Transformation Consulting</span>
-                <h1 class="hero__headline reveal reveal-delay-1">The bridge between where your business is — and where AI can take it.</h1>
-                <p class="hero__text reveal reveal-delay-2">Most AI initiatives fail not because the technology is wrong, but because the organization wasn't ready. Yugam starts with the foundation — data, process, people — before recommending any tools. Precision over hype. Readiness before technology.</p>
+                <span class="label reveal">AI Strategy, System Architecture & Implementation</span>
+                <h1 class="hero__headline reveal reveal-delay-1">Implementing AI is the easy part.</h1>
+                <p class="hero__text reveal reveal-delay-2">The hard part is knowing whether your people, processes, and data are ready for it. AI tools are easy to buy. Knowing which ones your business actually needs — and whether your organization can support them — is the real work. I help founders and leadership teams design AI strategies grounded in how their business actually operates. Not how it looks on a slide deck.</p>
                 <div class="hero__actions reveal reveal-delay-3">
-                    <a href="mailto:maskyrohit@gmail.com" class="btn btn--primary">Schedule a Discovery Call</a>
-                    <a href="resources/risk-playbook.html" class="btn btn--secondary">Download Risk Playbook</a>
+                    <a href="#contact-form" class="btn btn--primary">Let's Talk</a>
+                    <a href="resources/risk-playbook.html" class="btn btn--secondary">Read the Risk Playbook</a>
                 </div>
             </div>
             <div class="hero__founder reveal reveal-delay-2">
@@ -978,7 +1036,7 @@
                     <span class="hero__tag">Scaled Operations</span>
                     <span class="hero__tag">AI Deployment</span>
                 </div>
-                <p class="hero__bio">15+ years across manufacturing floors, Fortune 500 governance systems, and global technology operations. MBA in Operations Strategy &amp; Finance.</p>
+                <p class="hero__bio">A decade at Meta. Fortune 500 governance at KPMG. Started on a manufacturing shop floor. B.Tech in Industrial Engineering. MBA in Operations Strategy &amp; Finance. I've seen how organizations actually work — from the inside.</p>
             </div>
         </div>
     </section>
@@ -988,8 +1046,8 @@
         <div class="container">
             <div class="readiness__content">
                 <span class="label label--accent reveal">Foundation Assessment</span>
-                <h2 class="readiness__heading reveal reveal-delay-1">Before Implementation: Is Your Organization Ready?</h2>
-                <p class="readiness__intro reveal reveal-delay-2">Every AI engagement begins here. Not with technology selection, not with vendor demos — with an honest assessment of whether the ground beneath your organization can support what you want to build.</p>
+                <h2 class="readiness__heading reveal reveal-delay-1">Three things I check before recommending any AI tool.</h2>
+                <p class="readiness__intro reveal reveal-delay-2">Most businesses jump straight to tools. Which LLM? Which platform? Which vendor? But the technology is never the bottleneck. These three things are.</p>
                 <div class="criteria">
                     <div class="criterion reveal reveal-delay-2">
                         <div class="criterion__icon"><i class="ti ti-database"></i></div>
@@ -1016,8 +1074,8 @@
             </div>
             <div class="readiness__aside">
                 <div class="readiness__quote-card reveal">
-                    <div class="readiness__quote">"Here's what I've learned: when the foundation is weak, you spend months rebuilding."</div>
-                    <div class="readiness__quote-support">If any of these three are fragile — data, process, or people — that's where Yugam starts. Every time. Without exception.</div>
+                    <div class="readiness__quote">"I've watched teams spend six months building an AI solution on top of data that no one trusted. The AI worked. The data and processes around it didn't. They had to start over."</div>
+                    <div class="readiness__quote-support">If any of these three are fragile — data, process, or people — that's where I start. Every time. Without exception.</div>
                 </div>
             </div>
         </div>
@@ -1041,8 +1099,8 @@
         <div class="container">
             <div class="methodology__header reveal">
                 <span class="label label--accent">The Framework</span>
-                <h2>A Structured Path From Readiness to Scale</h2>
-                <p class="subheading subheading--center">No shortcuts. No magic prompts. A disciplined 12-week framework that gets AI into production — and keeps it there.</p>
+                <h2>How the engagement works.</h2>
+                <p class="subheading subheading--center">A typical engagement runs 12 weeks. Some are shorter, some extend. The structure adapts to what your business needs — but the discipline and rigour never change.</p>
             </div>
             <div class="methodology__grid">
                 <div class="phase-card reveal">
@@ -1210,7 +1268,7 @@
                         <div class="result-card__label">Payback Period</div>
                     </div>
                 </div>
-                <p class="calculator__disclaimer">These are directional estimates based on comparable implementations. Actual outcomes depend on organizational readiness and execution.</p>
+                <p class="calculator__disclaimer">These are rough directional estimates — not promises. Every business is different. The real numbers come from a proper assessment.</p>
                 <div class="calculator__cta">
                     <a href="mailto:maskyrohit@gmail.com">Discuss Your Numbers — Book a Call →</a>
                 </div>
@@ -1222,7 +1280,8 @@
     <section class="case-studies" id="case-studies">
         <div class="container">
             <div class="case-studies__header reveal">
-                <h2>How AI Has Moved the Needle</h2>
+                <h2>What this looks like in practice.</h2>
+                <p class="subheading" style="margin-bottom: 40px;">These are the kinds of problems I help businesses solve — and the kinds of results a well-executed AI implementation delivers.</p>
             </div>
             <div class="case-studies__grid">
                 <!-- Case 1 -->
@@ -1325,7 +1384,7 @@
         <div class="container">
             <div class="insights__header reveal">
                 <span class="label label--accent">Thought Leadership</span>
-                <h2>Frameworks. Not Takes.</h2>
+                <h2>Perspectives shaped on shop floors, in boardrooms, and inside one of the world's largest tech companies.</h2>
             </div>
             <div class="insights__grid">
                 <div class="insight-card reveal">
@@ -1354,17 +1413,39 @@
     <section class="newsletter">
         <div class="container">
             <div class="newsletter__content reveal">
-                <h2 class="newsletter__heading">Stay In The Loop</h2>
-                <p class="newsletter__desc">Weekly frameworks, patterns, and reality checks for AI leaders. No hype. Just what actually works for SMBs navigating the AI transition.</p>
+                <h2 class="newsletter__heading">A weekly note on AI that's actually useful.</h2>
+                <p class="newsletter__desc">Short, practical takes on AI strategy for business leaders. What's working, what's not, and what to watch. Written for people who run businesses, not people who build models.</p>
             </div>
             <div class="newsletter__right reveal reveal-delay-1">
                 <form class="newsletter__form" id="newsletterForm" onsubmit="handleSubscribe(event)">
                     <input type="email" class="newsletter__input" placeholder="your@email.com" required>
                     <button type="submit" class="btn btn--primary">Subscribe</button>
                 </form>
-                <p class="newsletter__note">Join 500+ operations leaders & founders. Unsubscribe anytime.</p>
+                <p class="newsletter__note">No spam. Unsubscribe anytime.</p>
                 <div class="newsletter__thanks" id="newsletterThanks">
                     Thank you. You're in the loop.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT FORM ==================== -->
+    <section class="contact" id="contact-form">
+        <div class="container">
+            <div class="contact__inner reveal">
+                <h2 class="contact__heading">Let's talk.</h2>
+                <p class="contact__desc">Tell me a little about your business and what you're trying to figure out. I'll get back to you within a day.</p>
+                <form class="contact__form" id="contactForm" onsubmit="handleContact(event)">
+                    <div class="contact__fields">
+                        <input type="text" class="contact__input" placeholder="Your name" required>
+                        <input type="email" class="contact__input" placeholder="your@email.com" required>
+                    </div>
+                    <textarea class="contact__textarea" placeholder="What are you working on? What's the challenge?" rows="4" required></textarea>
+                    <button type="submit" class="btn btn--primary">Send Message</button>
+                </form>
+                <div class="contact__thanks" id="contactThanks">
+                    <h3>Message received.</h3>
+                    <p>I'll get back to you within a day. In the meantime, you might find the <a href="resources/risk-playbook.html" style="color: var(--teak);">Risk Playbook</a> useful.</p>
                 </div>
             </div>
         </div>
@@ -1476,6 +1557,14 @@
             document.getElementById('resPayback').textContent = payback;
             document.getElementById('results').classList.add('show');
             document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Contact form
+        function handleContact(e) {
+            e.preventDefault();
+            document.getElementById('contactForm').style.display = 'none';
+            document.querySelector('.contact__desc').style.display = 'none';
+            document.getElementById('contactThanks').style.display = 'block';
         }
 
         // Newsletter
