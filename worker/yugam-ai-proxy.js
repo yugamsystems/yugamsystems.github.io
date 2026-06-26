@@ -14,12 +14,18 @@ Your analysis must be:
 Structure your response as valid JSON with this exact format:
 {
   "summary": "2-3 sentence executive summary of the assessment",
+  "readiness": {
+    "data": { "score": 1-5, "status": "needs-work|partially-ready|ready", "note": "One sentence on their data readiness" },
+    "process": { "score": 1-5, "status": "needs-work|partially-ready|ready", "note": "One sentence on their process readiness" },
+    "people": { "score": 1-5, "status": "needs-work|partially-ready|ready", "note": "One sentence on their people/change readiness" }
+  },
   "opportunities": [
     {
       "rank": 1,
       "area": "Specific business area name",
       "impact": "high|medium|low",
-      "title": "One-line description of the opportunity",
+      "title": "Short, specific title of the opportunity",
+      "one_liner": "One sentence — the before/after in plain language",
       "analysis": "3-4 sentences explaining WHY this is an opportunity for THIS specific business, what AI would do, and what the expected impact is",
       "starts": ["First concrete step", "Second concrete step", "Third concrete step"],
       "watchouts": "1-2 sentences on risks or prerequisites"
@@ -28,6 +34,11 @@ Structure your response as valid JSON with this exact format:
   "readiness_notes": "2-3 sentences on what foundational work (data, process, people) might be needed before implementing any of these",
   "not_recommended": "1-2 sentences on where AI would NOT be a good fit for this business right now and why"
 }
+
+Scoring guide for readiness:
+- "needs-work" (score 1-2): significant gaps that must be addressed before AI implementation
+- "partially-ready" (score 3): some foundation exists but needs strengthening
+- "ready" (score 4-5): solid foundation that can support AI implementation
 
 Provide exactly 4-5 opportunities, ranked by potential impact. Be specific to their industry and described operations. If the description is vague, still provide useful analysis but note where you're making assumptions.`;
 
@@ -77,14 +88,14 @@ export default {
             { role: 'system', content: SYSTEM_PROMPT },
             { role: 'user', content: userMessage }
           ],
-          max_tokens: 2000,
+          max_tokens: 4000,
           temperature: 0.3,
         }),
       });
 
       if (!response.ok) {
         const errText = await response.text();
-        return new Response(JSON.stringify({ error: 'AI service temporarily unavailable. Please try again.' }), {
+        return new Response(JSON.stringify({ error: 'AI service error: ' + response.status + ' — ' + errText.substring(0, 200) }), {
           status: 502,
           headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
         });
@@ -94,17 +105,26 @@ export default {
       const content = data.choices?.[0]?.message?.content;
 
       if (!content) {
-        return new Response(JSON.stringify({ error: 'No response from AI. Please try again.' }), {
+        return new Response(JSON.stringify({ error: 'No content in AI response. Raw: ' + JSON.stringify(data).substring(0, 300) }), {
           status: 502,
           headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
         });
       }
 
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      const parsed = jsonMatch ? JSON.parse(jsonMatch[0]) : null;
+      const cleaned = content.replace(/```json\s*/gi, '').replace(/```\s*/g, '');
+      const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
+      let parsed;
+      try {
+        parsed = jsonMatch ? JSON.parse(jsonMatch[0]) : null;
+      } catch (parseErr) {
+        return new Response(JSON.stringify({ error: 'JSON parse error. AI returned: ' + content.substring(0, 300) }), {
+          status: 500,
+          headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
+        });
+      }
 
       if (!parsed) {
-        return new Response(JSON.stringify({ error: 'Could not parse AI response. Please try again.' }), {
+        return new Response(JSON.stringify({ error: 'No JSON found in response. AI returned: ' + content.substring(0, 300) }), {
           status: 500,
           headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
         });
@@ -115,7 +135,7 @@ export default {
       });
 
     } catch (err) {
-      return new Response(JSON.stringify({ error: 'Something went wrong. Please try again.' }), {
+      return new Response(JSON.stringify({ error: 'Worker error: ' + err.message }), {
         status: 500,
         headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
       });
