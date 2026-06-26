@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Opportunity Finder — Yugam</title>
+    <meta name="description" content="Identify where AI creates the highest leverage in your business. Free diagnostic — no email required.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header__logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .header__logo-text {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            color: var(--ink);
+        }
+        .header__back {
+            font-size: 14px;
+            color: var(--drift);
+            text-decoration: none;
+            transition: color 300ms ease;
+        }
+        .header__back:hover { color: var(--teak); }
+
+        /* Cover */
+        .cover {
+            padding: 80px 0 60px;
+            text-align: center;
+            border-bottom: 1px solid var(--clay);
+        }
+        .cover__label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--teak);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .cover h1 {
+            font-size: 38px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .cover__sub {
+            font-size: 17px;
+            color: var(--bark);
+            max-width: 540px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Progress */
+        .progress {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--clay);
+            position: sticky;
+            top: 56px;
+            background: var(--stone);
+            z-index: 50;
+        }
+        .progress__bar {
+            height: 4px;
+            background: var(--sand);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress__fill {
+            height: 100%;
+            background: var(--teak);
+            border-radius: 2px;
+            transition: width 400ms ease;
+            width: 0%;
+        }
+        .progress__text {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--drift);
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* Questions */
+        .assessment {
+            padding: 60px 0;
+        }
+        .question {
+            display: none;
+            animation: fadeIn 400ms ease;
+        }
+        .question.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question__number {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--teak);
+            margin-bottom: 12px;
+        }
+        .question__text {
+            font-family: var(--font-serif);
+            font-size: 26px;
+            color: var(--ink);
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+        .question__context {
+            font-size: 15px;
+            color: var(--drift);
+            margin-bottom: 32px;
+        }
+
+        .options { display: flex; flex-direction: column; gap: 12px; }
+        .option {
+            padding: 20px 24px;
+            background: var(--stone-light);
+            border: 1.5px solid var(--clay);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 200ms ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .option:hover {
+            border-color: var(--bark);
+            background: var(--sand);
+        }
+        .option.selected {
+            border-color: var(--teak);
+            background: rgba(139, 105, 20, 0.06);
+        }
+        .option__radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--clay);
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 200ms ease;
+            position: relative;
+        }
+        .option.selected .option__radio {
+            border-color: var(--teak);
+        }
+        .option.selected .option__radio::after {
+            content: '';
+            position: absolute;
+            top: 3px; left: 3px;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--teak);
+        }
+        .option__label {
+            font-size: 15px;
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+        .option__desc {
+            font-size: 13px;
+            color: var(--drift);
+            margin-top: 2px;
+        }
+
+        .question__nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--clay);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 300ms ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn--primary { background: var(--teak); color: var(--stone); }
+        .btn--primary:hover { background: var(--teak-hover); }
+        .btn--primary:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn--secondary {
+            background: transparent;
+            color: var(--bark);
+            border: 1.5px solid var(--clay);
+        }
+        .btn--secondary:hover { border-color: var(--bark); }
+
+        /* Results */
+        .results {
+            display: none;
+            padding: 60px 0 80px;
+        }
+        .results.show { display: block; }
+
+        .results__header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .results__header h2 {
+            margin-bottom: 12px;
+            font-size: 34px;
+        }
+        .results__header p {
+            color: var(--bark);
+            font-size: 16px;
+        }
+
+        .opportunity {
+            background: var(--stone-light);
+            border: 1px solid var(--clay);
+            border-radius: 12px;
+            padding: 36px;
+            margin-bottom: 24px;
+        }
+        .opportunity--top {
+            border-color: var(--teak);
+            border-width: 2px;
+        }
+        .opportunity__rank {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--teak);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        .opportunity__title {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        .opportunity__score {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .opportunity__score-bar {
+            width: 120px;
+            height: 6px;
+            background: var(--sand);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .opportunity__score-fill {
+            height: 100%;
+            background: var(--teak);
+            border-radius: 3px;
+        }
+        .opportunity__score-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--drift);
+        }
+        .opportunity__body {
+            font-size: 15px;
+            color: var(--bark);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .opportunity__actions {
+            font-size: 14px;
+            color: var(--charcoal);
+        }
+        .opportunity__actions strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--drift);
+        }
+        .opportunity__actions ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .opportunity__actions li {
+            padding-left: 16px;
+            position: relative;
+        }
+        .opportunity__actions li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 10px;
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: var(--teak);
+        }
+
+        .results__email {
+            text-align: center;
+            padding: 40px;
+            background: var(--sand);
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+        .results__email h3 { margin-bottom: 8px; font-size: 22px; }
+        .results__email p {
+            color: var(--bark);
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+        .results__email-form {
+            display: flex;
+            gap: 12px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .results__email-input {
+            flex: 1;
+            padding: 12px 16px;
+            background: var(--stone);
+            border: 1.5px solid var(--clay);
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            color: var(--charcoal);
+        }
+        .results__email-input::placeholder { color: var(--drift); }
+        .results__email-input:focus { outline: none; border-color: var(--teak); }
+        .results__email-sent {
+            display: none;
+            font-family: var(--font-serif);
+            font-size: 18px;
+            color: var(--ink);
+        }
+
+        .results__cta {
+            text-align: center;
+            margin-top: 48px;
+        }
+        .results__cta p {
+            color: var(--bark);
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        .results__cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: var(--teak);
+            color: var(--stone);
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 300ms ease;
+        }
+        .results__cta a:hover { background: var(--teak-hover); }
+
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--clay);
+            text-align: center;
+        }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .cover h1 { font-size: 30px; }
+            .question__text { font-size: 22px; }
+            .container { padding: 0 20px; }
+            .opportunity { padding: 24px; }
+            .results__email-form { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="../index.html" class="header__back">← Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="cover" id="cover">
+            <span class="cover__label">Free Diagnostic</span>
+            <h1>Where should AI actually go in your business?</h1>
+            <p class="cover__sub">Answer 8 questions about how your business operates today. You'll get a ranked list of where AI creates the most leverage — and what to do first.</p>
+            <button class="btn btn--primary" style="margin-top: 32px;" onclick="startAssessment()">Start the Assessment</button>
+        </section>
+
+        <div class="progress" id="progress" style="display: none;">
+            <div class="progress__bar">
+                <div class="progress__fill" id="progressFill"></div>
+            </div>
+            <div class="progress__text" id="progressText">Question 1 of 8</div>
+        </div>
+
+        <section class="assessment" id="assessment">
+            <!-- Questions injected by JS -->
+        </section>
+
+        <section class="results" id="results">
+            <div class="results__header">
+                <h2>Your AI Opportunity Map</h2>
+                <p>Based on your answers, here's where AI creates the most leverage in your business — ranked by potential impact.</p>
+            </div>
+            <div id="opportunityList"></div>
+
+            <div class="results__email" id="emailSection">
+                <h3>Save a copy?</h3>
+                <p>I'll email you this assessment so you can reference it later.</p>
+                <form class="results__email-form" onsubmit="handleEmailSave(event)">
+                    <input type="email" class="results__email-input" placeholder="your@email.com" required>
+                    <button type="submit" class="btn btn--primary">Send</button>
+                </form>
+                <div class="results__email-sent">Sent. Check your inbox.</div>
+            </div>
+
+            <div class="results__cta">
+                <p>Want to discuss what these opportunities look like for your specific business?</p>
+                <a href="../index.html#contact-form">Let's Talk →</a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Yugam. Helping you build production-quality AI.</p>
+        </div>
+    </footer>
+
+    <script>
+    const questions = [
+        {
+            id: 'customer_support',
+            text: 'How does your team handle customer questions and support requests?',
+            context: 'Think about the full cycle — from when a question comes in to when it\'s resolved.',
+            area: 'Customer Support & Service',
+            options: [
+                { label: 'Mostly manual', desc: 'Email, phone, or chat — a person handles every request start to finish.', score: 4 },
+                { label: 'Some templates', desc: 'We use canned responses and a ticketing system, but routing and resolution is manual.', score: 3 },
+                { label: 'Partially automated', desc: 'We have a help center or chatbot that handles basic queries. Complex ones go to a person.', score: 2 },
+                { label: 'Highly automated', desc: 'Most requests are auto-classified, routed, and many are resolved without human involvement.', score: 1 }
+            ]
+        },
+        {
+            id: 'document_processing',
+            text: 'How much time does your team spend reading, summarizing, or extracting information from documents?',
+            context: 'Contracts, invoices, reports, emails, proposals — any document that someone has to read and act on.',
+            area: 'Document Processing & Analysis',
+            options: [
+                { label: 'Several hours daily', desc: 'People spend a significant chunk of their day reading and manually extracting information.', score: 4 },
+                { label: 'A few hours weekly', desc: 'It\'s a regular part of the workflow but not the bulk of anyone\'s day.', score: 3 },
+                { label: 'Occasional', desc: 'It happens but it\'s not a major time sink.', score: 2 },
+                { label: 'Minimal', desc: 'Most document work is already templated or automated.', score: 1 }
+            ]
+        },
+        {
+            id: 'content_creation',
+            text: 'How does your team create written content — emails, proposals, marketing copy, internal docs?',
+            context: 'Think about the volume and how much time goes into drafting, editing, and personalizing.',
+            area: 'Content & Communication',
+            options: [
+                { label: 'Everything from scratch', desc: 'Each piece is written manually. High volume, lots of time.', score: 4 },
+                { label: 'Templates with customization', desc: 'We have templates but still spend significant time adapting each one.', score: 3 },
+                { label: 'Mostly templated', desc: 'Standard formats cover most needs. Customization is light.', score: 2 },
+                { label: 'Already using AI', desc: 'We use AI tools for drafting. The bottleneck is elsewhere.', score: 1 }
+            ]
+        },
+        {
+            id: 'data_analysis',
+            text: 'How do you turn data into decisions? Reports, dashboards, forecasting.',
+            context: 'How does information flow from raw data to someone making a decision?',
+            area: 'Data Analysis & Reporting',
+            options: [
+                { label: 'Spreadsheets and gut feel', desc: 'Data lives in spreadsheets. Reports are manual. Forecasting is intuition-based.', score: 4 },
+                { label: 'Basic dashboards', desc: 'We have some dashboards but still do a lot of ad-hoc analysis manually.', score: 3 },
+                { label: 'Structured reporting', desc: 'Regular reports with defined metrics. Some automated, some manual.', score: 2 },
+                { label: 'Data-driven', desc: 'Automated pipelines, real-time dashboards, and models inform most decisions.', score: 1 }
+            ]
+        },
+        {
+            id: 'sales_pipeline',
+            text: 'How does your sales or business development process work?',
+            context: 'From identifying prospects to closing — how much is structured vs. ad-hoc?',
+            area: 'Sales & Revenue',
+            options: [
+                { label: 'Relationship-driven', desc: 'Sales depends on individual relationships. Pipeline is in people\'s heads or basic spreadsheets.', score: 4 },
+                { label: 'CRM with manual input', desc: 'We have a CRM but reps spend a lot of time on data entry and follow-ups.', score: 3 },
+                { label: 'Semi-automated', desc: 'CRM handles tracking. Some automated sequences for outreach and follow-up.', score: 2 },
+                { label: 'Well-oiled machine', desc: 'Pipeline is data-driven with scoring, automation, and clear conversion metrics.', score: 1 }
+            ]
+        },
+        {
+            id: 'operations',
+            text: 'How predictable and documented are your core operations?',
+            context: 'Think about your most important business processes — are they repeatable or do they vary every time?',
+            area: 'Operations & Workflow',
+            options: [
+                { label: 'Mostly ad-hoc', desc: 'Processes vary by person and situation. Tribal knowledge is the manual.', score: 4 },
+                { label: 'Partially documented', desc: 'Key processes are documented but not always followed. Exceptions are common.', score: 3 },
+                { label: 'Standardized', desc: 'SOPs exist and are followed. Exceptions are handled but tracked.', score: 2 },
+                { label: 'Highly optimized', desc: 'Processes are documented, measured, and continuously improved.', score: 1 }
+            ]
+        },
+        {
+            id: 'hiring_onboarding',
+            text: 'How does hiring and onboarding work at your company?',
+            context: 'From job posting to a new hire being productive — how structured is it?',
+            area: 'Talent & Onboarding',
+            options: [
+                { label: 'Very manual', desc: 'Resume screening by hand, unstructured interviews, onboarding is "figure it out."', score: 4 },
+                { label: 'Some structure', desc: 'We have an ATS and interview guides, but onboarding is inconsistent.', score: 3 },
+                { label: 'Mostly structured', desc: 'Clear hiring process, structured interviews, defined onboarding checklist.', score: 2 },
+                { label: 'Well-built', desc: 'Systematic hiring with scorecards. Onboarding is documented and measured.', score: 1 }
+            ]
+        },
+        {
+            id: 'quality_compliance',
+            text: 'How do you ensure quality and handle compliance requirements?',
+            context: 'Think about error checking, auditing, regulatory requirements, and quality control.',
+            area: 'Quality & Compliance',
+            options: [
+                { label: 'Manual reviews', desc: 'Quality depends on individuals. Compliance is tracked in spreadsheets or not at all.', score: 4 },
+                { label: 'Basic checks', desc: 'Some review processes exist but they\'re time-consuming and inconsistent.', score: 3 },
+                { label: 'Defined processes', desc: 'QC checklists and compliance procedures are in place and regularly followed.', score: 2 },
+                { label: 'Automated monitoring', desc: 'Automated quality checks, compliance monitoring, and audit trails.', score: 1 }
+            ]
+        }
+    ];
+
+    const areaInsights = {
+        'Customer Support & Service': {
+            what: 'AI can auto-classify incoming requests, draft responses for common queries, route complex issues to the right person, and surface relevant knowledge base articles — reducing response times and freeing your team for high-value interactions.',
+            starts: ['Categorize your top 20 support request types', 'Build a knowledge base from your best past responses', 'Pilot AI-drafted replies on your highest-volume category']
+        },
+        'Document Processing & Analysis': {
+            what: 'AI can read, summarize, and extract structured data from contracts, invoices, reports, and emails — turning hours of manual review into minutes. Particularly high-impact for legal review, financial document processing, and report generation.',
+            starts: ['Identify your highest-volume document type', 'Define what information needs to be extracted', 'Test document processing on a 30-day sample']
+        },
+        'Content & Communication': {
+            what: 'AI can draft first versions of emails, proposals, marketing copy, and internal documentation — maintaining your voice and format standards. The efficiency gain is significant when content volume is high.',
+            starts: ['Audit your content types by volume and time spent', 'Create brand/voice guidelines AI can follow', 'Start with internal content where quality stakes are lower']
+        },
+        'Data Analysis & Reporting': {
+            what: 'AI can automate report generation, surface anomalies in your data, generate forecasts, and answer ad-hoc questions about your business metrics — turning data into decisions faster and with less analyst time.',
+            starts: ['Identify your 3 most time-consuming regular reports', 'Ensure your data sources are clean and accessible', 'Pilot automated reporting on one recurring report']
+        },
+        'Sales & Revenue': {
+            what: 'AI can score and prioritize leads, personalize outreach at scale, automate CRM data entry, forecast pipeline, and identify at-risk deals — letting your sales team focus on relationships instead of administration.',
+            starts: ['Map your current sales workflow end-to-end', 'Identify the biggest time sinks in your sales cycle', 'Pilot AI-assisted prospecting or follow-up sequences']
+        },
+        'Operations & Workflow': {
+            what: 'AI can optimize scheduling, predict demand, automate routine decisions, and flag process exceptions — but only if your processes are documented enough for AI to learn from. This area often requires foundation work first.',
+            starts: ['Document your top 5 operational processes', 'Identify which decisions are rule-based vs. judgment calls', 'Start measuring cycle times and error rates as baselines']
+        },
+        'Talent & Onboarding': {
+            what: 'AI can screen resumes, match candidates to role requirements, generate structured interview questions, and personalize onboarding materials — reducing time-to-hire and time-to-productivity.',
+            starts: ['Define clear criteria for your most-hired roles', 'Build a structured onboarding knowledge base', 'Pilot AI-assisted resume screening on your next open role']
+        },
+        'Quality & Compliance': {
+            what: 'AI can automate compliance checks, flag anomalies in audit trails, monitor for regulatory changes, and perform quality assessments at scale — reducing risk and freeing your compliance team from manual review cycles.',
+            starts: ['Map your current compliance requirements and gaps', 'Identify which checks are rule-based and automatable', 'Build an audit trail system before adding AI on top']
+        }
+    };
+
+    let currentQuestion = 0;
+    let answers = {};
+
+    function startAssessment() {
+        document.getElementById('cover').style.display = 'none';
+        document.getElementById('progress').style.display = 'block';
+        renderQuestion(0);
+    }
+
+    function renderQuestion(idx) {
+        const q = questions[idx];
+        const assessment = document.getElementById('assessment');
+        assessment.innerHTML = `
+            <div class="question active">
+                <div class="question__number">Question ${idx + 1} of ${questions.length}</div>
+                <div class="question__text">${q.text}</div>
+                <div class="question__context">${q.context}</div>
+                <div class="options">
+                    ${q.options.map((opt, i) => `
+                        <div class="option ${answers[q.id] === i ? 'selected' : ''}" onclick="selectOption('${q.id}', ${i}, ${opt.score})">
+                            <div class="option__radio"></div>
+                            <div>
+                                <div class="option__label">${opt.label}</div>
+                                <div class="option__desc">${opt.desc}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="question__nav">
+                    <button class="btn btn--secondary" onclick="prevQuestion()" ${idx === 0 ? 'style="visibility:hidden"' : ''}>← Back</button>
+                    <button class="btn btn--primary" id="nextBtn" onclick="${idx === questions.length - 1 ? 'showResults()' : 'nextQuestion()'}" ${answers[q.id] === undefined ? 'disabled' : ''}>
+                        ${idx === questions.length - 1 ? 'See My Results' : 'Next →'}
+                    </button>
+                </div>
+            </div>
+        `;
+        updateProgress(idx);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectOption(qId, optIdx, score) {
+        answers[qId] = optIdx;
+        answers[qId + '_score'] = score;
+        document.querySelectorAll('.option').forEach((o, i) => {
+            o.classList.toggle('selected', i === optIdx);
+        });
+        document.getElementById('nextBtn').disabled = false;
+    }
+
+    function nextQuestion() {
+        currentQuestion++;
+        renderQuestion(currentQuestion);
+    }
+
+    function prevQuestion() {
+        currentQuestion--;
+        renderQuestion(currentQuestion);
+    }
+
+    function updateProgress(idx) {
+        const pct = ((idx + 1) / questions.length) * 100;
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressText').textContent = `Question ${idx + 1} of ${questions.length}`;
+    }
+
+    function showResults() {
+        document.getElementById('assessment').style.display = 'none';
+        document.getElementById('progress').style.display = 'none';
+
+        const scores = questions.map(q => ({
+            area: q.area,
+            score: answers[q.id + '_score'] || 0
+        })).sort((a, b) => b.score - a.score);
+
+        const list = document.getElementById('opportunityList');
+        list.innerHTML = scores.map((s, i) => {
+            const insight = areaInsights[s.area];
+            const pct = (s.score / 4) * 100;
+            const rankLabel = i === 0 ? 'Highest opportunity' : i === 1 ? 'Second highest' : i === 2 ? 'Third highest' : `Rank ${i + 1}`;
+            const isTop = i < 3;
+
+            return `
+                <div class="opportunity ${i === 0 ? 'opportunity--top' : ''}" ${!isTop ? 'style="opacity: 0.6;"' : ''}>
+                    <div class="opportunity__rank">${rankLabel}</div>
+                    <div class="opportunity__title">${s.area}</div>
+                    <div class="opportunity__score">
+                        <div class="opportunity__score-bar"><div class="opportunity__score-fill" style="width: ${pct}%"></div></div>
+                        <span class="opportunity__score-label">${s.score === 4 ? 'High leverage' : s.score === 3 ? 'Good leverage' : s.score === 2 ? 'Moderate' : 'Already strong'}</span>
+                    </div>
+                    ${isTop ? `
+                        <div class="opportunity__body">${insight.what}</div>
+                        <div class="opportunity__actions">
+                            <strong>Where to start</strong>
+                            <ul>${insight.starts.map(s => `<li>${s}</li>`).join('')}</ul>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }).join('');
+
+        document.getElementById('results').classList.add('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleEmailSave(e) {
+        e.preventDefault();
+        const form = e.target;
+        form.style.display = 'none';
+        document.querySelector('.results__email p').style.display = 'none';
+        document.querySelector('.results__email-sent').style.display = 'block';
+    }
+    </script>
+</body>
+</html>
