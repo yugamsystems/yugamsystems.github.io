@@ -134,28 +134,24 @@
         }
         .option__text { font-size: 15px; color: var(--charcoal); line-height: 1.5; }
 
-        /* Freeform */
-        .freeform {
-            margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--clay);
-        }
-        .freeform__toggle {
-            font-size: 13px; color: var(--teak); cursor: pointer;
-            background: none; border: none; font-family: var(--font-sans);
-            font-weight: 500; padding: 0;
-        }
-        .freeform__toggle:hover { color: var(--teak-hover); }
-        .freeform__field {
-            display: none; margin-top: 12px;
-        }
-        .freeform__field.show { display: block; }
-        .freeform__field textarea {
-            width: 100%; padding: 14px 16px; background: var(--stone-light);
+        /* Freeform as inline option */
+        .option--freeform {
+            padding: 14px 20px; background: var(--stone-light);
             border: 1.5px solid var(--clay); border-radius: 8px;
-            font-family: var(--font-sans); font-size: 14px; color: var(--charcoal);
-            resize: vertical; min-height: 80px; line-height: 1.6;
+            display: flex; flex-direction: column; gap: 0;
         }
-        .freeform__field textarea::placeholder { color: var(--drift); }
-        .freeform__field textarea:focus { outline: none; border-color: var(--teak); }
+        .option--freeform:hover { border-color: var(--bark); }
+        .option--freeform:focus-within { border-color: var(--teak); }
+        .option--freeform__label {
+            font-size: 14px; color: var(--drift); margin-bottom: 8px;
+        }
+        .option--freeform textarea {
+            width: 100%; padding: 0; background: transparent;
+            border: none; font-family: var(--font-sans); font-size: 14px;
+            color: var(--charcoal); resize: vertical; min-height: 60px;
+            line-height: 1.6; outline: none;
+        }
+        .option--freeform textarea::placeholder { color: var(--clay); }
 
         /* Q1 dropdowns */
         .context-fields { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
@@ -598,15 +594,13 @@
                                 <div class="option__text">${escHtml(opt)}</div>
                             </div>
                         `).join('')}
-                    </div>
-                    ${q.freeform ? `
-                        <div class="freeform">
-                            <button class="freeform__toggle" onclick="toggleFreeform(this)">+ Add detail</button>
-                            <div class="freeform__field ${answers[q.id + '_free'] ? 'show' : ''}">
-                                <textarea placeholder="${escHtml(q.freeform)}" oninput="answers['${q.id}_free']=this.value">${answers[q.id + '_free'] || ''}</textarea>
+                        ${q.freeform ? `
+                            <div class="option--freeform">
+                                <div class="option--freeform__label">${escHtml(q.freeform)}</div>
+                                <textarea placeholder="Type here..." oninput="answers['${q.id}_free']=this.value">${answers[q.id + '_free'] || ''}</textarea>
                             </div>
-                        </div>
-                    ` : ''}
+                        ` : ''}
+                    </div>
                     <div class="question__nav">
                         <button class="btn btn--secondary" onclick="prevQuestion()">← Back</button>
                         <button class="btn btn--primary" id="nextBtn" onclick="${idx === TOTAL_QUESTIONS - 1 ? 'submitAssessment()' : 'nextQuestion()'}" ${selectedIdx === undefined ? 'disabled' : ''}>
@@ -633,17 +627,6 @@
         document.querySelectorAll('.option').forEach((o, i) => o.classList.toggle('selected', i === optIdx));
         const nextBtn = document.getElementById('nextBtn');
         if (nextBtn) nextBtn.disabled = false;
-    }
-
-    function toggleFreeform(btn) {
-        const field = btn.nextElementSibling;
-        field.classList.toggle('show');
-        if (field.classList.contains('show')) {
-            field.querySelector('textarea').focus();
-            btn.textContent = '− Hide detail';
-        } else {
-            btn.textContent = '+ Add detail';
-        }
     }
 
     function nextQuestion() {
