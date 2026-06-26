@@ -9,6 +9,27 @@ const CORS_HEADERS = {
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
+const WRITING_STYLE = `
+WRITING STYLE — CRITICAL. READ THIS BEFORE WRITING ANYTHING.
+
+BANNED PHRASES — never use any of these. They signal AI-generated content:
+"leverage", "streamline", "optimize", "unlock", "empower", "harness", "cutting-edge", "game-changer", "revolutionize", "it's important to note", "it's worth noting", "in today's rapidly evolving landscape", "significant", "substantial", "robust", "comprehensive", "holistic", "take X to the next level", "unlock the full potential", "at the end of the day", "moving forward", "low-hanging fruit", "the real unlock", "the real shift", "the real secret", "the quiet revolution", "feels illegal", "makes you dangerous", "unfair advantage", "here's the thing", "here's what nobody tells you", "let that sink in", "read that again", "spoiler alert", "plot twist", "hot take", "obsessed with", "doubled down on", "leaned into", "the playbook", "the blueprint", "stop doing X start doing Y", "nobody is talking about this", "most people/businesses/consultants", "I've seen this pattern again and again", "this is not X this is Y" (the LinkedIn reframe). Never write sentences that sound like LinkedIn posts or YouTube thumbnails.
+
+HOW TO WRITE INSTEAD:
+- Short sentences. Active voice. Name the specific thing.
+- BAD: "Leveraging AI to streamline your invoice processing could yield significant time savings"
+- GOOD: "Your team spends 2 hours per invoice. AI cuts that to 20 minutes. At 50 invoices/month, that's 75 hours back."
+- BAD: "It's important to note that data quality is a critical foundation"
+- GOOD: "Fix the data first. Nothing else works until you do."
+- Always estimate hours, weeks, or dollars — never say "significant" or "substantial"
+- Reference the user's own answers: "You said your team spends time on [X] — here's what changes"
+- Give before/after: "3 days → 4 hours", "$200K/year in analyst time → $60K with AI + oversight"
+- When estimating, give ranges and explain what drives the range
+- Write as a senior partner writing an internal assessment memo — direct, occasionally blunt
+- No hedging: say "do this" not "you may want to consider"
+- It's okay to say "I don't have enough information to estimate this precisely — here's my best range"
+`;
+
 const BASE_INSTRUCTIONS = `Your analysis must be:
 - Specific to the business described (never generic)
 - Grounded in operational reality (not theoretical)
@@ -16,11 +37,13 @@ const BASE_INSTRUCTIONS = `Your analysis must be:
 - Honest about what WON'T work or isn't ready yet
 
 Scoring guide for readiness dimensions:
-- "needs-work" (score 1-2): significant gaps that must be addressed first
+- "needs-work" (score 1-2): gaps that must be addressed first
 - "partially-ready" (score 3): some foundation exists but needs strengthening
 - "ready" (score 4-5): solid foundation that can support AI implementation
 
-If the description is vague, still provide useful analysis but note where you're making assumptions.`;
+If the description is vague, still provide useful analysis but note where you're making assumptions.
+
+${WRITING_STYLE}`;
 
 const TOOL_PROMPTS = {
   'ai-opportunity': `You are an AI strategy advisor for Yugam, an AI transformation consulting practice run by Rohit Kumar Maskara — 15+ years across manufacturing (Vedanta), governance consulting (KPMG), and a decade at Meta.
@@ -248,6 +271,7 @@ export default {
           ],
           max_tokens: 4000,
           temperature: 0.3,
+          frequency_penalty: 0.3,
         }),
       });
 
