@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why 95% of AI Projects Fail to Generate ROI — Yugam</title>
+    <meta name="description" content="Three root causes show up in every major study this year. They all point to organizational readiness, not technology.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header__logo-text { font-family: var(--font-serif); font-size: 20px; color: var(--ink); }
+        .header__back { font-size: 14px; color: var(--drift); text-decoration: none; transition: color 300ms ease; }
+        .header__back:hover { color: var(--teak); }
+
+        .article-header {
+            padding: 80px 0 48px;
+            border-bottom: 1px solid var(--clay);
+        }
+        .article-header__tag {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 16px; display: block;
+        }
+        .article-header h1 {
+            font-size: 36px; line-height: 1.2; margin-bottom: 16px;
+        }
+        .article-header__meta {
+            font-size: 14px; color: var(--drift);
+        }
+        .article-header__meta a { color: var(--teak); text-decoration: none; }
+
+        .article {
+            padding: 48px 0 80px;
+        }
+        .article p {
+            margin-bottom: 24px;
+            color: var(--bark);
+        }
+        .article h2 {
+            font-size: 26px; margin-top: 48px; margin-bottom: 16px;
+        }
+        .article strong { color: var(--charcoal); }
+
+        .article__callout {
+            background: var(--sand); border-left: 3px solid var(--teak);
+            border-radius: 0 8px 8px 0; padding: 24px 28px;
+            margin: 32px 0; font-size: 15px; line-height: 1.7;
+        }
+        .article__callout strong { display: block; margin-bottom: 8px; color: var(--ink); }
+
+        .article__stat {
+            font-family: var(--font-mono); font-size: 14px;
+            color: var(--drift); margin-bottom: 24px;
+        }
+
+        .article__tools {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 32px; margin: 40px 0;
+        }
+        .article__tools p { margin-bottom: 16px; font-style: italic; color: var(--bark); }
+        .article__tools ul { list-style: none; margin-bottom: 16px; }
+        .article__tools li {
+            padding: 8px 0 8px 16px; position: relative; font-size: 15px;
+        }
+        .article__tools li::before {
+            content: ''; position: absolute; left: 0; top: 16px;
+            width: 4px; height: 4px; border-radius: 50%; background: var(--teak);
+        }
+        .article__tools li a { color: var(--teak); text-decoration: none; font-weight: 500; }
+        .article__tools li a:hover { color: var(--teak-hover); }
+        .article__tools .note { font-size: 13px; color: var(--drift); font-style: normal; }
+
+        .article__sources {
+            border-top: 1px solid var(--clay); padding-top: 24px; margin-top: 48px;
+            font-size: 13px; color: var(--drift);
+        }
+        .article__sources a { color: var(--drift); text-decoration: underline; }
+        .article__sources a:hover { color: var(--teak); }
+
+        .article__cta {
+            text-align: center; padding: 48px 0;
+        }
+        .article__cta p { color: var(--bark); margin-bottom: 16px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 6px; font-family: var(--font-sans);
+            font-size: 15px; font-weight: 500; text-decoration: none;
+            transition: all 300ms ease; background: var(--teak); color: var(--stone);
+        }
+        .btn:hover { background: var(--teak-hover); }
+
+        .footer { padding: 40px 0; border-top: 1px solid var(--clay); text-align: center; }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 28px; }
+            .article h2 { font-size: 22px; }
+            .container { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="../index.html#insights" class="header__back">← Back to Insights</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="article-header">
+            <span class="article-header__tag">Organisational Readiness</span>
+            <h1>Why 95% of AI Projects Fail to Generate ROI — And What the 5% Do Differently</h1>
+            <div class="article-header__meta">By <a href="../index.html">Rohit Kumar Maskara</a> · June 2026</div>
+        </section>
+
+        <article class="article">
+
+            <p>Harvard Business Review reported this year that 95% of generative AI projects do not generate positive ROI when they stay limited to isolated experiments.</p>
+
+            <p>That number is easy to dismiss. "Of course experiments don't generate ROI — they're experiments." But the research digs deeper. The 95% aren't failing because the technology doesn't work. They're failing because the organization around the technology wasn't ready for it.</p>
+
+            <p>Three root causes show up in every major study this year — Deloitte's survey of 3,235 leaders, BCG's workforce transformation research, and the World Economic Forum's readiness framework. They all point to the same three failures.</p>
+
+            <h2>Failure 1: The data disagreement problem</h2>
+
+            <p>Deloitte found that 66% of organizations report productivity gains from AI, but only 34% report deep transformation. The first thing that separates these groups: whether the organization has one agreed-upon version of its own data.</p>
+
+            <p>This sounds almost embarrassingly basic. But in my experience — first building governance systems at KPMG, then running operational metrics across Meta's global teams — data disagreement is the norm, not the exception. Ask your VP of Sales and your CFO for last quarter's revenue. If they give you different numbers from different systems, your AI will inherit that disagreement. It will produce outputs that one of them doesn't trust. And untrusted outputs don't get used.</p>
+
+            <div class="article__callout">
+                <strong>What the 5% do:</strong>
+                Before deploying AI, they pick the 3-5 metrics that matter most and make sure one system owns each one. A list of metrics, a source of truth for each, and an agreement that everyone uses that source.
+            </div>
+
+            <p class="article__stat">Time to fix: 2-4 weeks for most mid-market companies.</p>
+
+            <h2>Failure 2: The undocumented process problem</h2>
+
+            <p>BCG found that 50-55% of jobs will be reshaped by AI in the next 2-3 years. But reshaping a job requires knowing what the job actually involves — step by step, exception by exception.</p>
+
+            <p>I spent my first years on a manufacturing shop floor at Vedanta. Before you automate a production station, you map every step: inputs, outputs, handoffs, exceptions, judgment calls. If you skip this, the automated station produces defects. The same principle applies to AI in an office: if the process lives in one person's head, the AI has nothing to learn from.</p>
+
+            <p>The HBR data confirms this. When they asked what drives negative ROI, "difficulty of integrating with legacy systems" (28%) and cost control (27%) both point back to the same root: the process wasn't documented, so the integration was a guessing game and the costs spiraled because scope kept expanding.</p>
+
+            <div class="article__callout">
+                <strong>What the 5% do:</strong>
+                They pick one process, sit down with the person who runs it, and document it — not in a 50-page SOP, but in a step-by-step walkthrough that includes the judgment calls and exceptions. Then they automate that documented process. Total cost: a few days of work. But those few days prevent months of rework.
+            </div>
+
+            <h2>Failure 3: The people anxiety problem</h2>
+
+            <p>The vendor demo doesn't cover this. The SOW doesn't include a line item for it. But it kills more projects than bad data and broken integrations combined.</p>
+
+            <p>The World Economic Forum published research this month identifying five distinct readiness profiles in the workforce. The headline finding: employee anxiety about relevance, identity, and job security drives "surface-level use without real commitment." People use the AI tool just enough to look compliant but not enough to change how they work.</p>
+
+            <p>HBR's data backs this up: AI adoption stalls because of "industry-shaped anxiety about relevance, identity, and job security." Resistance to the implied message that their expertise might not matter anymore.</p>
+
+            <p>I managed teams across Singapore, Dublin, and Hyderabad at Meta through multiple operational transformations. The pattern was consistent: adoption speed had almost nothing to do with technical skill. It came down to one thing — whether the manager had a direct conversation with each person about what changes and what stays. "AI handles the data collection. You handle the judgment calls. That's where your 10 years of experience matters." Teams that heard this version adopted in weeks. Teams that got a company-wide email announcing "our new AI platform" were still resisting six months later.</p>
+
+            <div class="article__callout">
+                <strong>What the 5% do:</strong>
+                Before launching any AI tool, they map their team against the WEF's readiness profiles. They identify who's enthusiastic (give them early access and make them champions), who's pragmatic (show them the time savings in their specific work), who's anxious (address the "what happens to me" question directly), and who's resistant (understand why and either address it or plan around it). This takes one meeting with each team lead. Skip it, and your 12-week deployment becomes a months-long struggle.
+            </div>
+
+            <h2>The pattern across all three failures</h2>
+
+            <p>The common thread: the 95% started with the tool. The 5% started with the organization.</p>
+
+            <p>When a vendor demos an AI product that summarizes your contracts in 30 seconds, the natural instinct is to buy it and deploy it. But the contract AI needs clean contract data (failure 1), a documented review process to augment (failure 2), and a legal team that trusts AI enough to use it (failure 3). If any one of these is missing your AI will work great in the demo but flounder in production.</p>
+
+            <p>The 5% who generate positive ROI spent 2-4 weeks on foundation work before touching a tool.</p>
+
+            <div class="article__tools">
+                <p>If you want to see where your organization stands on these three dimensions, I built diagnostic tools for exactly this purpose:</p>
+                <ul>
+                    <li><a href="data-readiness.html">Data Readiness Scan</a> — can your data support AI?</li>
+                    <li><a href="team-readiness.html">Team Readiness Check</a> — will your team actually use it?</li>
+                    <li><a href="complexity-score.html">Implementation Complexity Score</a> — how hard will this really be?</li>
+                </ul>
+                <div class="note">Each takes about 4 minutes. Free, AI-powered, no email required.</div>
+            </div>
+
+            <div class="article__sources">
+                Sources:
+                <a href="https://hbr.org/2026/02/why-ai-adoption-stalls-according-to-industry-data">HBR — Why AI Adoption Stalls</a> ·
+                <a href="https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html">Deloitte — State of AI in the Enterprise 2026</a> ·
+                <a href="https://www.bcg.com/publications/2026/ai-transformation-is-a-workforce-transformation">BCG — AI Transformation Is Workforce Transformation</a> ·
+                <a href="https://www.weforum.org/stories/2026/06/ai-workplace-adoption-readiness/">WEF — 5 Faces of Human Readiness</a>
+            </div>
+
+        </article>
+
+        <div class="article__cta">
+            <p>Want to discuss what these readiness gaps look like in your organization?</p>
+            <a href="../index.html#contact-form" class="btn">Let's Talk →</a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Yugam. Helping you build production-quality AI.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
