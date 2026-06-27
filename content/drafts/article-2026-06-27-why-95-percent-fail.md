@@ -32,13 +32,13 @@ The HBR data confirms this. When they asked what drives negative ROI, "difficult
 
 ## Failure 3: The people anxiety problem
 
-This is the one that most AI consultants and vendors skip entirely, and it's the one that kills the most projects.
+The vendor demo doesn't cover this. The SOW doesn't include a line item for it. But it kills more projects than bad data and broken integrations combined.
 
 The World Economic Forum published research this month identifying five distinct readiness profiles in the workforce. The headline finding: employee anxiety about relevance, identity, and job security drives "surface-level use without real commitment." People use the AI tool just enough to look compliant but not enough to change how they work.
 
 HBR's data backs this up: AI adoption stalls because of "industry-shaped anxiety about relevance, identity, and job security." Not resistance to technology — resistance to the implied message that their expertise might not matter anymore.
 
-I managed teams across Singapore, Dublin, and Hyderabad at Meta through multiple operational transformations. The pattern was consistent: the teams that adopted new tools fastest weren't the most technically skilled. They were the ones where the manager said "this is how your job changes, and here's why your experience matters more, not less." When people understand that AI handles the routine so they can focus on judgment, adoption follows.
+I managed teams across Singapore, Dublin, and Hyderabad at Meta through multiple operational transformations. The pattern was consistent: adoption speed had almost nothing to do with technical skill. It came down to one thing — whether the manager had a direct conversation with each person about what changes and what stays. "AI handles the data collection. You handle the judgment calls. That's where your 10 years of experience matters." Teams that heard this version adopted in weeks. Teams that got a company-wide email announcing "our new AI platform" were still resisting six months later.
 
 **What the 5% do:** Before launching any AI tool, they map their team against the WEF's readiness profiles. They identify who's enthusiastic (give them early access and make them champions), who's pragmatic (show them the time savings in their specific work), who's anxious (address the "what happens to me" question directly), and who's resistant (understand why and either address it or plan around it). This takes one meeting with each team lead. Skip it, and your 12-week deployment becomes a 12-month struggle.
 
@@ -48,7 +48,7 @@ The common thread: the 95% started with the tool. The 5% started with the organi
 
 This isn't intuitive. When a vendor demos an AI product that summarizes your contracts in 30 seconds, the natural instinct is to buy it and deploy it. But the contract AI needs clean contract data (failure 1), a documented review process to augment (failure 2), and a legal team that trusts AI enough to use it (failure 3). Skip any one of these and the AI works in the demo but not in production.
 
-The 5% who generate positive ROI don't have better technology. They did 2-4 weeks of foundation work that the 95% skipped.
+The 5% who generate positive ROI spent 2-4 weeks on foundation work before touching a tool. The 95% opened the vendor demo on day one.
 
 ---
 

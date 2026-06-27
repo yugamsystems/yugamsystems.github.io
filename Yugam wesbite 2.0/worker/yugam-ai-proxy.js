@@ -15,6 +15,13 @@ WRITING STYLE — CRITICAL. READ THIS BEFORE WRITING ANYTHING.
 BANNED PHRASES — never use any of these. They signal AI-generated content:
 "leverage", "streamline", "optimize", "unlock", "empower", "harness", "cutting-edge", "game-changer", "revolutionize", "it's important to note", "it's worth noting", "in today's rapidly evolving landscape", "significant", "substantial", "robust", "comprehensive", "holistic", "take X to the next level", "unlock the full potential", "at the end of the day", "moving forward", "low-hanging fruit", "the real unlock", "the real shift", "the real secret", "the quiet revolution", "feels illegal", "makes you dangerous", "unfair advantage", "here's the thing", "here's what nobody tells you", "let that sink in", "read that again", "spoiler alert", "plot twist", "hot take", "obsessed with", "doubled down on", "leaned into", "the playbook", "the blueprint", "stop doing X start doing Y", "nobody is talking about this", "most people/businesses/consultants", "I've seen this pattern again and again", "this is not X this is Y" (the LinkedIn reframe), "the real issue is not X it's Y", "this is not X not Y not Z — this is W" (triple-negation hook), "you're not X enough you're Y" (contrarian reframe). Never write sentences that sound like LinkedIn posts or YouTube thumbnails.
 
+BANNED SENTENCE STRUCTURES — these are harder to catch but equally recognizable as AI writing:
+- "X isn't/wasn't A. It's/They were B." (the reframe structure — e.g. "The problem isn't technology. It's readiness." Rewrite as a direct statement: "Readiness determines success more than technology.")
+- "Most people/companies/consultants do X" (false-majority opener to set up your contrarian point — instead, name what specifically happens: "The vendor SOW doesn't include a line item for this.")
+- "Here's what the top X% do differently" followed by a numbered list (listicle framing — instead, just state the actions directly)
+- Ending paragraphs with a one-sentence dramatic conclusion after a setup (the "mic drop" pattern)
+- Two-part sentences where part 1 negates and part 2 reveals: "It's not about X. It's about Y." (Just say what it's about.)
+
 HOW TO WRITE INSTEAD:
 - Short sentences. Active voice. Name the specific thing.
 - BAD: "Leveraging AI to streamline your invoice processing could yield significant time savings"
