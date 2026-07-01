@@ -913,17 +913,47 @@
     const sizes   = ['Under 25','25-100','100-500','500-2000','Over 2000'];
     const inds    = ['Professional Services','Manufacturing','Healthcare','Real Estate','Financial Services','Retail','Logistics','Other'];
     const revs    = ['Under SGD 5M','SGD 5M-25M','SGD 25M-100M','Over SGD 100M'];
+
+    const A = ARCHETYPES[s.arch] || {};
+    const B = BARRIERS[s.primaryB] || {};
+
+    // Replicate use-case selection from buildReport so the same top 3 are stored
+    const painCases = PAIN_CASES[s.topPain] || [];
+    const indCase   = INDUSTRY_CASES[s.industryIdx] || INDUSTRY_CASES[7];
+    const cases     = [...painCases];
+    if (!cases.find(c => c.t === indCase.t)) cases.push(indCase);
+    const top3 = cases.slice(0, 3);
+
     return {
+      // ── Contact & firmographic ──
       ...userInfo,
       role: roles[ans.Q1]||'', company_size: sizes[ans.Q2]||'',
       industry: inds[ans.Q3]||'', revenue: revs[ans.Q4]||'',
+
+      // ── Scores ──
       ati_score: s.ATI, tier: s.tier,
       ari: s.ARI, scs: s.SCS, urgency: s.UI,
+
+      // ── Profile ──
       archetype: s.arch, primary_barrier: s.primaryB, secondary_barrier: s.secondaryB,
       compound_barrier: s.compound, decision_authority: s.decAuth,
       trust_signal: s.trustSignal, lead_priority: s.priority,
+
+      // ── Raw signals ──
       s2_5: g('S2_5','-'), s3_3: g('S3_3','-'), s3_7: g('S3_7','-'),
       s4_7: g('S4_7','-'), s5_3: g('S5_3','-'), s6_3: g('S6_3','-'), s6_4: g('S6_4','-'),
+
+      // ── Customer-facing report content (what they saw) ──
+      report_archetype_tagline:  A.tagline || '',
+      report_archetype_desc:     A.desc    || '',
+      report_archetype_strengths:(A.strengths||[]).join(' | '),
+      report_archetype_edge:     A.edge    || '',
+      report_barrier_desc:       B.desc    || '',
+      report_barrier_steps:      (B.steps||[]).slice(0,3).join(' | '),
+      report_use_case_1: top3[0] ? top3[0].t + ': ' + top3[0].d : '',
+      report_use_case_2: top3[1] ? top3[1].t + ': ' + top3[1].d : '',
+      report_use_case_3: top3[2] ? top3[2].t + ': ' + top3[2].d : '',
+
       submitted_at: new Date().toISOString()
     };
   }
