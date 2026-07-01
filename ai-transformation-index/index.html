@@ -748,12 +748,12 @@
       btn.className = 'lbtn' + (ans[q.id] === v ? ' selected' : '');
       btn.textContent = v + 1;
       btn.title = LABELS[v];
+      btn.type = 'button';
       btn.onclick = () => {
         ans[q.id] = v;
         row.querySelectorAll('.lbtn').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         document.getElementById('btn-next').disabled = false;
-        setTimeout(() => { advance(); }, 320);
       };
       row.appendChild(btn);
     });
