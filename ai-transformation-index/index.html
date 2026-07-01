@@ -8,22 +8,26 @@
   <meta property="og:title" content="AI Transformation Index — Yugam">
   <meta property="og:description" content="10 minutes. Discover exactly where your organisation stands on AI — and what to do next.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     /* ── YUGAM BRAND TOKENS ── */
     :root {
-      --accent:       #C99A3A;
-      --accent-dark:  #B08830;
-      --accent-light: #E5C88D;
-      --gold-tint:    #F8F6F1;
-      --gold-tint-2:  #F0E8D8;
-      --primary:      #111827;
-      --bg:           #FFFFFF;
-      --muted:        #6B7280;
-      --border:       #E8E5DE;
-      --fh: 'Poppins', sans-serif;
-      --fb: 'Inter', sans-serif;
+      --accent:       #8B6914;
+      --accent-dark:  #A8924D;
+      --accent-light: #D4CBC0;
+      --gold-tint:    #FAF8F5;
+      --gold-tint-2:  #E8E1D8;
+      --primary:      #1A1612;
+      --bg:           #F4EFE9;
+      --muted:        #9B9183;
+      --border:       #D4CBC0;
+      --deep:         #1A1612;
+      --fh: 'Inter', -apple-system, sans-serif;
+      --fb: 'Inter', -apple-system, sans-serif;
+      --fs: 'DM Serif Display', Georgia, serif;
+      --fm: 'JetBrains Mono', 'Courier New', monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,7 +55,7 @@
       letter-spacing: 0.35em; color: var(--primary);
     }
     .nav-badge {
-      margin-left: auto; font-family: var(--fh); font-size: 0.6rem; font-weight: 700;
+      margin-left: auto; font-family: var(--fm); font-size: 0.6rem; font-weight: 700;
       letter-spacing: 1.5px; text-transform: uppercase;
       background: var(--gold-tint-2); color: var(--accent);
       padding: 4px 10px; border-radius: 20px; white-space: nowrap;
@@ -99,12 +103,12 @@
     /* ── LANDING ── */
     .landing-badge {
       display: inline-block; background: var(--gold-tint-2); color: var(--accent);
-      font-family: var(--fh); font-size: 0.62rem; font-weight: 700;
+      font-family: var(--fm); font-size: 0.62rem; font-weight: 500;
       letter-spacing: 2px; text-transform: uppercase;
       padding: 6px 14px; border-radius: 20px; margin-bottom: 24px;
     }
     .landing-title {
-      font-family: var(--fh); font-size: 2.4rem; font-weight: 700;
+      font-family: var(--fs); font-size: 2.6rem; font-weight: 400;
       line-height: 1.15; margin-bottom: 18px;
     }
     .landing-title span { color: var(--accent); }
@@ -129,12 +133,12 @@
       display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px;
     }
     .q-section {
-      font-family: var(--fh); font-size: 0.6rem; font-weight: 700;
+      font-family: var(--fm); font-size: 0.6rem; font-weight: 500;
       letter-spacing: 2px; text-transform: uppercase; color: var(--accent);
     }
     .q-counter { font-size: 0.78rem; color: var(--muted); }
     .q-text {
-      font-family: var(--fh); font-size: 1.3rem; font-weight: 600;
+      font-family: var(--fs); font-size: 1.3rem; font-weight: 400;
       line-height: 1.4; color: var(--primary); margin-bottom: 32px;
     }
 
@@ -151,7 +155,7 @@
     .opt-letter {
       width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%;
       background: var(--border); display: flex; align-items: center; justify-content: center;
-      font-family: var(--fh); font-size: 0.72rem; font-weight: 700; color: var(--muted);
+      font-family: var(--fm); font-size: 0.72rem; font-weight: 700; color: var(--muted);
       transition: all 0.15s;
     }
     .opt.selected .opt-letter { background: var(--accent); color: #fff; }
@@ -178,7 +182,7 @@
     /* ── EMAIL GATE ── */
     .gate-back { font-size: 0.82rem; color: var(--muted); cursor: pointer; margin-bottom: 20px; display: inline-block; }
     .gate-back:hover { color: var(--primary); }
-    .gate-title { font-family: var(--fh); font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; }
+    .gate-title { font-family: var(--fs); font-size: 1.75rem; font-weight: 400; margin-bottom: 8px; }
     .gate-sub { font-size: 0.92rem; color: var(--muted); margin-bottom: 28px; line-height: 1.65; }
     .form-group { margin-bottom: 14px; }
     .form-label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 5px; font-family: var(--fh); }
@@ -197,18 +201,18 @@
 
     /* ── RESULTS ── */
     .results-hello {
-      font-family: var(--fh); font-size: 0.62rem; font-weight: 700;
+      font-family: var(--fm); font-size: 0.62rem; font-weight: 700;
       letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
     }
-    .results-name { font-family: var(--fh); font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; }
+    .results-name { font-family: var(--fs); font-size: 1.5rem; font-weight: 400; margin-bottom: 24px; }
 
     /* Score card */
     .score-card {
       background: var(--primary); border-radius: 16px; padding: 32px 28px; margin-bottom: 24px;
     }
     .score-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
-    .score-lbl { font-family: var(--fh); font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-light); margin-bottom: 6px; }
-    .score-num { font-family: var(--fh); font-size: 3.8rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .score-lbl { font-family: var(--fm); font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-light); margin-bottom: 6px; }
+    .score-num { font-family: var(--fm); font-size: 3.8rem; font-weight: 700; color: var(--accent); line-height: 1; }
     .score-tier { font-family: var(--fh); font-size: 0.95rem; font-weight: 500; color: #fff; margin-top: 4px; }
     .score-bars { display: flex; flex-direction: column; gap: 13px; }
     .sbar-row { }
@@ -224,14 +228,14 @@
       border-radius: 14px; padding: 26px; margin-bottom: 16px;
     }
     .r-section-lbl {
-      font-family: var(--fh); font-size: 0.6rem; font-weight: 700;
+      font-family: var(--fm); font-size: 0.6rem; font-weight: 700;
       letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
     }
-    .archetype-name { font-family: var(--fh); font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
+    .archetype-name { font-family: var(--fs); font-size: 1.5rem; font-weight: 400; margin-bottom: 4px; }
     .archetype-tagline { font-size: 0.88rem; color: var(--muted); font-style: italic; margin-bottom: 16px; }
     .archetype-desc { font-size: 0.93rem; line-height: 1.72; margin-bottom: 20px; }
     .mini-label {
-      font-family: var(--fh); font-size: 0.68rem; font-weight: 700;
+      font-family: var(--fm); font-size: 0.68rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px;
     }
     .strength-list { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
@@ -261,7 +265,7 @@
     .step-num {
       width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%;
       background: var(--gold-tint-2); color: var(--accent);
-      font-family: var(--fh); font-size: 0.72rem; font-weight: 700;
+      font-family: var(--fm); font-size: 0.72rem; font-weight: 700;
       display: flex; align-items: center; justify-content: center;
     }
     .step-text { font-size: 0.88rem; line-height: 1.55; padding-top: 3px; }
@@ -269,12 +273,12 @@
     /* CTA card */
     .cta-card { background: var(--primary); border-radius: 16px; padding: 32px 28px; margin-bottom: 16px; }
     .case-teaser {
-      background: rgba(201,154,58,0.13); border-left: 3px solid var(--accent);
+      background: rgba(139,105,20,0.13); border-left: 3px solid var(--accent);
       border-radius: 8px; padding: 16px 18px; margin-bottom: 22px;
     }
-    .case-teaser-lbl { font-family: var(--fh); font-size: 0.58rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-light); margin-bottom: 8px; }
+    .case-teaser-lbl { font-family: var(--fm); font-size: 0.58rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-light); margin-bottom: 8px; }
     .case-teaser-text { font-size: 0.88rem; color: rgba(255,255,255,0.82); line-height: 1.65; font-style: italic; }
-    .cta-title { font-family: var(--fh); font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .cta-title { font-family: var(--fs); font-size: 1.25rem; font-weight: 400; color: #fff; margin-bottom: 8px; }
     .cta-sub { font-size: 0.86rem; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 22px; }
     .cta-btn {
       display: block; text-align: center; text-decoration: none;
@@ -332,14 +336,8 @@
   <!-- ── NAV ── -->
   <nav class="nav">
     <a href="#" onclick="goHome()" class="nav-logo">
-      <svg viewBox="0 0 56 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="10" y1="10" x2="28" y2="34" stroke="#C99A3A" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="46" y1="10" x2="28" y2="34" stroke="#C99A3A" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="28" y1="34" x2="28" y2="66" stroke="#C99A3A" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="10" cy="10" r="5.5" fill="#C99A3A"/>
-        <circle cx="46" cy="10" r="5.5" fill="#C99A3A"/>
-        <circle cx="28" cy="34" r="7" fill="#C99A3A"/>
-        <circle cx="28" cy="66" r="5.5" fill="#C99A3A"/>
+      <svg width="20" height="32" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--accent)"/>
       </svg>
       <span class="nav-logo-text">YUGAM</span>
     </a>
@@ -362,19 +360,19 @@
           <p class="landing-sub">A psychometric-style diagnostic that tells you exactly where your organisation stands on AI — and what to do about it. Built for founders, business owners, and senior executives.</p>
           <div class="landing-bullets">
             <div class="bullet">
-              <div class="bullet-dot"><svg viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5L8 1" stroke="#C99A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="bullet-dot"><svg viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5L8 1" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               <span>Your personalised <strong>AI Transformation Score</strong> (0–100) across three dimensions</span>
             </div>
             <div class="bullet">
-              <div class="bullet-dot"><svg viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5L8 1" stroke="#C99A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="bullet-dot"><svg viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5L8 1" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               <span>Your <strong>AI leadership archetype</strong> — and what it means for your next move</span>
             </div>
             <div class="bullet">
-              <div class="bullet-dot"><svg viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5L8 1" stroke="#C99A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="bullet-dot"><svg viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5L8 1" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               <span>The <strong>3 AI use cases</strong> most likely to create immediate value in your business</span>
             </div>
             <div class="bullet">
-              <div class="bullet-dot"><svg viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5L8 1" stroke="#C99A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="bullet-dot"><svg viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5L8 1" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               <span>Your <strong>primary barrier</strong> — identified without you having to name it — and how to move past it</span>
             </div>
           </div>
@@ -960,7 +958,7 @@
           </div>
           <svg width="76" height="76" viewBox="0 0 76 76">
             <circle cx="38" cy="38" r="32" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="6"/>
-            <circle cx="38" cy="38" r="32" fill="none" stroke="#C99A3A" stroke-width="6"
+            <circle cx="38" cy="38" r="32" fill="none" stroke="#8B6914" stroke-width="6"
               stroke-dasharray="${(2*Math.PI*32).toFixed(1)}"
               stroke-dashoffset="${(2*Math.PI*32*(1-s.ATI/100)).toFixed(1)}"
               stroke-linecap="round" transform="rotate(-90 38 38)"
