@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Transformation Index — Yugam</title>
+  <meta name="description" content="A 10-minute diagnostic for business leaders. Discover your AI readiness score, your leadership archetype, and the 3 AI use cases most likely to create immediate value in your organisation.">
+  <meta property="og:title" content="AI Transformation Index — Yugam">
+  <meta property="og:description" content="10 minutes. Discover exactly where your organisation stands on AI — and what to do next.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── YUGAM BRAND TOKENS ── */
+    :root {
+      --accent:       #C99A3A;
+      --accent-dark:  #B08830;
+      --accent-light: #E5C88D;
+      --gold-tint:    #F8F6F1;
+      --gold-tint-2:  #F0E8D8;
+      --primary:      #111827;
+      --bg:           #FFFFFF;
+      --muted:        #6B7280;
+      --border:       #E8E5DE;
+      --fh: 'Poppins', sans-serif;
+      --fb: 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--fb); background: var(--bg); color: var(--primary);
+      min-height: 100vh; -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SCREENS ── */
+    .screen { display: none; min-height: 100vh; flex-direction: column; }
+    .screen.active { display: flex; }
+    .container { max-width: 680px; margin: 0 auto; padding: 0 24px; width: 100%; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 60px; background: var(--bg); border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; padding: 0 20px; gap: 10px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo svg { width: 24px; height: 32px; flex-shrink: 0; }
+    .nav-logo-text {
+      font-family: var(--fh); font-size: 0.9rem; font-weight: 300;
+      letter-spacing: 0.35em; color: var(--primary);
+    }
+    .nav-badge {
+      margin-left: auto; font-family: var(--fh); font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      background: var(--gold-tint-2); color: var(--accent);
+      padding: 4px 10px; border-radius: 20px; white-space: nowrap;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-wrap {
+      position: fixed; top: 60px; left: 0; right: 0; z-index: 199;
+      height: 3px; background: var(--border); display: none;
+    }
+    .progress-fill { height: 100%; background: var(--accent); transition: width 0.4s ease; width: 0%; }
+
+    /* ── SHARED LAYOUT ── */
+    .page-content {
+      padding-top: 84px; padding-bottom: 60px;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .page-content.centered { justify-content: center; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      background: var(--accent); color: #fff; border: none;
+      padding: 14px 28px; border-radius: 8px; font-family: var(--fh);
+      font-size: 0.95rem; font-weight: 600; cursor: pointer;
+      transition: background 0.2s, transform 0.15s; display: inline-block;
+      text-decoration: none; text-align: center;
+    }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .btn-primary-full { width: 100%; display: block; }
+    .btn-back {
+      background: none; border: 1.5px solid var(--border); color: var(--muted);
+      padding: 10px 18px; border-radius: 8px; font-family: var(--fb);
+      font-size: 0.88rem; cursor: pointer; transition: all 0.15s; flex-shrink: 0;
+    }
+    .btn-back:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-next {
+      background: var(--accent); color: #fff; border: none;
+      padding: 12px 24px; border-radius: 8px; font-family: var(--fh);
+      font-size: 0.9rem; font-weight: 600; cursor: pointer;
+      transition: background 0.2s; flex: 1;
+    }
+    .btn-next:hover:not(:disabled) { background: var(--accent-dark); }
+    .btn-next:disabled { background: var(--border); color: var(--muted); cursor: not-allowed; }
+
+    /* ── LANDING ── */
+    .landing-badge {
+      display: inline-block; background: var(--gold-tint-2); color: var(--accent);
+      font-family: var(--fh); font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 24px;
+    }
+    .landing-title {
+      font-family: var(--fh); font-size: 2.4rem; font-weight: 700;
+      line-height: 1.15; margin-bottom: 18px;
+    }
+    .landing-title span { color: var(--accent); }
+    .landing-sub {
+      font-size: 1rem; color: var(--muted); line-height: 1.75;
+      margin-bottom: 32px; max-width: 520px;
+    }
+    .landing-bullets { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+    .bullet {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.92rem; line-height: 1.5;
+    }
+    .bullet-dot {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+      background: var(--gold-tint-2); display: flex; align-items: center; justify-content: center;
+    }
+    .bullet-dot svg { width: 9px; height: 9px; }
+    .landing-meta { font-size: 0.8rem; color: var(--muted); margin-top: 14px; }
+
+    /* ── QUESTION SCREEN ── */
+    .q-header {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px;
+    }
+    .q-section {
+      font-family: var(--fh); font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--accent);
+    }
+    .q-counter { font-size: 0.78rem; color: var(--muted); }
+    .q-text {
+      font-family: var(--fh); font-size: 1.3rem; font-weight: 600;
+      line-height: 1.4; color: var(--primary); margin-bottom: 32px;
+    }
+
+    /* Single-select */
+    .opts { display: flex; flex-direction: column; gap: 10px; }
+    .opt {
+      display: flex; align-items: center; gap: 14px; padding: 13px 16px;
+      border: 1.5px solid var(--border); border-radius: 8px; background: var(--bg);
+      cursor: pointer; font-family: var(--fb); font-size: 0.92rem; color: var(--primary);
+      transition: all 0.15s; text-align: left; width: 100%;
+    }
+    .opt:hover { border-color: var(--accent); background: var(--gold-tint); }
+    .opt.selected { border-color: var(--accent); background: var(--gold-tint-2); font-weight: 500; }
+    .opt-letter {
+      width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%;
+      background: var(--border); display: flex; align-items: center; justify-content: center;
+      font-family: var(--fh); font-size: 0.72rem; font-weight: 700; color: var(--muted);
+      transition: all 0.15s;
+    }
+    .opt.selected .opt-letter { background: var(--accent); color: #fff; }
+
+    /* Likert */
+    .likert-labels {
+      display: flex; justify-content: space-between;
+      font-size: 0.72rem; color: var(--muted); margin-bottom: 10px;
+    }
+    .likert-row { display: flex; gap: 8px; }
+    .lbtn {
+      flex: 1; aspect-ratio: 1; border: 2px solid var(--border); border-radius: 50%;
+      background: var(--bg); cursor: pointer; font-family: var(--fh);
+      font-size: 0.78rem; font-weight: 600; color: var(--muted);
+      transition: all 0.15s; min-width: 40px; min-height: 40px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lbtn:hover { border-color: var(--accent); color: var(--accent); background: var(--gold-tint); }
+    .lbtn.selected { border-color: var(--accent); background: var(--accent); color: #fff; }
+    .likert-hint { font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 10px; }
+
+    .q-nav { display: flex; align-items: center; gap: 10px; margin-top: 28px; }
+
+    /* ── EMAIL GATE ── */
+    .gate-back { font-size: 0.82rem; color: var(--muted); cursor: pointer; margin-bottom: 20px; display: inline-block; }
+    .gate-back:hover { color: var(--primary); }
+    .gate-title { font-family: var(--fh); font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; }
+    .gate-sub { font-size: 0.92rem; color: var(--muted); margin-bottom: 28px; line-height: 1.65; }
+    .form-group { margin-bottom: 14px; }
+    .form-label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 5px; font-family: var(--fh); }
+    .form-input, .form-select {
+      width: 100%; padding: 12px 14px; border: 1.5px solid var(--border);
+      border-radius: 8px; font-family: var(--fb); font-size: 0.92rem; color: var(--primary);
+      background: var(--bg); transition: border-color 0.15s; -webkit-appearance: none;
+    }
+    .form-input:focus, .form-select:focus { outline: none; border-color: var(--accent); }
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '▾'; position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%); color: var(--muted); pointer-events: none; font-size: 0.85rem;
+    }
+    .gate-privacy { font-size: 0.75rem; color: var(--muted); margin-top: 12px; text-align: center; line-height: 1.6; }
+
+    /* ── RESULTS ── */
+    .results-hello {
+      font-family: var(--fh); font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+    }
+    .results-name { font-family: var(--fh); font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; }
+
+    /* Score card */
+    .score-card {
+      background: var(--primary); border-radius: 16px; padding: 32px 28px; margin-bottom: 24px;
+    }
+    .score-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+    .score-lbl { font-family: var(--fh); font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-light); margin-bottom: 6px; }
+    .score-num { font-family: var(--fh); font-size: 3.8rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .score-tier { font-family: var(--fh); font-size: 0.95rem; font-weight: 500; color: #fff; margin-top: 4px; }
+    .score-bars { display: flex; flex-direction: column; gap: 13px; }
+    .sbar-row { }
+    .sbar-meta { display: flex; justify-content: space-between; font-size: 0.78rem; margin-bottom: 5px; }
+    .sbar-meta span:first-child { color: rgba(255,255,255,0.65); }
+    .sbar-meta span:last-child { color: var(--accent-light); font-weight: 600; }
+    .sbar-track { height: 4px; background: rgba(255,255,255,0.12); border-radius: 2px; }
+    .sbar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+
+    /* Result cards */
+    .r-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 26px; margin-bottom: 16px;
+    }
+    .r-section-lbl {
+      font-family: var(--fh); font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+    }
+    .archetype-name { font-family: var(--fh); font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
+    .archetype-tagline { font-size: 0.88rem; color: var(--muted); font-style: italic; margin-bottom: 16px; }
+    .archetype-desc { font-size: 0.93rem; line-height: 1.72; margin-bottom: 20px; }
+    .mini-label {
+      font-family: var(--fh); font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px;
+    }
+    .strength-list { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .strength-list li { display: flex; gap: 9px; font-size: 0.88rem; align-items: flex-start; line-height: 1.5; }
+    .strength-list li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .edge-box {
+      background: var(--gold-tint); border-left: 3px solid var(--accent);
+      border-radius: 6px; padding: 12px 16px; font-size: 0.9rem; line-height: 1.6;
+    }
+
+    /* Use cases */
+    .uc-grid { display: flex; flex-direction: column; gap: 12px; }
+    .uc-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px; background: var(--gold-tint); border-radius: 10px; }
+    .uc-num {
+      width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%;
+      background: var(--accent); color: #fff; font-family: var(--fh);
+      font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    }
+    .uc-body h4 { font-family: var(--fh); font-size: 0.92rem; font-weight: 600; margin-bottom: 3px; }
+    .uc-body p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+
+    /* Barrier steps */
+    .barrier-desc { font-size: 0.92rem; line-height: 1.7; margin-bottom: 16px; }
+    .compound-note { font-size: 0.82rem; color: var(--muted); background: var(--gold-tint-2); padding: 10px 14px; border-radius: 6px; margin-bottom: 14px; line-height: 1.6; }
+    .steps { display: flex; flex-direction: column; gap: 10px; }
+    .step { display: flex; gap: 12px; align-items: flex-start; }
+    .step-num {
+      width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%;
+      background: var(--gold-tint-2); color: var(--accent);
+      font-family: var(--fh); font-size: 0.72rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-text { font-size: 0.88rem; line-height: 1.55; padding-top: 3px; }
+
+    /* CTA card */
+    .cta-card { background: var(--primary); border-radius: 16px; padding: 32px 28px; margin-bottom: 16px; }
+    .case-teaser {
+      background: rgba(201,154,58,0.13); border-left: 3px solid var(--accent);
+      border-radius: 8px; padding: 16px 18px; margin-bottom: 22px;
+    }
+    .case-teaser-lbl { font-family: var(--fh); font-size: 0.58rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-light); margin-bottom: 8px; }
+    .case-teaser-text { font-size: 0.88rem; color: rgba(255,255,255,0.82); line-height: 1.65; font-style: italic; }
+    .cta-title { font-family: var(--fh); font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .cta-sub { font-size: 0.86rem; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 22px; }
+    .cta-btn {
+      display: block; text-align: center; text-decoration: none;
+      background: var(--accent); color: #fff; padding: 15px 24px;
+      border-radius: 8px; font-family: var(--fh); font-size: 0.92rem; font-weight: 600;
+      transition: background 0.2s; margin-bottom: 10px;
+    }
+    .cta-btn:hover { background: var(--accent-dark); }
+    .cta-note { font-size: 0.78rem; color: rgba(255,255,255,0.4); text-align: center; }
+    .rohit-row {
+      display: flex; align-items: center; gap: 14px; margin-top: 22px;
+      padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .rohit-avatar {
+      width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+      background: var(--accent); color: #fff; font-family: var(--fh);
+      font-size: 0.92rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    }
+    .rohit-name { font-family: var(--fh); font-size: 0.88rem; font-weight: 600; color: #fff; }
+    .rohit-bio { font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.5; margin-top: 2px; }
+
+    .print-row { text-align: center; padding: 20px 0; border-top: 1px solid var(--border); margin-top: 8px; }
+    .btn-print {
+      background: none; border: 1.5px solid var(--border); color: var(--muted);
+      padding: 9px 22px; border-radius: 8px; font-family: var(--fb);
+      font-size: 0.85rem; cursor: pointer; transition: all 0.15s;
+    }
+    .btn-print:hover { border-color: var(--primary); color: var(--primary); }
+    .report-footer { text-align: center; font-size: 0.72rem; color: var(--muted); margin-top: 28px; line-height: 1.9; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .landing-title { font-size: 1.8rem; }
+      .q-text { font-size: 1.1rem; }
+      .score-num { font-size: 3rem; }
+      .lbtn { min-width: 36px; min-height: 36px; font-size: 0.72rem; }
+      .likert-row { gap: 5px; }
+      .score-card, .cta-card { padding: 22px 18px; }
+      .r-card { padding: 20px 16px; }
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      .nav, .progress-wrap, .q-nav, .print-row,
+      #screen-landing, #screen-question, #screen-gate { display: none !important; }
+      #screen-results { display: block !important; }
+      #screen-results .page-content { padding-top: 20px; }
+      .r-card, .cta-card, .score-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <a href="#" onclick="goHome()" class="nav-logo">
+      <svg viewBox="0 0 56 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="10" y1="10" x2="28" y2="34" stroke="#C99A3A" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="46" y1="10" x2="28" y2="34" stroke="#C99A3A" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="28" y1="34" x2="28" y2="66" stroke="#C99A3A" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="10" cy="10" r="5.5" fill="#C99A3A"/>
+        <circle cx="46" cy="10" r="5.5" fill="#C99A3A"/>
+        <circle cx="28" cy="34" r="7" fill="#C99A3A"/>
+        <circle cx="28" cy="66" r="5.5" fill="#C99A3A"/>
+      </svg>
+      <span class="nav-logo-text">YUGAM</span>
+    </a>
+    <span class="nav-badge">AI Transformation Index</span>
+  </nav>
+
+  <!-- ── PROGRESS ── -->
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+
+  <div id="app">
+
+    <!-- ════ LANDING ════ -->
+    <div id="screen-landing" class="screen active">
+      <div class="page-content centered">
+        <div class="container">
+          <span class="landing-badge">Free · 10 Minutes · Instant Results</span>
+          <h1 class="landing-title">The AI Transformation<br><span>Index</span></h1>
+          <p class="landing-sub">A psychometric-style diagnostic that tells you exactly where your organisation stands on AI — and what to do about it. Built for founders, business owners, and senior executives.</p>
+          <div class="landing-bullets">
+            <div class="bullet">
+              <div class="bullet-dot"><svg viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5L8 1" stroke="#C99A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span>Your personalised <strong>AI Transformation Score</strong> (0–100) across three dimensions</span>
+            </div>
+            <div class="bullet">
+              <div class="bullet-dot"><svg viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5L8 1" stroke="#C99A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span>Your <strong>AI leadership archetype</strong> — and what it means for your next move</span>
+            </div>
+            <div class="bullet">
+              <div class="bullet-dot"><svg viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5L8 1" stroke="#C99A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span>The <strong>3 AI use cases</strong> most likely to create immediate value in your business</span>
+            </div>
+            <div class="bullet">
+              <div class="bullet-dot"><svg viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5L8 1" stroke="#C99A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span>Your <strong>primary barrier</strong> — identified without you having to name it — and how to move past it</span>
+            </div>
+          </div>
+          <button class="btn-primary btn-primary-full" onclick="startAssessment()" style="max-width:300px;">Start the Assessment →</button>
+          <p class="landing-meta">31 statements · No sign-up to begin · Results delivered instantly</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ QUESTION ════ -->
+    <div id="screen-question" class="screen">
+      <div class="page-content">
+        <div class="container">
+          <div class="q-header">
+            <span class="q-section" id="q-section">Section 1</span>
+            <span class="q-counter" id="q-counter">1 of 31</span>
+          </div>
+          <p class="q-text" id="q-text"></p>
+          <div id="q-options"></div>
+          <div class="q-nav">
+            <button class="btn-back" onclick="goBack()">← Back</button>
+            <button class="btn-next" id="btn-next" onclick="goNext()" disabled>Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ EMAIL GATE ════ -->
+    <div id="screen-gate" class="screen">
+      <div class="page-content centered">
+        <div class="container">
+          <span class="gate-back" onclick="goBackToQuestions()">← Back to assessment</span>
+          <span class="landing-badge">Almost Done</span>
+          <h2 class="gate-title">You're done.</h2>
+          <p class="gate-sub">Enter your details to generate your personalised AI Transformation report. Results appear instantly — no waiting.</p>
+          <form id="gate-form" onsubmit="submitGate(event)" novalidate>
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-input" id="g-name" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Work Email *</label>
+              <input type="email" class="form-input" id="g-email" placeholder="you@company.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Company / Organisation *</label>
+              <input type="text" class="form-input" id="g-company" placeholder="Your company name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">What level of AI investment are you considering?</label>
+              <div class="select-wrap">
+                <select class="form-select" id="g-budget">
+                  <option value="">Select a range (optional)</option>
+                  <option value="under5k">Under SGD 5,000 — a focused diagnostic or workshop</option>
+                  <option value="5k-20k">SGD 5,000–20,000 — a short-term structured programme</option>
+                  <option value="20k-60k">SGD 20,000–60,000 — a meaningful engagement with clear deliverables</option>
+                  <option value="over60k">Over SGD 60,000 — a strategic, multi-month partnership</option>
+                  <option value="unsure">Not sure yet — depends on the ROI case</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn-primary btn-primary-full" id="g-submit">Generate My Report →</button>
+            <p class="gate-privacy">Your details are kept private and used only to personalise and send your report. No spam, ever.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ RESULTS ════ -->
+    <div id="screen-results" class="screen">
+      <div class="page-content">
+        <div class="container">
+          <div id="results-content"></div>
+          <div class="print-row no-print">
+            <button class="btn-print" onclick="window.print()">↓ Save or Print This Report</button>
+          </div>
+          <p class="report-footer">
+            Generated by the AI Transformation Index &nbsp;·&nbsp; Powered by Yugam &nbsp;·&nbsp; yugam.io<br>
+            Designed by Rohit Maskara — 12+ years in operations and strategy at Meta and KPMG
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- #app -->
+
+
+  <script>
+  // ═══════════════════════════════════════════════════════════
+  // QUESTIONS DATA
+  // ═══════════════════════════════════════════════════════════
+  const Qs = [
+    // ── SECTION 1 ── (single-select)
+    { id:'Q1', type:'s', sec:'SECTION 1 — YOUR WORLD',
+      text:'What best describes your role?',
+      opts:['Founder / CEO','Co-founder / CxO (COO, CFO, CMO, CTO, etc.)','Senior Director / VP / GM','Business Unit Head / Department Head']
+    },
+    { id:'Q2', type:'s', sec:'SECTION 1 — YOUR WORLD',
+      text:'How many people work in your organisation?',
+      opts:['Under 25','25–100','100–500','500–2,000','Over 2,000']
+    },
+    { id:'Q3', type:'s', sec:'SECTION 1 — YOUR WORLD',
+      text:'Which industry best describes your organisation?',
+      opts:['Professional Services (legal, accounting, consulting, HR)','Manufacturing & Engineering','Healthcare & Life Sciences','Real Estate & Property','Financial Services & Fintech','Retail & Consumer','Logistics & Supply Chain','Other']
+    },
+    { id:'Q4', type:'s', sec:'SECTION 1 — YOUR WORLD',
+      text:"Roughly, what is your organisation's annual revenue?",
+      opts:['Under SGD 5M (or equivalent)','SGD 5M–25M','SGD 25M–100M','Over SGD 100M']
+    },
+    // ── SECTION 2 ── (Likert)
+    { id:'S2_1', type:'l', sec:'SECTION 2 — WHERE YOU STAND TODAY',
+      text:'Our organisation actively uses AI tools as part of our regular workflows.'
+    },
+    { id:'S2_2', type:'l', sec:'SECTION 2 — WHERE YOU STAND TODAY',
+      text:'My team has the skills and knowledge to use AI effectively in their day-to-day work.'
+    },
+    { id:'S2_3', type:'l', sec:'SECTION 2 — WHERE YOU STAND TODAY',
+      text:'Our data — how it is stored, structured, and accessed — is ready to support AI applications.'
+    },
+    { id:'S2_4', type:'l', sec:'SECTION 2 — WHERE YOU STAND TODAY',
+      text:'We have previously run AI experiments or pilots that delivered lasting, meaningful results.'
+    },
+    { id:'S2_5', type:'l', sec:'SECTION 2 — WHERE YOU STAND TODAY',
+      text:'We have the motivation to move on AI — what we lack is a clear, structured path forward.'
+    },
+    // ── SECTION 3 ──
+    { id:'S3_1', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
+      text:'I have a clear picture of where AI fits in our business strategy.'
+    },
+    { id:'S3_2', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
+      text:'Our leadership team is aligned on making AI a genuine strategic priority.'
+    },
+    { id:'S3_3', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
+      text:'I find it difficult to separate genuine AI opportunity from the noise and hype in my industry.'
+    },
+    { id:'S3_4', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
+      text:'My team spends significant time on tasks that could and should be automated.'
+    },
+    { id:'S3_5', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
+      text:"Critical knowledge in our organisation sits in people's heads rather than in accessible systems."
+    },
+    { id:'S3_6', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
+      text:'We often lack the right data at the right time to make confident business decisions.'
+    },
+    { id:'S3_7', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
+      text:'The gap between where our organisation is with AI today and where I want it to be is growing.'
+    },
+    // ── SECTION 4 ──
+    { id:'S4_1', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
+      text:'Our biggest AI challenge is knowing where to start — not understanding the technology itself.'
+    },
+    { id:'S4_2', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
+      text:'Our data is clean, structured, and accessible enough to act as a foundation for AI projects.'
+    },
+    { id:'S4_3', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
+      text:'We have people internally who could lead or execute an AI initiative without heavy external support.'
+    },
+    { id:'S4_4', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
+      text:'If the right AI opportunity presented itself, budget would not be a meaningful constraint.'
+    },
+    { id:'S4_5', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
+      text:'Getting leadership and team buy-in for an AI initiative feels like a manageable challenge.'
+    },
+    { id:'S4_6', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
+      text:'Our past investments in technology have generally delivered what they promised.'
+    },
+    { id:'S4_7', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
+      text:'I worry that our competitors are moving faster on AI than we are.'
+    },
+    // ── SECTION 5 ──
+    { id:'S5_1', type:'l', sec:'SECTION 5 — DECISIONS & TIMELINE',
+      text:'I am the primary decision-maker when it comes to committing budget for strategic initiatives.'
+    },
+    { id:'S5_2', type:'l', sec:'SECTION 5 — DECISIONS & TIMELINE',
+      text:'An investment of this significance would require input or sign-off from others in my organisation.'
+    },
+    { id:'S5_3', type:'l', sec:'SECTION 5 — DECISIONS & TIMELINE',
+      text:'I expect to make a concrete decision about our AI direction within the next 90 days.'
+    },
+    { id:'S5_4', type:'l', sec:'SECTION 5 — DECISIONS & TIMELINE',
+      text:'I prefer working with an external partner who builds hands-on with my team rather than just delivering recommendations.'
+    },
+    // ── SECTION 6 ──
+    { id:'S6_1', type:'l', sec:'SECTION 6 — TRUST & FIT',
+      text:'A compelling case study from a business similar to mine would significantly increase my confidence in an AI advisor.'
+    },
+    { id:'S6_2', type:'l', sec:'SECTION 6 — TRUST & FIT',
+      text:'A personal introduction or recommendation from someone I trust would carry more weight than any credentials or marketing content.'
+    },
+    { id:'S6_3', type:'l', sec:'SECTION 6 — TRUST & FIT',
+      text:'I would feel most comfortable starting with a small, low-risk diagnostic before committing to a larger engagement.'
+    },
+    { id:'S6_4', type:'l', sec:'SECTION 6 — TRUST & FIT',
+      text:'More than building a strategy, I want to build lasting AI capability inside my organisation that does not depend on external support.'
+    }
+  ];
+
+  // ═══════════════════════════════════════════════════════════
+  // CONTENT DATA
+  // ═══════════════════════════════════════════════════════════
+  const ARCHETYPES = {
+    Pioneer: {
+      name:'The Pioneer', tagline:"Forward-thinking and ready — you just need the map.",
+      desc:"You're forward-thinking, open to change, and already asking the right questions. What you need next isn't more information — it's structure. The leaders who move fastest from here are the ones who translate enthusiasm into a concrete starting point.",
+      strengths:["Strong motivation and appetite for change that will accelerate adoption once direction is clear","An open mindset that makes you faster to move than most once a structured plan is in place"],
+      edge:"Converting enthusiasm into a sequenced plan with clear priorities — so energy doesn't get scattered across too many things at once.",
+      caseStudy:"A founder who had read everything about AI but didn't know where to start — and how a focused 8-week diagnostic led to their first meaningful, measurable win."
+    },
+    Architect: {
+      name:'The Architect', tagline:"You have the vision. Now it's about sequencing.",
+      desc:"You have the vision — that's the rare part. What's between you and execution isn't capability; it's sequencing. The leaders who break through from here are the ones who identify the right first move and build momentum from it, rather than trying to do everything at once.",
+      strengths:["A clear strategic direction that most organisations spend months trying to build","Leadership alignment that gives you the internal runway to actually execute"],
+      edge:"Translating a clear vision into an executable first move — the one thing that builds confidence across the team and creates momentum for everything that follows.",
+      caseStudy:"A leadership team with a fully articulated AI vision that had stalled for over a year — and the sequencing shift that finally unlocked execution and delivered results in 90 days."
+    },
+    Optimizer: {
+      name:'The Optimizer', tagline:"You see AI for what it is — a lever for operational excellence.",
+      desc:"You see AI for what it actually is — a lever for operational excellence. You're not chasing trends; you're solving real problems. Your advantage is that the problems are clear and the ROI case writes itself. The move now is to go from knowing what hurts to knowing exactly what fixes it.",
+      strengths:["A clear line of sight to ROI that makes the business case almost self-evident","Operational problems that AI is well-suited to solve — concrete, high-volume, and repeatable"],
+      edge:"Identifying the right solution for the right problem and implementing it without disrupting what already works — and what your business depends on.",
+      caseStudy:"How an operations team at a professional services firm eliminated 30% of their manual processing time — without adding a single headcount or disrupting client delivery."
+    },
+    Accelerator: {
+      name:'The Accelerator', tagline:"Urgency is justified. The question is where to direct it.",
+      desc:"You feel the urgency — and it's justified. Markets move fast and the penalty for being late compounds. What separates the leaders who close this gap effectively from those who stumble is not raw speed — it's intentional speed. Moving fast on the right things.",
+      strengths:["A sense of urgency that will drive real momentum once it's directed at the right starting point","Readiness to commit and move that many organisations take months to build"],
+      edge:"Channelling urgency into a structured plan — so speed becomes a competitive advantage rather than a source of costly mistakes.",
+      caseStudy:"How a business that was 18 months behind its sector on AI closed the gap in one focused quarter — and the three things they chose to prioritise first."
+    },
+    Navigator: {
+      name:'The Navigator', tagline:"Deliberate, strategic, evidence-driven.",
+      desc:"You're deliberate, strategic, and evidence-driven. You don't move on hype — and that's a genuine strength. When you engage with AI, it will be because you've understood the returns. The opportunity now is to accelerate that evaluation so the window doesn't close while you're still in analysis mode.",
+      strengths:["A rigorous evaluation approach that avoids costly mistakes others make in haste","Business-first thinking that keeps AI grounded in outcomes — not technology for its own sake"],
+      edge:"Moving from careful analysis to a low-risk first commitment — with enough evidence in hand to feel genuinely confident.",
+      caseStudy:"The ROI case that convinced a sceptical Managing Director in professional services to make his first AI investment — and what happened in the 60 days that followed."
+    },
+    Builder: {
+      name:'The Builder', tagline:"You're not just adopting AI — you're building an AI-native organisation.",
+      desc:"You're not just adopting AI — you're building an AI-native organisation. That's a more ambitious and more durable goal. What you need isn't a vendor; it's a partner who grows the capability from inside and then steps back when the organisation can stand on its own.",
+      strengths:["Long-term orientation that creates durable competitive advantage beyond any single tool or initiative","Readiness to invest in capability — not just outputs — that most organisations consistently undervalue"],
+      edge:"Designing the right internal learning architecture so the capability genuinely sticks after the external support ends.",
+      caseStudy:"A 6-month internal AI capability programme — what it looked like, who it targeted, and the AI-confident team that came out the other side."
+    }
+  };
+
+  const BARRIERS = {
+    'Direction & Starting Point': {
+      desc:"Your biggest obstacle isn't understanding AI — it's knowing where to apply it first. This is the most common barrier we see, and it's highly solvable with the right structured approach.",
+      steps:["Start with a focused diagnostic to identify your single highest-leverage AI opportunity — before choosing any tools or vendors","Pick one process to transform first. Momentum from one visible win unlocks the budget, confidence, and buy-in for the next","Define what success looks like in specific, measurable terms before you begin — so progress is undeniable"]
+    },
+    'Data Readiness': {
+      desc:"Your data foundation needs attention before AI can deliver at scale. The good news: you don't need perfect data to start — you need good-enough data in the right place for the right use case.",
+      steps:["Identify which data you already have that is clean, accessible, and structured — that's your starting point","Choose an AI use case that works with your strongest existing data asset, not one that requires data you don't yet have","Build data hygiene practices as a parallel workstream to your first AI initiative — not a prerequisite that blocks everything"]
+    },
+    'Internal Capability': {
+      desc:"The skills to lead and execute AI initiatives aren't yet in-house. This is a solvable gap — but it requires intentional investment in people alongside investment in tools.",
+      steps:["Identify one internal champion who will own the AI agenda — someone with operational credibility, not just technical interest","Invest in structured training before expecting independent execution from your team — ad-hoc experimentation isn't a capability strategy","Consider a hands-on partnership that builds internal capability as it delivers real results — so you're not starting from scratch when the engagement ends"]
+    },
+    'Investment Readiness': {
+      desc:"Budget constraints are shaping what's possible. The path forward is to build the business case before you build the solution — making the ROI visible enough to unlock the right investment.",
+      steps:["Quantify the cost of the current problem first — in time wasted, errors, or missed opportunity — before proposing any solution","Start with a low-cost diagnostic to validate the opportunity with minimal risk and maximum clarity","Frame AI investment as cost reduction or revenue protection, not as a technology spend — that framing wins budget conversations"]
+    },
+    'Organisational Alignment': {
+      desc:"The bigger challenge isn't the technology — it's getting the team and leadership moving in the same direction. AI transformations that skip this step consistently fail to scale beyond pilots.",
+      steps:["Invest time in building a shared understanding of the problem before proposing solutions — alignment on the problem comes before alignment on the approach","Find one early win that makes the benefit visible to the sceptics in the room — proof beats persuasion","Treat change management as a core part of your AI programme, not an afterthought to be handled later"]
+    },
+    'Building on Past Experience': {
+      desc:"Past technology investments that underdelivered have created healthy scepticism in your organisation. The answer isn't to avoid AI — it's to approach it with significantly more rigour than before.",
+      steps:["Diagnose honestly why past initiatives stalled before starting a new one — the root cause matters more than the symptoms","Set a higher bar for vendor and partner selection this time — ask for proof of outcomes, not promises of potential","Define clear success metrics upfront so progress is undeniable and visible throughout, not just at the end"]
+    }
+  };
+
+  const PAIN_CASES = {
+    automation:[
+      { t:'Workflow & Process Automation', d:'Eliminate high-volume manual tasks with AI-driven process automation, reducing time, errors, and cost simultaneously.' },
+      { t:'Agentic AI Workflows', d:'Deploy AI agents that execute multi-step business processes autonomously — from intake to output, without human hand-holding.' }
+    ],
+    knowledge:[
+      { t:'Internal Knowledge AI', d:'Surface the institutional knowledge locked in documents, emails, and people — making it instantly accessible to your whole team, not just those who happened to be in the room.' },
+      { t:'SOP & Playbook Automation', d:"Convert your best people's expertise into structured, AI-powered playbooks that scale consistent performance across the organisation." }
+    ],
+    analytics:[
+      { t:'Business Intelligence AI', d:'Get the right data in front of the right person at the right moment — automatically, not on request after an analyst has had time to run it.' },
+      { t:'Predictive Analytics', d:'Move from reporting what happened to predicting what will — and acting before the problem or opportunity arrives.' }
+    ]
+  };
+
+  const INDUSTRY_CASES = [
+    { t:'Contract AI & Document Review', d:'AI-powered contract analysis, clause extraction, and risk flagging — at a fraction of the manual review time.' },
+    { t:'Predictive Maintenance AI', d:'Reduce unplanned downtime by identifying equipment issues before failure — shifting from reactive to proactive operations.' },
+    { t:'Clinical Documentation AI', d:'Automate documentation, patient communication, and scheduling to free clinical time for care rather than administration.' },
+    { t:'Property Analytics & Market Intelligence', d:'Surface market signals, comparable data, and client intelligence from multiple sources in real time.' },
+    { t:'Risk & Compliance AI', d:'Automate compliance monitoring, risk flagging, and regulatory reporting across your portfolio.' },
+    { t:'Demand Forecasting AI', d:'Predict demand shifts before they hit — improving inventory management, staffing decisions, and margin.' },
+    { t:'Route Optimisation & Exception Handling', d:'AI-driven logistics routing and automated exception management to reduce costs, delays, and manual intervention.' },
+    { t:'Customer Communication AI', d:'Personalise and automate customer-facing communication at scale without losing quality or consistency.' }
+  ];
+
+  // ═══════════════════════════════════════════════════════════
+  // STATE
+  // ═══════════════════════════════════════════════════════════
+  let curQ = 0;
+  const ans = {};
+  let userInfo = {};
+  const LABELS = ['Strongly Disagree','Disagree','Neutral','Agree','Strongly Agree'];
+
+  // ═══════════════════════════════════════════════════════════
+  // SCREEN MANAGEMENT
+  // ═══════════════════════════════════════════════════════════
+  function show(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function goHome() {
+    show('screen-landing');
+    document.getElementById('progress-wrap').style.display = 'none';
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // QUESTION FLOW
+  // ═══════════════════════════════════════════════════════════
+  function startAssessment() {
+    curQ = 0;
+    show('screen-question');
+    document.getElementById('progress-wrap').style.display = 'block';
+    render();
+  }
+
+  function render() {
+    const q = Qs[curQ];
+    document.getElementById('q-section').textContent = q.sec;
+    document.getElementById('q-counter').textContent = (curQ + 1) + ' of ' + Qs.length;
+    document.getElementById('q-text').textContent = q.text;
+    document.getElementById('btn-next').disabled = !(q.id in ans);
+    document.getElementById('progress-fill').style.width = ((curQ + 1) / Qs.length * 100) + '%';
+    const container = document.getElementById('q-options');
+    container.innerHTML = '';
+    if (q.type === 's') renderSingle(q, container);
+    else renderLikert(q, container);
+  }
+
+  function renderSingle(q, el) {
+    const list = document.createElement('div');
+    list.className = 'opts';
+    q.opts.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'opt' + (ans[q.id] === i ? ' selected' : '');
+      btn.innerHTML = `<span class="opt-letter">${String.fromCharCode(65+i)}</span>${opt}`;
+      btn.onclick = () => {
+        ans[q.id] = i;
+        list.querySelectorAll('.opt').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('btn-next').disabled = false;
+      };
+      list.appendChild(btn);
+    });
+    el.appendChild(list);
+  }
+
+  function renderLikert(q, el) {
+    const wrap = document.createElement('div');
+    const labels = document.createElement('div');
+    labels.className = 'likert-labels';
+    labels.innerHTML = '<span>Strongly Disagree</span><span>Strongly Agree</span>';
+    wrap.appendChild(labels);
+
+    const row = document.createElement('div');
+    row.className = 'likert-row';
+    [0,1,2,3,4].forEach(v => {
+      const btn = document.createElement('button');
+      btn.className = 'lbtn' + (ans[q.id] === v ? ' selected' : '');
+      btn.textContent = v + 1;
+      btn.title = LABELS[v];
+      btn.onclick = () => {
+        ans[q.id] = v;
+        row.querySelectorAll('.lbtn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('btn-next').disabled = false;
+        setTimeout(() => { advance(); }, 320);
+      };
+      row.appendChild(btn);
+    });
+    wrap.appendChild(row);
+
+    const hint = document.createElement('p');
+    hint.className = 'likert-hint';
+    hint.textContent = '1 = Strongly Disagree  ·  5 = Strongly Agree';
+    wrap.appendChild(hint);
+    el.appendChild(wrap);
+  }
+
+  function advance() {
+    if (curQ < Qs.length - 1) { curQ++; render(); }
+    else { show('screen-gate'); document.getElementById('progress-fill').style.width = '100%'; }
+  }
+
+  function goNext() {
+    if (!(Qs[curQ].id in ans)) return;
+    advance();
+  }
+
+  function goBack() {
+    if (curQ === 0) { goHome(); return; }
+    curQ--;
+    render();
+  }
+
+  function goBackToQuestions() {
+    show('screen-question');
+    render();
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // GATE SUBMISSION
+  // ═══════════════════════════════════════════════════════════
+  async function submitGate(e) {
+    e.preventDefault();
+    const name = document.getElementById('g-name').value.trim();
+    const email = document.getElementById('g-email').value.trim();
+    const company = document.getElementById('g-company').value.trim();
+    if (!name || !email || !company) { alert('Please fill in your name, email, and company to continue.'); return; }
+
+    const btn = document.getElementById('g-submit');
+    btn.textContent = 'Generating your report…';
+    btn.disabled = true;
+
+    userInfo = { name, email, company, budget: document.getElementById('g-budget').value };
+
+    const scores = calcScores();
+
+    // ─── FORMSPREE LEAD CAPTURE ───
+    // To activate:
+    //   1. Sign up free at formspree.io
+    //   2. Create a new form → copy the Form ID (looks like "xkgjblrb")
+    //   3. Replace 'YOUR_FORM_ID' below with your actual Form ID
+    //   4. Every submission will appear in your Formspree dashboard + email to you
+    const FORMSPREE_ID = 'YOUR_FORM_ID';
+    if (FORMSPREE_ID !== 'YOUR_FORM_ID') {
+      try {
+        await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(buildLead(scores))
+        });
+      } catch(_) { /* fail silently — never block the user from their results */ }
+    }
+
+    buildReport(scores);
+    show('screen-results');
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // SCORING ALGORITHM
+  // ═══════════════════════════════════════════════════════════
+  function g(id, def) { return id in ans ? ans[id] : def; }
+
+  function calcScores() {
+    // ── AI Readiness Index (ARI) ──
+    const ARI_raw = g('S2_1',2) + g('S2_2',2) + g('S2_3',2) + g('S2_4',2);
+    const ARI = Math.round((ARI_raw / 16) * 100);
+
+    // ── Strategic Clarity Score (SCS) ──
+    const SCS_raw = g('S3_1',2) + g('S3_2',2) + (4 - g('S3_3',2));
+    let SCS = (SCS_raw / 12) * 100;
+    const s2_5 = g('S2_5', 2);
+    SCS += s2_5 >= 3 ? -8 : s2_5 <= 1 ? 5 : 0;
+    SCS = Math.round(Math.min(100, Math.max(0, SCS)));
+
+    // ── Urgency Index (UI) ──
+    const UI = Math.round(((g('S3_7',2) + g('S4_7',2) + g('S5_3',2)) / 12) * 100);
+
+    // ── Barrier Profile (all 6 scored simultaneously) ──
+    const bScores = {
+      'Direction & Starting Point': g('S4_1', 2),
+      'Data Readiness':             4 - g('S4_2', 2),
+      'Internal Capability':        4 - g('S4_3', 2),
+      'Investment Readiness':       4 - g('S4_4', 2),
+      'Organisational Alignment':   4 - g('S4_5', 2),
+      'Building on Past Experience':4 - g('S4_6', 2)
+    };
+    const sorted = Object.entries(bScores).sort((a,b) => b[1]-a[1]);
+    const primaryB = sorted[0][0];
+    const secondaryB = sorted[1][0];
+    const compound = (sorted[0][1] - sorted[1][1]) < 0.5;
+
+    // ── Pain signals → top opportunity ──
+    const pain = { automation: g('S3_4',2), knowledge: g('S3_5',2), analytics: g('S3_6',2) };
+    const topPain = Object.entries(pain).sort((a,b)=>b[1]-a[1])[0][0];
+    const maxPain = Math.max(...Object.values(pain));
+
+    // ── ATI Composite ──
+    let ATI = (ARI*0.30) + (SCS*0.30) + (UI*0.25);
+    if (maxPain >= 3 && ARI >= 40) ATI += 5;
+    if (sorted[0][1] <= 1) ATI += 5;
+    if (sorted[0][1] >= 3.5) ATI -= 5;
+    ATI = Math.round(Math.min(100, Math.max(0, ATI)));
+
+    const tier = ATI >= 71 ? 'Leading' : ATI >= 51 ? 'Accelerating' : ATI >= 26 ? 'Developing' : 'Foundational';
+
+    // ── Archetype (priority-ordered rules) ──
+    let arch = 'Navigator';
+    if      (UI > 65 && ARI < 50 && g('S5_3',2) >= 3)               arch = 'Accelerator';
+    else if (SCS > 60 && ARI < 50)                                   arch = 'Architect';
+    else if (g('S6_4',2) >= 3 && ARI > 50)                          arch = 'Builder';
+    else if (maxPain >= 2.5 && UI > 55 && ARI >= 26 && ARI <= 65)   arch = 'Optimizer';
+    else if (SCS < 35 && ARI < 50 && g('S2_5',2) >= 3)             arch = 'Pioneer';
+
+    // ── Decision authority ──
+    const dm = g('S5_1',2), co = g('S5_2',2);
+    let decAuth = 'Influencer / Recommender';
+    if      (dm >= 3 && co <= 1) decAuth = 'Solo Decision-Maker';
+    else if (dm >= 3 && co >= 3) decAuth = 'Leads with Team Alignment';
+    else if (dm <= 1 && co >= 3) decAuth = 'Requires Formal Sign-off';
+
+    // ── Lead priority ──
+    const bud = userInfo.budget;
+    const highBudget = bud === '20k-60k' || bud === 'over60k';
+    const medBudget  = bud === '5k-20k';
+    let priority = 'Nurture';
+    if (UI > 60 && (highBudget || (medBudget && dm >= 3))) priority = 'HOT';
+    else if (UI > 35 || ATI > 65 || g('S4_7',2) >= 3) priority = 'WARM';
+    if (g('S6_3',2) >= 3 && g('S5_3',2) >= 3) {
+      if (priority === 'WARM') priority = 'HOT';
+      if (priority === 'Nurture') priority = 'WARM';
+    }
+
+    const trustSignal = g('S6_1',2) >= g('S6_2',2) ? 'Evidence-Seeker' : 'Relationship-Seeker';
+    const industryIdx = ans.Q3 !== undefined ? ans.Q3 : 7;
+
+    return { ARI, SCS, UI, ATI, tier, arch, primaryB, secondaryB, compound, topPain, decAuth, priority, trustSignal, industryIdx };
+  }
+
+  function buildLead(s) {
+    const roles   = ['Founder/CEO','Co-founder/CxO','Senior Director/VP/GM','Business Unit Head'];
+    const sizes   = ['Under 25','25-100','100-500','500-2000','Over 2000'];
+    const inds    = ['Professional Services','Manufacturing','Healthcare','Real Estate','Financial Services','Retail','Logistics','Other'];
+    const revs    = ['Under SGD 5M','SGD 5M-25M','SGD 25M-100M','Over SGD 100M'];
+    return {
+      ...userInfo,
+      role: roles[ans.Q1]||'', company_size: sizes[ans.Q2]||'',
+      industry: inds[ans.Q3]||'', revenue: revs[ans.Q4]||'',
+      ati_score: s.ATI, tier: s.tier,
+      ari: s.ARI, scs: s.SCS, urgency: s.UI,
+      archetype: s.arch, primary_barrier: s.primaryB, secondary_barrier: s.secondaryB,
+      compound_barrier: s.compound, decision_authority: s.decAuth,
+      trust_signal: s.trustSignal, lead_priority: s.priority,
+      s2_5: g('S2_5','-'), s3_3: g('S3_3','-'), s3_7: g('S3_7','-'),
+      s4_7: g('S4_7','-'), s5_3: g('S5_3','-'), s6_3: g('S6_3','-'), s6_4: g('S6_4','-'),
+      submitted_at: new Date().toISOString()
+    };
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // REPORT BUILDER
+  // ═══════════════════════════════════════════════════════════
+  function buildReport(s) {
+    const A = ARCHETYPES[s.arch];
+    const B = BARRIERS[s.primaryB];
+    const painCases = PAIN_CASES[s.topPain];
+    const indCase   = INDUSTRY_CASES[s.industryIdx] || INDUSTRY_CASES[7];
+
+    // Deduplicate use cases
+    const cases = [...painCases];
+    if (!cases.find(c => c.t === indCase.t)) cases.push(indCase);
+    const top3 = cases.slice(0, 3);
+
+    const firstName = userInfo.name.split(' ')[0];
+
+    document.getElementById('results-content').innerHTML = `
+
+      <p class="results-hello">Your Results, ${firstName}</p>
+      <p class="results-name">Here is your AI Transformation profile.</p>
+
+      <!-- SCORE CARD -->
+      <div class="score-card">
+        <div class="score-top">
+          <div>
+            <div class="score-lbl">AI Transformation Score</div>
+            <div class="score-num">${s.ATI}</div>
+            <div class="score-tier">${s.tier}</div>
+          </div>
+          <svg width="76" height="76" viewBox="0 0 76 76">
+            <circle cx="38" cy="38" r="32" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="6"/>
+            <circle cx="38" cy="38" r="32" fill="none" stroke="#C99A3A" stroke-width="6"
+              stroke-dasharray="${(2*Math.PI*32).toFixed(1)}"
+              stroke-dashoffset="${(2*Math.PI*32*(1-s.ATI/100)).toFixed(1)}"
+              stroke-linecap="round" transform="rotate(-90 38 38)"
+              style="transition:stroke-dashoffset 1.2s ease 0.3s"/>
+          </svg>
+        </div>
+        <div class="score-bars">
+          ${bar('AI Readiness', s.ARI)}
+          ${bar('Strategic Clarity', s.SCS)}
+          ${bar('Urgency', s.UI)}
+        </div>
+      </div>
+
+      <!-- ARCHETYPE -->
+      <div class="r-card">
+        <div class="r-section-lbl">Your AI Transformation Archetype</div>
+        <div class="archetype-name">${A.name}</div>
+        <div class="archetype-tagline">${A.tagline}</div>
+        <div class="archetype-desc">${A.desc}</div>
+        <div class="mini-label">What you're already doing right</div>
+        <ul class="strength-list">${A.strengths.map(x=>`<li>${x}</li>`).join('')}</ul>
+        <div class="mini-label">Your growth edge</div>
+        <div class="edge-box">${A.edge}</div>
+      </div>
+
+      <!-- USE CASES -->
+      <div class="r-card">
+        <div class="r-section-lbl">Where AI Can Move the Needle for You</div>
+        <div class="uc-grid">
+          ${top3.map((c,i)=>`
+            <div class="uc-item">
+              <div class="uc-num">${i+1}</div>
+              <div class="uc-body"><h4>${c.t}</h4><p>${c.d}</p></div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <!-- BARRIER -->
+      <div class="r-card">
+        <div class="r-section-lbl">What's Holding You Back</div>
+        <div class="archetype-name" style="font-size:1.2rem;margin-bottom:8px;">${s.primaryB}</div>
+        <div class="barrier-desc">${B.desc}</div>
+        ${s.compound ? `<div class="compound-note">Your responses also point to <strong>${s.secondaryB}</strong> as a close secondary barrier. Your path forward will need to address both in parallel rather than sequencing them.</div>` : ''}
+        <div class="steps">
+          ${B.steps.map((st,i)=>`
+            <div class="step">
+              <div class="step-num">${i+1}</div>
+              <div class="step-text">${st}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-card">
+        <div class="case-teaser">
+          <div class="case-teaser-lbl">From the Yugam Case File</div>
+          <div class="case-teaser-text">"${A.caseStudy}"</div>
+        </div>
+        <div class="cta-title">See how this applies to ${userInfo.company}.</div>
+        <div class="cta-sub">No pitch. A 30-minute conversation where I walk you through a relevant case and we look at what it means for your situation — specifically.</div>
+        <a href="https://yugam.io" class="cta-btn" target="_blank" rel="noopener">Book a 30-Minute Conversation →</a>
+        <div class="cta-note">Or email rohit@yugam.io directly — I read every one personally.</div>
+        <div class="rohit-row">
+          <div class="rohit-avatar">RM</div>
+          <div>
+            <div class="rohit-name">Rohit Maskara</div>
+            <div class="rohit-bio">Founder, Yugam &nbsp;·&nbsp; 12+ years in operations and strategy at Meta and KPMG &nbsp;·&nbsp; Helping organisations move from AI pilots to production-ready systems</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function bar(label, val) {
+    return `<div class="sbar-row">
+      <div class="sbar-meta"><span>${label}</span><span>${val}</span></div>
+      <div class="sbar-track"><div class="sbar-fill" style="width:${val}%;transition:width 0.9s ease 0.4s"></div></div>
+    </div>`;
+  }
+  </script>
+
+</body>
+</html>
