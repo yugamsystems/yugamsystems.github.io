@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engagement Methodology — Yugam AI Transformation</title>
+    <meta name="description" content="How a Yugam engagement runs — from the first discovery call to the 90-day post-handover review. Six phases, clear deliverables, no surprises.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --deep: #1A1612;
+            --deep-text: #E8E1D8;
+            --muted: #9B9183;
+
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+            --max-width: 1200px;
+            --section-pad: 120px;
+            --card-radius: 8px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+        h1 { font-size: 56px; line-height: 1.15; }
+        h2 { font-size: 40px; line-height: 1.2; margin-bottom: 20px; }
+        h3 { font-size: 26px; line-height: 1.3; }
+        h4 { font-size: 18px; line-height: 1.4; }
+
+        .label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--drift);
+            margin-bottom: 16px;
+            display: block;
+        }
+        .label--accent { color: var(--teak); }
+
+        .subheading {
+            font-size: 18px;
+            color: var(--bark);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 300ms ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn--primary {
+            background: var(--teak);
+            color: var(--stone);
+        }
+        .btn--primary:hover {
+            background: var(--teak-hover);
+            transform: translateY(-1px);
+        }
+        .btn--secondary {
+            background: transparent;
+            color: var(--charcoal);
+            border: 1.5px solid var(--clay);
+        }
+        .btn--secondary:hover {
+            border-color: var(--bark);
+            transform: translateY(-1px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 800ms ease-out, transform 800ms ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 120ms; }
+        .reveal-delay-2 { transition-delay: 240ms; }
+        .reveal-delay-3 { transition-delay: 360ms; }
+
+        /* ============ NAVIGATION ============ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            transition: all 400ms ease;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 var(--clay);
+        }
+        .nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav__logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .nav__logo-text {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            color: var(--ink);
+        }
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+        .nav__link {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--bark);
+            text-decoration: none;
+            transition: color 300ms ease;
+            font-weight: 500;
+        }
+        .nav__link:hover, .nav__link--active { color: var(--teak); }
+
+        .nav__dropdown { position: relative; }
+        .nav__dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -16px;
+            background: var(--stone);
+            border: 1px solid var(--clay);
+            border-radius: 6px;
+            padding: 16px 0 8px;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
+            z-index: 101;
+        }
+        .nav__dropdown:hover .nav__dropdown-menu { display: block; }
+        .nav__dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: var(--bark);
+            text-decoration: none;
+            transition: all 200ms ease;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .nav__dropdown-item:hover {
+            color: var(--teak);
+            background: var(--sand);
+        }
+        .nav__dropdown-item i {
+            font-size: 16px;
+            color: var(--drift);
+        }
+        .nav__dropdown-arrow {
+            font-size: 10px;
+            margin-left: 4px;
+        }
+        .nav__hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .nav__hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--ink);
+            margin: 5px 0;
+            transition: all 300ms ease;
+        }
+        .nav__mobile {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--stone);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+        .nav__mobile.open { display: flex; }
+        .nav__mobile a {
+            font-family: var(--font-serif);
+            font-size: 32px;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .nav__mobile a:hover { color: var(--teak); }
+        .nav__mobile-close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: var(--ink);
+            cursor: pointer;
+        }
+        .nav__mobile-sub {
+            font-family: var(--font-sans) !important;
+            font-size: 18px !important;
+            color: var(--drift) !important;
+            padding-left: 24px;
+        }
+
+        /* ============ HERO ============ */
+        .method-hero {
+            padding: 200px 0 80px;
+            background: var(--stone);
+        }
+        .method-hero__content {
+            max-width: 700px;
+        }
+        .method-hero__note {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px;
+            font-size: 14px;
+            color: var(--drift);
+            font-family: var(--font-mono);
+        }
+        .method-hero__note i { font-size: 16px; }
+
+        /* ============ PHASE TIMELINE ============ */
+        .phase-timeline {
+            padding: 0 0 80px;
+            background: var(--stone);
+        }
+        .phase-timeline__track {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            border: 1px solid var(--clay);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .phase-pip {
+            flex: 1;
+            padding: 20px 16px;
+            border-right: 1px solid var(--clay);
+            background: var(--stone-light);
+            transition: background 200ms ease;
+            cursor: default;
+            text-decoration: none;
+        }
+        .phase-pip:last-child { border-right: none; }
+        .phase-pip:hover { background: var(--sand); }
+        .phase-pip__num {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--drift);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+        }
+        .phase-pip__name {
+            font-family: var(--font-serif);
+            font-size: 15px;
+            color: var(--ink);
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+        .phase-pip__weeks {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--teak);
+        }
+
+        /* ============ PHASE SECTIONS ============ */
+        .phases {
+            padding: 0 0 var(--section-pad);
+        }
+        .phase-section {
+            padding: 80px 0;
+            border-top: 1px solid var(--clay);
+        }
+        .phase-section:first-child { border-top: none; }
+
+        .phase-section__inner {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .phase-section__meta {
+            position: sticky;
+            top: 100px;
+        }
+        .phase-section__num {
+            font-family: var(--font-mono);
+            font-size: 72px;
+            color: var(--clay);
+            line-height: 1;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .phase-section__title {
+            margin-bottom: 8px;
+        }
+        .phase-section__duration {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--stone);
+            background: var(--teak);
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-top: 12px;
+        }
+        .phase-section__desc {
+            margin-top: 20px;
+            font-size: 15px;
+            color: var(--bark);
+            line-height: 1.7;
+        }
+        .phase-section__overlap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--drift);
+            font-family: var(--font-mono);
+        }
+        .phase-section__overlap i { font-size: 14px; }
+
+        /* ============ STEP LIST ============ */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .step {
+            background: var(--stone-light);
+            border: 1px solid var(--clay);
+            border-radius: 6px;
+            padding: 24px 28px;
+            transition: border-color 200ms ease;
+        }
+        .step:hover { border-color: var(--bark); }
+
+        .step__header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+        .step__title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1.4;
+        }
+        .step__duration {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--teak);
+            white-space: nowrap;
+            padding-top: 2px;
+            flex-shrink: 0;
+        }
+        .step__desc {
+            font-size: 14px;
+            color: var(--bark);
+            line-height: 1.65;
+        }
+        .step--highlighted {
+            border-color: var(--teak);
+            background: #FDF9F2;
+        }
+        .step--highlighted .step__title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--teak);
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        /* ============ TOTALS BAR ============ */
+        .totals {
+            padding: 60px 0 var(--section-pad);
+            background: var(--sand);
+            border-top: 1px solid var(--clay);
+        }
+        .totals__inner {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        .total-card {
+            text-align: center;
+            padding: 40px 32px;
+            background: var(--stone);
+            border-radius: 8px;
+            border: 1px solid var(--clay);
+        }
+        .total-card__value {
+            font-family: var(--font-serif);
+            font-size: 52px;
+            color: var(--ink);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .total-card__label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--drift);
+            margin-bottom: 12px;
+        }
+        .total-card__note {
+            font-size: 14px;
+            color: var(--bark);
+        }
+
+        /* ============ HONEST NOTE ============ */
+        .honest-note {
+            padding: 80px 0;
+            background: var(--stone);
+            border-top: 1px solid var(--clay);
+        }
+        .honest-note__inner {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .honest-note__quote {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            color: var(--ink);
+            line-height: 1.55;
+            margin-bottom: 24px;
+        }
+        .honest-note__body {
+            font-size: 16px;
+            color: var(--bark);
+            line-height: 1.75;
+        }
+        .honest-note__body p + p { margin-top: 16px; }
+
+        /* ============ BOTTOM CTA ============ */
+        .cta-bottom {
+            padding: var(--section-pad) 0;
+            background: var(--deep);
+        }
+        .cta-bottom .container { text-align: center; }
+        .cta-bottom__heading {
+            font-family: var(--font-serif);
+            font-size: 44px;
+            color: var(--deep-text);
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+        .cta-bottom__sub {
+            font-size: 18px;
+            color: var(--drift);
+            max-width: 520px;
+            margin: 0 auto 40px;
+        }
+        .cta-bottom__buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-bottom .btn--secondary {
+            color: var(--deep-text);
+            border-color: var(--drift);
+        }
+        .cta-bottom .btn--secondary:hover { border-color: var(--deep-text); }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--deep);
+            border-top: 1px solid rgba(107,94,81,0.3);
+            padding: 32px 0;
+        }
+        .footer .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer__copy {
+            font-size: 14px;
+            color: var(--drift);
+        }
+        .footer__social {
+            display: flex;
+            gap: 16px;
+        }
+        .footer__social a {
+            color: var(--drift);
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 200ms ease;
+        }
+        .footer__social a:hover { color: var(--deep-text); }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .phase-section__inner {
+                grid-template-columns: 200px 1fr;
+                gap: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 38px; }
+            h2 { font-size: 30px; }
+            h3 { font-size: 22px; }
+
+            .method-hero { padding: 140px 0 60px; }
+            .container { padding: 0 20px; }
+
+            .phase-timeline__track {
+                flex-direction: column;
+                border-radius: 6px;
+            }
+            .phase-pip {
+                border-right: none;
+                border-bottom: 1px solid var(--clay);
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                padding: 16px;
+            }
+            .phase-pip:last-child { border-bottom: none; }
+            .phase-pip__num { margin-bottom: 0; min-width: 24px; }
+            .phase-pip__name { margin-bottom: 0; }
+
+            .phase-section { padding: 48px 0; }
+            .phase-section__inner {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .phase-section__meta { position: static; }
+            .phase-section__num { font-size: 48px; }
+
+            .totals__inner { grid-template-columns: 1fr; gap: 16px; }
+            .total-card { padding: 32px 24px; }
+            .total-card__value { font-size: 40px; }
+
+            .cta-bottom__heading { font-size: 32px; }
+
+            .nav__links { display: none; }
+            .nav__hamburger { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav">
+        <div class="container">
+            <a href="./index.html" class="nav__logo">
+                <svg width="20" height="32" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="nav__logo-text">Yugam</span>
+            </a>
+            <ul class="nav__links">
+                <li><a href="./index.html" class="nav__link">About</a></li>
+                <li><a href="./ai-stack.html" class="nav__link">AI Stack</a></li>
+                <li><a href="./index.html#services" class="nav__link nav__link--active">Services</a></li>
+                <li class="nav__dropdown">
+                    <a href="#" class="nav__link">Resources <span class="nav__dropdown-arrow">&#9662;</span></a>
+                    <div class="nav__dropdown-menu">
+                        <a href="./ai-transformation-index/index.html" class="nav__dropdown-item"><i class="ti ti-brain"></i> AI Transformation Index</a>
+                        <a href="./index.html#tools" class="nav__dropdown-item"><i class="ti ti-stethoscope"></i> Diagnostic Tools</a>
+                        <a href="./index.html#insights" class="nav__dropdown-item"><i class="ti ti-article"></i> Articles & Insights</a>
+                        <a href="./index.html#case-studies" class="nav__dropdown-item"><i class="ti ti-chart-bar"></i> Case Studies</a>
+                    </div>
+                </li>
+                <li><a href="./index.html#contact-form" class="btn btn--primary" style="padding: 10px 20px; font-size: 13px;">Let's Talk</a></li>
+            </ul>
+            <button class="nav__hamburger" onclick="document.querySelector('.nav__mobile').classList.add('open')" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="nav__mobile" id="mobileMenu">
+        <button class="nav__mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close menu">&times;</button>
+        <a href="./index.html" onclick="this.parentElement.classList.remove('open')">About</a>
+        <a href="./ai-stack.html" onclick="this.parentElement.classList.remove('open')">AI Stack</a>
+        <a href="./index.html#services" onclick="this.parentElement.classList.remove('open')">Services</a>
+        <a href="./ai-transformation-index/index.html">AI Transformation Index</a>
+        <a href="./index.html#tools" onclick="this.parentElement.classList.remove('open')">Diagnostic Tools</a>
+        <a href="./index.html#contact-form" class="btn btn--primary" onclick="this.parentElement.classList.remove('open')">Let's Talk</a>
+    </div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="method-hero">
+        <div class="container">
+            <div class="method-hero__content">
+                <span class="label label--accent reveal">Engagement Methodology</span>
+                <h1 class="reveal reveal-delay-1">How an engagement runs.</h1>
+                <p class="subheading reveal reveal-delay-2">Six phases from the first discovery call to the 90-day post-handover review. Every step has a clear output. No black boxes, no scope creep, no surprises.</p>
+                <div class="method-hero__note reveal reveal-delay-3">
+                    <i class="ti ti-clock"></i>
+                    Full engagement: 20–32 weeks depending on scope and starting point
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PHASE TIMELINE ==================== -->
+    <section class="phase-timeline">
+        <div class="container">
+            <div class="phase-timeline__track reveal">
+                <a href="#phase-1" class="phase-pip">
+                    <div class="phase-pip__num">01</div>
+                    <div class="phase-pip__name">Discovery &amp; Assessment</div>
+                    <div class="phase-pip__weeks">Wks 1–4</div>
+                </a>
+                <a href="#phase-2" class="phase-pip">
+                    <div class="phase-pip__num">02</div>
+                    <div class="phase-pip__name">Strategy &amp; Planning</div>
+                    <div class="phase-pip__weeks">Wks 3–6</div>
+                </a>
+                <a href="#phase-3" class="phase-pip">
+                    <div class="phase-pip__num">03</div>
+                    <div class="phase-pip__name">Build &amp; Pilot</div>
+                    <div class="phase-pip__weeks">Wks 5–20</div>
+                </a>
+                <a href="#phase-4" class="phase-pip">
+                    <div class="phase-pip__num">04</div>
+                    <div class="phase-pip__name">Measurement &amp; Governance</div>
+                    <div class="phase-pip__weeks">Wks 14–20</div>
+                </a>
+                <a href="#phase-5" class="phase-pip">
+                    <div class="phase-pip__num">05</div>
+                    <div class="phase-pip__name">Training &amp; Enablement</div>
+                    <div class="phase-pip__weeks">Wks 18–26</div>
+                </a>
+                <a href="#phase-6" class="phase-pip">
+                    <div class="phase-pip__num">06</div>
+                    <div class="phase-pip__name">Handover &amp; Close</div>
+                    <div class="phase-pip__weeks">Final 2–3 wks</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PHASES ==================== -->
+    <section class="phases">
+        <div class="container">
+
+            <!-- PHASE 1 -->
+            <div class="phase-section" id="phase-1">
+                <div class="phase-section__inner">
+                    <div class="phase-section__meta reveal">
+                        <span class="phase-section__num">01</span>
+                        <h3 class="phase-section__title">Discovery &amp; Assessment</h3>
+                        <span class="phase-section__duration">2–4 weeks</span>
+                        <p class="phase-section__desc">Before any strategy or tool selection, I need to understand how the business actually operates — not how it looks on an org chart. This phase is mostly listening and asking uncomfortable questions.</p>
+                    </div>
+                    <div class="steps reveal reveal-delay-1">
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Stakeholder interviews</div>
+                                <div class="step__duration">3–5 days</div>
+                            </div>
+                            <div class="step__desc">C-suite, ops leads, department heads, and frontline staff. The people closest to the work know where the real friction is. Leadership knows where the pressure is coming from. Both matter.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Business &amp; operations mapping</div>
+                                <div class="step__duration">2–3 days</div>
+                            </div>
+                            <div class="step__desc">Revenue model, cost drivers, key processes, and decision points. Where do decisions slow down or get made twice? Where does knowledge disappear when someone leaves?</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Technology &amp; systems audit</div>
+                                <div class="step__duration">2–3 days</div>
+                            </div>
+                            <div class="step__desc">Current stack, data flows, integration points, vendor contracts. What exists, what it actually does, and what it's costing. Avoids recommending tools the client already has under a different name.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Data audit</div>
+                                <div class="step__duration">3–5 days</div>
+                            </div>
+                            <div class="step__desc">Where does data live, who owns it, how clean is it, and who can access it? This is the step that reveals the hidden blockers. Data problems discovered in Phase 3 are expensive. Discovered here, they're solvable.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Opportunity mapping</div>
+                                <div class="step__duration">2–3 days</div>
+                            </div>
+                            <div class="step__desc">Structured identification of AI candidates across all business units. Each scored on impact, feasibility, data availability, and time to value. Produces a ranked list — not a wish list.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Go/no-go recommendation</div>
+                                <div class="step__duration">2–3 days</div>
+                            </div>
+                            <div class="step__desc">An honest assessment: where to start, where not to start, and why. Includes a preliminary cost-benefit, proposed sequence, and a clear statement of what would need to be true for this to succeed. If it's not the right time, I'll say so.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 2 -->
+            <div class="phase-section" id="phase-2">
+                <div class="phase-section__inner">
+                    <div class="phase-section__meta reveal">
+                        <span class="phase-section__num">02</span>
+                        <h3 class="phase-section__title">Strategy &amp; Planning</h3>
+                        <span class="phase-section__duration">2–4 weeks</span>
+                        <p class="phase-section__desc">With the assessment complete, this phase converts findings into a committed plan. Use cases are selected, tools evaluated, architecture drafted, and the governance framework set up before any build work starts.</p>
+                        <div class="phase-section__overlap">
+                            <i class="ti ti-arrows-exchange"></i>
+                            Overlaps with Phase 1 end
+                        </div>
+                    </div>
+                    <div class="steps reveal reveal-delay-1">
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">AI strategy design</div>
+                                <div class="step__duration">1 week</div>
+                            </div>
+                            <div class="step__desc">Which use cases, in which order, with which approach. Build vs. buy vs. configure for each. Sequenced by dependencies — some things have to happen before others.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Vendor &amp; tool evaluation</div>
+                                <div class="step__duration">3–5 days</div>
+                            </div>
+                            <div class="step__desc">Shortlist, structured scoring against your specific requirements, demos where needed. The evaluation criteria come from the assessment — not from vendor marketing. Avoids picking tools based on brand recognition.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Architecture design</div>
+                                <div class="step__duration">3–5 days</div>
+                            </div>
+                            <div class="step__desc">How AI connects to existing systems. Data pipelines, integration points, security model, and access controls. Designed before any code is written or any vendor is contracted.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Business case &amp; full cost model</div>
+                                <div class="step__duration">2–3 days</div>
+                            </div>
+                            <div class="step__desc">Total cost of implementation — not just software licences. Includes internal time, data preparation, change management, training, and ongoing maintenance. The number most vendors don't show you.</div>
+                        </div>
+                        <div class="step--highlighted step">
+                            <div class="step__header">
+                                <div class="step__title">Baseline measurement</div>
+                                <div class="step__duration">1–2 days</div>
+                            </div>
+                            <div class="step__desc">Capture the before numbers now — hours spent per task, error rate, cost per unit, response time. Without a baseline established before the build, there's no credible ROI number at the end.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Risk register</div>
+                                <div class="step__duration">1–2 days</div>
+                            </div>
+                            <div class="step__desc">Technical risks, data risks, change management risks, vendor dependency risks. Each with a rated likelihood, impact, and mitigation plan. A living document — updated throughout the engagement.</div>
+                        </div>
+                        <div class="step--highlighted step">
+                            <div class="step__header">
+                                <div class="step__title">Governance &amp; compliance review</div>
+                                <div class="step__duration">1–2 days</div>
+                            </div>
+                            <div class="step__desc">Data privacy (GDPR, local regulations), model transparency requirements, bias audit checklist, and audit trail design. Regulatory constraints found here cost a few days to resolve. Found in Phase 3, they can stop a build cold.</div>
+                        </div>
+                        <div class="step--highlighted step">
+                            <div class="step__header">
+                                <div class="step__title">Stakeholder &amp; change management plan</div>
+                                <div class="step__duration">1–2 days</div>
+                            </div>
+                            <div class="step__desc">Who needs to know what, when, and how. Resistance mapping — who is likely to push back and why. Communication cadence. Executive sponsorship alignment. Most AI implementations fail not because the technology doesn't work, but because the people piece wasn't planned.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 3 -->
+            <div class="phase-section" id="phase-3">
+                <div class="phase-section__inner">
+                    <div class="phase-section__meta reveal">
+                        <span class="phase-section__num">03</span>
+                        <h3 class="phase-section__title">Build &amp; Pilot</h3>
+                        <span class="phase-section__duration">8–16 weeks</span>
+                        <p class="phase-section__desc">The longest and most variable phase. Duration depends on the starting state of the data, the complexity of integrations, and how much custom build is required versus configuration. Iterative throughout — not a one-shot delivery.</p>
+                    </div>
+                    <div class="steps reveal reveal-delay-1">
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Data preparation</div>
+                                <div class="step__duration">2–4 weeks</div>
+                            </div>
+                            <div class="step__desc">Cleaning, structuring, labelling, and connecting the data the AI system needs. The step most engagements underestimate. Data in poor shape adds weeks. The assessment tells us this upfront — the work is planned for accordingly.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Solution development</div>
+                                <div class="step__duration">4–8 weeks</div>
+                            </div>
+                            <div class="step__desc">Tool configuration, workflow automation build, custom integration where needed. Iterative — working software is shown to internal users early, not at the end. Feedback is captured and applied in-cycle.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Internal QA &amp; testing</div>
+                                <div class="step__duration">1–2 weeks</div>
+                            </div>
+                            <div class="step__desc">Structured testing before any real users touch it. Edge cases, failure modes, data quality issues, and integration break points. The test cases are written in Phase 2 when the architecture is designed.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Controlled pilot</div>
+                                <div class="step__duration">2–4 weeks</div>
+                            </div>
+                            <div class="step__desc">Deploy to one team or one process first. Measure against the baseline established in Phase 2. Capture everything that works and everything that doesn't. A small-scope pilot failure costs a few weeks. A full-scale launch failure costs months.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Post-pilot iteration</div>
+                                <div class="step__duration">1–2 weeks</div>
+                            </div>
+                            <div class="step__desc">Fix what the pilot revealed. Document what changed and why. Decision gate before scaling: does the pilot evidence justify full rollout, or does the design need to change?</div>
+                        </div>
+                        <div class="step--highlighted step">
+                            <div class="step__header">
+                                <div class="step__title">Hypercare period</div>
+                                <div class="step__duration">2–4 weeks</div>
+                            </div>
+                            <div class="step__desc">Intensive support immediately after go-live. When systems go live in production, things break in ways that testing didn't catch. Planned intensive support during this window contains the damage and resolves issues before they become incidents.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 4 -->
+            <div class="phase-section" id="phase-4">
+                <div class="phase-section__inner">
+                    <div class="phase-section__meta reveal">
+                        <span class="phase-section__num">04</span>
+                        <h3 class="phase-section__title">Measurement &amp; Governance</h3>
+                        <span class="phase-section__duration">2–3 weeks</span>
+                        <p class="phase-section__desc">Runs in parallel with the Build phase. The reporting infrastructure, dashboards, and governance framework are built while the AI system is being developed — so they're live on day one of production, not retrofitted afterwards.</p>
+                        <div class="phase-section__overlap">
+                            <i class="ti ti-arrows-exchange"></i>
+                            Runs in parallel with Phase 3
+                        </div>
+                    </div>
+                    <div class="steps reveal reveal-delay-1">
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Executive dashboard</div>
+                                <div class="step__duration">3–5 days</div>
+                            </div>
+                            <div class="step__desc">Live view of AI performance metrics for leadership. What's running, what it's returning, where it's flagging. Built to the decisions that leadership needs to make — not the metrics that are easy to track.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Automated alerts &amp; anomaly detection</div>
+                                <div class="step__duration">2–3 days</div>
+                            </div>
+                            <div class="step__desc">System alerts when performance drops below agreed thresholds. Catches model drift, data quality issues, and integration failures before they surface as business problems.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Reporting cadence &amp; templates</div>
+                                <div class="step__duration">2–3 days</div>
+                            </div>
+                            <div class="step__desc">Weekly operational report, monthly executive report. Templates set up so the client can run these without external help after handover.</div>
+                        </div>
+                        <div class="step--highlighted step">
+                            <div class="step__header">
+                                <div class="step__title">Data governance framework</div>
+                                <div class="step__duration">2–3 days</div>
+                            </div>
+                            <div class="step__desc">Ongoing data ownership, access controls, quality standards, and refresh cadence. AI systems degrade over time when nobody owns data quality. This sets the structure that prevents that.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">ROI documentation</div>
+                                <div class="step__duration">1–2 days</div>
+                            </div>
+                            <div class="step__desc">Formal before/after comparison against the baseline metrics captured in Phase 2. The number that goes into the executive handover and justifies the next phase of investment.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 5 -->
+            <div class="phase-section" id="phase-5">
+                <div class="phase-section__inner">
+                    <div class="phase-section__meta reveal">
+                        <span class="phase-section__num">05</span>
+                        <h3 class="phase-section__title">Training &amp; Enablement</h3>
+                        <span class="phase-section__duration">4–8 weeks</span>
+                        <p class="phase-section__desc">The most commonly underinvested phase. A working AI system that your team doesn't use is a failed AI implementation. This phase is about making the change stick — not just delivering training sessions.</p>
+                    </div>
+                    <div class="steps reveal reveal-delay-1">
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Role-based needs assessment</div>
+                                <div class="step__duration">1 week</div>
+                            </div>
+                            <div class="step__desc">What does a finance analyst need to know vs. a customer service agent vs. an executive sponsor? Different roles need different things. Generic AI training is expensive and ineffective.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">SOP rewrite</div>
+                                <div class="step__duration">1–2 weeks</div>
+                            </div>
+                            <div class="step__desc">Update standard operating procedures to reflect the new AI-augmented way of working. Without updated SOPs, people revert to old habits within weeks of training ending.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Training material development</div>
+                                <div class="step__duration">1 week</div>
+                            </div>
+                            <div class="step__desc">Role-specific playbooks, quick reference guides, and worked examples from the actual deployed system — not generic demos. Materials built for the tool your team is using, not an idealised version of it.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Executive briefings</div>
+                                <div class="step__duration">2–3 sessions</div>
+                            </div>
+                            <div class="step__desc">Strategy-level sessions for leadership. The focus is on governance decisions, what to watch on the dashboard, and how to interpret the numbers — not on operating the tool itself.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Team workshops</div>
+                                <div class="step__duration">2–4 weeks</div>
+                            </div>
+                            <div class="step__desc">Hands-on, role-specific sessions. Participants work through tasks on the actual system using their own real work — not fictional examples. The only training that transfers to day-to-day use.</div>
+                        </div>
+                        <div class="step--highlighted step">
+                            <div class="step__header">
+                                <div class="step__title">Super-user programme</div>
+                                <div class="step__duration">1 week setup, ongoing</div>
+                            </div>
+                            <div class="step__desc">Identify 2–3 internal champions per team who receive deeper training and become the first line of support after handover. Sustains adoption without ongoing external dependency. The single most effective way to make change stick.</div>
+                        </div>
+                        <div class="step--highlighted step">
+                            <div class="step__header">
+                                <div class="step__title">Adoption measurement</div>
+                                <div class="step__duration">4–6 weeks ongoing</div>
+                            </div>
+                            <div class="step__desc">Track actual system usage rates — not training completion. The common failure mode: people attend training, then don't use the tool. Usage data is reviewed weekly for the first month post-training with a structured response plan if adoption drops.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 6 -->
+            <div class="phase-section" id="phase-6">
+                <div class="phase-section__inner">
+                    <div class="phase-section__meta reveal">
+                        <span class="phase-section__num">06</span>
+                        <h3 class="phase-section__title">Handover &amp; Close</h3>
+                        <span class="phase-section__duration">2–3 weeks</span>
+                        <p class="phase-section__desc">The engagement closes only when the client can operate independently. That means named internal owners, working documentation, and a clear escalation path — not a folder of files and a goodbye call.</p>
+                    </div>
+                    <div class="steps reveal reveal-delay-1">
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Documentation package</div>
+                                <div class="step__duration">1 week</div>
+                            </div>
+                            <div class="step__desc">Full runbooks, architecture diagrams, vendor contacts, maintenance schedules, and troubleshooting guides. Everything needed to operate the system without calling anyone.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Internal ownership transfer</div>
+                                <div class="step__duration">2–3 days</div>
+                            </div>
+                            <div class="step__desc">Named internal owner for each system — not a team, a person. Clear escalation path. Vendor relationship contacts transferred. The documentation means nothing if nobody knows they own it.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Executive handover session</div>
+                                <div class="step__duration">Half day</div>
+                            </div>
+                            <div class="step__desc">Formal close with leadership. What was built, what it returned against baseline, what to watch for, what the 90-day plan looks like. ROI documentation presented and signed off.</div>
+                        </div>
+                        <div class="step--highlighted step">
+                            <div class="step__header">
+                                <div class="step__title">90-day post-engagement review</div>
+                                <div class="step__duration">1 session</div>
+                            </div>
+                            <div class="step__desc">One structured follow-up call 90 days after close. Checks whether the system is running as expected, whether adoption held, and whether any drift has crept in. The most common failure mode is not visible at handover — it appears 6–8 weeks later when no one is watching.</div>
+                        </div>
+                        <div class="step">
+                            <div class="step__header">
+                                <div class="step__title">Optional retainer scope</div>
+                                <div class="step__duration">As agreed</div>
+                            </div>
+                            <div class="step__desc">If ongoing support is warranted, the scope, SLA, and pricing are defined clearly and separately from the main engagement. No ambiguity about what's included after close.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== TOTALS ============ -->
+    <section class="totals">
+        <div class="container">
+            <div class="totals__inner">
+                <div class="total-card reveal">
+                    <div class="total-card__label">Total duration</div>
+                    <div class="total-card__value">20–32</div>
+                    <div class="total-card__note">weeks from first call to 90-day review, depending on scope and starting data state</div>
+                </div>
+                <div class="total-card reveal reveal-delay-1">
+                    <div class="total-card__label">Number of phases</div>
+                    <div class="total-card__value">6</div>
+                    <div class="total-card__note">each with clear deliverables and a decision gate before the next phase begins</div>
+                </div>
+                <div class="total-card reveal reveal-delay-2">
+                    <div class="total-card__label">Starting point</div>
+                    <div class="total-card__value">30 min</div>
+                    <div class="total-card__note">first conversation — no pitch deck, no pressure, just enough to know whether this makes sense</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== HONEST NOTE ==================== -->
+    <section class="honest-note">
+        <div class="container">
+            <div class="honest-note__inner reveal">
+                <p class="honest-note__quote">"Not every engagement runs all six phases. Some clients only need Phase 1 — the assessment tells them what they need to know and they take it from there. Others bring me in at Phase 3 because the strategy is done and they need someone to build it. The methodology is a complete picture of what a full engagement looks like. Where you enter depends on where you are."</p>
+                <div class="honest-note__body">
+                    <p>Every engagement starts with the same 30-minute conversation. You tell me what you're trying to build and where you're stuck. I tell you honestly which phases apply and roughly what they cost. No commitment required to have that conversation.</p>
+                    <p>Staffing scales with scope. Smaller assessments are solo. Larger builds bring in specialist contractors — data engineers, developers, or domain specialists as needed. You'll know who is working on your engagement before it starts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BOTTOM CTA ==================== -->
+    <section class="cta-bottom">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="cta-bottom__heading">Every engagement starts the same way.</h2>
+                <p class="cta-bottom__sub">A 30-minute conversation. No deck, no pressure. Just enough to know whether this makes sense.</p>
+                <div class="cta-bottom__buttons">
+                    <a href="./index.html#contact-form" class="btn btn--primary">Let's Talk</a>
+                    <a href="./ai-transformation-index/index.html" class="btn btn--secondary">Take the AI Assessment First</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__copy">© 2026 Yugam. Helping you build production-quality AI.</div>
+            <div class="footer__social">
+                <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+                <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="ti ti-brand-youtube"></i></a>
+                <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><i class="ti ti-brand-x"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function revealVisible() {
+            document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight + 60) el.classList.add('visible');
+            });
+        }
+        revealVisible();
+        window.addEventListener('scroll', revealVisible, { passive: true });
+        window.addEventListener('load', revealVisible);
+        setTimeout(revealVisible, 100);
+        setTimeout(revealVisible, 500);
+
+        const dropdowns = document.querySelectorAll('.nav__dropdown');
+        let dropdownHideTimeout;
+        dropdowns.forEach(dropdown => {
+            const menu = dropdown.querySelector('.nav__dropdown-menu');
+            dropdown.addEventListener('mouseenter', () => {
+                clearTimeout(dropdownHideTimeout);
+                menu.style.display = 'block';
+            });
+            dropdown.addEventListener('mouseleave', () => {
+                dropdownHideTimeout = setTimeout(() => { menu.style.display = 'none'; }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
