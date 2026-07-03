@@ -268,7 +268,7 @@
 
         /* Opportunity strip */
         .strip-wrap {
-            position: sticky; top: 56px; z-index: 40;
+            position: relative;
             background: var(--stone); padding: 16px 0 8px; margin-bottom: 16px;
         }
         .strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
@@ -938,13 +938,14 @@
     function scrollToOpportunity(rank) {
         const target = document.querySelector(`.opportunity[data-rank="${rank}"]`);
         if (!target) return;
-        const navH = document.querySelector('.nav')?.offsetHeight || 56;
-        const stripH = document.querySelector('.strip-wrap')?.offsetHeight || 0;
-        const offset = target.getBoundingClientRect().top + window.scrollY - navH - stripH - 16;
-        window.scrollTo({ top: offset, behavior: 'smooth' });
-        target.classList.add('opportunity--highlight');
         if (!target.classList.contains('opportunity--expanded')) toggleDetail(target);
+        target.classList.add('opportunity--highlight');
         setTimeout(() => target.classList.remove('opportunity--highlight'), 900);
+        requestAnimationFrame(() => {
+            const headerH = document.querySelector('.header')?.offsetHeight || 56;
+            const offset = target.getBoundingClientRect().top + window.scrollY - headerH - 16;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        });
     }
 
     function toggleDetail(el) {
