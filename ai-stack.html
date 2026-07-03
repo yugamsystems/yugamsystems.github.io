@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The AI Stack — Yugam AI Transformation</title>
+    <meta name="description" content="The AI tools I recommend to my clients — curated, tested, and honest. A short list of what works in real implementations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --deep: #1A1612;
+            --deep-text: #E8E1D8;
+
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+            --max-width: 1200px;
+            --section-pad: 140px;
+            --card-radius: 8px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+        h1 { font-size: 56px; line-height: 1.15; }
+        h2 { font-size: 40px; line-height: 1.2; margin-bottom: 20px; }
+        h3 { font-size: 24px; line-height: 1.3; }
+
+        .label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--drift);
+            margin-bottom: 16px;
+            display: block;
+        }
+        .label--accent { color: var(--teak); }
+
+        .subheading {
+            font-size: 18px;
+            color: var(--bark);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 300ms ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn--primary {
+            background: var(--teak);
+            color: var(--stone);
+        }
+        .btn--primary:hover {
+            background: var(--teak-hover);
+            transform: translateY(-1px);
+        }
+        .btn--secondary {
+            background: transparent;
+            color: var(--charcoal);
+            border: 1.5px solid var(--clay);
+        }
+        .btn--secondary:hover {
+            border-color: var(--bark);
+            transform: translateY(-1px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 800ms ease-out, transform 800ms ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 120ms; }
+        .reveal-delay-2 { transition-delay: 240ms; }
+        .reveal-delay-3 { transition-delay: 360ms; }
+
+        /* ============ NAVIGATION ============ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            transition: all 400ms ease;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 var(--clay);
+        }
+        .nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav__logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .nav__logo-text {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            color: var(--ink);
+        }
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+        .nav__link {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--bark);
+            text-decoration: none;
+            transition: color 300ms ease;
+            font-weight: 500;
+        }
+        .nav__link:hover, .nav__link--active { color: var(--teak); }
+
+        .nav__dropdown { position: relative; }
+        .nav__dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -16px;
+            background: var(--stone);
+            border: 1px solid var(--clay);
+            border-radius: 6px;
+            padding: 16px 0 8px;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
+            z-index: 101;
+        }
+        .nav__dropdown:hover .nav__dropdown-menu { display: block; }
+        .nav__dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: var(--bark);
+            text-decoration: none;
+            transition: all 200ms ease;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .nav__dropdown-item:hover {
+            color: var(--teak);
+            background: var(--sand);
+        }
+        .nav__dropdown-item i {
+            font-size: 16px;
+            color: var(--drift);
+        }
+        .nav__dropdown-arrow {
+            font-size: 10px;
+            margin-left: 4px;
+        }
+
+        .nav__hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .nav__hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--ink);
+            margin: 5px 0;
+            transition: all 300ms ease;
+        }
+
+        .nav__mobile {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--stone);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+        .nav__mobile.open { display: flex; }
+        .nav__mobile a {
+            font-family: var(--font-serif);
+            font-size: 32px;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .nav__mobile a:hover { color: var(--teak); }
+        .nav__mobile-close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: var(--ink);
+            cursor: pointer;
+        }
+        .nav__mobile-sub {
+            font-family: var(--font-sans) !important;
+            font-size: 18px !important;
+            color: var(--drift) !important;
+            padding-left: 24px;
+        }
+
+        /* ============ HERO ============ */
+        .stack-hero {
+            padding: 200px 0 80px;
+            background: var(--stone);
+        }
+        .stack-hero__content {
+            max-width: 680px;
+        }
+        .stack-hero__headline {
+            margin-bottom: 24px;
+        }
+        .stack-hero__cta {
+            margin-top: 24px;
+        }
+        .stack-hero__cta a {
+            color: var(--teak);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 300ms ease;
+        }
+        .stack-hero__cta a:hover {
+            color: var(--teak-hover);
+        }
+
+        /* ============ FILTER BAR ============ */
+        .filter-bar {
+            position: sticky;
+            top: 62px;
+            z-index: 50;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .filter-bar .container {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .filter-bar__search {
+            padding: 10px 14px;
+            background: var(--sand);
+            border: 1.5px solid var(--clay);
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            color: var(--charcoal);
+            width: 240px;
+            outline: none;
+            transition: border-color 300ms ease;
+        }
+        .filter-bar__search:focus {
+            border-color: var(--teak);
+        }
+        .filter-bar__search::placeholder {
+            color: var(--drift);
+        }
+        .filter-bar__pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+        .filter-pill {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 6px 14px;
+            background: var(--sand);
+            color: var(--bark);
+            border: 1px solid var(--clay);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 200ms ease;
+        }
+        .filter-pill:hover {
+            border-color: var(--bark);
+        }
+        .filter-pill--active {
+            background: var(--teak);
+            color: var(--stone);
+            border-color: var(--teak);
+        }
+        .filter-pill--active:hover {
+            background: var(--teak-hover);
+            border-color: var(--teak-hover);
+        }
+
+        /* ============ TOOL COUNT ============ */
+        .stack-count {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--drift);
+            padding: 16px 0 8px;
+        }
+
+        /* ============ TOOL GRID ============ */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            padding-bottom: var(--section-pad);
+        }
+        .stack-card {
+            background: var(--sand);
+            padding: 32px;
+            border-radius: var(--card-radius);
+            transition: transform 300ms ease, box-shadow 300ms ease;
+        }
+        .stack-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
+        }
+        .stack-card__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .stack-card__name {
+            font-family: var(--font-sans);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+        .stack-card__cat {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 10px;
+            background: var(--stone-light);
+            color: var(--bark);
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .stack-card__verdict {
+            font-size: 15px;
+            color: var(--teak);
+            font-style: italic;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .stack-card__desc {
+            font-size: 14px;
+            color: var(--bark);
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .stack-card__meta {
+            font-size: 14px;
+            color: var(--bark);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .stack-card__meta-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--drift);
+        }
+        .stack-card__pricing {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        .pricing--free { background: rgba(75, 130, 75, 0.1); color: #4B824B; }
+        .pricing--freemium { background: rgba(139, 105, 20, 0.1); color: var(--teak); }
+        .pricing--paid { background: rgba(107, 94, 81, 0.1); color: var(--bark); }
+        .pricing--enterprise { background: rgba(44, 37, 32, 0.1); color: var(--charcoal); }
+
+        .stack-card__take {
+            border-left: 3px solid var(--teak);
+            padding-left: 16px;
+            margin-top: 12px;
+        }
+        .stack-card__take-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--drift);
+            margin-bottom: 4px;
+        }
+        .stack-card__take p {
+            font-size: 14px;
+            color: var(--bark);
+            line-height: 1.6;
+        }
+
+        .stack-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 0;
+            color: var(--drift);
+            font-size: 16px;
+        }
+
+        /* ============ BOTTOM CTA ============ */
+        .cta-bottom {
+            padding: 100px 0;
+            background: var(--sand);
+            text-align: center;
+        }
+        .cta-bottom__heading {
+            margin-bottom: 12px;
+        }
+        .cta-bottom__sub {
+            font-size: 17px;
+            color: var(--bark);
+            margin-bottom: 32px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-bottom__buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            padding: 80px 0;
+            background: var(--stone);
+            border-top: 1px solid var(--clay);
+        }
+        .footer .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer__copy {
+            font-size: 14px;
+            color: var(--drift);
+        }
+        .footer__social {
+            display: flex;
+            gap: 20px;
+        }
+        .footer__social a {
+            color: var(--bark);
+            font-size: 20px;
+            transition: color 300ms ease;
+            text-decoration: none;
+        }
+        .footer__social a:hover { color: var(--teak); }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            h1 { font-size: 44px; }
+            h2 { font-size: 34px; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --section-pad: 80px; }
+            h1 { font-size: 36px; }
+            h2 { font-size: 30px; }
+            .container { padding: 0 20px; }
+
+            .nav__links { display: none; }
+            .nav__hamburger { display: block; }
+
+            .stack-hero { padding: 140px 0 60px; }
+
+            .filter-bar { top: 56px; }
+            .filter-bar .container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .filter-bar__search { width: 100%; }
+            .filter-bar__pills {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                flex-wrap: nowrap;
+                padding-bottom: 4px;
+            }
+            .filter-pill { flex-shrink: 0; }
+
+            .stack-grid { grid-template-columns: 1fr; }
+
+            .footer .container {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav">
+        <div class="container">
+            <a href="./index.html" class="nav__logo">
+                <svg width="20" height="32" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="nav__logo-text">Yugam</span>
+            </a>
+            <ul class="nav__links">
+                <li><a href="./index.html" class="nav__link">Home</a></li>
+                <li><a href="./about.html" class="nav__link">About</a></li>
+                <li><a href="./ai-stack.html" class="nav__link nav__link--active">AI Stack</a></li>
+                <li><a href="./index.html#services" class="nav__link">Services</a></li>
+                <li class="nav__dropdown">
+                    <a href="#" class="nav__link">Resources <span class="nav__dropdown-arrow">&#9662;</span></a>
+                    <div class="nav__dropdown-menu">
+                        <a href="./ai-transformation-index/index.html" class="nav__dropdown-item"><i class="ti ti-brain"></i> AI Transformation Index</a>
+                        <a href="./index.html#tools" class="nav__dropdown-item"><i class="ti ti-stethoscope"></i> Diagnostic Tools</a>
+                        <a href="./index.html#insights" class="nav__dropdown-item"><i class="ti ti-article"></i> Articles & Insights</a>
+                        <a href="./index.html#case-studies" class="nav__dropdown-item"><i class="ti ti-chart-bar"></i> Case Studies</a>
+                    </div>
+                </li>
+                <li><a href="./index.html#contact-form" class="btn btn--primary" style="padding: 10px 20px; font-size: 13px;">Let's Talk</a></li>
+            </ul>
+            <button class="nav__hamburger" onclick="document.querySelector('.nav__mobile').classList.add('open')" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="nav__mobile" id="mobileMenu">
+        <button class="nav__mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close menu">&times;</button>
+        <a href="./index.html" onclick="this.parentElement.classList.remove('open')">Home</a>
+        <a href="./about.html" onclick="this.parentElement.classList.remove('open')">About</a>
+        <a href="./ai-stack.html">AI Stack</a>
+        <a href="./index.html#services" onclick="this.parentElement.classList.remove('open')">Services</a>
+        <a href="./ai-transformation-index/index.html">AI Transformation Index</a>
+        <a href="./index.html#tools" onclick="this.parentElement.classList.remove('open')">Diagnostic Tools</a>
+        <a href="./index.html#insights" onclick="this.parentElement.classList.remove('open')">Articles & Insights</a>
+        <a href="./index.html#contact-form" class="btn btn--primary" onclick="this.parentElement.classList.remove('open')">Let's Talk</a>
+    </div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="stack-hero">
+        <div class="container">
+            <div class="stack-hero__content">
+                <span class="label label--accent reveal">AI Tool Recommendations</span>
+                <h1 class="stack-hero__headline reveal reveal-delay-1">The AI Stack</h1>
+                <p class="subheading reveal reveal-delay-2">The tools I recommend to my clients — curated, tested, and honest. Not a directory of everything with an AI label. A short list of what works in real implementations, who it's for, and what I think of each one.</p>
+                <div class="stack-hero__cta reveal reveal-delay-3">
+                    <a href="./index.html#contact-form">Need help choosing the right stack? Let's Talk →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FILTER BAR ==================== -->
+    <div class="filter-bar">
+        <div class="container">
+            <input type="text" class="filter-bar__search" placeholder="Search tools..." id="stackSearch">
+            <div class="filter-bar__pills" id="filterPills"></div>
+        </div>
+    </div>
+
+    <!-- ==================== TOOL GRID ==================== -->
+    <section class="stack-section">
+        <div class="container">
+            <div class="stack-count" id="stackCount"></div>
+            <div class="stack-grid" id="stackGrid"></div>
+        </div>
+    </section>
+
+    <!-- ==================== BOTTOM CTA ==================== -->
+    <section class="cta-bottom">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="cta-bottom__heading">Knowing the tools is step one.</h2>
+                <p class="cta-bottom__sub">Implementing them is where it gets real. I help organizations select, integrate, and adopt AI tools — without the chaos.</p>
+                <div class="cta-bottom__buttons">
+                    <a href="./services.html" class="btn btn--primary">See How We Work</a>
+                    <a href="./index.html#contact-form" class="btn btn--secondary">Book a Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__copy">© 2026 Yugam. Helping you build production-quality AI.</div>
+            <div class="footer__social">
+                <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+                <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="ti ti-brand-youtube"></i></a>
+                <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><i class="ti ti-brand-x"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const CATEGORIES = {
+            general: 'General Productivity',
+            operations: 'Operations & Automation',
+            sales: 'Sales & Marketing',
+            cx: 'Customer Experience',
+            hr: 'HR & People',
+            engineering: 'Product & Engineering',
+            presentations: 'Presentations & Content',
+            data: 'Data & Analytics'
+        };
+
+        const TOOLS = [
+            {
+                name: 'Claude',
+                category: 'general',
+                verdict: 'The strongest reasoning for complex business problems.',
+                description: 'Anthropic\'s AI assistant. Excels at long-form writing, analysis, coding, and nuanced reasoning across business contexts.',
+                bestFor: 'Knowledge workers, executives, analysts, content teams',
+                pricing: 'freemium',
+                take: 'This is what I use daily. The reasoning quality is a step above for complex business problems. If you\'re picking one AI tool, start here.'
+            },
+            {
+                name: 'ChatGPT',
+                category: 'general',
+                verdict: 'The most versatile general-purpose AI assistant.',
+                description: 'OpenAI\'s flagship. Strong at conversation, image generation, web browsing, data analysis, and plugin integrations.',
+                bestFor: 'Teams that need one tool for everything — writing, research, image generation, data',
+                pricing: 'freemium',
+                take: 'The ecosystem is massive and the plugin library gives it reach into areas other tools don\'t cover. Good default choice for teams just starting with AI.'
+            },
+            {
+                name: 'Perplexity',
+                category: 'general',
+                verdict: 'AI-powered research that cites its sources.',
+                description: 'Search engine meets AI. Answers questions with citations from real web sources. Replaces the Google-then-read-10-articles workflow.',
+                bestFor: 'Researchers, analysts, anyone who needs verified information fast',
+                pricing: 'freemium',
+                take: 'I use this for market research and competitive analysis. The citation model means you can trust and verify what it tells you. Saves hours per week.'
+            },
+            {
+                name: 'Zapier',
+                category: 'operations',
+                verdict: 'The simplest path to automating repetitive workflows.',
+                description: 'Connects 7,000+ apps with no-code automation. Build multi-step workflows between your existing tools in minutes.',
+                bestFor: 'Operations teams, founders, anyone with repetitive multi-app workflows',
+                pricing: 'freemium',
+                take: 'Start here before building anything custom. Most businesses have 5-10 workflows that Zapier can automate in an afternoon. The ROI is immediate.'
+            },
+            {
+                name: 'Make',
+                category: 'operations',
+                verdict: 'More powerful automation for complex workflows.',
+                description: 'Visual workflow builder with branching logic, error handling, and data transformation. Handles workflows too complex for Zapier.',
+                bestFor: 'Technical operations teams, agencies, businesses with complex multi-step processes',
+                pricing: 'freemium',
+                take: 'When Zapier isn\'t enough — and for many real business workflows, it won\'t be — Make is the next step. The visual builder makes complex logic manageable.'
+            },
+            {
+                name: 'n8n',
+                category: 'operations',
+                verdict: 'Self-hosted automation for teams that want full control.',
+                description: 'Open-source workflow automation. Self-host for free or use the cloud version. No vendor lock-in, full data control.',
+                bestFor: 'Technical teams, privacy-conscious orgs, businesses that want to own their automation infrastructure',
+                pricing: 'freemium',
+                take: 'If you have a technical person on the team and care about data privacy, n8n gives you everything Make does without the per-execution pricing. The community is strong.'
+            },
+            {
+                name: 'Apollo',
+                category: 'sales',
+                verdict: 'The best B2B prospecting database for the price.',
+                description: 'Contact database with 275M+ profiles, email verification, sequencing, and CRM integration. Full sales intelligence platform.',
+                bestFor: 'Sales teams, founders doing outbound, B2B companies building pipeline',
+                pricing: 'freemium',
+                take: 'The data quality is good enough for most B2B outreach. The free tier is generous. Pair it with a good email deliverability setup and you have a solid outbound engine.'
+            },
+            {
+                name: 'HubSpot',
+                category: 'sales',
+                verdict: 'The CRM that grows with you, now with AI built in.',
+                description: 'Full CRM platform with AI-powered email writing, lead scoring, content generation, and workflow automation across sales, marketing, and service.',
+                bestFor: 'SMBs that need CRM + marketing + sales in one platform',
+                pricing: 'freemium',
+                take: 'The free CRM is the best entry point for businesses that don\'t have one. The AI features are practical — email drafting, meeting summaries, lead scoring. Don\'t overbuy on tiers.'
+            },
+            {
+                name: 'Jasper',
+                category: 'sales',
+                verdict: 'Enterprise-grade AI content with brand voice controls.',
+                description: 'AI content platform built for marketing teams. Brand voice training, campaign workflows, and team collaboration on AI-generated content.',
+                bestFor: 'Marketing teams producing high-volume content with brand consistency requirements',
+                pricing: 'paid',
+                take: 'Worth it if your team produces a lot of marketing content and brand consistency matters. The brand voice training is the differentiator — generic AI tools can\'t match it.'
+            },
+            {
+                name: 'Intercom Fin',
+                category: 'cx',
+                verdict: 'AI customer support that resolves tickets, not just deflects them.',
+                description: 'AI agent trained on your help docs. Handles customer conversations end-to-end — answers questions, takes actions, escalates when needed.',
+                bestFor: 'SaaS companies, e-commerce, any business with high support volume',
+                pricing: 'paid',
+                take: 'The resolution rate is what sets this apart from chatbots. It doesn\'t just point people at articles — it solves problems. The cost per resolution is a fraction of human agents.'
+            },
+            {
+                name: 'Vapi',
+                category: 'cx',
+                verdict: 'Voice AI agents that handle real phone conversations.',
+                description: 'Build AI-powered voice agents for inbound and outbound calls. Handles scheduling, support, and lead qualification over the phone.',
+                bestFor: 'Customer support teams, sales orgs, appointment-heavy businesses',
+                pricing: 'paid',
+                take: 'Voice AI is where the biggest efficiency gains are hiding for service businesses. Vapi\'s developer experience is clean and the latency is good enough for real conversations.'
+            },
+            {
+                name: 'ElevenLabs',
+                category: 'cx',
+                verdict: 'The most natural-sounding AI voice generation.',
+                description: 'Text-to-speech and voice cloning with near-human quality. Supports 29 languages with emotional range and voice consistency.',
+                bestFor: 'Content creators, product teams adding voice features, customer experience teams',
+                pricing: 'freemium',
+                take: 'The voice quality is good enough that most listeners can\'t tell it\'s AI. Use it for product demos, training content, or powering voice interfaces. Pairs well with Vapi.'
+            },
+            {
+                name: 'Lattice',
+                category: 'hr',
+                verdict: 'Performance management with AI-assisted reviews and analytics.',
+                description: 'People management platform with AI-powered review writing, engagement analytics, goal tracking, and compensation planning.',
+                bestFor: 'HR teams at 50-5000 person companies running structured review cycles',
+                pricing: 'paid',
+                take: 'Takes the pain out of review season. The AI review assistant helps managers write better, more specific feedback in half the time. The analytics surface retention risks early.'
+            },
+            {
+                name: 'Textio',
+                category: 'hr',
+                verdict: 'Removes bias from hiring and performance language.',
+                description: 'AI writing platform that analyzes job posts, performance reviews, and recruiter messages for bias, clarity, and effectiveness.',
+                bestFor: 'Recruiting teams, HR leaders focused on DEI and inclusive language',
+                pricing: 'paid',
+                take: 'The bias detection in job posts is measurable — clients see 25-30% more diverse applicant pools after switching. Worth it if hiring is a priority.'
+            },
+            {
+                name: 'GitHub Copilot',
+                category: 'engineering',
+                verdict: 'AI pair programmer that works inside your editor.',
+                description: 'Code completion and generation inside VS Code, JetBrains, and Neovim. Understands context from your codebase and suggests whole functions.',
+                bestFor: 'Any developer or engineering team writing code daily',
+                pricing: 'paid',
+                take: 'The baseline for developer productivity tools. Most developers report saving 30-45 minutes per day. At $19/month, it pays for itself on day one.'
+            },
+            {
+                name: 'Cursor',
+                category: 'engineering',
+                verdict: 'The best AI code editor available today.',
+                description: 'VS Code fork with deep AI integration. Understands your entire codebase and can write, refactor, and debug across files.',
+                bestFor: 'Engineering teams, technical founders, anyone who writes code',
+                pricing: 'paid',
+                take: 'If your team writes code, this pays for itself in the first week. The codebase-aware edits across multiple files are genuinely useful, not just autocomplete.'
+            },
+            {
+                name: 'Replit',
+                category: 'engineering',
+                verdict: 'Build and ship apps without a traditional dev setup.',
+                description: 'Browser-based development environment with AI agent that can build, debug, and deploy full applications from natural language descriptions.',
+                bestFor: 'Non-technical founders, product managers prototyping, teams that need quick internal tools',
+                pricing: 'freemium',
+                take: 'The fastest path from idea to working prototype. I\'ve seen founders go from "I need an internal dashboard" to a deployed app in an afternoon. Not for production-critical systems.'
+            },
+            {
+                name: 'Gamma',
+                category: 'presentations',
+                verdict: 'Presentations that look good without a designer.',
+                description: 'AI-powered presentation builder. Generates slides, documents, and webpages from prompts or outlines. Professional templates with smart layout.',
+                bestFor: 'Founders, sales teams, consultants, anyone who spends too long on decks',
+                pricing: 'freemium',
+                take: 'Cuts deck-building time by 80%. The output looks polished enough for client-facing work. I use it for proposals and workshop materials.'
+            },
+            {
+                name: 'Canva AI',
+                category: 'presentations',
+                verdict: 'Design for everyone, now with AI generation built in.',
+                description: 'Visual design platform with AI image generation, Magic Write for copy, background removal, and brand kit management.',
+                bestFor: 'Marketing teams, small businesses, anyone who needs visual content without a designer',
+                pricing: 'freemium',
+                take: 'The AI features turn Canva from a template tool into a content production system. Magic Design and Magic Write handle 80% of social media and marketing collateral needs.'
+            },
+            {
+                name: 'Julius AI',
+                category: 'data',
+                verdict: 'Data analysis without knowing SQL or Python.',
+                description: 'Upload spreadsheets and CSVs, ask questions in plain English, get charts and insights. Runs Python and R behind the scenes.',
+                bestFor: 'Operations managers, analysts, finance teams, anyone working with spreadsheets',
+                pricing: 'freemium',
+                take: 'The fastest path from "I have a CSV" to "I have an answer." Perfect for teams that need data insights but don\'t have a data engineer.'
+            },
+            {
+                name: 'Rows',
+                category: 'data',
+                verdict: 'Spreadsheets with built-in AI and live data connections.',
+                description: 'Spreadsheet tool with AI assistant, live API integrations, and built-in data enrichment. Pulls live data from 50+ sources directly into cells.',
+                bestFor: 'Operations teams, analysts, anyone who lives in spreadsheets but needs more than Excel',
+                pricing: 'freemium',
+                take: 'The live data integrations are the killer feature. Pull Stripe revenue, Google Analytics traffic, or CRM data directly into a spreadsheet. No exports, no stale data.'
+            }
+        ];
+
+        const CATEGORY_ORDER = ['general', 'operations', 'sales', 'cx', 'hr', 'engineering', 'presentations', 'data'];
+
+        let activeCategory = 'all';
+
+        function renderPills() {
+            const container = document.getElementById('filterPills');
+            let html = '<span class="filter-pill filter-pill--active" data-cat="all" onclick="setCategory(this)">All</span>';
+            CATEGORY_ORDER.forEach(key => {
+                html += '<span class="filter-pill" data-cat="' + key + '" onclick="setCategory(this)">' + CATEGORIES[key] + '</span>';
+            });
+            container.innerHTML = html;
+        }
+
+        function renderCards(tools) {
+            const grid = document.getElementById('stackGrid');
+            if (tools.length === 0) {
+                grid.innerHTML = '<div class="stack-empty">No tools match your search.</div>';
+                return;
+            }
+            grid.innerHTML = tools.map(tool => {
+                const catLabel = CATEGORIES[tool.category] || tool.category;
+                const pricingClass = 'pricing--' + tool.pricing;
+                const pricingLabel = tool.pricing.charAt(0).toUpperCase() + tool.pricing.slice(1);
+                return '<div class="stack-card" data-category="' + tool.category + '" data-name="' + tool.name.toLowerCase() + '">' +
+                    '<div class="stack-card__header">' +
+                        '<span class="stack-card__name">' + tool.name + '</span>' +
+                        '<span class="stack-card__cat">' + catLabel + '</span>' +
+                    '</div>' +
+                    '<div class="stack-card__verdict">' + tool.verdict + '</div>' +
+                    '<div class="stack-card__desc">' + tool.description + '</div>' +
+                    '<div class="stack-card__meta"><span class="stack-card__meta-label">Best for: </span>' + tool.bestFor + '</div>' +
+                    '<span class="stack-card__pricing ' + pricingClass + '">' + pricingLabel + '</span>' +
+                    '<div class="stack-card__take">' +
+                        '<div class="stack-card__take-label">Rohit\'s take</div>' +
+                        '<p>' + tool.take + '</p>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
+        }
+
+        function filterTools() {
+            const query = document.getElementById('stackSearch').value.toLowerCase().trim();
+            const filtered = TOOLS.filter(tool => {
+                const matchesCat = activeCategory === 'all' || tool.category === activeCategory;
+                const matchesSearch = !query ||
+                    tool.name.toLowerCase().includes(query) ||
+                    tool.description.toLowerCase().includes(query) ||
+                    tool.bestFor.toLowerCase().includes(query) ||
+                    tool.verdict.toLowerCase().includes(query) ||
+                    tool.take.toLowerCase().includes(query);
+                return matchesCat && matchesSearch;
+            });
+            renderCards(filtered);
+            document.getElementById('stackCount').textContent = 'Showing ' + filtered.length + ' of ' + TOOLS.length + ' tools';
+        }
+
+        function setCategory(el) {
+            document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('filter-pill--active'));
+            el.classList.add('filter-pill--active');
+            activeCategory = el.dataset.cat;
+            filterTools();
+        }
+
+        document.getElementById('stackSearch').addEventListener('input', filterTools);
+
+        renderPills();
+        filterTools();
+
+        function revealVisible() {
+            document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight + 60) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        revealVisible();
+        window.addEventListener('scroll', revealVisible, { passive: true });
+        window.addEventListener('load', revealVisible);
+        setTimeout(revealVisible, 100);
+        setTimeout(revealVisible, 500);
+
+        // Resources dropdown hover fix
+        const dropdowns = document.querySelectorAll('.nav__dropdown');
+        let dropdownHideTimeout;
+        dropdowns.forEach(dropdown => {
+            const menu = dropdown.querySelector('.nav__dropdown-menu');
+            dropdown.addEventListener('mouseenter', () => {
+                clearTimeout(dropdownHideTimeout);
+                menu.style.display = 'block';
+            });
+            dropdown.addEventListener('mouseleave', () => {
+                dropdownHideTimeout = setTimeout(() => {
+                    menu.style.display = 'none';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>

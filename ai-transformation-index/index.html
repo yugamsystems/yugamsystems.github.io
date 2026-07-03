@@ -60,6 +60,13 @@
       background: var(--gold-tint-2); color: var(--accent);
       padding: 4px 10px; border-radius: 20px; white-space: nowrap;
     }
+    .nav-back-site {
+      font-family: var(--fb); font-size: 0.8rem; font-weight: 500;
+      color: var(--muted); text-decoration: none; white-space: nowrap;
+      display: flex; align-items: center; gap: 4px;
+      transition: color 0.15s;
+    }
+    .nav-back-site:hover { color: var(--primary); }
 
     /* ── PROGRESS BAR ── */
     .progress-wrap {
@@ -163,8 +170,10 @@
     /* Likert */
     .likert-labels {
       display: flex; justify-content: space-between;
-      font-size: 0.72rem; color: var(--muted); margin-bottom: 10px;
+      font-size: 0.68rem; color: var(--muted); margin-bottom: 10px;
+      text-align: center;
     }
+    .likert-labels span { flex: 1; line-height: 1.3; }
     .likert-row { display: flex; gap: 8px; }
     .lbtn {
       flex: 1; aspect-ratio: 1; border: 2px solid var(--border); border-radius: 50%;
@@ -335,13 +344,14 @@
 
   <!-- ── NAV ── -->
   <nav class="nav">
-    <a href="#" onclick="goHome()" class="nav-logo">
+    <a href="../index.html" class="nav-logo">
       <svg width="20" height="32" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--accent)"/>
       </svg>
       <span class="nav-logo-text">YUGAM</span>
     </a>
     <span class="nav-badge">AI Transformation Index</span>
+    <a href="../index.html" class="nav-back-site">← Back to site</a>
   </nav>
 
   <!-- ── PROGRESS ── -->
@@ -377,7 +387,7 @@
             </div>
           </div>
           <button class="btn-primary btn-primary-full" onclick="startAssessment()" style="max-width:300px;">Start the Assessment →</button>
-          <p class="landing-meta">31 statements · No sign-up to begin · Results delivered instantly</p>
+          <p class="landing-meta">25 statements · No sign-up to begin · Results delivered instantly</p>
         </div>
       </div>
     </div>
@@ -407,35 +417,35 @@
           <span class="gate-back" onclick="goBackToQuestions()">← Back to assessment</span>
           <span class="landing-badge">Almost Done</span>
           <h2 class="gate-title">You're done.</h2>
-          <p class="gate-sub">Enter your details to generate your personalised AI Transformation report. Results appear instantly — no waiting.</p>
+          <p class="gate-sub">Your report is ready. Share your details if you'd like a personalised follow-up — or skip straight to your results.</p>
           <form id="gate-form" onsubmit="submitGate(event)" novalidate>
             <div class="form-group">
-              <label class="form-label">Full Name *</label>
-              <input type="text" class="form-input" id="g-name" placeholder="Your full name" required>
+              <label class="form-label">Full Name <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+              <input type="text" class="form-input" id="g-name" placeholder="Your full name">
             </div>
             <div class="form-group">
-              <label class="form-label">Work Email *</label>
-              <input type="email" class="form-input" id="g-email" placeholder="you@company.com" required>
+              <label class="form-label">Work Email <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+              <input type="email" class="form-input" id="g-email" placeholder="you@company.com">
             </div>
             <div class="form-group">
-              <label class="form-label">Company / Organisation *</label>
-              <input type="text" class="form-input" id="g-company" placeholder="Your company name" required>
+              <label class="form-label">Company / Organisation <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+              <input type="text" class="form-input" id="g-company" placeholder="Your company name">
             </div>
             <div class="form-group">
-              <label class="form-label">What level of AI investment are you considering?</label>
+              <label class="form-label">What level of AI investment are you considering? <span style="color:var(--muted);font-weight:400">(optional)</span></label>
               <div class="select-wrap">
                 <select class="form-select" id="g-budget">
-                  <option value="">Select a range (optional)</option>
-                  <option value="under5k">Under SGD 5,000 — a focused diagnostic or workshop</option>
-                  <option value="5k-20k">SGD 5,000–20,000 — a short-term structured programme</option>
-                  <option value="20k-60k">SGD 20,000–60,000 — a meaningful engagement with clear deliverables</option>
-                  <option value="over60k">Over SGD 60,000 — a strategic, multi-month partnership</option>
+                  <option value="">Select a range</option>
+                  <option value="under5k">Under USD 5,000 — a focused diagnostic or workshop</option>
+                  <option value="5k-20k">USD 5,000–20,000 — a short-term structured programme</option>
+                  <option value="20k-60k">USD 20,000–60,000 — a meaningful engagement with clear deliverables</option>
+                  <option value="over60k">Over USD 60,000 — a strategic, multi-month partnership</option>
                   <option value="unsure">Not sure yet — depends on the ROI case</option>
                 </select>
               </div>
             </div>
             <button type="submit" class="btn-primary btn-primary-full" id="g-submit">Generate My Report →</button>
-            <p class="gate-privacy">Your details are kept private and used only to personalise and send your report. No spam, ever.</p>
+            <p class="gate-privacy">If you share your email, your details are kept private and used only to send you a follow-up. No spam, ever.</p>
           </form>
         </div>
       </div>
@@ -465,108 +475,87 @@
   // QUESTIONS DATA
   // ═══════════════════════════════════════════════════════════
   const Qs = [
-    // ── SECTION 1 ── (single-select)
-    { id:'Q1', type:'s', sec:'SECTION 1 — YOUR WORLD',
-      text:'What best describes your role?',
-      opts:['Founder / CEO','Co-founder / CxO (COO, CFO, CMO, CTO, etc.)','Senior Director / VP / GM','Business Unit Head / Department Head']
-    },
-    { id:'Q2', type:'s', sec:'SECTION 1 — YOUR WORLD',
-      text:'How many people work in your organisation?',
-      opts:['Under 25','25–100','100–500','500–2,000','Over 2,000']
-    },
-    { id:'Q3', type:'s', sec:'SECTION 1 — YOUR WORLD',
-      text:'Which industry best describes your organisation?',
-      opts:['Professional Services (legal, accounting, consulting, HR)','Manufacturing & Engineering','Healthcare & Life Sciences','Real Estate & Property','Financial Services & Fintech','Retail & Consumer','Logistics & Supply Chain','Other']
-    },
-    { id:'Q4', type:'s', sec:'SECTION 1 — YOUR WORLD',
-      text:"Roughly, what is your organisation's annual revenue?",
-      opts:['Under SGD 5M (or equivalent)','SGD 5M–25M','SGD 25M–100M','Over SGD 100M']
-    },
-    // ── SECTION 2 ── (Likert)
-    { id:'S2_1', type:'l', sec:'SECTION 2 — WHERE YOU STAND TODAY',
+    // ── SECTION 1 — AI MATURITY & ADOPTION ──
+    { id:'S2_1', type:'l', sec:'SECTION 1 — AI MATURITY & ADOPTION',
       text:'Our organisation actively uses AI tools as part of our regular workflows.'
     },
-    { id:'S2_2', type:'l', sec:'SECTION 2 — WHERE YOU STAND TODAY',
-      text:'My team has the skills and knowledge to use AI effectively in their day-to-day work.'
-    },
-    { id:'S2_3', type:'l', sec:'SECTION 2 — WHERE YOU STAND TODAY',
-      text:'Our data — how it is stored, structured, and accessed — is ready to support AI applications.'
-    },
-    { id:'S2_4', type:'l', sec:'SECTION 2 — WHERE YOU STAND TODAY',
+    { id:'S2_4', type:'l', sec:'SECTION 1 — AI MATURITY & ADOPTION',
       text:'We have previously run AI experiments or pilots that delivered lasting, meaningful results.'
     },
-    { id:'S2_5', type:'l', sec:'SECTION 2 — WHERE YOU STAND TODAY',
-      text:'We have the motivation to move on AI — what we lack is a clear, structured path forward.'
+    { id:'S1_NEW', type:'l', sec:'SECTION 1 — AI MATURITY & ADOPTION',
+      text:'We have identified areas and workflows that can benefit from AI, automation, or digitisation.'
     },
-    // ── SECTION 3 ──
-    { id:'S3_1', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
-      text:'I have a clear picture of where AI fits in our business strategy.'
+    // ── SECTION 2 — CAPABILITY ──
+    { id:'S2_2', type:'l', sec:'SECTION 2 — CAPABILITY',
+      text:'My team has the skills and knowledge to use AI effectively in their day-to-day work.'
     },
-    { id:'S3_2', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
-      text:'Our leadership team is aligned on making AI a genuine strategic priority.'
+    { id:'S4_3', type:'l', sec:'SECTION 2 — CAPABILITY',
+      text:'We have people internally who have the expertise and experience to lead or execute an AI initiative without external support.'
     },
-    { id:'S3_3', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
-      text:'I find it difficult to separate genuine AI opportunity from the noise and hype in my industry.'
+    { id:'S2_5', type:'l', sec:'SECTION 2 — CAPABILITY',
+      text:'We have plans to move on AI. What we lack is a clear, structured path forward and expertise.'
     },
-    { id:'S3_4', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
-      text:'My team spends significant time on tasks that could and should be automated.'
+    // ── SECTION 3 — DATA READINESS ──
+    { id:'S2_3', type:'l', sec:'SECTION 3 — DATA READINESS',
+      text:'Our data — how it is stored, structured, and accessed — is ready to support AI applications.'
     },
-    { id:'S3_5', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
-      text:"Critical knowledge in our organisation sits in people's heads rather than in accessible systems."
+    { id:'S3_5', type:'l', sec:'SECTION 3 — DATA READINESS',
+      text:'In our organisation, all knowledge and SOPs are stored in a secure database available for use.'
     },
-    { id:'S3_6', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
-      text:'We often lack the right data at the right time to make confident business decisions.'
-    },
-    { id:'S3_7', type:'l', sec:'SECTION 3 — STRATEGY & PRIORITIES',
-      text:'The gap between where our organisation is with AI today and where I want it to be is growing.'
-    },
-    // ── SECTION 4 ──
-    { id:'S4_1', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
-      text:'Our biggest AI challenge is knowing where to start — not understanding the technology itself.'
-    },
-    { id:'S4_2', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
+    { id:'S4_2', type:'l', sec:'SECTION 3 — DATA READINESS',
       text:'Our data is clean, structured, and accessible enough to act as a foundation for AI projects.'
     },
-    { id:'S4_3', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
-      text:'We have people internally who could lead or execute an AI initiative without heavy external support.'
+    // ── SECTION 4 — LEADERSHIP & STRATEGY ──
+    { id:'S3_1', type:'l', sec:'SECTION 4 — LEADERSHIP & STRATEGY',
+      text:'I have a clear picture of where AI fits in our business strategy.'
     },
-    { id:'S4_4', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
-      text:'If the right AI opportunity presented itself, budget would not be a meaningful constraint.'
+    { id:'S3_2', type:'l', sec:'SECTION 4 — LEADERSHIP & STRATEGY',
+      text:'Our leadership team is aligned on making AI a genuine strategic priority.'
     },
-    { id:'S4_5', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
+    // ── SECTION 5 — LATENT BARRIERS ──
+    { id:'S3_3', type:'l', sec:'SECTION 5 — LATENT BARRIERS',
+      text:'I find it difficult to separate genuine AI opportunity from the noise and hype in my industry.'
+    },
+    { id:'S3_4', type:'l', sec:'SECTION 5 — LATENT BARRIERS',
+      text:'My team spends significant time on tasks that could and should be automated.'
+    },
+    { id:'S3_7', type:'l', sec:'SECTION 5 — LATENT BARRIERS',
+      text:'The gap between where our organisation is with AI today and where the industry is moving towards, is growing.'
+    },
+    { id:'S4_7', type:'l', sec:'SECTION 5 — LATENT BARRIERS',
+      text:'Our competitors are embracing AI and showing meaningful success.'
+    },
+    { id:'S4_1', type:'l', sec:'SECTION 5 — LATENT BARRIERS',
+      text:'We understand the value of AI and the technology itself — our biggest challenge is knowing where to begin.'
+    },
+    { id:'S4_5', type:'l', sec:'SECTION 5 — LATENT BARRIERS',
       text:'Getting leadership and team buy-in for an AI initiative feels like a manageable challenge.'
     },
-    { id:'S4_6', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
+    { id:'S4_6', type:'l', sec:'SECTION 5 — LATENT BARRIERS',
       text:'Our past investments in technology have generally delivered what they promised.'
     },
-    { id:'S4_7', type:'l', sec:'SECTION 4 — BARRIERS & BELIEFS',
-      text:'I worry that our competitors are moving faster on AI than we are.'
+    // ── SECTION 6 — COMMERCIAL READINESS ──
+    { id:'S4_4', type:'l', sec:'SECTION 6 — COMMERCIAL READINESS',
+      text:'If the right AI opportunity presented itself, budget would not be a meaningful constraint.'
     },
-    // ── SECTION 5 ──
-    { id:'S5_1', type:'l', sec:'SECTION 5 — DECISIONS & TIMELINE',
-      text:'I am the primary decision-maker when it comes to committing budget for strategic initiatives.'
-    },
-    { id:'S5_2', type:'l', sec:'SECTION 5 — DECISIONS & TIMELINE',
-      text:'An investment of this significance would require input or sign-off from others in my organisation.'
-    },
-    { id:'S5_3', type:'l', sec:'SECTION 5 — DECISIONS & TIMELINE',
+    { id:'S5_3', type:'l', sec:'SECTION 6 — COMMERCIAL READINESS',
       text:'I expect to make a concrete decision about our AI direction within the next 90 days.'
     },
-    { id:'S5_4', type:'l', sec:'SECTION 5 — DECISIONS & TIMELINE',
-      text:'I prefer working with an external partner who builds hands-on with my team rather than just delivering recommendations.'
+    // ── SECTION 7 — PREFERRED ENGAGEMENT ──
+    { id:'S5_4', type:'l', sec:'SECTION 7 — PREFERRED ENGAGEMENT',
+      text:'I prefer working with an external partner who builds hands-on with my team rather than build my own in-house expertise.'
     },
-    // ── SECTION 6 ──
-    { id:'S6_1', type:'l', sec:'SECTION 6 — TRUST & FIT',
+    { id:'S6_3', type:'l', sec:'SECTION 7 — PREFERRED ENGAGEMENT',
+      text:'I would feel comfortable with a feasibility study than starting on an AI project.'
+    },
+    { id:'S6_4', type:'l', sec:'SECTION 7 — PREFERRED ENGAGEMENT',
+      text:'More than building a strategy, I want to build lasting AI capability inside my organisation that does not depend on external support.'
+    },
+    { id:'S6_1', type:'l', sec:'SECTION 7 — PREFERRED ENGAGEMENT',
       text:'A compelling case study from a business similar to mine would significantly increase my confidence in an AI advisor.'
     },
-    { id:'S6_2', type:'l', sec:'SECTION 6 — TRUST & FIT',
+    { id:'S6_2', type:'l', sec:'SECTION 7 — PREFERRED ENGAGEMENT',
       text:'A personal introduction or recommendation from someone I trust would carry more weight than any credentials or marketing content.'
-    },
-    { id:'S6_3', type:'l', sec:'SECTION 6 — TRUST & FIT',
-      text:'I would feel most comfortable starting with a small, low-risk diagnostic before committing to a larger engagement.'
-    },
-    { id:'S6_4', type:'l', sec:'SECTION 6 — TRUST & FIT',
-      text:'More than building a strategy, I want to build lasting AI capability inside my organisation that does not depend on external support.'
     }
   ];
 
@@ -575,88 +564,88 @@
   // ═══════════════════════════════════════════════════════════
   const ARCHETYPES = {
     Pioneer: {
-      name:'The Pioneer', tagline:"Forward-thinking and ready — you just need the map.",
-      desc:"You're forward-thinking, open to change, and already asking the right questions. What you need next isn't more information — it's structure. The leaders who move fastest from here are the ones who translate enthusiasm into a concrete starting point.",
-      strengths:["Strong motivation and appetite for change that will accelerate adoption once direction is clear","An open mindset that makes you faster to move than most once a structured plan is in place"],
-      edge:"Converting enthusiasm into a sequenced plan with clear priorities — so energy doesn't get scattered across too many things at once.",
+      name:'The Pioneer', tagline:"You have the motivation. The missing piece is a plan.",
+      desc:"You're open to change and ready to move. The gap is structure — knowing where to start, in what order, and with what resources. Leaders who make progress quickly from here do one thing: they pick a specific problem, fix it, and build from that result. The appetite you have is real. What it needs now is a target.",
+      strengths:["Strong appetite for change — which speeds adoption once direction is set","An open mindset that lets you move faster once a concrete plan is in place"],
+      edge:"Converting motivation into a specific first step — with clear priorities so effort doesn't spread across too many things at once.",
       caseStudy:"A founder who had read everything about AI but didn't know where to start — and how a focused 8-week diagnostic led to their first meaningful, measurable win."
     },
     Architect: {
-      name:'The Architect', tagline:"You have the vision. Now it's about sequencing.",
-      desc:"You have the vision — that's the rare part. What's between you and execution isn't capability; it's sequencing. The leaders who break through from here are the ones who identify the right first move and build momentum from it, rather than trying to do everything at once.",
-      strengths:["A clear strategic direction that most organisations spend months trying to build","Leadership alignment that gives you the internal runway to actually execute"],
-      edge:"Translating a clear vision into an executable first move — the one thing that builds confidence across the team and creates momentum for everything that follows.",
-      caseStudy:"A leadership team with a fully articulated AI vision that had stalled for over a year — and the sequencing shift that finally unlocked execution and delivered results in 90 days."
+      name:'The Architect', tagline:"You have the vision. The gap is sequencing.",
+      desc:"You have a clear view of where AI should go — that's the rare part. The gap between vision and execution is sequencing: deciding which move comes first and in what order. Leaders who break through from here pick one first move, deliver a visible result, and build from there. The vision is not the problem. The starting point is.",
+      strengths:["Strategic direction already defined — a foundation that leadership teams typically spend months trying to establish","Leadership alignment that gives you room to execute once the sequencing is clear"],
+      edge:"Translating a clear vision into one concrete first move — one that builds confidence and creates momentum for what follows.",
+      caseStudy:"A leadership team with a fully articulated AI vision that had stalled for over a year — and the sequencing change that got them into execution and delivered results in 90 days."
     },
     Optimizer: {
-      name:'The Optimizer', tagline:"You see AI for what it is — a lever for operational excellence.",
-      desc:"You see AI for what it actually is — a lever for operational excellence. You're not chasing trends; you're solving real problems. Your advantage is that the problems are clear and the ROI case writes itself. The move now is to go from knowing what hurts to knowing exactly what fixes it.",
-      strengths:["A clear line of sight to ROI that makes the business case almost self-evident","Operational problems that AI is well-suited to solve — concrete, high-volume, and repeatable"],
+      name:'The Optimizer', tagline:"You see AI as a tool for fixing real operational problems.",
+      desc:"You are not chasing trends. You are working on specific, high-volume problems with a clear cost attached. That is a defensible starting point. The move now is identifying the right solution for each problem — and implementing it without breaking what already works. You know what hurts. The question is what fixes it, in what order.",
+      strengths:["A clear line of sight to return — the business case is grounded in real cost or real delay, not projections","Concrete, high-volume operational problems that AI is well-suited to address"],
       edge:"Identifying the right solution for the right problem and implementing it without disrupting what already works — and what your business depends on.",
-      caseStudy:"How an operations team at a professional services firm eliminated 30% of their manual processing time — without adding a single headcount or disrupting client delivery."
+      caseStudy:"How an operations team at a professional services firm cut manual processing time by 30% — without adding headcount or disrupting client delivery."
     },
     Accelerator: {
       name:'The Accelerator', tagline:"Urgency is justified. The question is where to direct it.",
-      desc:"You feel the urgency — and it's justified. Markets move fast and the penalty for being late compounds. What separates the leaders who close this gap effectively from those who stumble is not raw speed — it's intentional speed. Moving fast on the right things.",
-      strengths:["A sense of urgency that will drive real momentum once it's directed at the right starting point","Readiness to commit and move that many organisations take months to build"],
-      edge:"Channelling urgency into a structured plan — so speed becomes a competitive advantage rather than a source of costly mistakes.",
+      desc:"You feel the pressure — and it is warranted. The penalty for moving too slowly compounds. What separates leaders who close this gap well from those who struggle is not speed — it's direction. Moving fast in the wrong direction sets you back further than standing still. The goal is fast movement with a clear target.",
+      strengths:["Genuine urgency that will drive real momentum once it's pointed at the right starting point","A readiness to commit and move — which organisations typically take months to develop"],
+      edge:"Channelling urgency into a structured plan — fast movement without scattered execution.",
       caseStudy:"How a business that was 18 months behind its sector on AI closed the gap in one focused quarter — and the three things they chose to prioritise first."
     },
     Navigator: {
       name:'The Navigator', tagline:"Deliberate, strategic, evidence-driven.",
-      desc:"You're deliberate, strategic, and evidence-driven. You don't move on hype — and that's a genuine strength. When you engage with AI, it will be because you've understood the returns. The opportunity now is to accelerate that evaluation so the window doesn't close while you're still in analysis mode.",
-      strengths:["A rigorous evaluation approach that avoids costly mistakes others make in haste","Business-first thinking that keeps AI grounded in outcomes — not technology for its own sake"],
-      edge:"Moving from careful analysis to a low-risk first commitment — with enough evidence in hand to feel genuinely confident.",
-      caseStudy:"The ROI case that convinced a sceptical Managing Director in professional services to make his first AI investment — and what happened in the 60 days that followed."
+      desc:"You are deliberate and evidence-driven. You do not move on hype. When you engage with AI, it will be on the basis of understood returns — and that is a real strength. The risk is spending too long in evaluation while the window narrows. The next step is shortening the evaluation cycle — setting a clear deadline for a first decision, not extending the research phase.",
+      strengths:["A rigorous approach to evaluation that prevents the costly mistakes made in haste","Business-first thinking that keeps AI grounded in outcomes"],
+      edge:"Moving from careful analysis to a first commitment — with enough evidence in hand to act with confidence.",
+      caseStudy:"The business case that convinced a sceptical Managing Director in professional services to make his first AI investment — and what happened in the 60 days that followed."
     },
     Builder: {
-      name:'The Builder', tagline:"You're not just adopting AI — you're building an AI-native organisation.",
-      desc:"You're not just adopting AI — you're building an AI-native organisation. That's a more ambitious and more durable goal. What you need isn't a vendor; it's a partner who grows the capability from inside and then steps back when the organisation can stand on its own.",
-      strengths:["Long-term orientation that creates durable competitive advantage beyond any single tool or initiative","Readiness to invest in capability — not just outputs — that most organisations consistently undervalue"],
-      edge:"Designing the right internal learning architecture so the capability genuinely sticks after the external support ends.",
-      caseStudy:"A 6-month internal AI capability programme — what it looked like, who it targeted, and the AI-confident team that came out the other side."
+      name:'The Builder', tagline:"Building AI capability that lives inside the organisation.",
+      desc:"You want AI capability that stays in-house after any engagement ends. That is a more durable goal than deploying a set of tools. It requires someone who builds alongside your team — not a vendor who delivers a document and leaves. When the work ends, your team should be able to drive it independently. That takes a different kind of engagement.",
+      strengths:["Long-term orientation that creates lasting advantage — beyond any single tool or project","Willingness to invest in internal capability, not just outputs"],
+      edge:"Designing the internal structure so capability genuinely stays after the external work ends.",
+      caseStudy:"A 6-month internal AI capability programme — what it looked like, who it targeted, and the team that came out the other side able to run it independently."
     }
   };
 
   const BARRIERS = {
     'Direction & Starting Point': {
-      desc:"Your biggest obstacle isn't understanding AI — it's knowing where to apply it first. This is the most common barrier we see, and it's highly solvable with the right structured approach.",
-      steps:["Start with a focused diagnostic to identify your single highest-leverage AI opportunity — before choosing any tools or vendors","Pick one process to transform first. Momentum from one visible win unlocks the budget, confidence, and buy-in for the next","Define what success looks like in specific, measurable terms before you begin — so progress is undeniable"]
+      desc:"The blocker here is sequencing — deciding which problem to tackle first, in what order, and with what constraints. The technology is not the issue. The question is where to start and how to build from there. That is a solvable problem, but it requires committing to a specific starting point rather than a general direction.",
+      steps:["Run a diagnostic to identify your single highest-impact AI opportunity before choosing any tools or vendors","Pick one process to change first. One visible result gives you the evidence to fund the next step","Define what success looks like in specific, measurable terms before starting — hours saved, error rate, cost per unit — so progress can be tracked without debate"]
     },
     'Data Readiness': {
-      desc:"Your data foundation needs attention before AI can deliver at scale. The good news: you don't need perfect data to start — you need good-enough data in the right place for the right use case.",
-      steps:["Identify which data you already have that is clean, accessible, and structured — that's your starting point","Choose an AI use case that works with your strongest existing data asset, not one that requires data you don't yet have","Build data hygiene practices as a parallel workstream to your first AI initiative — not a prerequisite that blocks everything"]
+      desc:"Your data foundation needs work before AI can run at any meaningful scale. You do not need perfect data. You need data that is clean and structured enough for one specific use case — and you likely have that somewhere already.",
+      steps:["Map which data you already have that is clean, accessible, and structured — that is your starting point","Choose an AI use case that works with your best existing data, not one that requires data you don't yet have","Build data hygiene practices as a parallel workstream to your first AI project — not a prerequisite that holds everything up"]
     },
     'Internal Capability': {
-      desc:"The skills to lead and execute AI initiatives aren't yet in-house. This is a solvable gap — but it requires intentional investment in people alongside investment in tools.",
-      steps:["Identify one internal champion who will own the AI agenda — someone with operational credibility, not just technical interest","Invest in structured training before expecting independent execution from your team — ad-hoc experimentation isn't a capability strategy","Consider a hands-on partnership that builds internal capability as it delivers real results — so you're not starting from scratch when the engagement ends"]
+      desc:"The skills to lead and execute AI projects are not yet in-house. Closing that gap requires investing in people with the same seriousness as you invest in tools — and doing it before you expect results, not after the first project stalls.",
+      steps:["Identify one internal person who will own the AI agenda — someone with operational credibility, not just a technology background","Invest in structured training before expecting independent execution from your team. Informal experimentation will not build the capability you need","Consider a hands-on partnership that builds internal capability as it delivers results — so your team is not starting from zero when the engagement ends"]
     },
     'Investment Readiness': {
-      desc:"Budget constraints are shaping what's possible. The path forward is to build the business case before you build the solution — making the ROI visible enough to unlock the right investment.",
-      steps:["Quantify the cost of the current problem first — in time wasted, errors, or missed opportunity — before proposing any solution","Start with a low-cost diagnostic to validate the opportunity with minimal risk and maximum clarity","Frame AI investment as cost reduction or revenue protection, not as a technology spend — that framing wins budget conversations"]
+      desc:"Budget constraints are limiting what's possible. Build the business case before you build the solution. The goal is making the return clear enough to justify the right investment level — and that starts with quantifying the problem, not the solution.",
+      steps:["Quantify the cost of the current problem first — in time wasted, errors made, or revenue not captured — before proposing any solution","Start with a low-cost diagnostic to validate the opportunity before committing to a larger build","Present AI investment as cost reduction or revenue protection in budget discussions — not as a technology line item"]
     },
     'Organisational Alignment': {
-      desc:"The bigger challenge isn't the technology — it's getting the team and leadership moving in the same direction. AI transformations that skip this step consistently fail to scale beyond pilots.",
-      steps:["Invest time in building a shared understanding of the problem before proposing solutions — alignment on the problem comes before alignment on the approach","Find one early win that makes the benefit visible to the sceptics in the room — proof beats persuasion","Treat change management as a core part of your AI programme, not an afterthought to be handled later"]
+      desc:"The harder challenge is alignment — getting leadership and the team pointed in the same direction before starting. AI programmes that skip this step stall at the pilot stage and rarely go further. The technology is rarely the problem. People moving in different directions is.",
+      steps:["Build shared understanding of the problem before proposing solutions. Alignment on the problem is a precondition for alignment on the approach","Find one early win that makes the benefit visible to the people in the room who are not yet convinced. A working example does more than a presentation","Build change management into the programme from the start — not as a follow-up task once pilots have already lost the team's confidence"]
     },
     'Building on Past Experience': {
-      desc:"Past technology investments that underdelivered have created healthy scepticism in your organisation. The answer isn't to avoid AI — it's to approach it with significantly more rigour than before.",
-      steps:["Diagnose honestly why past initiatives stalled before starting a new one — the root cause matters more than the symptoms","Set a higher bar for vendor and partner selection this time — ask for proof of outcomes, not promises of potential","Define clear success metrics upfront so progress is undeniable and visible throughout, not just at the end"]
+      desc:"Past technology investments that underdelivered have created real scepticism in your organisation. That scepticism is warranted. Approaching AI with more rigour than before — in selection, scoping, and measurement — is what separates a programme that delivers from one that repeats the pattern.",
+      steps:["Diagnose why past initiatives stalled before starting a new one. Understanding the root cause tells you what to do differently this time","Set a higher bar for vendor and partner selection — ask for documented proof of outcomes from comparable organisations, not claims about what they could deliver","Define clear success metrics before starting and review them every 30 days. There should be no ambiguity at any point about whether it's working"]
     }
   };
 
   const PAIN_CASES = {
     automation:[
-      { t:'Workflow & Process Automation', d:'Eliminate high-volume manual tasks with AI-driven process automation, reducing time, errors, and cost simultaneously.' },
-      { t:'Agentic AI Workflows', d:'Deploy AI agents that execute multi-step business processes autonomously — from intake to output, without human hand-holding.' }
+      { t:'Workflow & Process Automation', d:'Replace high-volume manual tasks with automated workflows. Typical results are a 30–50% reduction in processing time and a measurable drop in error rate — without adding headcount.' },
+      { t:'Agentic AI Workflows', d:'AI agents that run multi-step processes end-to-end — intake, routing, action, and output — without a person required at every step.' }
     ],
     knowledge:[
-      { t:'Internal Knowledge AI', d:'Surface the institutional knowledge locked in documents, emails, and people — making it instantly accessible to your whole team, not just those who happened to be in the room.' },
-      { t:'SOP & Playbook Automation', d:"Convert your best people's expertise into structured, AI-powered playbooks that scale consistent performance across the organisation." }
+      { t:'Internal Knowledge AI', d:'Make the knowledge in your documents, systems, and email threads searchable and usable by the whole team — not just the people who wrote it or attended the meeting.' },
+      { t:'SOP & Playbook Automation', d:"Turn your best operators' judgment into structured playbooks the whole team can follow — so performance does not depend on who is available on a given day." }
     ],
     analytics:[
-      { t:'Business Intelligence AI', d:'Get the right data in front of the right person at the right moment — automatically, not on request after an analyst has had time to run it.' },
-      { t:'Predictive Analytics', d:'Move from reporting what happened to predicting what will — and acting before the problem or opportunity arrives.' }
+      { t:'Business Intelligence AI', d:'Deliver the data your team needs to make decisions — to the right person, at the right moment — without waiting for someone to request a report and an analyst to run it.' },
+      { t:'Predictive Analytics', d:'Shift from tracking what already happened to forecasting what is likely to happen — early enough to act before the problem arrives or the opportunity passes.' }
     ]
   };
 
@@ -737,10 +726,6 @@
 
   function renderLikert(q, el) {
     const wrap = document.createElement('div');
-    const labels = document.createElement('div');
-    labels.className = 'likert-labels';
-    labels.innerHTML = '<span>Strongly Disagree</span><span>Strongly Agree</span>';
-    wrap.appendChild(labels);
 
     const row = document.createElement('div');
     row.className = 'likert-row';
@@ -760,10 +745,11 @@
     });
     wrap.appendChild(row);
 
-    const hint = document.createElement('p');
-    hint.className = 'likert-hint';
-    hint.textContent = '1 = Strongly Disagree  ·  5 = Strongly Agree';
-    wrap.appendChild(hint);
+    const labels = document.createElement('div');
+    labels.className = 'likert-labels';
+    labels.innerHTML = LABELS.map(l => `<span>${l.replace(' ', '<br>')}</span>`).join('');
+    wrap.appendChild(labels);
+
     el.appendChild(wrap);
   }
 
@@ -793,10 +779,9 @@
   // ═══════════════════════════════════════════════════════════
   async function submitGate(e) {
     e.preventDefault();
-    const name = document.getElementById('g-name').value.trim();
-    const email = document.getElementById('g-email').value.trim();
+    const name    = document.getElementById('g-name').value.trim();
+    const email   = document.getElementById('g-email').value.trim();
     const company = document.getElementById('g-company').value.trim();
-    if (!name || !email || !company) { alert('Please fill in your name, email, and company to continue.'); return; }
 
     const btn = document.getElementById('g-submit');
     btn.textContent = 'Generating your report…';
@@ -813,7 +798,7 @@
     //   3. Replace 'YOUR_FORM_ID' below with your actual Form ID
     //   4. Every submission will appear in your Formspree dashboard + email to you
     const FORMSPREE_ID = 'mqevykkr';
-    if (FORMSPREE_ID !== 'YOUR_FORM_ID') {
+    if (FORMSPREE_ID !== 'YOUR_FORM_ID' && email) {
       try {
         await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
           method: 'POST',
@@ -834,8 +819,8 @@
 
   function calcScores() {
     // ── AI Readiness Index (ARI) ──
-    const ARI_raw = g('S2_1',2) + g('S2_2',2) + g('S2_3',2) + g('S2_4',2);
-    const ARI = Math.round((ARI_raw / 16) * 100);
+    const ARI_raw = g('S2_1',2) + g('S2_2',2) + g('S2_3',2) + g('S2_4',2) + g('S1_NEW',2);
+    const ARI = Math.round((ARI_raw / 20) * 100);
 
     // ── Strategic Clarity Score (SCS) ──
     const SCS_raw = g('S3_1',2) + g('S3_2',2) + (4 - g('S3_3',2));
@@ -862,8 +847,15 @@
     const compound = (sorted[0][1] - sorted[1][1]) < 0.5;
 
     // ── Pain signals → top opportunity ──
-    const pain = { automation: g('S3_4',2), knowledge: g('S3_5',2), analytics: g('S3_6',2) };
-    const topPain = Object.entries(pain).sort((a,b)=>b[1]-a[1])[0][0];
+    // S3_5 is now a positive statement (knowledge IS accessible), so pain = inverse
+    // Analytics pain proxied by low data readiness (S4_2)
+    const pain = {
+      automation: g('S3_4',2),
+      knowledge:  4 - g('S3_5',2),
+      analytics:  4 - g('S4_2',2)
+    };
+    const painRanked = Object.entries(pain).sort((a,b) => b[1]-a[1]);
+    const topPain = painRanked[0][0];
     const maxPain = Math.max(...Object.values(pain));
 
     // ── ATI Composite ──
@@ -883,19 +875,16 @@
     else if (maxPain >= 2.5 && UI > 55 && ARI >= 26 && ARI <= 65)   arch = 'Optimizer';
     else if (SCS < 35 && ARI < 50 && g('S2_5',2) >= 3)             arch = 'Pioneer';
 
-    // ── Decision authority ──
-    const dm = g('S5_1',2), co = g('S5_2',2);
-    let decAuth = 'Influencer / Recommender';
-    if      (dm >= 3 && co <= 1) decAuth = 'Solo Decision-Maker';
-    else if (dm >= 3 && co >= 3) decAuth = 'Leads with Team Alignment';
-    else if (dm <= 1 && co >= 3) decAuth = 'Requires Formal Sign-off';
+    // ── Decision authority (not directly captured — inferred from engagement signals) ──
+    const decAuth = g('S5_4',2) >= 3 ? 'Prefers Collaborative Engagement' : 'Evaluating Options';
 
     // ── Lead priority ──
     const bud = userInfo.budget;
     const highBudget = bud === '20k-60k' || bud === 'over60k';
     const medBudget  = bud === '5k-20k';
     let priority = 'Nurture';
-    if (UI > 60 && (highBudget || (medBudget && dm >= 3))) priority = 'HOT';
+    if (UI > 60 && highBudget) priority = 'HOT';
+    else if (UI > 60 && medBudget) priority = 'WARM';
     else if (UI > 35 || ATI > 65 || g('S4_7',2) >= 3) priority = 'WARM';
     if (g('S6_3',2) >= 3 && g('S5_3',2) >= 3) {
       if (priority === 'WARM') priority = 'HOT';
@@ -903,32 +892,28 @@
     }
 
     const trustSignal = g('S6_1',2) >= g('S6_2',2) ? 'Evidence-Seeker' : 'Relationship-Seeker';
-    const industryIdx = ans.Q3 !== undefined ? ans.Q3 : 7;
 
-    return { ARI, SCS, UI, ATI, tier, arch, primaryB, secondaryB, compound, topPain, decAuth, priority, trustSignal, industryIdx };
+    return { ARI, SCS, UI, ATI, tier, arch, primaryB, secondaryB, compound, topPain, painRanked, decAuth, priority, trustSignal };
+  }
+
+  function buildTop3Cases(s) {
+    const top3 = [];
+    for (const [painKey] of s.painRanked) {
+      for (const c of (PAIN_CASES[painKey] || [])) {
+        if (!top3.find(x => x.t === c.t) && top3.length < 3) top3.push(c);
+      }
+    }
+    return top3;
   }
 
   function buildLead(s) {
-    const roles   = ['Founder/CEO','Co-founder/CxO','Senior Director/VP/GM','Business Unit Head'];
-    const sizes   = ['Under 25','25-100','100-500','500-2000','Over 2000'];
-    const inds    = ['Professional Services','Manufacturing','Healthcare','Real Estate','Financial Services','Retail','Logistics','Other'];
-    const revs    = ['Under SGD 5M','SGD 5M-25M','SGD 25M-100M','Over SGD 100M'];
-
     const A = ARCHETYPES[s.arch] || {};
     const B = BARRIERS[s.primaryB] || {};
-
-    // Replicate use-case selection from buildReport so the same top 3 are stored
-    const painCases = PAIN_CASES[s.topPain] || [];
-    const indCase   = INDUSTRY_CASES[s.industryIdx] || INDUSTRY_CASES[7];
-    const cases     = [...painCases];
-    if (!cases.find(c => c.t === indCase.t)) cases.push(indCase);
-    const top3 = cases.slice(0, 3);
+    const top3 = buildTop3Cases(s);
 
     return {
-      // ── Contact & firmographic ──
+      // ── Contact ──
       ...userInfo,
-      role: roles[ans.Q1]||'', company_size: sizes[ans.Q2]||'',
-      industry: inds[ans.Q3]||'', revenue: revs[ans.Q4]||'',
 
       // ── Scores ──
       ati_score: s.ATI, tier: s.tier,
@@ -964,19 +949,13 @@
   function buildReport(s) {
     const A = ARCHETYPES[s.arch];
     const B = BARRIERS[s.primaryB];
-    const painCases = PAIN_CASES[s.topPain];
-    const indCase   = INDUSTRY_CASES[s.industryIdx] || INDUSTRY_CASES[7];
+    const top3 = buildTop3Cases(s);
 
-    // Deduplicate use cases
-    const cases = [...painCases];
-    if (!cases.find(c => c.t === indCase.t)) cases.push(indCase);
-    const top3 = cases.slice(0, 3);
-
-    const firstName = userInfo.name.split(' ')[0];
+    const firstName = userInfo.name ? userInfo.name.split(' ')[0] : null;
 
     document.getElementById('results-content').innerHTML = `
 
-      <p class="results-hello">Your Results, ${firstName}</p>
+      <p class="results-hello">${firstName ? `Your Results, ${firstName}` : 'Your Results'}</p>
       <p class="results-name">Here is your AI Transformation profile.</p>
 
       <!-- SCORE CARD -->
