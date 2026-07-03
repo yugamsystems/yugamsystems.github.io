@@ -938,7 +938,10 @@
     function scrollToOpportunity(rank) {
         const target = document.querySelector(`.opportunity[data-rank="${rank}"]`);
         if (!target) return;
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const navH = document.querySelector('.nav')?.offsetHeight || 56;
+        const stripH = document.querySelector('.strip-wrap')?.offsetHeight || 0;
+        const offset = target.getBoundingClientRect().top + window.scrollY - navH - stripH - 16;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
         target.classList.add('opportunity--highlight');
         if (!target.classList.contains('opportunity--expanded')) toggleDetail(target);
         setTimeout(() => target.classList.remove('opportunity--highlight'), 900);
