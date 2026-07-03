@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Rohit Maskara — Yugam AI Transformation</title>
+    <meta name="description" content="Rohit Maskara — industrial engineer, former KPMG consultant, 10 years at Meta. Now running Yugam, an AI transformation practice for mid-market businesses.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --deep: #1A1612;
+            --deep-text: #E8E1D8;
+
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+            --max-width: 1200px;
+            --section-pad: 120px;
+            --card-radius: 8px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+        h1 { font-size: 56px; line-height: 1.15; }
+        h2 { font-size: 40px; line-height: 1.2; margin-bottom: 20px; }
+        h3 { font-size: 24px; line-height: 1.3; }
+
+        .label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--drift);
+            margin-bottom: 16px;
+            display: block;
+        }
+        .label--accent { color: var(--teak); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 300ms ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn--primary {
+            background: var(--teak);
+            color: var(--stone);
+        }
+        .btn--primary:hover {
+            background: var(--teak-hover);
+            transform: translateY(-1px);
+        }
+        .btn--secondary {
+            background: transparent;
+            color: var(--charcoal);
+            border: 1.5px solid var(--clay);
+        }
+        .btn--secondary:hover {
+            border-color: var(--bark);
+            transform: translateY(-1px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 800ms ease-out, transform 800ms ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 120ms; }
+        .reveal-delay-2 { transition-delay: 240ms; }
+        .reveal-delay-3 { transition-delay: 360ms; }
+
+        /* ============ NAVIGATION ============ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 var(--clay);
+        }
+        .nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav__logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .nav__logo-text {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            color: var(--ink);
+        }
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+        .nav__link {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--bark);
+            text-decoration: none;
+            transition: color 300ms ease;
+            font-weight: 500;
+        }
+        .nav__link:hover, .nav__link--active { color: var(--teak); }
+
+        .nav__dropdown { position: relative; }
+        .nav__dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -16px;
+            background: var(--stone);
+            border: 1px solid var(--clay);
+            border-radius: 6px;
+            padding: 16px 0 8px;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
+            z-index: 101;
+        }
+        .nav__dropdown:hover .nav__dropdown-menu { display: block; }
+        .nav__dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: var(--bark);
+            text-decoration: none;
+            transition: all 200ms ease;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .nav__dropdown-item:hover {
+            color: var(--teak);
+            background: var(--sand);
+        }
+        .nav__dropdown-item i { font-size: 16px; color: var(--drift); }
+        .nav__dropdown-arrow { font-size: 10px; margin-left: 4px; }
+
+        .nav__hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .nav__hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--ink);
+            margin: 5px 0;
+            transition: all 300ms ease;
+        }
+        .nav__mobile {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--stone);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+        .nav__mobile.open { display: flex; }
+        .nav__mobile a {
+            font-family: var(--font-serif);
+            font-size: 32px;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .nav__mobile a:hover { color: var(--teak); }
+        .nav__mobile-close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: var(--ink);
+            cursor: pointer;
+        }
+
+        /* ============ HERO ============ */
+        .about-hero {
+            padding: 160px 0 80px;
+            background: var(--stone);
+        }
+        .about-hero__grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 72px;
+            align-items: start;
+        }
+        .about-hero__photo {
+            width: 300px;
+            height: 380px;
+            border-radius: 4px;
+            object-fit: cover;
+            object-position: top center;
+            border: 3px solid var(--sand);
+            box-shadow: 8px 8px 0 var(--clay);
+        }
+        .about-hero__content {
+            padding-top: 16px;
+        }
+        .about-hero__name {
+            margin-bottom: 8px;
+        }
+        .about-hero__role {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--teak);
+            margin-bottom: 24px;
+            display: block;
+        }
+        .about-hero__summary {
+            font-size: 18px;
+            color: var(--bark);
+            line-height: 1.75;
+            max-width: 560px;
+            margin-bottom: 36px;
+        }
+        .about-hero__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .about-tag {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--drift);
+            background: var(--stone-light);
+            border: 1px solid var(--clay);
+            border-radius: 4px;
+            padding: 5px 12px;
+        }
+
+        /* ============ BIO ============ */
+        .about-bio {
+            padding: var(--section-pad) 0;
+            background: var(--stone-light);
+            border-top: 1px solid var(--clay);
+        }
+        .about-bio__inner {
+            max-width: 720px;
+        }
+        .about-bio__section-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--drift);
+            margin-bottom: 40px;
+            display: block;
+        }
+        .about-bio__inner p {
+            color: var(--bark);
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+        .about-bio__inner p:last-child {
+            margin-bottom: 0;
+        }
+        .about-bio__pull {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            line-height: 1.5;
+            color: var(--ink);
+            border-left: 3px solid var(--teak);
+            padding-left: 24px;
+            margin: 40px 0;
+        }
+
+        /* ============ CAREER ============ */
+        .about-career {
+            padding: var(--section-pad) 0;
+            background: var(--stone);
+            border-top: 1px solid var(--clay);
+        }
+        .about-career__header {
+            margin-bottom: 56px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: var(--clay);
+        }
+        .timeline-entry {
+            position: relative;
+            padding-bottom: 40px;
+        }
+        .timeline-entry:last-child {
+            padding-bottom: 0;
+        }
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--stone);
+            border: 2px solid var(--clay);
+        }
+        .timeline-entry--current::before {
+            background: var(--teak);
+            border-color: var(--teak);
+        }
+        .timeline-entry__meta {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 4px;
+            flex-wrap: wrap;
+        }
+        .timeline-entry__company {
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .timeline-entry__years {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--drift);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .timeline-entry__role {
+            font-size: 15px;
+            color: var(--bark);
+            line-height: 1.5;
+        }
+        .timeline-entry__note {
+            font-size: 13px;
+            color: var(--drift);
+            margin-top: 4px;
+        }
+
+        /* ============ EDUCATION ============ */
+        .about-education {
+            padding: var(--section-pad) 0;
+            background: var(--stone-light);
+            border-top: 1px solid var(--clay);
+        }
+        .about-education__header {
+            margin-bottom: 48px;
+        }
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .education-card {
+            background: var(--stone);
+            border: 1px solid var(--clay);
+            border-radius: var(--card-radius);
+            padding: 32px;
+        }
+        .education-card__degree {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        .education-card__school {
+            font-size: 15px;
+            color: var(--bark);
+            margin-bottom: 4px;
+        }
+        .education-card__year {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--drift);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .education-card__note {
+            font-size: 13px;
+            color: var(--drift);
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--sand);
+        }
+
+        /* ============ BEYOND YUGAM ============ */
+        .about-beyond {
+            padding: var(--section-pad) 0;
+            background: var(--stone);
+            border-top: 1px solid var(--clay);
+        }
+        .about-beyond__header {
+            margin-bottom: 48px;
+        }
+        .beyond-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .beyond-card {
+            background: var(--stone-light);
+            border: 1px solid var(--clay);
+            border-radius: var(--card-radius);
+            padding: 32px;
+        }
+        .beyond-card__icon {
+            font-size: 24px;
+            color: var(--teak);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .beyond-card__title {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            color: var(--ink);
+            margin-bottom: 12px;
+        }
+        .beyond-card__label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--teak);
+            margin-bottom: 16px;
+            display: block;
+        }
+        .beyond-card__desc {
+            font-size: 15px;
+            color: var(--bark);
+            line-height: 1.65;
+        }
+
+        /* ============ CTA ============ */
+        .about-cta {
+            padding: var(--section-pad) 0;
+            background: var(--ink);
+            text-align: center;
+        }
+        .about-cta h2 {
+            color: var(--sand);
+            margin-bottom: 16px;
+        }
+        .about-cta p {
+            font-size: 17px;
+            color: var(--drift);
+            max-width: 520px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+        .about-cta .btn--primary {
+            background: var(--teak);
+            color: var(--stone);
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            padding: 80px 0;
+            background: var(--stone);
+            border-top: 1px solid var(--clay);
+        }
+        .footer .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer__copy {
+            font-size: 14px;
+            color: var(--drift);
+        }
+        .footer__social {
+            display: flex;
+            gap: 20px;
+        }
+        .footer__social a {
+            color: var(--bark);
+            font-size: 20px;
+            transition: color 300ms ease;
+            text-decoration: none;
+        }
+        .footer__social a:hover { color: var(--teak); }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            h1 { font-size: 44px; }
+            h2 { font-size: 34px; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --section-pad: 80px; }
+            h1 { font-size: 36px; }
+            h2 { font-size: 30px; }
+            .container { padding: 0 20px; }
+
+            .nav__links { display: none; }
+            .nav__hamburger { display: block; }
+
+            .about-hero { padding: 120px 0 60px; }
+            .about-hero__grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-hero__photo {
+                width: 220px;
+                height: 280px;
+                order: -1;
+            }
+
+            .education-grid { grid-template-columns: 1fr; }
+            .beyond-grid { grid-template-columns: 1fr; }
+
+            .footer .container { flex-direction: column; gap: 24px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAV ==================== -->
+    <nav class="nav" id="nav">
+        <div class="container nav__inner">
+            <a href="./index.html" class="nav__logo" aria-label="Yugam home">
+                <svg width="28" height="28" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="nav__logo-text">Yugam</span>
+            </a>
+            <ul class="nav__links">
+                <li><a href="./index.html" class="nav__link">Home</a></li>
+                <li><a href="./about.html" class="nav__link nav__link--active">About</a></li>
+                <li><a href="./ai-stack.html" class="nav__link">AI Stack</a></li>
+                <li><a href="./index.html#services" class="nav__link">Services</a></li>
+                <li class="nav__dropdown">
+                    <a href="#" class="nav__link">Resources <span class="nav__dropdown-arrow">&#9662;</span></a>
+                    <div class="nav__dropdown-menu">
+                        <a href="./ai-transformation-index/index.html" class="nav__dropdown-item"><i class="ti ti-brain"></i> AI Transformation Index</a>
+                        <a href="./index.html#tools" class="nav__dropdown-item"><i class="ti ti-stethoscope"></i> Diagnostic Tools</a>
+                        <a href="./index.html#insights" class="nav__dropdown-item"><i class="ti ti-article"></i> Articles & Insights</a>
+                        <a href="./index.html#case-studies" class="nav__dropdown-item"><i class="ti ti-chart-bar"></i> Case Studies</a>
+                    </div>
+                </li>
+                <li><a href="./index.html#contact-form" class="btn btn--primary" style="padding: 10px 20px; font-size: 13px;">Let's Talk</a></li>
+            </ul>
+            <button class="nav__hamburger" onclick="document.querySelector('.nav__mobile').classList.add('open')" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="nav__mobile" id="mobileMenu">
+        <button class="nav__mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close menu">&times;</button>
+        <a href="./index.html" onclick="this.parentElement.classList.remove('open')">Home</a>
+        <a href="./about.html" onclick="this.parentElement.classList.remove('open')">About</a>
+        <a href="./ai-stack.html" onclick="this.parentElement.classList.remove('open')">AI Stack</a>
+        <a href="./index.html#services" onclick="this.parentElement.classList.remove('open')">Services</a>
+        <a href="./ai-transformation-index/index.html">AI Transformation Index</a>
+        <a href="./index.html#tools" onclick="this.parentElement.classList.remove('open')">Diagnostic Tools</a>
+        <a href="./index.html#insights" onclick="this.parentElement.classList.remove('open')">Articles & Insights</a>
+        <a href="./index.html#contact-form" class="btn btn--primary" onclick="this.parentElement.classList.remove('open')">Let's Talk</a>
+    </div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero__grid">
+                <img
+                    src="./founder-photo.jpg"
+                    alt="Rohit Maskara"
+                    class="about-hero__photo reveal"
+                />
+                <div class="about-hero__content">
+                    <span class="label label--accent reveal">About</span>
+                    <h1 class="about-hero__name reveal reveal-delay-1">Rohit Maskara</h1>
+                    <span class="about-hero__role reveal reveal-delay-2">Founder, Yugam</span>
+                    <p class="about-hero__summary reveal reveal-delay-2">
+                        Industrial engineer by training. Former KPMG consultant. Ten years at Meta across operations, integrity, partnerships, and customer experience strategy. Now running an AI transformation practice for mid-market businesses.
+                    </p>
+                    <div class="about-hero__tags reveal reveal-delay-3">
+                        <span class="about-tag">Singapore</span>
+                        <span class="about-tag">AI Transformation</span>
+                        <span class="about-tag">Operations</span>
+                        <span class="about-tag">Mid-market</span>
+                        <span class="about-tag">B2B</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BIO ==================== -->
+    <section class="about-bio">
+        <div class="container">
+            <div class="about-bio__inner">
+                <span class="about-bio__section-label reveal">Background</span>
+
+                <p class="reveal">
+                    I started on a factory floor at Vedanta Aluminium in Jharsuguda, Odisha — managing production shifts, coordinating maintenance schedules, and leading a team of 15 people to hit monthly output targets in a live smelting operation. Before the MBA, before the tech company, before AI was a business category: that was three years of learning that operations improvement is a hands-on discipline. You read a process by watching where it breaks, not by reading a diagram of how it should work. We reduced scrap generation by 44%. The method behind that result is the same method I apply today.
+                </p>
+
+                <p class="reveal">
+                    From Jharsuguda, I moved into management consulting at KPMG India — nearly three years running operational risk and process improvement engagements for Fortune 500 clients across manufacturing, consumer goods, cement, and natural resources. The work was specific: logistics costs down by INR 2.4 crore for one client, a procurement cycle shortened by 10 days for another. I was retained as lead consultant on five consecutive projects at a single client, which resulted in a contract renewal worth INR 90 lacs. The pattern I noticed across every engagement was consistent — organisations weren't measuring the things that mattered, and they didn't know where the process was leaking.
+                </p>
+
+                <div class="about-bio__pull reveal">
+                    Organisations weren't measuring the things that mattered, and they didn't know where the process was leaking.
+                </div>
+
+                <p class="reveal">
+                    After an MBA in operations and finance at the Indian School of Business, I joined Facebook in Dublin in 2016. Over the next decade — moving to Singapore in 2018 — I worked across five different roles: Community Operations, Business Integrity, Sales Partnerships, and then Customer Experience Strategy and Operations, where I ended as Senior Program Manager. The scope changed with each role, but the core work didn't. I spent a decade at Meta figuring out why complex systems weren't working and building the processes to fix them, across dozens of markets and hundreds of millions of users.
+                </p>
+
+                <p class="reveal">
+                    I left Meta in May 2026 to start Yugam. The case for AI in mid-market business operations is clear — the tools are mature, the cost is manageable, and the ROI is measurable. What most businesses are missing is someone who understands operations well enough to know where AI will actually change something, and where it will add cost and complexity without a return. That's the specific problem Yugam is here to solve.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CAREER ==================== -->
+    <section class="about-career">
+        <div class="container">
+            <div class="about-career__header reveal">
+                <span class="label label--accent">Career</span>
+                <h2>Where I've worked.</h2>
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-entry timeline-entry--current reveal">
+                    <div class="timeline-entry__meta">
+                        <span class="timeline-entry__company">Yugam</span>
+                        <span class="timeline-entry__years">2026 — present</span>
+                    </div>
+                    <div class="timeline-entry__role">Founder &amp; AI Transformation Consultant</div>
+                    <div class="timeline-entry__note">AI transformation practice for mid-market businesses. Assess, build, and train.</div>
+                </div>
+
+                <div class="timeline-entry reveal">
+                    <div class="timeline-entry__meta">
+                        <span class="timeline-entry__company">Meta</span>
+                        <span class="timeline-entry__years">2024 — 2026</span>
+                    </div>
+                    <div class="timeline-entry__role">Senior Program Manager, Customer Experience Strategy &amp; Operations</div>
+                    <div class="timeline-entry__note">Singapore. Led CX strategy programme covering high-value advertisers across Asia Pacific.</div>
+                </div>
+
+                <div class="timeline-entry reveal">
+                    <div class="timeline-entry__meta">
+                        <span class="timeline-entry__company">Meta</span>
+                        <span class="timeline-entry__years">2022 — 2024</span>
+                    </div>
+                    <div class="timeline-entry__role">Program Manager, Customer Experience Strategy &amp; Operations</div>
+                    <div class="timeline-entry__note">Singapore. Built and scaled support operations across APAC markets.</div>
+                </div>
+
+                <div class="timeline-entry reveal">
+                    <div class="timeline-entry__meta">
+                        <span class="timeline-entry__company">Facebook</span>
+                        <span class="timeline-entry__years">2019 — 2022</span>
+                    </div>
+                    <div class="timeline-entry__role">Sales Partnerships, Global Operations</div>
+                    <div class="timeline-entry__note">Singapore. Cross-functional operations across global sales partnerships.</div>
+                </div>
+
+                <div class="timeline-entry reveal">
+                    <div class="timeline-entry__meta">
+                        <span class="timeline-entry__company">Facebook</span>
+                        <span class="timeline-entry__years">2018 — 2019</span>
+                    </div>
+                    <div class="timeline-entry__role">Associate, Business Integrity</div>
+                    <div class="timeline-entry__note">Singapore. Risk and policy operations for business accounts.</div>
+                </div>
+
+                <div class="timeline-entry reveal">
+                    <div class="timeline-entry__meta">
+                        <span class="timeline-entry__company">Facebook</span>
+                        <span class="timeline-entry__years">2016 — 2018</span>
+                    </div>
+                    <div class="timeline-entry__role">Market Specialist, Community Operations</div>
+                    <div class="timeline-entry__note">Dublin. Content policy and trust operations across South Asian markets.</div>
+                </div>
+
+                <div class="timeline-entry reveal">
+                    <div class="timeline-entry__meta">
+                        <span class="timeline-entry__company">KPMG India</span>
+                        <span class="timeline-entry__years">2012 — 2015</span>
+                    </div>
+                    <div class="timeline-entry__role">Executive → Senior, Risk Consulting</div>
+                    <div class="timeline-entry__note">Operational risk assessments and process improvement for Fortune 500 clients across manufacturing, consumer goods, cement, and natural resources.</div>
+                </div>
+
+                <div class="timeline-entry reveal">
+                    <div class="timeline-entry__meta">
+                        <span class="timeline-entry__company">Vedanta Aluminium</span>
+                        <span class="timeline-entry__years">2010 — 2012</span>
+                    </div>
+                    <div class="timeline-entry__role">Assistant Manager, Production</div>
+                    <div class="timeline-entry__note">Jharsuguda, Odisha. Led a team of 15. Reduced scrap generation by 44% through process re-engineering and SOP redesign.</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== EDUCATION ==================== -->
+    <section class="about-education">
+        <div class="container">
+            <div class="about-education__header reveal">
+                <span class="label label--accent">Education</span>
+                <h2>Where I studied.</h2>
+            </div>
+            <div class="education-grid">
+                <div class="education-card reveal">
+                    <div class="education-card__degree">MBA, Operations Management &amp; Finance</div>
+                    <div class="education-card__school">Indian School of Business (ISB)</div>
+                    <div class="education-card__year">2015 – 2016 · Hyderabad, India</div>
+                    <div class="education-card__note">Ranked consistently among Asia's top business schools. Focused on operations strategy and financial modelling.</div>
+                </div>
+                <div class="education-card reveal reveal-delay-1">
+                    <div class="education-card__degree">B.Tech, Industrial Engineering</div>
+                    <div class="education-card__school">National Institute of Technology (NIT) Jalandhar</div>
+                    <div class="education-card__year">2006 – 2010 · Punjab, India</div>
+                    <div class="education-card__note">Industrial engineering foundation: process design, statistical methods, operations research, and manufacturing systems.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BEYOND YUGAM ==================== -->
+    <section class="about-beyond">
+        <div class="container">
+            <div class="about-beyond__header reveal">
+                <span class="label label--accent">Beyond Yugam</span>
+                <h2>What else I do.</h2>
+            </div>
+            <div class="beyond-grid">
+                <div class="beyond-card reveal">
+                    <i class="ti ti-microphone beyond-card__icon"></i>
+                    <span class="beyond-card__label">Podcast · 2023 – present</span>
+                    <div class="beyond-card__title">Chai Pe Kharcha</div>
+                    <p class="beyond-card__desc">
+                        Co-founded a personal finance podcast for non-resident Indians with three friends. Four people talking honestly about money, tax, investing, and life abroad — based on what we've actually navigated, not what sounds good. Available on YouTube and all podcast platforms.
+                    </p>
+                </div>
+                <div class="beyond-card reveal reveal-delay-1">
+                    <i class="ti ti-pencil beyond-card__icon"></i>
+                    <span class="beyond-card__label">Writing</span>
+                    <div class="beyond-card__title">Medium</div>
+                    <p class="beyond-card__desc">
+                        Writing about careers, money, and decisions — the questions worth asking before you reach the point where the answer matters. Focused on the things I wish someone had laid out clearly earlier.
+                    </p>
+                </div>
+                <div class="beyond-card reveal reveal-delay-2">
+                    <i class="ti ti-building-store beyond-card__icon"></i>
+                    <span class="beyond-card__label">Investing</span>
+                    <div class="beyond-card__title">Angel Investments</div>
+                    <p class="beyond-card__desc">
+                        Early-stage investing in businesses where the fundamentals are sound, the founder understands the problem from the inside, and the business model is clear. No moonshots — businesses that can actually work.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA ==================== -->
+    <section class="about-cta">
+        <div class="container">
+            <h2 class="reveal">If you want to talk, let's talk.</h2>
+            <p class="reveal reveal-delay-1">
+                A 30-minute conversation. No pitch deck. Tell me what you're trying to build and where you're stuck — I'll tell you honestly whether I can help.
+            </p>
+            <a href="./index.html#contact-form" class="btn btn--primary reveal reveal-delay-2">Book a Call</a>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__copy">© 2026 Yugam. Helping you build production-quality AI.</div>
+            <div class="footer__social">
+                <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+                <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="ti ti-brand-youtube"></i></a>
+                <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><i class="ti ti-brand-x"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
+
+</body>
+</html>
