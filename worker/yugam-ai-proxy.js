@@ -267,7 +267,7 @@ export default {
         headers: {
           'Authorization': `Bearer ${env.OPENROUTER_API_KEY}`,
           'Content-Type': 'application/json',
-          'HTTP-Referer': 'https://rohitmaskara.github.io/yugam-ai/',
+          'HTTP-Referer': 'https://yugamsystems.github.io/',
           'X-Title': 'Yugam ' + tool,
         },
         body: JSON.stringify({
