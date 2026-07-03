@@ -175,6 +175,47 @@
         }
         .nav__link:hover, .nav__link--active { color: var(--teak); }
 
+        .nav__dropdown { position: relative; }
+        .nav__dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -16px;
+            background: var(--stone);
+            border: 1px solid var(--clay);
+            border-radius: 6px;
+            padding: 16px 0 8px;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
+            z-index: 101;
+        }
+        .nav__dropdown:hover .nav__dropdown-menu { display: block; }
+        .nav__dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: var(--bark);
+            text-decoration: none;
+            transition: all 200ms ease;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .nav__dropdown-item:hover {
+            color: var(--teak);
+            background: var(--sand);
+        }
+        .nav__dropdown-item i {
+            font-size: 16px;
+            color: var(--drift);
+        }
+        .nav__dropdown-arrow {
+            font-size: 10px;
+            margin-left: 4px;
+        }
+
         .nav__hamburger {
             display: none;
             background: none;
@@ -290,197 +331,6 @@
             line-height: 1.6;
         }
 
-        /* ============ READINESS ============ */
-        .readiness {
-            padding: var(--section-pad) 0;
-            background: var(--stone-light);
-        }
-        .readiness .container {
-            display: grid;
-            grid-template-columns: 55% 45%;
-            gap: 64px;
-            align-items: start;
-        }
-        .readiness__heading { margin-bottom: 20px; }
-        .readiness__intro {
-            margin-bottom: 40px;
-            color: var(--bark);
-        }
-        .criteria { display: flex; flex-direction: column; gap: 32px; }
-        .criterion {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-        .criterion__icon {
-            flex-shrink: 0;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--sand);
-            border-radius: 8px;
-            color: var(--teak);
-            font-size: 22px;
-        }
-        .criterion__title {
-            font-family: var(--font-sans);
-            font-weight: 600;
-            color: var(--charcoal);
-            margin-bottom: 4px;
-            font-size: 16px;
-        }
-        .criterion__desc {
-            font-size: 15px;
-            color: var(--bark);
-            line-height: 1.6;
-        }
-
-        .readiness__quote-card {
-            background: var(--sand);
-            padding: 48px;
-            border-radius: var(--card-radius);
-            border-left: 3px solid var(--teak);
-            position: sticky;
-            top: 120px;
-        }
-        .readiness__quote {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 24px;
-            color: var(--ink);
-            line-height: 1.4;
-            margin-bottom: 20px;
-        }
-        .readiness__quote-support {
-            font-size: 15px;
-            color: var(--drift);
-            line-height: 1.6;
-        }
-
-        /* ============ THRESHOLD ============ */
-        .threshold {
-            background: var(--deep);
-            padding: 100px 0;
-            text-align: center;
-            overflow: hidden;
-        }
-        .threshold__symbol {
-            margin-bottom: 32px;
-            display: flex;
-            justify-content: center;
-        }
-        .threshold__vesica {
-            opacity: 0;
-            transform: scale(0.6);
-            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
-        }
-        .threshold--animate .threshold__vesica {
-            opacity: 1;
-            transform: scale(1);
-        }
-        .threshold__text {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 22px;
-            color: var(--deep-text);
-            opacity: 0;
-            transition: opacity 1s ease-out 0.6s;
-        }
-        .threshold--animate .threshold__text {
-            opacity: 1;
-        }
-        .threshold__sub {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--drift);
-            margin-top: 16px;
-            opacity: 0;
-            transition: opacity 1s ease-out 1s;
-        }
-        .threshold--animate .threshold__sub {
-            opacity: 1;
-        }
-
-        /* ============ METHODOLOGY ============ */
-        .methodology {
-            padding: var(--section-pad) 0;
-            background: var(--stone);
-        }
-        .methodology__header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-        .methodology__header h2 { margin-bottom: 16px; }
-        .methodology__grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            position: relative;
-        }
-        .phase-card {
-            background: var(--sand);
-            padding: 32px;
-            border-radius: var(--card-radius);
-            transition: transform 300ms ease, box-shadow 300ms ease;
-        }
-        .phase-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
-        }
-        .phase-card__number {
-            font-family: var(--font-mono);
-            font-size: 14px;
-            color: var(--teak);
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-        .phase-card__title {
-            font-family: var(--font-sans);
-            font-weight: 600;
-            font-size: 18px;
-            color: var(--charcoal);
-            margin-bottom: 4px;
-        }
-        .phase-card__weeks {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--drift);
-            margin-bottom: 16px;
-        }
-        .phase-card__list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .phase-card__list li {
-            font-size: 14px;
-            color: var(--bark);
-            padding-left: 16px;
-            position: relative;
-        }
-        .phase-card__list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 9px;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: var(--clay);
-        }
-        .methodology__footnote {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 14px;
-            color: var(--drift);
-            font-style: italic;
-        }
-
         /* ============ TOOLS ============ */
         .tools {
             padding: var(--section-pad) 0;
@@ -525,6 +375,154 @@
             font-size: 15px;
             color: var(--bark);
             line-height: 1.6;
+        }
+
+        /* ============ AI STACK TEASER ============ */
+        .ai-stack-teaser {
+            padding: var(--section-pad) 0;
+            background: var(--stone);
+        }
+        .ai-stack-teaser__header {
+            margin-bottom: 56px;
+        }
+        .ai-stack-teaser__header h2 { margin-bottom: 12px; }
+        .ai-stack-teaser__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        .stack-preview-card {
+            background: var(--sand);
+            padding: 32px;
+            border-radius: var(--card-radius);
+            border-left: 3px solid var(--teak);
+            transition: transform 300ms ease, box-shadow 300ms ease;
+        }
+        .stack-preview-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
+        }
+        .stack-preview-card__category {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--drift);
+            margin-bottom: 8px;
+        }
+        .stack-preview-card__name {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+        .stack-preview-card__verdict {
+            font-size: 15px;
+            font-style: italic;
+            color: var(--teak);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .stack-preview-card__take {
+            font-size: 14px;
+            color: var(--bark);
+            line-height: 1.6;
+        }
+        .ai-stack-teaser__cta {
+            text-align: center;
+        }
+
+        /* ============ SERVICES ============ */
+        .services {
+            padding: var(--section-pad) 0;
+            background: var(--stone-light);
+        }
+        .services__header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .services__header h2 { margin-bottom: 16px; }
+        .services__note {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 48px;
+            font-size: 16px;
+            color: var(--bark);
+            line-height: 1.7;
+        }
+        .services__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .service-card {
+            background: var(--sand);
+            padding: 40px 32px;
+            border-radius: var(--card-radius);
+            transition: transform 300ms ease, box-shadow 300ms ease;
+        }
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
+        }
+        .service-card__number {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--teak);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .service-card__name {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            color: var(--ink);
+            font-weight: 400;
+            margin-bottom: 6px;
+        }
+        .service-card__liner {
+            font-size: 16px;
+            color: var(--bark);
+            font-style: italic;
+            margin-bottom: 6px;
+        }
+        .service-card__duration {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--drift);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+        }
+        .service-card__hr {
+            border: none;
+            border-top: 1px solid var(--clay);
+            margin: 0 0 20px;
+        }
+        .service-card__list {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+        .service-card__list li {
+            font-size: 15px;
+            color: var(--bark);
+            padding: 5px 0 5px 20px;
+            position: relative;
+            line-height: 1.5;
+        }
+        .service-card__list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--drift);
+        }
+        .service-card__outcome {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--charcoal);
+            line-height: 1.5;
+            padding-top: 16px;
+            border-top: 1px solid var(--clay);
         }
 
         /* ============ CALCULATOR ============ */
@@ -630,10 +628,79 @@
         }
         .calculator__cta a:hover { color: var(--teak-hover); }
 
+        /* ============ READINESS ============ */
+        .readiness {
+            padding: var(--section-pad) 0;
+            background: var(--stone-light);
+        }
+        .readiness .container {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            gap: 64px;
+            align-items: start;
+        }
+        .readiness__heading { margin-bottom: 20px; }
+        .readiness__intro {
+            margin-bottom: 40px;
+            color: var(--bark);
+        }
+        .criteria { display: flex; flex-direction: column; gap: 32px; }
+        .criterion {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .criterion__icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--sand);
+            border-radius: 8px;
+            color: var(--teak);
+            font-size: 22px;
+        }
+        .criterion__title {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 4px;
+            font-size: 16px;
+        }
+        .criterion__desc {
+            font-size: 15px;
+            color: var(--bark);
+            line-height: 1.6;
+        }
+
+        .readiness__quote-card {
+            background: var(--sand);
+            padding: 48px;
+            border-radius: var(--card-radius);
+            border-left: 3px solid var(--teak);
+            position: sticky;
+            top: 120px;
+        }
+        .readiness__quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 24px;
+            color: var(--ink);
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        .readiness__quote-support {
+            font-size: 15px;
+            color: var(--drift);
+            line-height: 1.6;
+        }
+
         /* ============ CASE STUDIES ============ */
         .case-studies {
             padding: var(--section-pad) 0;
-            background: var(--stone-light);
+            background: var(--stone);
         }
         .case-studies__header { margin-bottom: 56px; }
         .case-studies__grid {
@@ -642,7 +709,7 @@
             gap: 28px;
         }
         .case-card {
-            background: var(--stone);
+            background: var(--sand);
             padding: 36px;
             border-radius: var(--card-radius);
             transition: transform 300ms ease, box-shadow 300ms ease;
@@ -658,7 +725,7 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
             padding: 4px 12px;
-            background: var(--sand);
+            background: var(--stone-light);
             color: var(--bark);
             border-radius: 20px;
             margin-bottom: 16px;
@@ -688,7 +755,7 @@
             border-radius: 6px;
         }
         .metric--before {
-            background: var(--sand);
+            background: var(--stone-light);
         }
         .metric--after {
             background: rgba(139, 105, 20, 0.08);
@@ -722,7 +789,7 @@
             font-family: var(--font-mono);
             font-size: 10px;
             padding: 3px 8px;
-            background: var(--sand);
+            background: var(--stone-light);
             color: var(--drift);
             border-radius: 4px;
         }
@@ -730,7 +797,7 @@
         /* ============ INSIGHTS ============ */
         .insights {
             padding: var(--section-pad) 0;
-            background: var(--stone);
+            background: var(--stone-light);
         }
         .insights__header { margin-bottom: 56px; }
         .insights__grid {
@@ -921,8 +988,9 @@
         @media (max-width: 1024px) {
             h1 { font-size: 44px; }
             h2 { font-size: 34px; }
-            .methodology__grid { grid-template-columns: repeat(2, 1fr); }
+            .services__grid { grid-template-columns: 1fr; }
             .case-studies__grid { grid-template-columns: 1fr; }
+            .ai-stack-teaser__grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
@@ -949,12 +1017,13 @@
             }
             .readiness__quote-card { position: static; }
 
-            .methodology__grid { grid-template-columns: 1fr; }
             .tools__grid { grid-template-columns: 1fr; }
             .tool-card--featured {
                 grid-template-columns: 1fr;
                 grid-column: auto;
             }
+
+            .ai-stack-teaser__grid { grid-template-columns: 1fr; }
 
             .calculator__inputs { grid-template-columns: 1fr; }
             .results-grid { grid-template-columns: repeat(2, 1fr); }
@@ -987,11 +1056,18 @@
                 <span class="nav__logo-text">Yugam</span>
             </a>
             <ul class="nav__links">
-                <li><a href="#readiness" class="nav__link">Readiness</a></li>
-                <li><a href="#methodology" class="nav__link">Methodology</a></li>
-                <li><a href="#tools" class="nav__link">Tools</a></li>
-                <li><a href="#case-studies" class="nav__link">Case Studies</a></li>
-                <li><a href="#insights" class="nav__link">Insights</a></li>
+                <li><a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="nav__link">About</a></li>
+                <li><a href="./ai-stack.html" class="nav__link">AI Stack</a></li>
+                <li><a href="#services" class="nav__link">Services</a></li>
+                <li class="nav__dropdown">
+                    <a href="#resources" class="nav__link">Resources <span class="nav__dropdown-arrow">&#9662;</span></a>
+                    <div class="nav__dropdown-menu">
+                        <a href="./ai-transformation-index/index.html" class="nav__dropdown-item"><i class="ti ti-brain"></i> AI Transformation Index</a>
+                        <a href="#tools" class="nav__dropdown-item"><i class="ti ti-stethoscope"></i> Diagnostic Tools</a>
+                        <a href="#insights" class="nav__dropdown-item"><i class="ti ti-article"></i> Articles & Insights</a>
+                        <a href="#case-studies" class="nav__dropdown-item"><i class="ti ti-chart-bar"></i> Case Studies</a>
+                    </div>
+                </li>
                 <li><a href="#contact-form" class="btn btn--primary" style="padding: 10px 20px; font-size: 13px;">Let's Talk</a></li>
             </ul>
             <button class="nav__hamburger" onclick="document.querySelector('.nav__mobile').classList.add('open')" aria-label="Open menu">
@@ -1003,24 +1079,25 @@
     <!-- Mobile Menu -->
     <div class="nav__mobile" id="mobileMenu">
         <button class="nav__mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close menu">&times;</button>
-        <a href="#readiness" onclick="this.parentElement.classList.remove('open')">Readiness</a>
-        <a href="#methodology" onclick="this.parentElement.classList.remove('open')">Methodology</a>
-        <a href="#tools" onclick="this.parentElement.classList.remove('open')">Tools</a>
-        <a href="#case-studies" onclick="this.parentElement.classList.remove('open')">Case Studies</a>
-        <a href="#insights" onclick="this.parentElement.classList.remove('open')">Insights</a>
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});this.parentElement.classList.remove('open');return false;">About</a>
+        <a href="./ai-stack.html">AI Stack</a>
+        <a href="#services" onclick="this.parentElement.classList.remove('open')">Services</a>
+        <a href="./ai-transformation-index/index.html">AI Transformation Index</a>
+        <a href="#tools" onclick="this.parentElement.classList.remove('open')">Diagnostic Tools</a>
+        <a href="#insights" onclick="this.parentElement.classList.remove('open')">Articles & Insights</a>
         <a href="#contact-form" class="btn btn--primary" onclick="this.parentElement.classList.remove('open')">Let's Talk</a>
     </div>
 
     <!-- ==================== HERO ==================== -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="container">
             <div class="hero__content">
                 <span class="label reveal">AI Strategy, System Architecture & Implementation</span>
                 <h1 class="hero__headline reveal reveal-delay-1">Implementing AI is the easy part.</h1>
-                <p class="hero__text reveal reveal-delay-2">The hard part is knowing whether your people, processes, and data are ready for it. AI tools are easy to buy. Knowing which ones your business actually needs — and whether your organization can support them — is the real work. I help founders and leadership teams design AI strategies grounded in how their business actually operates. Not how it looks on a slide deck.</p>
+                <p class="hero__text reveal reveal-delay-2">The hard part is knowing whether your people, processes, and data are ready for it. AI tools are easy to buy. Knowing which ones your business needs — and whether your organization can support them — is the real work. I help founders and leadership teams design AI strategies grounded in how their business operates. Not how it looks on a slide deck.</p>
                 <div class="hero__actions reveal reveal-delay-3">
                     <a href="#contact-form" class="btn btn--primary">Let's Talk</a>
-                    <a href="resources/risk-playbook.html" class="btn btn--secondary">Read the Risk Playbook</a>
+                    <a href="./ai-transformation-index/index.html" class="btn btn--secondary">Take the AI Assessment</a>
                 </div>
             </div>
             <div class="hero__founder reveal reveal-delay-2">
@@ -1039,119 +1116,8 @@
                     <span class="hero__tag">Scaled Operations</span>
                     <span class="hero__tag">AI Deployment</span>
                 </div>
-                <p class="hero__bio">A decade at Meta. Fortune 500 governance at KPMG. Started on a manufacturing shop floor. B.Tech in Industrial Engineering. MBA in Operations Strategy &amp; Finance. I've seen how organizations actually work — from the inside.</p>
+                <p class="hero__bio">A decade at Meta. Fortune 500 governance at KPMG. Started on a manufacturing shop floor. B.Tech in Industrial Engineering. MBA in Operations Strategy &amp; Finance. I've seen how organizations work — from the inside.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- ==================== READINESS ==================== -->
-    <section class="readiness" id="readiness">
-        <div class="container">
-            <div class="readiness__content">
-                <span class="label label--accent reveal">Foundation Assessment</span>
-                <h2 class="readiness__heading reveal reveal-delay-1">Three things I check before recommending any AI tool.</h2>
-                <p class="readiness__intro reveal reveal-delay-2">Most businesses jump straight to tools. Which LLM? Which platform? Which vendor? But the technology is never the bottleneck. These three things are.</p>
-                <div class="criteria">
-                    <div class="criterion reveal reveal-delay-2">
-                        <div class="criterion__icon"><i class="ti ti-database"></i></div>
-                        <div>
-                            <div class="criterion__title">Data Organization</div>
-                            <div class="criterion__desc">Is your data structured, documented, and accessible? Or scattered across spreadsheets, inboxes, and tribal knowledge?</div>
-                        </div>
-                    </div>
-                    <div class="criterion reveal reveal-delay-3">
-                        <div class="criterion__icon"><i class="ti ti-list-check"></i></div>
-                        <div>
-                            <div class="criterion__title">Process Clarity</div>
-                            <div class="criterion__desc">Are your standard operating procedures documented? Or does critical knowledge live in people's heads, vulnerable to turnover?</div>
-                        </div>
-                    </div>
-                    <div class="criterion reveal reveal-delay-4">
-                        <div class="criterion__icon"><i class="ti ti-users"></i></div>
-                        <div>
-                            <div class="criterion__title">Team Readiness</div>
-                            <div class="criterion__desc">Are your teams prepared to work alongside AI? Or will adoption stall because the change was imposed, not enabled?</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="readiness__aside">
-                <div class="readiness__quote-card reveal">
-                    <div class="readiness__quote">"I've watched teams spend six months building an AI solution on top of data that no one trusted. The AI worked. The data and processes around it didn't. They had to start over."</div>
-                    <div class="readiness__quote-support">If any of these three are fragile — data, process, or people — that's where I start. Every time. Without exception.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== THRESHOLD ==================== -->
-    <section class="threshold" id="threshold">
-        <div class="container">
-            <div class="threshold__symbol">
-                <svg width="48" height="80" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg" class="threshold__vesica">
-                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
-                </svg>
-            </div>
-            <div class="threshold__text">This is where the new age begins.</div>
-            <div class="threshold__sub">युगम् — a new era, a coming together</div>
-        </div>
-    </section>
-
-    <!-- ==================== METHODOLOGY ==================== -->
-    <section class="methodology" id="methodology">
-        <div class="container">
-            <div class="methodology__header reveal">
-                <span class="label label--accent">The Framework</span>
-                <h2>How the engagement works.</h2>
-                <p class="subheading subheading--center">A typical engagement runs 12 weeks. Some are shorter, some extend. The structure adapts to what your business needs — but the discipline and rigour never change.</p>
-            </div>
-            <div class="methodology__grid">
-                <div class="phase-card reveal">
-                    <div class="phase-card__number">01</div>
-                    <div class="phase-card__title">Foundation & Audit</div>
-                    <div class="phase-card__weeks">Weeks 1–2</div>
-                    <ul class="phase-card__list">
-                        <li>Pre-AI readiness assessment</li>
-                        <li>Data & process audits</li>
-                        <li>Tech stack review</li>
-                        <li>Team interviews</li>
-                    </ul>
-                </div>
-                <div class="phase-card reveal reveal-delay-1">
-                    <div class="phase-card__number">02</div>
-                    <div class="phase-card__title">Strategy & Planning</div>
-                    <div class="phase-card__weeks">Weeks 3–4</div>
-                    <ul class="phase-card__list">
-                        <li>AI opportunity mapping</li>
-                        <li>Implementation roadmap</li>
-                        <li>Cost & timeline estimation</li>
-                        <li>Team pre-training</li>
-                    </ul>
-                </div>
-                <div class="phase-card reveal reveal-delay-2">
-                    <div class="phase-card__number">03</div>
-                    <div class="phase-card__title">Build & Iterate</div>
-                    <div class="phase-card__weeks">Weeks 5–8</div>
-                    <ul class="phase-card__list">
-                        <li>Pilots & prototypes</li>
-                        <li>Testing & evaluation</li>
-                        <li>Course corrections</li>
-                        <li>Measurement setup</li>
-                    </ul>
-                </div>
-                <div class="phase-card reveal reveal-delay-3">
-                    <div class="phase-card__number">04</div>
-                    <div class="phase-card__title">Scale & Govern</div>
-                    <div class="phase-card__weeks">Weeks 9–12</div>
-                    <ul class="phase-card__list">
-                        <li>Full deployment</li>
-                        <li>Staff training</li>
-                        <li>Governance framework</li>
-                        <li>Executive reporting</li>
-                    </ul>
-                </div>
-            </div>
-            <p class="methodology__footnote reveal">Week 13+: Monthly check-ins, optimization, and scaling as your business evolves.</p>
         </div>
     </section>
 
@@ -1160,34 +1126,39 @@
         <div class="container">
             <div class="tools__header reveal">
                 <h2>Free AI Diagnostics: Understand Your Readiness</h2>
-                <p class="subheading">Start here. No strings attached. See exactly where you stand before any conversation.</p>
+                <p class="subheading">Start here. No email required. See exactly where you stand before any conversation.</p>
             </div>
             <div class="tools__grid">
                 <div class="tool-card tool-card--featured reveal">
                     <div>
-                        <div class="tool-card__title">Implementation Risk Assessment</div>
-                        <div class="tool-card__desc">Map your AI project against the 4-failure-mode framework. Understand where the real risks are before you commit resources.</div>
+                        <div class="tool-card__title">AI Transformation Index</div>
+                        <div class="tool-card__desc">The most comprehensive free diagnostic on the site. 10 minutes. Discover your AI readiness score, your leadership archetype, and the 3 use cases most likely to create immediate value in your organisation.</div>
                     </div>
-                    <a href="resources/risk-playbook.html" class="btn btn--primary">Get the Playbook</a>
+                    <a href="./ai-transformation-index/index.html" class="btn btn--primary">Take the Assessment →</a>
                 </div>
                 <div class="tool-card reveal">
+                    <div class="tool-card__title">Implementation Risk Assessment</div>
+                    <div class="tool-card__desc">Map your AI project against the 4-failure-mode framework. Understand where the real risks are before you commit resources.</div>
+                    <a href="resources/risk-playbook.html" class="btn btn--primary" style="margin-top: 16px; display: inline-flex;">Get the Playbook</a>
+                </div>
+                <div class="tool-card reveal reveal-delay-1">
                     <div class="tool-card__title">AI Opportunity Finder</div>
                     <div class="tool-card__desc">Identify where in your operations AI creates the highest leverage.</div>
                     <a href="resources/ai-opportunity-finder.html" class="btn btn--primary" style="margin-top: 16px; display: inline-flex;">Take the Assessment</a>
                 </div>
                 <div class="tool-card reveal reveal-delay-1">
                     <div class="tool-card__title">Data Readiness Scan</div>
-                    <div class="tool-card__desc">Find out if your data can actually support AI — before you spend a dollar on implementation.</div>
+                    <div class="tool-card__desc">Find out if your data can support AI — before you spend a dollar on implementation.</div>
                     <a href="resources/data-readiness.html" class="btn btn--primary" style="margin-top: 16px; display: inline-flex;">Scan Your Data</a>
                 </div>
                 <div class="tool-card reveal reveal-delay-2">
                     <div class="tool-card__title">Team Readiness Check</div>
-                    <div class="tool-card__desc">AI tools only work when teams actually use them. Find out if yours will.</div>
+                    <div class="tool-card__desc">AI tools only work when teams use them. Find out if yours will.</div>
                     <a href="resources/team-readiness.html" class="btn btn--primary" style="margin-top: 16px; display: inline-flex;">Check Your Team</a>
                 </div>
                 <div class="tool-card reveal reveal-delay-3">
                     <div class="tool-card__title">Implementation Complexity Score</div>
-                    <div class="tool-card__desc">Before you pick a vendor or start a pilot, understand how hard this will actually be.</div>
+                    <div class="tool-card__desc">Before you pick a vendor or start a pilot, understand how hard this will be.</div>
                     <a href="resources/complexity-score.html" class="btn btn--primary" style="margin-top: 16px; display: inline-flex;">Score Your Complexity</a>
                 </div>
                 <div class="tool-card reveal">
@@ -1204,11 +1175,106 @@
         </div>
     </section>
 
+    <!-- ==================== AI STACK TEASER ==================== -->
+    <section class="ai-stack-teaser" id="ai-stack-teaser">
+        <div class="container">
+            <div class="ai-stack-teaser__header reveal">
+                <span class="label label--accent">Recommended Tools</span>
+                <h2>The AI Stack</h2>
+                <p class="subheading">The tools I recommend to clients — tested, opinionated, and honest. Two or three well-configured tools beat a dozen half-deployed ones.</p>
+            </div>
+            <div class="ai-stack-teaser__grid">
+                <div class="stack-preview-card reveal">
+                    <div class="stack-preview-card__category">General Productivity</div>
+                    <div class="stack-preview-card__name">Claude</div>
+                    <div class="stack-preview-card__verdict">Best reasoning model for business use cases right now.</div>
+                    <p class="stack-preview-card__take">Start here for writing, analysis, and decision support. More reliable than ChatGPT for nuanced business contexts — fewer confident wrong answers.</p>
+                </div>
+                <div class="stack-preview-card reveal reveal-delay-1">
+                    <div class="stack-preview-card__category">Operations & Automation</div>
+                    <div class="stack-preview-card__name">Make</div>
+                    <div class="stack-preview-card__verdict">Most flexible automation platform for non-technical teams.</div>
+                    <p class="stack-preview-card__take">The right middle ground between no-code simplicity and developer power. What Zapier should be for teams that need more control without hiring engineers.</p>
+                </div>
+                <div class="stack-preview-card reveal reveal-delay-2">
+                    <div class="stack-preview-card__category">Sales & Marketing</div>
+                    <div class="stack-preview-card__name">Apollo</div>
+                    <div class="stack-preview-card__verdict">Best-value prospecting and outreach platform for SMBs.</div>
+                    <p class="stack-preview-card__take">Combines lead database, email sequencing, and analytics in one tool. Replaces three separate subscriptions at a fraction of the combined cost.</p>
+                </div>
+            </div>
+            <div class="ai-stack-teaser__cta reveal">
+                <a href="./ai-stack.html" class="btn btn--secondary">See All 21 Tools →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SERVICES ==================== -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services__header reveal">
+                <span class="label label--accent">Services</span>
+                <h2>How We Work</h2>
+                <p class="subheading subheading--center">Three ways to engage, depending on where you are. No bloated packages. No unnecessary complexity. Start where it makes sense.</p>
+            </div>
+            <p class="services__note reveal reveal-delay-1">Every engagement starts with a 30-minute conversation. You tell me what you're building and where you're stuck. I tell you honestly whether I can help — and if so, which tier makes sense.</p>
+            <div class="services__grid">
+                <div class="service-card reveal">
+                    <div class="service-card__number">01</div>
+                    <div class="service-card__name">Assess</div>
+                    <div class="service-card__liner">Find out where you stand.</div>
+                    <div class="service-card__duration">2–4 weeks</div>
+                    <hr class="service-card__hr">
+                    <ul class="service-card__list">
+                        <li>AI readiness audit</li>
+                        <li>Opportunity mapping</li>
+                        <li>Risk assessment</li>
+                        <li>Data & process review</li>
+                        <li>Go/no-go recommendation</li>
+                    </ul>
+                    <div class="service-card__outcome">You walk away knowing exactly what's possible, what's risky, and where to start.</div>
+                </div>
+
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-card__number">02</div>
+                    <div class="service-card__name">Build</div>
+                    <div class="service-card__liner">Design and implement the right system.</div>
+                    <div class="service-card__duration">8–16 weeks</div>
+                    <hr class="service-card__hr">
+                    <ul class="service-card__list">
+                        <li>AI strategy & use-case prioritization</li>
+                        <li>Tool selection & vendor evaluation</li>
+                        <li>Workflow architecture</li>
+                        <li>Pilot build & iteration</li>
+                        <li>Measurement framework</li>
+                    </ul>
+                    <div class="service-card__outcome">You have a working AI system in production, with proof it delivers value.</div>
+                </div>
+
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-card__number">03</div>
+                    <div class="service-card__name">Train</div>
+                    <div class="service-card__liner">Get your team using it.</div>
+                    <div class="service-card__duration">Flexible</div>
+                    <hr class="service-card__hr">
+                    <ul class="service-card__list">
+                        <li>Corporate AI workshops</li>
+                        <li>Executive coaching sessions</li>
+                        <li>Role-specific playbooks</li>
+                        <li>Hands-on tool training</li>
+                        <li>Adoption measurement</li>
+                    </ul>
+                    <div class="service-card__outcome">Your team is confident, capable, and using the tools you invested in.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ==================== CALCULATOR ==================== -->
     <section class="calculator" id="calculator">
         <div class="container">
             <div class="calculator__header reveal">
-                <h2>What Could AI Actually Deliver For You?</h2>
+                <h2>What Could AI Deliver For You?</h2>
                 <p class="subheading subheading--center">Answer four questions and get a directional estimate — no email required.</p>
             </div>
             <div class="calculator__form reveal">
@@ -1280,6 +1346,46 @@
                 <p class="calculator__disclaimer">These are rough directional estimates — not promises. Every business is different. The real numbers come from a proper assessment.</p>
                 <div class="calculator__cta">
                     <a href="mailto:maskyrohit@gmail.com">Discuss Your Numbers — Book a Call →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== READINESS ==================== -->
+    <section class="readiness" id="readiness">
+        <div class="container">
+            <div class="readiness__content">
+                <span class="label label--accent reveal">Foundation Assessment</span>
+                <h2 class="readiness__heading reveal reveal-delay-1">Three things I check before recommending any AI tool.</h2>
+                <p class="readiness__intro reveal reveal-delay-2">Most businesses jump straight to tools. Which LLM? Which platform? Which vendor? But the technology is never the bottleneck. These three things are.</p>
+                <div class="criteria">
+                    <div class="criterion reveal reveal-delay-2">
+                        <div class="criterion__icon"><i class="ti ti-database"></i></div>
+                        <div>
+                            <div class="criterion__title">Data Organization</div>
+                            <div class="criterion__desc">Is your data structured, documented, and accessible? Or scattered across spreadsheets, inboxes, and tribal knowledge?</div>
+                        </div>
+                    </div>
+                    <div class="criterion reveal reveal-delay-3">
+                        <div class="criterion__icon"><i class="ti ti-list-check"></i></div>
+                        <div>
+                            <div class="criterion__title">Process Clarity</div>
+                            <div class="criterion__desc">Are your standard operating procedures documented? Or does critical knowledge live in people's heads, vulnerable to turnover?</div>
+                        </div>
+                    </div>
+                    <div class="criterion reveal reveal-delay-4">
+                        <div class="criterion__icon"><i class="ti ti-users"></i></div>
+                        <div>
+                            <div class="criterion__title">Team Readiness</div>
+                            <div class="criterion__desc">Are your teams prepared to work alongside AI? Or will adoption stall because the change was imposed, not enabled?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="readiness__aside">
+                <div class="readiness__quote-card reveal">
+                    <div class="readiness__quote">"I've watched teams spend six months building an AI solution on top of data that no one trusted. The AI worked. The data and processes around it didn't. They had to start over."</div>
+                    <div class="readiness__quote-support">If any of these three are fragile — data, process, or people — that's where I start. Every time. Without exception.</div>
                 </div>
             </div>
         </div>
@@ -1422,7 +1528,7 @@
     <section class="newsletter">
         <div class="container">
             <div class="newsletter__content reveal">
-                <h2 class="newsletter__heading">A weekly note on AI that's actually useful.</h2>
+                <h2 class="newsletter__heading">A weekly note on AI worth reading.</h2>
                 <p class="newsletter__desc">Short, practical takes on AI strategy for business leaders. What's working, what's not, and what to watch. Written for people who run businesses, not people who build models.</p>
             </div>
             <div class="newsletter__right reveal reveal-delay-1">
@@ -1488,18 +1594,21 @@
         setTimeout(revealVisible, 100);
         setTimeout(revealVisible, 500);
 
-        // Threshold animation
-        const thresholdObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('threshold--animate');
-                    thresholdObserver.unobserve(entry.target);
-                }
+        // Resources dropdown hover fix
+        const dropdowns = document.querySelectorAll('.nav__dropdown');
+        let dropdownHideTimeout;
+        dropdowns.forEach(dropdown => {
+            const menu = dropdown.querySelector('.nav__dropdown-menu');
+            dropdown.addEventListener('mouseenter', () => {
+                clearTimeout(dropdownHideTimeout);
+                menu.style.display = 'block';
             });
-        }, { threshold: 0.5 });
-
-        const thresholdEl = document.querySelector('.threshold');
-        if (thresholdEl) thresholdObserver.observe(thresholdEl);
+            dropdown.addEventListener('mouseleave', () => {
+                dropdownHideTimeout = setTimeout(() => {
+                    menu.style.display = 'none';
+                }, 200);
+            });
+        });
 
         // Nav scroll behavior
         let lastScroll = 0;
