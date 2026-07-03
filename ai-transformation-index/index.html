@@ -60,6 +60,13 @@
       background: var(--gold-tint-2); color: var(--accent);
       padding: 4px 10px; border-radius: 20px; white-space: nowrap;
     }
+    .nav-back-site {
+      font-family: var(--fb); font-size: 0.8rem; font-weight: 500;
+      color: var(--muted); text-decoration: none; white-space: nowrap;
+      display: flex; align-items: center; gap: 4px;
+      transition: color 0.15s;
+    }
+    .nav-back-site:hover { color: var(--primary); }
 
     /* ── PROGRESS BAR ── */
     .progress-wrap {
@@ -342,6 +349,7 @@
       <span class="nav-logo-text">YUGAM</span>
     </a>
     <span class="nav-badge">AI Transformation Index</span>
+    <a href="../index.html" class="nav-back-site">← Back to site</a>
   </nav>
 
   <!-- ── PROGRESS ── -->
