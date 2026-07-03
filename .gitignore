@@ -1,0 +1,18 @@
+# Mac system files
+.DS_Store
+
+# Internal working documents — not for public repo
+_ops/
+
+# Loose planning and feedback docs
+DIAGNOSTIC-TOOLS-PLAN.md
+coach-feedback-ati-2026-07-01.md
+
+# Old site version
+Yugam wesbite 2.0/
+
+# Unfinished drafts
+services.html
+
+# Claude session files
+.claude/
