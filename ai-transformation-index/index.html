@@ -417,35 +417,35 @@
           <span class="gate-back" onclick="goBackToQuestions()">← Back to assessment</span>
           <span class="landing-badge">Almost Done</span>
           <h2 class="gate-title">You're done.</h2>
-          <p class="gate-sub">Enter your details to generate your personalised AI Transformation report. Results appear instantly — no waiting.</p>
+          <p class="gate-sub">Your report is ready. Share your details if you'd like a personalised follow-up — or skip straight to your results.</p>
           <form id="gate-form" onsubmit="submitGate(event)" novalidate>
             <div class="form-group">
-              <label class="form-label">Full Name *</label>
-              <input type="text" class="form-input" id="g-name" placeholder="Your full name" required>
+              <label class="form-label">Full Name <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+              <input type="text" class="form-input" id="g-name" placeholder="Your full name">
             </div>
             <div class="form-group">
-              <label class="form-label">Work Email *</label>
-              <input type="email" class="form-input" id="g-email" placeholder="you@company.com" required>
+              <label class="form-label">Work Email <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+              <input type="email" class="form-input" id="g-email" placeholder="you@company.com">
             </div>
             <div class="form-group">
-              <label class="form-label">Company / Organisation *</label>
-              <input type="text" class="form-input" id="g-company" placeholder="Your company name" required>
+              <label class="form-label">Company / Organisation <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+              <input type="text" class="form-input" id="g-company" placeholder="Your company name">
             </div>
             <div class="form-group">
-              <label class="form-label">What level of AI investment are you considering?</label>
+              <label class="form-label">What level of AI investment are you considering? <span style="color:var(--muted);font-weight:400">(optional)</span></label>
               <div class="select-wrap">
                 <select class="form-select" id="g-budget">
-                  <option value="">Select a range (optional)</option>
-                  <option value="under5k">Under SGD 5,000 — a focused diagnostic or workshop</option>
-                  <option value="5k-20k">SGD 5,000–20,000 — a short-term structured programme</option>
-                  <option value="20k-60k">SGD 20,000–60,000 — a meaningful engagement with clear deliverables</option>
-                  <option value="over60k">Over SGD 60,000 — a strategic, multi-month partnership</option>
+                  <option value="">Select a range</option>
+                  <option value="under5k">Under USD 5,000 — a focused diagnostic or workshop</option>
+                  <option value="5k-20k">USD 5,000–20,000 — a short-term structured programme</option>
+                  <option value="20k-60k">USD 20,000–60,000 — a meaningful engagement with clear deliverables</option>
+                  <option value="over60k">Over USD 60,000 — a strategic, multi-month partnership</option>
                   <option value="unsure">Not sure yet — depends on the ROI case</option>
                 </select>
               </div>
             </div>
             <button type="submit" class="btn-primary btn-primary-full" id="g-submit">Generate My Report →</button>
-            <p class="gate-privacy">Your details are kept private and used only to personalise and send your report. No spam, ever.</p>
+            <p class="gate-privacy">If you share your email, your details are kept private and used only to send you a follow-up. No spam, ever.</p>
           </form>
         </div>
       </div>
@@ -779,10 +779,9 @@
   // ═══════════════════════════════════════════════════════════
   async function submitGate(e) {
     e.preventDefault();
-    const name = document.getElementById('g-name').value.trim();
-    const email = document.getElementById('g-email').value.trim();
+    const name    = document.getElementById('g-name').value.trim();
+    const email   = document.getElementById('g-email').value.trim();
     const company = document.getElementById('g-company').value.trim();
-    if (!name || !email || !company) { alert('Please fill in your name, email, and company to continue.'); return; }
 
     const btn = document.getElementById('g-submit');
     btn.textContent = 'Generating your report…';
@@ -799,7 +798,7 @@
     //   3. Replace 'YOUR_FORM_ID' below with your actual Form ID
     //   4. Every submission will appear in your Formspree dashboard + email to you
     const FORMSPREE_ID = 'mqevykkr';
-    if (FORMSPREE_ID !== 'YOUR_FORM_ID') {
+    if (FORMSPREE_ID !== 'YOUR_FORM_ID' && email) {
       try {
         await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
           method: 'POST',
@@ -952,11 +951,11 @@
     const B = BARRIERS[s.primaryB];
     const top3 = buildTop3Cases(s);
 
-    const firstName = userInfo.name.split(' ')[0];
+    const firstName = userInfo.name ? userInfo.name.split(' ')[0] : null;
 
     document.getElementById('results-content').innerHTML = `
 
-      <p class="results-hello">Your Results, ${firstName}</p>
+      <p class="results-hello">${firstName ? `Your Results, ${firstName}` : 'Your Results'}</p>
       <p class="results-name">Here is your AI Transformation profile.</p>
 
       <!-- SCORE CARD -->
