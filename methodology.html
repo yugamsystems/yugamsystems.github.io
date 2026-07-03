@@ -261,7 +261,7 @@
 
         /* ============ HERO ============ */
         .method-hero {
-            padding: 200px 0 80px;
+            padding: 200px 0 56px;
             background: var(--stone);
         }
         .method-hero__content {
@@ -277,11 +277,25 @@
             font-family: var(--font-mono);
         }
         .method-hero__note i { font-size: 16px; }
+        .method-hero__aside {
+            margin-top: 28px;
+            font-size: 16px;
+            color: var(--bark);
+            font-style: italic;
+            max-width: 560px;
+            line-height: 1.6;
+            padding-top: 24px;
+            border-top: 1px solid var(--clay);
+        }
 
         /* ============ PHASE TIMELINE ============ */
         .phase-timeline {
-            padding: 0 0 80px;
-            background: var(--stone);
+            position: sticky;
+            top: 68px;
+            z-index: 90;
+            background: var(--stone-light);
+            border-bottom: 1px solid var(--clay);
+            padding: 0;
         }
         .phase-timeline__track {
             display: flex;
@@ -325,7 +339,7 @@
 
         /* ============ PHASE SECTIONS ============ */
         .phases {
-            padding: 0 0 var(--section-pad);
+            padding: 60px 0 var(--section-pad);
         }
         .phase-section {
             padding: 80px 0;
@@ -480,21 +494,13 @@
             color: var(--bark);
         }
 
-        /* ============ HONEST NOTE ============ */
-        .honest-note {
-            padding: 48px 0 64px;
-            background: var(--stone);
+        /* ============ PHASE FLASH ============ */
+        @keyframes phase-flash {
+            0%   { background: transparent; }
+            15%  { background: rgba(139, 105, 20, 0.07); }
+            100% { background: transparent; }
         }
-        .honest-note__inner {
-            max-width: 640px;
-        }
-        .honest-note__quote {
-            font-family: var(--font-serif);
-            font-size: 20px;
-            color: var(--bark);
-            line-height: 1.6;
-            font-style: italic;
-        }
+        .phase-section--flash { animation: phase-flash 1.4s ease-out; }
 
         /* ============ BOTTOM CTA ============ */
         .cta-bottom {
@@ -658,15 +664,7 @@
                     <i class="ti ti-clock"></i>
                     Assessment only: 2–4 weeks &nbsp;·&nbsp; Full engagement: up to 32 weeks
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== HONEST NOTE ==================== -->
-    <section class="honest-note">
-        <div class="container">
-            <div class="honest-note__inner reveal">
-                <p class="honest-note__quote">Not every engagement runs all six phases. Where you enter depends on where you are — find out in a 30-minute conversation.</p>
+                <p class="method-hero__aside reveal reveal-delay-3">Not every engagement runs all six phases. Where you enter depends on where you are — find out in a 30-minute conversation.</p>
             </div>
         </div>
     </section>
@@ -674,7 +672,7 @@
     <!-- ==================== PHASE TIMELINE ==================== -->
     <section class="phase-timeline">
         <div class="container">
-            <div class="phase-timeline__track reveal">
+            <div class="phase-timeline__track">
                 <a href="#phase-1" class="phase-pip">
                     <div class="phase-pip__num">01</div>
                     <div class="phase-pip__name">Discovery &amp; Assessment</div>
@@ -728,42 +726,42 @@
                                 <div class="step__title">Stakeholder interviews</div>
                                 <div class="step__duration">3–5 days</div>
                             </div>
-                            <div class="step__desc">C-suite, ops leads, department heads, and frontline staff. The people closest to the work know where the real friction is. Leadership knows where the pressure is coming from. Both matter.</div>
+                            <div class="step__desc">C-suite to frontline — the people closest to the work know where the friction is; leadership knows where the pressure comes from.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Business &amp; operations mapping</div>
                                 <div class="step__duration">2–3 days</div>
                             </div>
-                            <div class="step__desc">Revenue model, cost drivers, key processes, and decision points. Where do decisions slow down or get made twice? Where does knowledge disappear when someone leaves?</div>
+                            <div class="step__desc">Revenue model, cost drivers, key processes, and decision points — where things slow down, get made twice, or disappear when someone leaves.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Technology &amp; systems audit</div>
                                 <div class="step__duration">2–3 days</div>
                             </div>
-                            <div class="step__desc">Current stack, data flows, integration points, vendor contracts. What exists, what it actually does, and what it's costing. Avoids recommending tools the client already has under a different name.</div>
+                            <div class="step__desc">Current stack, data flows, vendor contracts — what exists, what it actually does, and what it costs.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Data audit</div>
                                 <div class="step__duration">3–5 days</div>
                             </div>
-                            <div class="step__desc">Where does data live, who owns it, how clean is it, and who can access it? This is the step that reveals the hidden blockers. Data problems discovered in Phase 3 are expensive. Discovered here, they're solvable.</div>
+                            <div class="step__desc">Where data lives, who owns it, how clean it is — hidden blockers found here cost days to fix; found in Phase 3, they cost months.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Opportunity mapping</div>
                                 <div class="step__duration">2–3 days</div>
                             </div>
-                            <div class="step__desc">Structured identification of AI candidates across all business units. Each scored on impact, feasibility, data availability, and time to value. Produces a ranked list — not a wish list.</div>
+                            <div class="step__desc">AI candidates across all business units, scored on impact, feasibility, data availability, and time to value — a ranked list, not a wish list.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Go/no-go recommendation</div>
                                 <div class="step__duration">2–3 days</div>
                             </div>
-                            <div class="step__desc">An honest assessment: where to start, where not to start, and why. Includes a preliminary cost-benefit, proposed sequence, and a clear statement of what would need to be true for this to succeed. If it's not the right time, I'll say so.</div>
+                            <div class="step__desc">Where to start, where not to, roughly what it costs, and what would need to be true for it to succeed — including an honest read if the timing is wrong.</div>
                         </div>
                     </div>
                 </div>
@@ -788,56 +786,56 @@
                                 <div class="step__title">AI strategy design</div>
                                 <div class="step__duration">1 week</div>
                             </div>
-                            <div class="step__desc">Which use cases, in which order, with which approach. Build vs. buy vs. configure for each. Sequenced by dependencies — some things have to happen before others.</div>
+                            <div class="step__desc">Which use cases, in which order, build vs. buy vs. configure — sequenced by dependencies.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Vendor &amp; tool evaluation</div>
                                 <div class="step__duration">3–5 days</div>
                             </div>
-                            <div class="step__desc">Shortlist, structured scoring against your specific requirements, demos where needed. The evaluation criteria come from the assessment — not from vendor marketing. Avoids picking tools based on brand recognition.</div>
+                            <div class="step__desc">Shortlist and structured scoring against your specific requirements — not vendor marketing.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Architecture design</div>
                                 <div class="step__duration">3–5 days</div>
                             </div>
-                            <div class="step__desc">How AI connects to existing systems. Data pipelines, integration points, security model, and access controls. Designed before any code is written or any vendor is contracted.</div>
+                            <div class="step__desc">How AI connects to existing systems — data pipelines, integration points, security model, and access controls — designed before any vendor is contracted.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Business case &amp; full cost model</div>
                                 <div class="step__duration">2–3 days</div>
                             </div>
-                            <div class="step__desc">Total cost of implementation — not just software licences. Includes internal time, data preparation, change management, training, and ongoing maintenance. The number most vendors don't show you.</div>
+                            <div class="step__desc">Total implementation cost: licences, internal time, data prep, change management, training, and ongoing maintenance.</div>
                         </div>
                         <div class="step--highlighted step">
                             <div class="step__header">
                                 <div class="step__title">Baseline measurement</div>
                                 <div class="step__duration">1–2 days</div>
                             </div>
-                            <div class="step__desc">Capture the before numbers now — hours spent per task, error rate, cost per unit, response time. Without a baseline established before the build, there's no credible ROI number at the end.</div>
+                            <div class="step__desc">Capture the before numbers now — without a pre-build baseline, there's no credible ROI figure at the end.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Risk register</div>
                                 <div class="step__duration">1–2 days</div>
                             </div>
-                            <div class="step__desc">Technical risks, data risks, change management risks, vendor dependency risks. Each with a rated likelihood, impact, and mitigation plan. A living document — updated throughout the engagement.</div>
+                            <div class="step__desc">Technical, data, change management, and vendor risks — each rated and given a mitigation plan before the build starts.</div>
                         </div>
                         <div class="step--highlighted step">
                             <div class="step__header">
                                 <div class="step__title">Governance &amp; compliance review</div>
                                 <div class="step__duration">1–2 days</div>
                             </div>
-                            <div class="step__desc">Data privacy (GDPR, local regulations), model transparency requirements, bias audit checklist, and audit trail design. Regulatory constraints found here cost a few days to resolve. Found in Phase 3, they can stop a build cold.</div>
+                            <div class="step__desc">Data privacy, audit trail design, and bias checklist — regulatory gaps found here take days to fix; found in Phase 3, they stop the build.</div>
                         </div>
                         <div class="step--highlighted step">
                             <div class="step__header">
                                 <div class="step__title">Stakeholder &amp; change management plan</div>
                                 <div class="step__duration">1–2 days</div>
                             </div>
-                            <div class="step__desc">Who needs to know what, when, and how. Resistance mapping — who is likely to push back and why. Communication cadence. Executive sponsorship alignment. Most AI implementations fail not because the technology doesn't work, but because the people piece wasn't planned.</div>
+                            <div class="step__desc">Who needs to know what, when, and how — resistance mapping, communication cadence, and executive sponsorship alignment.</div>
                         </div>
                     </div>
                 </div>
@@ -858,42 +856,42 @@
                                 <div class="step__title">Data preparation</div>
                                 <div class="step__duration">2–4 weeks</div>
                             </div>
-                            <div class="step__desc">Cleaning, structuring, labelling, and connecting the data the AI system needs. The step most engagements underestimate. Data in poor shape adds weeks. The assessment tells us this upfront — the work is planned for accordingly.</div>
+                            <div class="step__desc">Cleaning, structuring, and connecting the data the AI system needs — the step most engagements underestimate.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Solution development</div>
                                 <div class="step__duration">4–8 weeks</div>
                             </div>
-                            <div class="step__desc">Tool configuration, workflow automation build, custom integration where needed. Iterative — working software is shown to internal users early, not at the end. Feedback is captured and applied in-cycle.</div>
+                            <div class="step__desc">Tool configuration, workflow automation, and custom integration — iterative, with working software shown to users early.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Internal QA &amp; testing</div>
                                 <div class="step__duration">1–2 weeks</div>
                             </div>
-                            <div class="step__desc">Structured testing before any real users touch it. Edge cases, failure modes, data quality issues, and integration break points. The test cases are written in Phase 2 when the architecture is designed.</div>
+                            <div class="step__desc">Structured testing for edge cases, failure modes, and integration break points before any real users are involved.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Controlled pilot</div>
                                 <div class="step__duration">2–4 weeks</div>
                             </div>
-                            <div class="step__desc">Deploy to one team or one process first. Measure against the baseline established in Phase 2. Capture everything that works and everything that doesn't. A small-scope pilot failure costs a few weeks. A full-scale launch failure costs months.</div>
+                            <div class="step__desc">One team, one process, measured against the Phase 2 baseline — a pilot failure costs weeks; a launch failure costs months.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Post-pilot iteration</div>
                                 <div class="step__duration">1–2 weeks</div>
                             </div>
-                            <div class="step__desc">Fix what the pilot revealed. Document what changed and why. Decision gate before scaling: does the pilot evidence justify full rollout, or does the design need to change?</div>
+                            <div class="step__desc">Fix what the pilot revealed, document what changed, and decide: scale or redesign?</div>
                         </div>
                         <div class="step--highlighted step">
                             <div class="step__header">
                                 <div class="step__title">Hypercare period</div>
                                 <div class="step__duration">2–4 weeks</div>
                             </div>
-                            <div class="step__desc">Intensive support immediately after go-live. When systems go live in production, things break in ways that testing didn't catch. Planned intensive support during this window contains the damage and resolves issues before they become incidents.</div>
+                            <div class="step__desc">Intensive support in the first weeks after go-live, when production reveals what testing didn't catch.</div>
                         </div>
                     </div>
                 </div>
@@ -918,35 +916,35 @@
                                 <div class="step__title">Executive dashboard</div>
                                 <div class="step__duration">3–5 days</div>
                             </div>
-                            <div class="step__desc">Live view of AI performance metrics for leadership. What's running, what it's returning, where it's flagging. Built to the decisions that leadership needs to make — not the metrics that are easy to track.</div>
+                            <div class="step__desc">Live AI performance metrics built to the decisions leadership needs to make — not the metrics that are easy to track.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Automated alerts &amp; anomaly detection</div>
                                 <div class="step__duration">2–3 days</div>
                             </div>
-                            <div class="step__desc">System alerts when performance drops below agreed thresholds. Catches model drift, data quality issues, and integration failures before they surface as business problems.</div>
+                            <div class="step__desc">System alerts when performance drops below threshold — catches model drift and data issues before they become business problems.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Reporting cadence &amp; templates</div>
                                 <div class="step__duration">2–3 days</div>
                             </div>
-                            <div class="step__desc">Weekly operational report, monthly executive report. Templates set up so the client can run these without external help after handover.</div>
+                            <div class="step__desc">Weekly operational and monthly executive reports, templated so the client runs them independently after handover.</div>
                         </div>
                         <div class="step--highlighted step">
                             <div class="step__header">
                                 <div class="step__title">Data governance framework</div>
                                 <div class="step__duration">2–3 days</div>
                             </div>
-                            <div class="step__desc">Ongoing data ownership, access controls, quality standards, and refresh cadence. AI systems degrade over time when nobody owns data quality. This sets the structure that prevents that.</div>
+                            <div class="step__desc">Ongoing data ownership, access controls, and quality standards — AI systems degrade when nobody owns the data.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">ROI documentation</div>
                                 <div class="step__duration">1–2 days</div>
                             </div>
-                            <div class="step__desc">Formal before/after comparison against the baseline metrics captured in Phase 2. The number that goes into the executive handover and justifies the next phase of investment.</div>
+                            <div class="step__desc">Formal before/after comparison against the Phase 2 baseline — the number that goes into the executive handover.</div>
                         </div>
                     </div>
                 </div>
@@ -967,49 +965,49 @@
                                 <div class="step__title">Role-based needs assessment</div>
                                 <div class="step__duration">1 week</div>
                             </div>
-                            <div class="step__desc">What does a finance analyst need to know vs. a customer service agent vs. an executive sponsor? Different roles need different things. Generic AI training is expensive and ineffective.</div>
+                            <div class="step__desc">Different roles need different things — generic AI training is expensive and doesn't stick.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">SOP rewrite</div>
                                 <div class="step__duration">1–2 weeks</div>
                             </div>
-                            <div class="step__desc">Update standard operating procedures to reflect the new AI-augmented way of working. Without updated SOPs, people revert to old habits within weeks of training ending.</div>
+                            <div class="step__desc">Updated SOPs for the AI-augmented way of working — without them, people revert to old habits within weeks.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Training material development</div>
                                 <div class="step__duration">1 week</div>
                             </div>
-                            <div class="step__desc">Role-specific playbooks, quick reference guides, and worked examples from the actual deployed system — not generic demos. Materials built for the tool your team is using, not an idealised version of it.</div>
+                            <div class="step__desc">Role-specific playbooks and worked examples from the actual deployed system — not generic demos.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Executive briefings</div>
                                 <div class="step__duration">2–3 sessions</div>
                             </div>
-                            <div class="step__desc">Strategy-level sessions for leadership. The focus is on governance decisions, what to watch on the dashboard, and how to interpret the numbers — not on operating the tool itself.</div>
+                            <div class="step__desc">Leadership sessions focused on governance decisions and dashboard interpretation — not on operating the tool.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Team workshops</div>
                                 <div class="step__duration">2–4 weeks</div>
                             </div>
-                            <div class="step__desc">Hands-on, role-specific sessions. Participants work through tasks on the actual system using their own real work — not fictional examples. The only training that transfers to day-to-day use.</div>
+                            <div class="step__desc">Hands-on, role-specific sessions on the actual system, using each participant's own real work.</div>
                         </div>
                         <div class="step--highlighted step">
                             <div class="step__header">
                                 <div class="step__title">Super-user programme</div>
                                 <div class="step__duration">1 week setup, ongoing</div>
                             </div>
-                            <div class="step__desc">Identify 2–3 internal champions per team who receive deeper training and become the first line of support after handover. Sustains adoption without ongoing external dependency. The single most effective way to make change stick.</div>
+                            <div class="step__desc">2–3 internal champions per team trained more deeply to sustain adoption without ongoing external dependency.</div>
                         </div>
                         <div class="step--highlighted step">
                             <div class="step__header">
                                 <div class="step__title">Adoption measurement</div>
                                 <div class="step__duration">4–6 weeks ongoing</div>
                             </div>
-                            <div class="step__desc">Track actual system usage rates — not training completion. The common failure mode: people attend training, then don't use the tool. Usage data is reviewed weekly for the first month post-training with a structured response plan if adoption drops.</div>
+                            <div class="step__desc">Usage rates tracked weekly — training completion doesn't tell you if anyone is actually using the tool.</div>
                         </div>
                     </div>
                 </div>
@@ -1030,35 +1028,35 @@
                                 <div class="step__title">Documentation package</div>
                                 <div class="step__duration">1 week</div>
                             </div>
-                            <div class="step__desc">Full runbooks, architecture diagrams, vendor contacts, maintenance schedules, and troubleshooting guides. Everything needed to operate the system without calling anyone.</div>
+                            <div class="step__desc">Runbooks, architecture diagrams, vendor contacts, and maintenance schedules — everything needed to operate without calling anyone.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Internal ownership transfer</div>
                                 <div class="step__duration">2–3 days</div>
                             </div>
-                            <div class="step__desc">Named internal owner for each system — not a team, a person. Clear escalation path. Vendor relationship contacts transferred. The documentation means nothing if nobody knows they own it.</div>
+                            <div class="step__desc">Named internal owner for each system — not a team, a person — with a clear escalation path and transferred vendor contacts.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Executive handover session</div>
                                 <div class="step__duration">Half day</div>
                             </div>
-                            <div class="step__desc">Formal close with leadership. What was built, what it returned against baseline, what to watch for, what the 90-day plan looks like. ROI documentation presented and signed off.</div>
+                            <div class="step__desc">Formal close: what was built, what it returned against baseline, what to watch, and what comes next.</div>
                         </div>
                         <div class="step--highlighted step">
                             <div class="step__header">
                                 <div class="step__title">90-day post-engagement review</div>
                                 <div class="step__duration">1 session</div>
                             </div>
-                            <div class="step__desc">One structured follow-up call 90 days after close. Checks whether the system is running as expected, whether adoption held, and whether any drift has crept in. The most common failure mode is not visible at handover — it appears 6–8 weeks later when no one is watching.</div>
+                            <div class="step__desc">One structured follow-up call at day 90 — the most common failure mode isn't visible at handover, it surfaces 6–8 weeks later.</div>
                         </div>
                         <div class="step">
                             <div class="step__header">
                                 <div class="step__title">Optional retainer scope</div>
                                 <div class="step__duration">As agreed</div>
                             </div>
-                            <div class="step__desc">If ongoing support is warranted, the scope, SLA, and pricing are defined clearly and separately from the main engagement. No ambiguity about what's included after close.</div>
+                            <div class="step__desc">If ongoing support is warranted, scope, SLA, and pricing defined clearly and separately from the main engagement.</div>
                         </div>
                     </div>
                 </div>
@@ -1128,6 +1126,23 @@
         window.addEventListener('load', revealVisible);
         setTimeout(revealVisible, 100);
         setTimeout(revealVisible, 500);
+
+        // Phase pip click — scroll to phase and flash it
+        document.querySelectorAll('.phase-pip').forEach(pip => {
+            pip.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(pip.getAttribute('href'));
+                if (!target) return;
+                const navH = 68;
+                const timelineH = document.querySelector('.phase-timeline').offsetHeight;
+                const offset = target.getBoundingClientRect().top + window.scrollY - navH - timelineH - 16;
+                window.scrollTo({ top: offset, behavior: 'smooth' });
+                target.classList.remove('phase-section--flash');
+                void target.offsetWidth; // force reflow so re-adding restarts animation
+                setTimeout(() => target.classList.add('phase-section--flash'), 400);
+                setTimeout(() => target.classList.remove('phase-section--flash'), 1800);
+            });
+        });
 
         const dropdowns = document.querySelectorAll('.nav__dropdown');
         let dropdownHideTimeout;
