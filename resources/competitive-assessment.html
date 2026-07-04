@@ -37,7 +37,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
         h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
 
         /* Header */
@@ -490,12 +490,6 @@
                 <div class="scorecard__grid" id="scorecardGrid"></div>
             </div>
 
-            <!-- Tier 1: Strip (sticky) -->
-            <div class="strip-wrap">
-                <div class="section-label" style="margin-bottom: 10px;">Strategic priorities at a glance</div>
-                <div class="strip" id="stripList"></div>
-            </div>
-
             <!-- Tier 2: Detailed analysis -->
             <div class="section-label">Detailed analysis</div>
             <div id="opportunityList"></div>
@@ -538,7 +532,7 @@
 
     </div>
 
-    <footer class="footer"><div class="container"><p>&copy; 2026 Yugam. Helping you build production-quality AI.</p></div></footer>
+    <footer class="footer"><div class="container"><p>&copy; 2026 Yugam Systems Pte Ltd (Singapore)</p></div></footer>
 
     <script>
     const API_URL = 'https://yugam-ai-proxy.maskyrohit.workers.dev';
@@ -984,7 +978,7 @@
         // Opportunity strip — ALL opportunities, 4+ muted
         const strip = document.getElementById('stripList');
         const opps = data.opportunities || [];
-        strip.innerHTML = opps.map((opp, i) => `
+        if (strip) strip.innerHTML = opps.map((opp, i) => `
             <div class="strip-card ${i === 0 ? 'strip-card--top' : ''} ${i >= 3 ? 'strip-card--secondary' : ''}" onclick="scrollToOpportunity(${i})">
                 <div class="strip-card__rank">#${i + 1}</div>
                 <div class="strip-card__title">${escHtml(opp.title)}</div>
