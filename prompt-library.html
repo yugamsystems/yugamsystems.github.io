@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Library — Yugam</title>
+    <meta name="description" content="Ready-to-use AI prompts for operations, process improvement, and customer experience work. Copy, fill in the brackets, run.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --teak-bg: rgba(139, 105, 20, 0.08);
+
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+            --max-width: 1100px;
+            --card-radius: 8px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 16px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ============ NAV ============ */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 var(--clay);
+        }
+        .nav .container { display: flex; align-items: center; justify-content: space-between; }
+        .nav__logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .nav__logo-text { font-family: var(--font-serif); font-size: 22px; color: var(--ink); }
+        .nav__links { display: flex; align-items: center; gap: 36px; list-style: none; }
+        .nav__link {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--bark);
+            text-decoration: none;
+            transition: color 300ms ease;
+            font-weight: 500;
+        }
+        .nav__link:hover, .nav__link--active { color: var(--teak); }
+
+        .nav__dropdown { position: relative; }
+        .nav__dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%; left: -16px;
+            background: var(--stone);
+            border: 1px solid var(--clay);
+            border-radius: 6px;
+            padding: 16px 0 8px;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(26, 22, 18, 0.08);
+            z-index: 101;
+        }
+        .nav__dropdown:hover .nav__dropdown-menu { display: block; }
+        .nav__dropdown-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 20px;
+            font-size: 14px; color: var(--bark);
+            text-decoration: none; transition: all 200ms ease;
+            font-weight: 400; text-transform: none; letter-spacing: 0;
+        }
+        .nav__dropdown-item:hover { color: var(--teak); background: var(--sand); }
+        .nav__dropdown-item--active { color: var(--teak); }
+        .nav__dropdown-item i { font-size: 16px; color: var(--drift); }
+        .nav__dropdown-arrow { font-size: 10px; margin-left: 4px; }
+
+        .nav__hamburger {
+            display: none; background: none; border: none; cursor: pointer; padding: 8px;
+        }
+        .nav__hamburger span {
+            display: block; width: 24px; height: 2px;
+            background: var(--ink); margin: 5px 0; transition: all 300ms ease;
+        }
+        .nav__mobile {
+            display: none; position: fixed; inset: 0;
+            background: var(--stone); z-index: 99;
+            flex-direction: column; align-items: center; justify-content: center; gap: 40px;
+        }
+        .nav__mobile.open { display: flex; }
+        .nav__mobile a { font-family: var(--font-serif); font-size: 32px; color: var(--ink); text-decoration: none; }
+        .nav__mobile a:hover { color: var(--teak); }
+        .nav__mobile-close {
+            position: absolute; top: 24px; right: 32px;
+            background: none; border: none; font-size: 32px; color: var(--ink); cursor: pointer;
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 6px;
+            font-family: var(--font-sans); font-size: 15px; font-weight: 500;
+            text-decoration: none; transition: all 300ms ease;
+            cursor: pointer; border: none;
+        }
+        .btn--primary { background: var(--teak); color: var(--stone); }
+        .btn--primary:hover { background: var(--teak-hover); transform: translateY(-1px); }
+
+        /* ============ HERO ============ */
+        .hero {
+            padding: 140px 0 64px;
+            border-bottom: 1px solid var(--clay);
+        }
+        .hero__label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--teak);
+            display: block;
+            margin-bottom: 20px;
+        }
+        .hero__title {
+            font-family: var(--font-serif);
+            font-size: 48px;
+            line-height: 1.15;
+            color: var(--ink);
+            font-weight: 400;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+        .hero__desc {
+            font-size: 17px;
+            color: var(--bark);
+            max-width: 560px;
+            line-height: 1.7;
+        }
+
+        /* ============ HOW TO USE STRIP ============ */
+        .how-to-use {
+            background: var(--teak-bg);
+            border: 1px solid rgba(139, 105, 20, 0.18);
+            border-radius: var(--card-radius);
+            padding: 20px 28px;
+            margin: 40px 0 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .how-to-use i {
+            font-size: 18px;
+            color: var(--teak);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .how-to-use p {
+            font-size: 14px;
+            color: var(--bark);
+            line-height: 1.6;
+        }
+        .how-to-use strong { color: var(--ink); font-weight: 600; }
+
+        /* ============ FILTER TABS ============ */
+        .filters {
+            padding: 40px 0 36px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: 1px solid var(--clay);
+            background: transparent;
+            color: var(--bark);
+            cursor: pointer;
+            transition: all 200ms ease;
+        }
+        .filter-btn:hover { border-color: var(--teak); color: var(--teak); }
+        .filter-btn.active {
+            background: var(--teak);
+            border-color: var(--teak);
+            color: var(--stone);
+        }
+        .filter-count {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            margin-left: 4px;
+            opacity: 0.7;
+        }
+
+        /* ============ PROMPT GRID ============ */
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding-bottom: 100px;
+        }
+
+        .prompt-card {
+            background: var(--stone-light);
+            border: 1px solid var(--clay);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            transition: border-color 200ms ease, box-shadow 200ms ease;
+        }
+        .prompt-card:hover {
+            border-color: var(--drift);
+            box-shadow: 0 4px 16px rgba(26, 22, 18, 0.06);
+        }
+        .prompt-card.hidden { display: none; }
+
+        .prompt-card__header {
+            padding: 28px 28px 0;
+        }
+        .prompt-card__tag {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 100px;
+            margin-bottom: 14px;
+        }
+        .prompt-card__tag--ops {
+            background: rgba(107, 94, 81, 0.1);
+            color: var(--bark);
+        }
+        .prompt-card__tag--cx {
+            background: var(--teak-bg);
+            color: var(--teak);
+        }
+        .prompt-card__title {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            color: var(--ink);
+            line-height: 1.3;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .prompt-card__when {
+            font-size: 13px;
+            color: var(--drift);
+            line-height: 1.55;
+        }
+
+        .prompt-card__toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 20px 28px;
+            background: none;
+            border: none;
+            border-top: 1px solid var(--sand);
+            margin-top: 20px;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--teak);
+            text-align: left;
+            transition: background 200ms ease;
+        }
+        .prompt-card__toggle:hover { background: var(--sand); }
+        .prompt-card__toggle i { font-size: 15px; transition: transform 200ms ease; }
+        .prompt-card__toggle.open i { transform: rotate(180deg); }
+
+        .prompt-card__body {
+            display: none;
+            padding: 0 28px 28px;
+        }
+        .prompt-card__body.open { display: block; }
+
+        .prompt-card__text {
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            line-height: 1.75;
+            color: var(--charcoal);
+            background: var(--stone);
+            border: 1px solid var(--clay);
+            border-radius: 6px;
+            padding: 20px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .prompt-card__text mark {
+            background: rgba(139, 105, 20, 0.15);
+            color: var(--teak);
+            border-radius: 2px;
+            padding: 0 1px;
+        }
+
+        .prompt-card__actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 12px;
+        }
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid var(--clay);
+            background: var(--stone-light);
+            font-family: var(--font-sans);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--bark);
+            cursor: pointer;
+            transition: all 200ms ease;
+        }
+        .copy-btn:hover { border-color: var(--teak); color: var(--teak); }
+        .copy-btn.copied {
+            border-color: #4a7c59;
+            color: #4a7c59;
+            background: rgba(74, 124, 89, 0.07);
+        }
+        .copy-btn i { font-size: 13px; }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            padding: 80px 0;
+            background: var(--stone);
+            border-top: 1px solid var(--clay);
+        }
+        .footer .container { display: flex; align-items: center; justify-content: space-between; }
+        .footer__copy { font-size: 14px; color: var(--drift); }
+        .footer__social { display: flex; gap: 20px; }
+        .footer__social a {
+            color: var(--bark); font-size: 20px;
+            transition: color 300ms ease; text-decoration: none;
+        }
+        .footer__social a:hover { color: var(--teak); }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .nav__links { display: none; }
+            .nav__hamburger { display: block; }
+
+            .hero { padding: 120px 0 48px; }
+            .hero__title { font-size: 34px; }
+
+            .prompt-grid { grid-template-columns: 1fr; }
+            .footer .container { flex-direction: column; gap: 24px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAV ==================== -->
+    <nav class="nav" id="nav">
+        <div class="container">
+            <a href="./index.html" class="nav__logo" aria-label="Yugam home">
+                <svg width="28" height="28" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="nav__logo-text">Yugam</span>
+            </a>
+            <ul class="nav__links">
+                <li><a href="./index.html" class="nav__link">Home</a></li>
+                <li><a href="./about.html" class="nav__link">About</a></li>
+                <li><a href="./ai-stack.html" class="nav__link">AI Stack</a></li>
+                <li><a href="./index.html#services" class="nav__link">Services</a></li>
+                <li class="nav__dropdown">
+                    <a href="#" class="nav__link nav__link--active">Resources <span class="nav__dropdown-arrow">&#9662;</span></a>
+                    <div class="nav__dropdown-menu">
+                        <a href="./ai-transformation-index/index.html" class="nav__dropdown-item"><i class="ti ti-brain"></i> AI Transformation Index</a>
+                        <a href="./index.html#tools" class="nav__dropdown-item"><i class="ti ti-stethoscope"></i> Diagnostic Tools</a>
+                        <a href="./prompt-library.html" class="nav__dropdown-item nav__dropdown-item--active"><i class="ti ti-clipboard-text"></i> Prompt Library</a>
+                        <a href="./index.html#insights" class="nav__dropdown-item"><i class="ti ti-article"></i> Articles &amp; Insights</a>
+                        <a href="./index.html#case-studies" class="nav__dropdown-item"><i class="ti ti-chart-bar"></i> Case Studies</a>
+                    </div>
+                </li>
+                <li><a href="./index.html#contact-form" class="btn btn--primary" style="padding: 10px 20px; font-size: 13px;">Let's Talk</a></li>
+            </ul>
+            <button class="nav__hamburger" onclick="document.querySelector('.nav__mobile').classList.add('open')" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="nav__mobile" id="mobileMenu">
+        <button class="nav__mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close menu">&times;</button>
+        <a href="./index.html" onclick="this.parentElement.classList.remove('open')">Home</a>
+        <a href="./about.html" onclick="this.parentElement.classList.remove('open')">About</a>
+        <a href="./ai-stack.html" onclick="this.parentElement.classList.remove('open')">AI Stack</a>
+        <a href="./index.html#services" onclick="this.parentElement.classList.remove('open')">Services</a>
+        <a href="./ai-transformation-index/index.html">AI Transformation Index</a>
+        <a href="./index.html#tools" onclick="this.parentElement.classList.remove('open')">Diagnostic Tools</a>
+        <a href="./prompt-library.html" onclick="this.parentElement.classList.remove('open')">Prompt Library</a>
+        <a href="./index.html#insights" onclick="this.parentElement.classList.remove('open')">Articles &amp; Insights</a>
+        <a href="./index.html#contact-form" class="btn btn--primary" onclick="this.parentElement.classList.remove('open')">Let's Talk</a>
+    </div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero">
+        <div class="container">
+            <span class="hero__label">Resources · Prompt Library</span>
+            <h1 class="hero__title">Prompts that do actual work</h1>
+            <p class="hero__desc">Ready-to-use prompts for operations and customer experience. Each one is built around a specific business situation. Copy it, fill in the brackets, paste it into your AI tool.</p>
+            <div class="how-to-use">
+                <i class="ti ti-info-circle"></i>
+                <p><strong>How to use:</strong> Placeholders appear in <strong>[square brackets]</strong>. Replace them with specifics from your situation before running the prompt. The more specific your inputs, the more useful the output.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== LIBRARY ==================== -->
+    <section class="container">
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All <span class="filter-count">12</span></button>
+            <button class="filter-btn" data-filter="ops">Operations &amp; Process <span class="filter-count">6</span></button>
+            <button class="filter-btn" data-filter="cx">Customer Experience <span class="filter-count">6</span></button>
+        </div>
+
+        <div class="prompt-grid" id="promptGrid">
+            <!-- Cards rendered by JS -->
+        </div>
+
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__copy">© 2026 Yugam Systems Pte Ltd (Singapore)</div>
+            <div class="footer__social">
+                <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+                <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="ti ti-brand-youtube"></i></a>
+                <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><i class="ti ti-brand-x"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const prompts = [
+            // ── OPERATIONS & PROCESS ─────────────────────────────────────
+            {
+                id: 'process-audit',
+                category: 'ops',
+                categoryLabel: 'Operations & Process',
+                title: 'Process efficiency audit',
+                when: 'When a recurring process feels slower or more resource-intensive than it should, but you haven\'t done a formal review.',
+                prompt: `I want to audit [process name] for inefficiency. Here is how it currently works: [describe the steps, who does what, handoffs between teams, and tools used].
+
+Identify:
+1. Steps that are redundant or could be eliminated entirely
+2. Steps that are manual but could be automated with existing tools
+3. Handoffs where errors or delays typically occur
+4. Dependencies that create bottlenecks
+
+For each issue you identify, suggest a specific change and estimate the likely time or cost impact. I need concrete recommendations, not general principles.`
+            },
+            {
+                id: 'root-cause',
+                category: 'ops',
+                categoryLabel: 'Operations & Process',
+                title: 'Root cause analysis',
+                when: 'When a problem keeps recurring and surface-level fixes haven\'t held.',
+                prompt: `I need to identify the root cause of the following problem: [describe the problem clearly].
+
+Context:
+- It has happened [how many times, over what period]
+- The immediate trigger appears to be [what sets it off]
+- We have tried fixing it by [previous attempts and why they didn't hold]
+
+Walk me through a structured root cause analysis. Use the 5 Whys or fishbone method — whichever fits better — and push past the obvious cause at each level to the underlying system or process failure. End with 2–3 specific interventions that would prevent recurrence, not just manage the symptom.`
+            },
+            {
+                id: 'sop-draft',
+                category: 'ops',
+                categoryLabel: 'Operations & Process',
+                title: 'SOP drafting',
+                when: 'When a process exists but isn\'t documented, or the current docs are too vague to be useful.',
+                prompt: `Draft a standard operating procedure for [task name].
+
+Context:
+- Performed by: [role or team]
+- Frequency: [how often]
+- Steps as I understand them: [describe the process]
+- Common failure points: [what goes wrong and when]
+
+Write the SOP with: a clear one-sentence objective, numbered steps in sequence, decision branches where the answer varies, and a section on what to do when something goes wrong. Write for someone doing this task for the first time — assume they know the product or system but not this specific process.`
+            },
+            {
+                id: 'capacity-plan',
+                category: 'ops',
+                categoryLabel: 'Operations & Process',
+                title: 'Capacity planning',
+                when: 'When you\'re scaling a team or workload and need to estimate headcount or resource requirements before committing.',
+                prompt: `Help me build a capacity model for [team or function].
+
+Current state:
+- Team size: [number]
+- Volume of work: [units per day/week — e.g. tickets, transactions, calls]
+- Average handle or processing time: [minutes/hours per unit]
+
+Future state:
+- Projected volume: [expected volume and timeline]
+- Assumptions I'm working with: [list any constraints — budget, hiring lead time, automation plans]
+
+Build a model that shows: how many people or hours are needed at each volume level, where the current team hits a breaking point, and which variables most affect the estimate. Flag any assumptions I should pressure-test before I use this to make a headcount decision.`
+            },
+            {
+                id: 'handoff-doc',
+                category: 'ops',
+                categoryLabel: 'Operations & Process',
+                title: 'Handoff documentation',
+                when: 'When work passes between teams or systems with repeated errors, missing context, or unnecessary back-and-forth.',
+                prompt: `Help me design a handoff process between [Team A / Step A] and [Team B / Step B] in our [process name] workflow.
+
+Current state:
+- What gets passed: [information, files, tasks — describe the handoff content]
+- How it's passed: [email, ticket, verbal, shared sheet — describe the method]
+- What typically goes wrong: [errors, missing information, delays, re-work]
+
+Design a handoff checklist that specifies: exactly what must be confirmed complete before handoff, who is accountable at each point, and a field for flagging anything non-standard the receiving team needs to know. The goal is zero re-work from miscommunication.`
+            },
+            {
+                id: 'vendor-eval',
+                category: 'ops',
+                categoryLabel: 'Operations & Process',
+                title: 'Vendor or tool evaluation',
+                when: 'When comparing options for a process change and you need a structured decision framework, not a feature checklist.',
+                prompt: `I need to evaluate [2–4 options or vendors] for [use case].
+
+My requirements:
+- Must-haves: [list]
+- Nice-to-haves: [list]
+
+My constraints:
+- Budget: [range or ceiling]
+- Timeline: [when this needs to be live]
+- Team capability: [technical level of the team who will use or maintain it]
+- Integration requirements: [what it needs to connect to]
+
+Build a comparison framework that weights criteria by importance to my situation, not by what vendors typically market. Surface the trade-offs I'm most likely to underweight. End with a recommended option and the key assumption that recommendation depends on — I want to know what would change the answer.`
+            },
+
+            // ── CUSTOMER EXPERIENCE ───────────────────────────────────────
+            {
+                id: 'feedback-analysis',
+                category: 'cx',
+                categoryLabel: 'Customer Experience',
+                title: 'Customer feedback pattern analysis',
+                when: 'When you have a batch of CSAT responses or customer feedback and need to surface what\'s actually driving scores — not just count complaints.',
+                prompt: `Analyse the following customer feedback for patterns: [paste feedback, CSAT comments, or a summary of responses].
+
+Identify:
+1. The top 3–5 recurring themes in negative feedback, with specific examples for each
+2. Any themes where customers used strong or emotional language — these signal the highest-priority issues
+3. What customers specifically praised — what is working and should not be changed
+4. Any segments where feedback differs significantly — by channel, product type, or issue category
+
+Summarise findings in a format I can share with the team: specific, evidence-backed, no generic observations like "customers want better communication." I need something actionable.`
+            },
+            {
+                id: 'escalation-triage',
+                category: 'cx',
+                categoryLabel: 'Customer Experience',
+                title: 'Escalation triage',
+                when: 'When you have a backlog of escalations and need to decide what to resolve first without missing something that matters.',
+                prompt: `I need to triage the following customer escalations: [paste list, describe types, or summarise the backlog].
+
+For each escalation, assess:
+1. Urgency — is there a time-sensitive risk (revenue at stake, SLA breach, public exposure)?
+2. Impact — is this one customer or a signal of a wider issue affecting others?
+3. Complexity — can this be resolved in one interaction or does it need cross-functional work?
+
+Sort them into three buckets: resolve today / resolve this week / investigate as a pattern. Flag any that look like early signals of a systemic problem rather than a one-off. I need to walk out of this with a prioritised list, not a longer analysis.`
+            },
+            {
+                id: 'complaint-response',
+                category: 'cx',
+                categoryLabel: 'Customer Experience',
+                title: 'Customer complaint response',
+                when: 'When you need to respond to a difficult complaint or escalation and want to get both the tone and the substance right.',
+                prompt: `Draft a response to the following customer complaint: [paste the complaint].
+
+Context:
+- What happened: [brief factual summary]
+- What we can do about it: [resolution options available]
+- What we cannot do: [constraints — policy, technical, commercial]
+- Customer history: [loyal customer / new / at risk of churning — whatever is relevant]
+
+The response should: acknowledge the specific frustration (not a generic apology), explain clearly what happened without making excuses, state exactly what we are doing and by when, and close with a concrete next step.
+
+Do not use any of the following: "we apologise for any inconvenience," "we value your feedback," "rest assured," or "we take this seriously." These say nothing. Write directly.`
+            },
+            {
+                id: 'journey-audit',
+                category: 'cx',
+                categoryLabel: 'Customer Experience',
+                title: 'Customer journey friction audit',
+                when: 'When you want to identify where in the customer experience confusion, drop-off, or dissatisfaction is most likely — before customers tell you.',
+                prompt: `Map the friction points in our customer journey for [product or service].
+
+The journey stages are: [describe in sequence — e.g. discovery → onboarding → active use → support → renewal or exit].
+
+For each stage, identify:
+1. Where customers are most likely to get confused or frustrated
+2. What questions they are probably asking that we are not answering
+3. What would make them more likely to continue versus drop off or disengage
+
+Base your analysis on what you know about [our type of customer / our industry context]. At the end, rank the 2–3 highest-impact friction points — the ones where fixing the problem would move the biggest commercial needle.`
+            },
+            {
+                id: 'support-playbook',
+                category: 'cx',
+                categoryLabel: 'Customer Experience',
+                title: 'Support issue playbook',
+                when: 'When a recurring issue type doesn\'t have a clear resolution path, leading to inconsistent handling across the team.',
+                prompt: `Create a support playbook for handling [issue type].
+
+Context:
+- This issue occurs when: [describe the trigger or situation]
+- The customer is typically: [frustrated / confused / urgent — and why]
+- The resolution path, as I understand it: [describe what you know, including where it gets inconsistent]
+- Escalation path: [who to involve and when]
+
+Write a playbook that gives the support team:
+1. An opening response that acknowledges the specific issue (not a template greeting)
+2. A diagnostic checklist — questions to ask before attempting resolution
+3. Resolution steps in order, with decision branches where the answer varies by situation
+4. Clear escalation criteria — what triggers escalation and to whom
+5. How to close the interaction once resolved
+
+Write for a team member who knows the product but hasn't handled this specific issue before.`
+            },
+            {
+                id: 'churn-signals',
+                category: 'cx',
+                categoryLabel: 'Customer Experience',
+                title: 'Churn signal identification',
+                when: 'When you want to identify at-risk customers before they\'ve made the decision to leave — and while there\'s still time to intervene.',
+                prompt: `Help me identify early churn signals for [our type of customer / product].
+
+What we know:
+- Customers typically churn because: [known reasons from exit surveys or experience]
+- The data we have access to: [usage frequency, support ticket history, billing behaviour, login activity, engagement metrics — describe what you have]
+- Typical customer lifecycle: [describe onboarding → active use → renewal cycle and timeframes]
+
+Identify:
+1. The 3–5 behavioural patterns most strongly correlated with churn
+2. The point in the lifecycle where these signals typically appear
+3. Specific data triggers to monitor — concrete and measurable
+4. What a proactive intervention looks like at each signal point
+
+Give me something I can turn into a monitoring dashboard and an intervention playbook — not a general framework.`
+            }
+        ];
+
+        // ── RENDER ────────────────────────────────────────────────────────
+        function highlightPlaceholders(text) {
+            return text.replace(/\[([^\]]+)\]/g, '<mark>[$1]</mark>');
+        }
+
+        function renderCards(filter) {
+            const grid = document.getElementById('promptGrid');
+            grid.innerHTML = '';
+
+            prompts.forEach(p => {
+                if (filter !== 'all' && p.category !== filter) return;
+
+                const card = document.createElement('div');
+                card.className = 'prompt-card';
+                card.dataset.category = p.category;
+
+                card.innerHTML = `
+                    <div class="prompt-card__header">
+                        <span class="prompt-card__tag prompt-card__tag--${p.category}">${p.categoryLabel}</span>
+                        <div class="prompt-card__title">${p.title}</div>
+                        <div class="prompt-card__when">${p.when}</div>
+                    </div>
+                    <button class="prompt-card__toggle" aria-expanded="false">
+                        <i class="ti ti-chevron-down"></i>
+                        View prompt
+                    </button>
+                    <div class="prompt-card__body">
+                        <pre class="prompt-card__text">${highlightPlaceholders(escapeHtml(p.prompt))}</pre>
+                        <div class="prompt-card__actions">
+                            <button class="copy-btn" data-prompt-id="${p.id}">
+                                <i class="ti ti-copy"></i>
+                                Copy prompt
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+
+            bindCardEvents();
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        function bindCardEvents() {
+            document.querySelectorAll('.prompt-card__toggle').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const body = btn.nextElementSibling;
+                    const isOpen = body.classList.contains('open');
+
+                    body.classList.toggle('open', !isOpen);
+                    btn.classList.toggle('open', !isOpen);
+                    btn.setAttribute('aria-expanded', String(!isOpen));
+                    btn.querySelector('span') && (btn.querySelector('span').textContent = isOpen ? 'View prompt' : 'Hide prompt');
+
+                    const label = btn.childNodes[btn.childNodes.length - 1];
+                    if (label && label.nodeType === 3) {
+                        label.textContent = isOpen ? ' View prompt' : ' Hide prompt';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.promptId;
+                    const p = prompts.find(x => x.id === id);
+                    if (!p) return;
+
+                    navigator.clipboard.writeText(p.prompt).then(() => {
+                        btn.classList.add('copied');
+                        btn.innerHTML = '<i class="ti ti-check"></i> Copied';
+                        setTimeout(() => {
+                            btn.classList.remove('copied');
+                            btn.innerHTML = '<i class="ti ti-copy"></i> Copy prompt';
+                        }, 2000);
+                    });
+                });
+            });
+        }
+
+        // ── FILTER BUTTONS ────────────────────────────────────────────────
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderCards(btn.dataset.filter);
+            });
+        });
+
+        // Initial render
+        renderCards('all');
+    </script>
+
+</body>
+</html>
