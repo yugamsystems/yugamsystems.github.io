@@ -394,23 +394,6 @@
         }
         .next-assessment__card-why { font-size: 12px; color: var(--drift); line-height: 1.5; }
 
-        /* Email capture */
-        .results__email {
-            text-align: center; padding: 32px; background: var(--sand);
-            border-radius: 12px; margin-bottom: 24px;
-        }
-        .results__email h3 { font-size: 20px; margin-bottom: 6px; }
-        .results__email p { color: var(--bark); font-size: 14px; margin-bottom: 16px; }
-        .results__email-form { display: flex; gap: 12px; max-width: 380px; margin: 0 auto; }
-        .results__email-input {
-            flex: 1; padding: 12px 14px; background: var(--stone);
-            border: 1.5px solid var(--clay); border-radius: 6px;
-            font-family: var(--font-sans); font-size: 14px; color: var(--charcoal);
-        }
-        .results__email-input::placeholder { color: var(--drift); }
-        .results__email-input:focus { outline: none; border-color: var(--teak); }
-        .results__email-sent { display: none; font-family: var(--font-serif); font-size: 18px; color: var(--ink); }
-
         .results__actions {
             display: flex; gap: 16px; justify-content: center;
             flex-wrap: wrap; margin-top: 32px; padding-top: 24px;
@@ -429,7 +412,6 @@
             .strip-wrap { position: static; }
             .strip { grid-template-columns: 1fr; }
             .opportunity { padding: 20px; }
-            .results__email-form { flex-direction: column; }
             .results__actions { flex-direction: column; align-items: center; }
             .next-assessment__card { flex-direction: column; align-items: flex-start; }
         }
@@ -516,16 +498,6 @@
                 <div class="next-assessment__sub">Based on your results, these will sharpen the picture.</div>
                 <div class="next-assessment__cards" id="nextAssessmentCards"></div>
             </div>
-
-            <!-- Email capture -->
-            <div class="results__email" id="emailSection">
-                <h3>Save a copy of this assessment?</h3>
-                <p>Email yourself these results to reference later or share with your team.</p>
-                <form class="results__email-form" onsubmit="handleEmailSave(event)">
-                    <input type="email" class="results__email-input" placeholder="your@email.com" required>
-                    <button type="submit" class="btn btn--primary">Send to my inbox</button>
-                </form>
-                <div class="results__email-sent">Sent. Check your inbox.</div>
             </div>
 
             <div class="results__actions">
@@ -1029,13 +1001,6 @@
         const d = document.createElement('div');
         d.textContent = str;
         return d.innerHTML;
-    }
-
-    function handleEmailSave(e) {
-        e.preventDefault();
-        e.target.style.display = 'none';
-        document.querySelector('.results__email p').style.display = 'none';
-        document.querySelector('.results__email-sent').style.display = 'block';
     }
     </script>
 </body>
