@@ -488,6 +488,10 @@
                 <div class="scorecard__title">Foundation readiness</div>
                 <div class="scorecard__sub">Before the opportunities — how ready is your organization?</div>
                 <div class="scorecard__grid" id="scorecardGrid"></div>
+            <!-- Key findings at a glance -->
+            <div class="strip-wrap">
+                <div class="section-label" style="margin-bottom: 10px;">Key findings at a glance</div>
+                <div class="strip" id="stripList"></div>
             </div>
 
             <!-- Tier 2: Detailed analysis -->
@@ -978,7 +982,7 @@
         // Opportunity strip — ALL opportunities, 4+ muted
         const strip = document.getElementById('stripList');
         const opps = data.opportunities || [];
-        if (strip) strip.innerHTML = opps.map((opp, i) => `
+        strip.innerHTML = opps.map((opp, i) => `
             <div class="strip-card ${i === 0 ? 'strip-card--top' : ''} ${i >= 3 ? 'strip-card--secondary' : ''}" onclick="scrollToOpportunity(${i})">
                 <div class="strip-card__rank">#${i + 1}</div>
                 <div class="strip-card__title">${escHtml(opp.title)}</div>
