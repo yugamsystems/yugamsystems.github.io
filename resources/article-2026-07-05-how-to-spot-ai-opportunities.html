@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Spot AI Opportunities in Your Business — Yugam</title>
+    <meta name="description" content="Four tests — volume, repeatability, data, and cost of error — for finding the processes where AI creates value, and the scoring method that keeps you from picking the wrong one.">
+    <link rel="canonical" href="https://www.yugam.io/resources/article-2026-07-05-how-to-spot-ai-opportunities.html">
+    <meta property="og:title" content="How to Spot AI Opportunities in Your Business — Yugam">
+    <meta property="og:description" content="Four tests — volume, repeatability, data, and cost of error — for finding the processes where AI creates value, and the scoring method that keeps you from picking the wrong one.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.yugam.io/resources/article-2026-07-05-how-to-spot-ai-opportunities.html">
+    <meta property="og:image" content="https://www.yugam.io/founder-photo.jpg">
+    <meta property="og:site_name" content="Yugam">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header__logo-text { font-family: var(--font-serif); font-size: 20px; color: var(--ink); }
+        .header__back { font-size: 14px; color: var(--drift); text-decoration: none; transition: color 300ms ease; }
+        .header__back:hover { color: var(--teak); }
+
+        .article-header {
+            padding: 80px 0 48px;
+            border-bottom: 1px solid var(--clay);
+        }
+        .article-header__tag {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 16px; display: block;
+        }
+        .article-header h1 {
+            font-size: 36px; line-height: 1.2; margin-bottom: 16px;
+        }
+        .article-header__meta {
+            font-size: 14px; color: var(--drift);
+        }
+        .article-header__meta a { color: var(--teak); text-decoration: none; }
+
+        .article {
+            padding: 48px 0 80px;
+        }
+        .article p {
+            margin-bottom: 24px;
+            color: var(--bark);
+        }
+        .article h2 {
+            font-size: 26px; margin-top: 48px; margin-bottom: 16px;
+        }
+        .article strong { color: var(--charcoal); }
+
+        .article__callout {
+            background: var(--sand); border-left: 3px solid var(--teak);
+            border-radius: 0 8px 8px 0; padding: 24px 28px;
+            margin: 32px 0; font-size: 15px; line-height: 1.7;
+        }
+        .article__callout strong { display: block; margin-bottom: 8px; color: var(--ink); }
+
+        .article__stat {
+            font-family: var(--font-mono); font-size: 14px;
+            color: var(--drift); margin-bottom: 24px;
+        }
+
+        .article__tools {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 32px; margin: 40px 0;
+        }
+        .article__tools p { margin-bottom: 16px; font-style: italic; color: var(--bark); }
+        .article__tools ul { list-style: none; margin-bottom: 16px; }
+        .article__tools li {
+            padding: 8px 0 8px 16px; position: relative; font-size: 15px;
+        }
+        .article__tools li::before {
+            content: ''; position: absolute; left: 0; top: 16px;
+            width: 4px; height: 4px; border-radius: 50%; background: var(--teak);
+        }
+        .article__tools li a { color: var(--teak); text-decoration: none; font-weight: 500; }
+        .article__tools li a:hover { color: var(--teak-hover); }
+        .article__tools .note { font-size: 13px; color: var(--drift); font-style: normal; }
+
+        .article__cta {
+            text-align: center; padding: 48px 0;
+        }
+        .article__cta p { color: var(--bark); margin-bottom: 16px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 6px; font-family: var(--font-sans);
+            font-size: 15px; font-weight: 500; text-decoration: none;
+            transition: all 300ms ease; background: var(--teak); color: var(--stone);
+        }
+        .btn:hover { background: var(--teak-hover); }
+
+        .footer { padding: 40px 0; border-top: 1px solid var(--clay); text-align: center; }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 28px; }
+            .article h2 { font-size: 22px; }
+            .container { padding: 0 20px; }
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Spot AI Opportunities in Your Business",
+  "description": "Four tests — volume, repeatability, data, and cost of error — for finding the processes where AI creates value, and the scoring method that keeps you from picking the wrong one.",
+  "author": {
+    "@id": "https://www.yugam.io/#rohit"
+  },
+  "publisher": {
+    "@id": "https://www.yugam.io/#organization"
+  },
+  "datePublished": "2026-07-05",
+  "dateModified": "2026-07-05",
+  "mainEntityOfPage": "https://www.yugam.io/resources/article-2026-07-05-how-to-spot-ai-opportunities.html",
+  "url": "https://www.yugam.io/resources/article-2026-07-05-how-to-spot-ai-opportunities.html"
+}
+</script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="../index.html#insights" class="header__back">← Back to Insights</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="article-header">
+            <span class="article-header__tag">Pattern</span>
+            <h1>How to Spot AI Opportunities in Your Business</h1>
+            <div class="article-header__meta">By <a href="../index.html">Rohit Kumar Maskara</a> · July 2026</div>
+        </section>
+
+        <article class="article">
+
+            <p>The question I hear in every first conversation: "Where should we use AI?" It usually arrives with a list attached — twenty ideas collected in a workshop, ranked by enthusiasm, with the CEO's favorite at the top and a pilot already half-approved.</p>
+
+            <p>That selection method fails for a specific reason: enthusiasm tracks novelty, not value. The use cases that demo well — an agent that drafts board decks, a chatbot that answers anything — tend to be low-volume, high-judgment work. The use cases that pay — invoice matching, ticket triage, report assembly — are boring, so they never make it onto the workshop wall.</p>
+
+            <p>I score candidate processes against four tests before recommending AI for any of them. The tests come from manufacturing, where automation decisions have been made and paid for since before AI had a marketing budget. On the shop floor at Vedanta, nobody automated a production station because it seemed exciting. They automated it because the numbers cleared a bar.</p>
+
+            <h2>Test 1: Volume</h2>
+
+            <p>How often does the work happen, and how long does each instance take? Multiply the two. A 20-minute task performed 30 times a week consumes 10 hours weekly — roughly 500 hours a year. That is a real target. A 3-hour task that happens once a quarter is 12 hours a year, and no automation of it will ever repay its own setup cost.</p>
+
+            <p>This test kills the majority of workshop favorites. Painful-but-rare loses to boring-but-frequent, and it isn't close.</p>
+
+            <p class="article__stat">Floor to clear: 5+ hours per week of repeated work.</p>
+
+            <h2>Test 2: Repeatability</h2>
+
+            <p>Do the steps stay the same from one instance to the next? There is a fast way to find out: ask the person who does the work to walk you through the last five instances. If the inputs, steps, and decision points match across all five, the process is repeatable. If the answer to half your questions is "it depends," you are looking at judgment work — AI can assist the person doing it, but it cannot own the process.</p>
+
+            <p>On a production floor, you map a station before you automate it: inputs, outputs, handoffs, exceptions. Skip the mapping and the automated station produces defects at machine speed. The office version of this rule is identical, and skipping it has the identical result.</p>
+
+            <div class="article__callout">
+                <strong>The five-instance walkthrough:</strong>
+                One hour with the person who runs the process. Have them narrate the last five times they did it, step by step. Count the steps that stayed constant and the ones that varied. Above 80% constant: automate. Below that: document first, or assist rather than automate.
+            </div>
+
+            <h2>Test 3: Data</h2>
+
+            <p>Where do the inputs live? If they sit in one system, digitally, and everyone trusts the numbers, the process passes. If they are scattered across email threads, three spreadsheets, and one veteran employee's memory, the process fails — for now.</p>
+
+            <p>A failed data test does not mean AI is off the table. It means the project you are about to fund is a data consolidation project wearing an AI badge, and it should be planned and priced as one. The expensive failures happen when this goes unnoticed: the AI project starts, the team discovers mid-build that the inputs disagree, and a data cleanup effort begins inside a project that budgeted zero hours for it. I wrote about the mechanics of this in <a href="article-2026-06-27-why-95-percent-fail.html" style="color: var(--teak);">Why 95% of AI Projects Fail to Generate ROI</a> — data disagreement is failure cause number one across every major study this year.</p>
+
+            <h2>Test 4: Cost of error</h2>
+
+            <p>AI systems produce wrong outputs at some rate. The design question is what a wrong output costs and who catches it before it lands.</p>
+
+            <p>Drafting a support reply that an agent reviews before sending: an error costs one minute of the agent's attention. Sending quotes to customers with no review step: an error costs a customer. Same technology, same accuracy rate, completely different risk. A process with human review built in can absorb a 5% error rate and still save hundreds of hours. A process with zero error tolerance and no review capacity is a bad candidate no matter how well it scores on the first three tests.</p>
+
+            <h2>Score by the minimum, not the average</h2>
+
+            <p>Rate each candidate process 1 to 5 on each test. Then take the lowest score — not the average. Averages hide fatal flaws. A process that scores 5-5-5-1 averages 4, which looks healthy, but that single 1 means the project fails in production.</p>
+
+            <p>Two examples from the kinds of engagements I run:</p>
+
+            <p><strong>Support ticket triage.</strong> Volume: 5 — forty tickets a day. Repeatability: 4 — categories and routing rules are stable. Data: 4 — everything lives in the helpdesk system. Cost of error: 4 — an agent reviews before anything reaches a customer. Minimum score: 4. Strong candidate, and the case-study results match: response times from 8 hours down to 12 minutes.</p>
+
+            <p><strong>Board deck drafting.</strong> Volume: 1 — monthly. Repeatability: 2 — every deck is different. Data: 2 — inputs come from six places. Cost of error: 2 — errors reach the board. Minimum score: 1. This is the use case that wins the workshop vote.</p>
+
+            <h2>Where AI adds complexity instead of value</h2>
+
+            <p>The inverse profile is worth naming explicitly. Be suspicious of automating: processes that run rarely, processes where every instance needs judgment, processes whose data is disputed, and processes where an error is expensive and nothing catches it.</p>
+
+            <p>Two more traps that the tests alone won't catch. A process that is about to change — a reorg, a new system, a pending acquisition — should not be automated until it settles, because you will pay for the automation twice. And a process that exists as a workaround for a deeper problem should not be automated at all: automating a manual reconciliation between two systems that should talk to each other directly just preserves the broken plumbing, permanently, at a monthly license fee.</p>
+
+            <h2>What to do this week</h2>
+
+            <p>List ten processes your team runs. Score each one against the four tests, 1 to 5. Take the minimum score for each. The top two or three are your candidates — and in my experience they will not be the ones anyone nominated in the workshop.</p>
+
+            <div class="article__tools">
+                <p>I built a free tool that runs this analysis against your specific business:</p>
+                <ul>
+                    <li><a href="ai-opportunity-finder.html">AI Opportunity Finder</a> — describe your operations, get your processes scored and ranked</li>
+                    <li><a href="complexity-score.html">Implementation Complexity Score</a> — for the candidates that pass, how hard will each one be?</li>
+                </ul>
+                <div class="note">Each takes about 4 minutes. Free, AI-powered, no email required.</div>
+            </div>
+
+        </article>
+
+        <div class="article__cta">
+            <p>Want a second opinion on your shortlist?</p>
+            <a href="../index.html#contact-form" class="btn">Let's Talk →</a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Yugam Systems Pte Ltd (Singapore)</p>
+        </div>
+    </footer>
+
+</body>
+</html>

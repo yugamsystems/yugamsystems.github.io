@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ: AI Readiness, Costs, and Implementation — Yugam</title>
+    <meta name="description" content="Direct answers to the questions business leaders ask about AI: what readiness means, what implementation costs, how long it takes, why projects fail, and how an engagement works.">
+    <link rel="canonical" href="https://www.yugam.io/faq.html">
+    <meta property="og:title" content="FAQ: AI Readiness, Costs, and Implementation — Yugam">
+    <meta property="og:description" content="Direct answers to the questions business leaders ask about AI: what readiness means, what implementation costs, how long it takes, why projects fail, and how an engagement works.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.yugam.io/faq.html">
+    <meta property="og:image" content="https://www.yugam.io/founder-photo.jpg">
+    <meta property="og:site_name" content="Yugam">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        h1, h2 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header__logo-text { font-family: var(--font-serif); font-size: 20px; color: var(--ink); }
+        .header__back { font-size: 14px; color: var(--drift); text-decoration: none; transition: color 300ms ease; }
+        .header__back:hover { color: var(--teak); }
+
+        .page-header {
+            padding: 80px 0 48px;
+            border-bottom: 1px solid var(--clay);
+        }
+        .page-header__tag {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 16px; display: block;
+        }
+        .page-header h1 { font-size: 36px; line-height: 1.2; margin-bottom: 16px; }
+        .page-header p { font-size: 17px; color: var(--bark); max-width: 600px; }
+
+        .faq { padding: 24px 0 80px; }
+        .faq__item {
+            border-bottom: 1px solid var(--clay);
+            padding: 40px 0;
+        }
+        .faq__item:last-child { border-bottom: none; }
+        .faq__item h2 { font-size: 24px; margin-bottom: 16px; line-height: 1.3; }
+        .faq__item p { margin-bottom: 16px; }
+        .faq__item p:last-child { margin-bottom: 0; }
+        .faq__item a { color: var(--teak); text-decoration: none; font-weight: 500; }
+        .faq__item a:hover { color: var(--teak-hover); }
+        .faq__item strong { color: var(--charcoal); }
+
+        .faq__cta {
+            text-align: center; padding: 48px 0 64px;
+            border-top: 1px solid var(--clay);
+        }
+        .faq__cta p { color: var(--bark); margin-bottom: 16px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 6px; font-family: var(--font-sans);
+            font-size: 15px; font-weight: 500; text-decoration: none;
+            transition: all 300ms ease; background: var(--teak); color: var(--stone);
+        }
+        .btn:hover { background: var(--teak-hover); }
+
+        .footer { padding: 40px 0; border-top: 1px solid var(--clay); text-align: center; }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 28px; }
+            .faq__item h2 { font-size: 20px; }
+            .container { padding: 0 20px; }
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is AI readiness?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI readiness is whether your data, processes, and people can support an AI system in production. Concretely: one trusted source for each key metric, documented steps for the work you want to automate, and a team prepared to change how it works. Tool choice matters far less — a well-chosen tool on a weak foundation still fails."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does AI implementation cost for a mid-market company?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Plan for $25,000–150,000 in year one for a first production deployment, or $10,000–30,000 for a contained pilot on one process. Licenses are the smallest layer; integration, foundation work (data cleanup and process documentation), and adoption account for the rest. Budgets blow up when the foundation layer gets skipped and reappears mid-project."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does AI implementation take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A contained pilot takes 8–16 weeks from decision to measured results. A readiness assessment before that takes 2–4 weeks. The variables that stretch timelines are legacy system integration and undocumented processes — not the AI itself, which is usually configured in days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do AI projects fail?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Harvard Business Review reported that 95% of generative AI pilots fail to generate positive ROI, and the causes are organizational, not technical: data that different systems disagree on, processes that exist only in people's heads, and teams that were never brought along. The technology works in the demo and stalls in production because the organization around it wasn't prepared."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a data team before adopting AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. You need trusted data for the one process you're automating — not a data organization. For most mid-market pilots that means picking 3–5 metrics that matter, agreeing which system owns each one, and cleaning just the inputs your first use case touches. That's 2–4 weeks of work, not a hiring plan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which AI tools should a mid-market business start with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pick the process first, then the tool — the reverse order is how shelfware happens. For general business use, Claude is the strongest reasoning model right now; for automation between systems, Make offers the best balance of power and accessibility for non-technical teams. Yugam's AI Stack page lists all 21 recommended tools, tested and opinionated."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between an AI pilot and a production deployment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A pilot is one process, 8–12 users, a fixed window (usually 12 weeks), and a baseline measured before starting so results are provable. Production means the system is integrated with your core tools, someone owns its maintenance, and it runs inside daily workflows. The danger zone is between them: pilots that never get a scale-or-kill decision and drift on indefinitely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get my team to adopt AI tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Adoption hinges on each person hearing, from their own manager, what changes in their role and what stays. Teams that get that conversation adopt in weeks; teams that get a company-wide announcement email resist for months. The pattern held across every operational transformation Rohit ran at Meta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I measure ROI on AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pick the metric before deploying: hours saved per week, error rate, cycle time, or cost per transaction. Then record the baseline — you cannot demonstrate a 40% improvement if you never measured the starting point. Typical results from well-scoped deployments: contract review from 4 hours to 24 minutes; support response times from 8 hours to 12 minutes; $240K annual savings on demand forecasting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does an engagement with Yugam work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It starts with a 30-minute conversation about what you're building and where you're stuck — and an honest answer about whether Yugam can help. From there, three tiers: Assess (2–4 weeks, readiness audit and go/no-go recommendation), Build (8–16 weeks, design and implement a working system), Train (flexible, getting your team using it). Sometimes the Assess phase ends with 'not yet' — that's a successful outcome too."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my company too small to work with an AI consultant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you're under about 10 people, probably — start with Yugam's free diagnostics and AI Stack recommendations instead; that's why they're free and require no email. The engagement model fits best from roughly 50 to 500 employees, where processes are big enough for automation to pay and small enough to fix without a committee."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Yugam work with companies outside Singapore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Yugam is based in Singapore and works remotely with companies across regions — Rohit has run distributed teams across Singapore, Dublin, and Hyderabad, so remote-first delivery is the default. Workshops and training can be delivered on-site depending on location."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="index.html" class="header__back">← Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="page-header">
+            <span class="page-header__tag">FAQ</span>
+            <h1>Questions business leaders ask about AI</h1>
+            <p>Direct answers, with numbers where numbers exist. If your question isn't here, the 30-minute conversation is free.</p>
+        </section>
+
+        <section class="faq">
+
+            <div class="faq__item">
+                <h2>What is AI readiness?</h2>
+                <p>AI readiness is whether your data, processes, and people can support an AI system in production. Concretely: one trusted source for each key metric, documented steps for the work you want to automate, and a team prepared to change how it works. Tool choice matters far less — a well-chosen tool on a weak foundation still fails.</p>
+                <p>The <a href="ai-transformation-index/index.html">AI Transformation Index</a> measures all three dimensions in about 10 minutes.</p>
+            </div>
+
+            <div class="faq__item">
+                <h2>How much does AI implementation cost for a mid-market company?</h2>
+                <p>Plan for <strong>$25,000–150,000 in year one</strong> for a first production deployment, or <strong>$10,000–30,000</strong> for a contained pilot on one process. Licenses are the smallest layer; integration, foundation work (data cleanup and process documentation), and adoption account for the rest. Budgets blow up when the foundation layer gets skipped and reappears mid-project.</p>
+                <p>Full breakdown with numbers per layer: <a href="resources/article-2026-07-05-what-ai-implementation-costs.html">How Much Does AI Implementation Cost?</a> Or get an estimate for your situation from the <a href="resources/cost-calculator.html">Cost-to-Deploy Calculator</a>.</p>
+            </div>
+
+            <div class="faq__item">
+                <h2>How long does AI implementation take?</h2>
+                <p>A contained pilot takes <strong>8–16 weeks</strong> from decision to measured results. A readiness assessment before that takes 2–4 weeks. The variables that stretch timelines are legacy system integration and undocumented processes — not the AI itself, which is usually configured in days.</p>
+            </div>
+
+            <div class="faq__item">
+                <h2>Why do AI projects fail?</h2>
+                <p>Harvard Business Review reported that 95% of generative AI pilots fail to generate positive ROI, and the causes are organizational, not technical: data that different systems disagree on, processes that exist only in people's heads, and teams that were never brought along. The technology works in the demo and stalls in production because the organization around it wasn't prepared.</p>
+                <p>The full analysis: <a href="resources/article-2026-06-27-why-95-percent-fail.html">Why 95% of AI Projects Fail to Generate ROI</a> and <a href="blog-post-why-ai-deployments-fail.html">The 4 Failure Modes That Kill AI Projects</a>.</p>
+            </div>
+
+            <div class="faq__item">
+                <h2>Do I need a data team before adopting AI?</h2>
+                <p>No. You need trusted data for the one process you're automating — not a data organization. For most mid-market pilots that means picking 3–5 metrics that matter, agreeing which system owns each one, and cleaning just the inputs your first use case touches. That's 2–4 weeks of work, not a hiring plan.</p>
+                <p>The <a href="resources/data-readiness.html">Data Readiness Scan</a> tells you where your data stands today.</p>
+            </div>
+
+            <div class="faq__item">
+                <h2>Which AI tools should a mid-market business start with?</h2>
+                <p>Pick the process first, then the tool — the reverse order is how shelfware happens. For general business use, Claude is the strongest reasoning model right now; for automation between systems, Make offers the best balance of power and accessibility for non-technical teams.</p>
+                <p><a href="ai-stack.html">The AI Stack</a> lists all 21 tools I recommend — tested, opinionated, and honest about trade-offs.</p>
+            </div>
+
+            <div class="faq__item">
+                <h2>What is the difference between an AI pilot and a production deployment?</h2>
+                <p>A pilot is one process, 8–12 users, a fixed window (usually 12 weeks), and a baseline measured before starting so results are provable. Production means the system is integrated with your core tools, someone owns its maintenance, and it runs inside daily workflows. The danger zone is between them: pilots that never get a scale-or-kill decision and drift on indefinitely.</p>
+            </div>
+
+            <div class="faq__item">
+                <h2>How do I get my team to adopt AI tools?</h2>
+                <p>Adoption hinges on each person hearing, from their own manager, what changes in their role and what stays. Teams that get that conversation adopt in weeks; teams that get a company-wide announcement email resist for months. The pattern held across every operational transformation I ran at Meta.</p>
+                <p>The <a href="resources/team-readiness.html">Team Readiness Check</a> estimates where your team stands before you commit.</p>
+            </div>
+
+            <div class="faq__item">
+                <h2>How do I measure ROI on AI?</h2>
+                <p>Pick the metric before deploying: hours saved per week, error rate, cycle time, or cost per transaction. Then record the baseline — you cannot demonstrate a 40% improvement if you never measured the starting point. Typical results from well-scoped deployments: contract review from 4 hours to 24 minutes; support response times from 8 hours to 12 minutes; $240K annual savings on demand forecasting.</p>
+            </div>
+
+            <div class="faq__item">
+                <h2>How does an engagement with Yugam work?</h2>
+                <p>It starts with a 30-minute conversation about what you're building and where you're stuck — and an honest answer about whether I can help. From there, three tiers: <strong>Assess</strong> (2–4 weeks, readiness audit and go/no-go recommendation), <strong>Build</strong> (8–16 weeks, design and implement a working system), <strong>Train</strong> (flexible, getting your team using it). Sometimes the Assess phase ends with "not yet" — that's a successful outcome too.</p>
+                <p>The phase-by-phase detail is on the <a href="methodology.html">Methodology</a> page.</p>
+            </div>
+
+            <div class="faq__item">
+                <h2>Is my company too small to work with an AI consultant?</h2>
+                <p>If you're under about 10 people, probably — start with the free diagnostics and the <a href="ai-stack.html">AI Stack</a> recommendations instead; that's why they're free and require no email. The engagement model fits best from roughly 50 to 500 employees, where processes are big enough for automation to pay and small enough to fix without a committee.</p>
+            </div>
+
+            <div class="faq__item">
+                <h2>Does Yugam work with companies outside Singapore?</h2>
+                <p>Yes. Yugam is based in Singapore and works remotely with companies across regions — I've run distributed teams across Singapore, Dublin, and Hyderabad, so remote-first delivery is the default. Workshops and training can be delivered on-site depending on location.</p>
+            </div>
+
+        </section>
+
+        <div class="faq__cta">
+            <p>Have a question that isn't here?</p>
+            <a href="index.html#contact-form" class="btn">Let's Talk →</a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Yugam Systems Pte Ltd (Singapore)</p>
+        </div>
+    </footer>
+
+</body>
+</html>

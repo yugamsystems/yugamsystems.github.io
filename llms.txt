@@ -15,6 +15,9 @@ Core position: AI tools are easy to buy. Knowing which ones a business needs —
 
 - [The 4 Failure Modes That Kill AI Projects](https://www.yugam.io/blog-post-why-ai-deployments-fail.html): Why 70% of AI initiatives fail — a framework for diagnosing organizational readiness before writing code
 - [Why 95% of AI Projects Fail to Generate ROI](https://www.yugam.io/resources/article-2026-06-27-why-95-percent-fail.html): Three root causes from major 2026 studies (Deloitte, BCG, HBR, WEF) — all pointing to organizational readiness, not technology
+- [How to Spot AI Opportunities in Your Business](https://www.yugam.io/resources/article-2026-07-05-how-to-spot-ai-opportunities.html): Four tests — volume, repeatability, data, cost of error — for finding processes where AI creates value; score by the minimum, not the average
+- [How Much Does AI Implementation Cost?](https://www.yugam.io/resources/article-2026-07-05-what-ai-implementation-costs.html): $25K–150K year one for mid-market; the four cost layers and the three patterns that blow up budgets
+- [FAQ](https://www.yugam.io/faq.html): Direct answers on AI readiness, costs, timelines, failure causes, tool selection, adoption, and how a Yugam engagement works
 
 ## Free diagnostic tools
 

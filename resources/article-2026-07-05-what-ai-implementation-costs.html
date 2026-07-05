@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Much Does AI Implementation Cost? A Realistic Breakdown — Yugam</title>
+    <meta name="description" content="A mid-market first AI deployment runs $25K–$150K in year one. The tool licenses are the smallest layer — here is where the rest goes, and the three patterns that blow up budgets.">
+    <link rel="canonical" href="https://www.yugam.io/resources/article-2026-07-05-what-ai-implementation-costs.html">
+    <meta property="og:title" content="How Much Does AI Implementation Cost? A Realistic Breakdown — Yugam">
+    <meta property="og:description" content="A mid-market first AI deployment runs $25K–$150K in year one. The tool licenses are the smallest layer — here is where the rest goes, and the three patterns that blow up budgets.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.yugam.io/resources/article-2026-07-05-what-ai-implementation-costs.html">
+    <meta property="og:image" content="https://www.yugam.io/founder-photo.jpg">
+    <meta property="og:site_name" content="Yugam">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header__logo-text { font-family: var(--font-serif); font-size: 20px; color: var(--ink); }
+        .header__back { font-size: 14px; color: var(--drift); text-decoration: none; transition: color 300ms ease; }
+        .header__back:hover { color: var(--teak); }
+
+        .article-header {
+            padding: 80px 0 48px;
+            border-bottom: 1px solid var(--clay);
+        }
+        .article-header__tag {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 16px; display: block;
+        }
+        .article-header h1 {
+            font-size: 36px; line-height: 1.2; margin-bottom: 16px;
+        }
+        .article-header__meta {
+            font-size: 14px; color: var(--drift);
+        }
+        .article-header__meta a { color: var(--teak); text-decoration: none; }
+
+        .article {
+            padding: 48px 0 80px;
+        }
+        .article p {
+            margin-bottom: 24px;
+            color: var(--bark);
+        }
+        .article h2 {
+            font-size: 26px; margin-top: 48px; margin-bottom: 16px;
+        }
+        .article strong { color: var(--charcoal); }
+
+        .article__callout {
+            background: var(--sand); border-left: 3px solid var(--teak);
+            border-radius: 0 8px 8px 0; padding: 24px 28px;
+            margin: 32px 0; font-size: 15px; line-height: 1.7;
+        }
+        .article__callout strong { display: block; margin-bottom: 8px; color: var(--ink); }
+
+        .article__stat {
+            font-family: var(--font-mono); font-size: 14px;
+            color: var(--drift); margin-bottom: 24px;
+        }
+
+        .article__table {
+            width: 100%; border-collapse: collapse; margin: 32px 0;
+            font-size: 15px; background: var(--stone-light);
+            border: 1px solid var(--clay); border-radius: 12px; overflow: hidden;
+        }
+        .article__table th {
+            font-family: var(--font-mono); font-size: 12px; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--teak); text-align: left;
+            padding: 14px 20px; border-bottom: 1px solid var(--clay);
+        }
+        .article__table td {
+            padding: 14px 20px; border-bottom: 1px solid var(--sand);
+            color: var(--bark); vertical-align: top;
+        }
+        .article__table tr:last-child td { border-bottom: none; }
+        .article__table td:first-child { color: var(--charcoal); font-weight: 500; }
+
+        .article__tools {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 32px; margin: 40px 0;
+        }
+        .article__tools p { margin-bottom: 16px; font-style: italic; color: var(--bark); }
+        .article__tools ul { list-style: none; margin-bottom: 16px; }
+        .article__tools li {
+            padding: 8px 0 8px 16px; position: relative; font-size: 15px;
+        }
+        .article__tools li::before {
+            content: ''; position: absolute; left: 0; top: 16px;
+            width: 4px; height: 4px; border-radius: 50%; background: var(--teak);
+        }
+        .article__tools li a { color: var(--teak); text-decoration: none; font-weight: 500; }
+        .article__tools li a:hover { color: var(--teak-hover); }
+        .article__tools .note { font-size: 13px; color: var(--drift); font-style: normal; }
+
+        .article__sources {
+            border-top: 1px solid var(--clay); padding-top: 24px; margin-top: 48px;
+            font-size: 13px; color: var(--drift);
+        }
+        .article__sources a { color: var(--drift); text-decoration: underline; }
+        .article__sources a:hover { color: var(--teak); }
+
+        .article__cta {
+            text-align: center; padding: 48px 0;
+        }
+        .article__cta p { color: var(--bark); margin-bottom: 16px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 6px; font-family: var(--font-sans);
+            font-size: 15px; font-weight: 500; text-decoration: none;
+            transition: all 300ms ease; background: var(--teak); color: var(--stone);
+        }
+        .btn:hover { background: var(--teak-hover); }
+
+        .footer { padding: 40px 0; border-top: 1px solid var(--clay); text-align: center; }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 28px; }
+            .article h2 { font-size: 22px; }
+            .container { padding: 0 20px; }
+            .article__table { font-size: 13px; }
+            .article__table th, .article__table td { padding: 10px 12px; }
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Much Does AI Implementation Cost? A Realistic Breakdown",
+  "description": "A mid-market first AI deployment runs $25K–$150K in year one. The tool licenses are the smallest layer — here is where the rest goes, and the three patterns that blow up budgets.",
+  "author": {
+    "@id": "https://www.yugam.io/#rohit"
+  },
+  "publisher": {
+    "@id": "https://www.yugam.io/#organization"
+  },
+  "datePublished": "2026-07-05",
+  "dateModified": "2026-07-05",
+  "mainEntityOfPage": "https://www.yugam.io/resources/article-2026-07-05-what-ai-implementation-costs.html",
+  "url": "https://www.yugam.io/resources/article-2026-07-05-what-ai-implementation-costs.html"
+}
+</script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="../index.html#insights" class="header__back">← Back to Insights</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="article-header">
+            <span class="article-header__tag">Budgeting</span>
+            <h1>How Much Does AI Implementation Cost? A Realistic Breakdown</h1>
+            <div class="article-header__meta">By <a href="../index.html">Rohit Kumar Maskara</a> · July 2026</div>
+        </section>
+
+        <article class="article">
+
+            <p>For a mid-market company deploying its first production AI system, plan for <strong>$25,000 to $150,000 in year one</strong>, all-in: tools, integration, foundation work, and training. A contained pilot on a single process runs <strong>$10,000 to $30,000</strong> including internal time. Where your budget lands inside those ranges depends less on which tool you pick than on the state of your data and processes before you start.</p>
+
+            <p>Those are wide ranges, so this article does the thing vendor pricing pages won't: it breaks the total into its four layers, puts numbers on each, and names the three patterns that push companies from the bottom of the range to the top.</p>
+
+            <h2>Layer 1: Tools and licenses — the smallest layer</h2>
+
+            <p>This is the sticker price, and the only layer that appears in most budgets. Current market rates: a business-grade AI assistant like Claude runs $25–30 per user per month. Automation platforms like Make start under $30 a month and scale with usage. Sales tools like Apollo run $50–100 per user per month. For a 20-person deployment, the license layer totals <strong>$6,000–25,000 a year</strong>.</p>
+
+            <p>Licenses rarely break a budget. They are predictable, monthly, and cancellable. The damage happens in the layers below.</p>
+
+            <h2>Layer 2: Integration and setup</h2>
+
+            <p>Connecting the tool to the systems where your work lives. The spread here is enormous and it is the main reason two companies buying the same product pay wildly different totals. A workflow linking three modern SaaS tools through Make or Zapier: a few days of work. A custom API integration into a legacy ERP: weeks to months, and <strong>$10,000–60,000</strong> in consulting or internal engineering time.</p>
+
+            <p>This is not a hypothetical risk. In HBR's analysis of why AI projects produce negative ROI, difficulty integrating with legacy systems was the most-cited technical cause, at 28%.</p>
+
+            <h2>Layer 3: Foundation work — the layer nobody budgets</h2>
+
+            <p>Before an AI system can automate a process, the process needs documented steps and trusted input data. Getting there takes 2–4 weeks for a typical mid-market process: agreeing on a single source of truth for the relevant data, and writing down how the work is done, including the exceptions.</p>
+
+            <p>Almost no first-time AI budget contains a line item for this. The work happens anyway — it just happens mid-project, unplanned, at whatever it costs to stop and fix. The team discovers the input data lives in three systems that disagree, integration pauses, and a data cleanup project starts running inside the AI project. This is where 3x overruns come from, and it maps directly to the 27% of negative-ROI projects that HBR found citing cost control as the killer.</p>
+
+            <div class="article__callout">
+                <strong>The cheapest money you will spend:</strong>
+                Two to four weeks of foundation work before signing anything. Done up front, it costs internal time. Done mid-project, it costs consulting rates plus the delay plus the credibility of the project. I run this as the Assess phase of every engagement, and it occasionally ends with "don't build this yet" — the cheapest possible outcome for a project that would have failed.
+            </div>
+
+            <h2>Layer 4: Adoption</h2>
+
+            <p>Training sessions, role-specific walkthroughs, and the productivity dip while the team runs old and new ways of working in parallel. Budget 2–6 weeks of reduced throughput on the affected process. This layer is nearly free in cash terms and expensive in patience — and skipping it converts your license spend into shelfware. The tool works; the usage reports stay flat; the renewal gets cancelled; the project gets remembered as "we tried AI and it didn't work."</p>
+
+            <h2>The three patterns that blow up budgets</h2>
+
+            <p><strong>Whole-company licenses before adoption proof.</strong> 100 seats at $30 a month is $36,000 a year, committed before anyone knows whether the workflow sticks. A pilot needs 8–12 seats. Buy those, prove the value, then scale the contract with evidence in hand.</p>
+
+            <p><strong>Custom builds where configured off-the-shelf works.</strong> A bespoke system quoted at $150,000 often has a $30,000 equivalent made of existing tools plus configuration. The custom build is justified when the process is genuinely unique. It usually isn't the process that's unique — it's the documentation that's missing, which makes everything look unique.</p>
+
+            <p><strong>Skipping layer 3.</strong> Covered above, but it earns its place on this list because it is the most common of the three and the only one that also delays the project while it burns the money.</p>
+
+            <h2>What a sensible first budget looks like</h2>
+
+            <table class="article__table">
+                <tr><th>Item</th><th>Range</th><th>Notes</th></tr>
+                <tr><td>Licenses (8–12 seats, 12 weeks)</td><td>$1,000–3,000</td><td>Pilot scope only</td></tr>
+                <tr><td>Integration &amp; setup</td><td>$5,000–15,000</td><td>The variable to watch</td></tr>
+                <tr><td>Foundation work</td><td>2–4 weeks internal time</td><td>Data source of truth + process documentation</td></tr>
+                <tr><td>Training &amp; adoption</td><td>A few days + the dip</td><td>Manager-led, role-specific</td></tr>
+            </table>
+
+            <p>Total for a well-scoped pilot: <strong>$10,000–30,000 and about 12 weeks</strong>. If the pilot proves value — measured against a baseline you recorded before starting — the scale-up budget writes itself, because you now have your own numbers instead of a vendor's case study.</p>
+
+            <div class="article__tools">
+                <p>I built a free calculator that estimates the full cost for your specific situation — including the layers vendors don't mention:</p>
+                <ul>
+                    <li><a href="cost-calculator.html">Cost-to-Deploy Calculator</a> — a realistic estimate across all four layers</li>
+                    <li><a href="complexity-score.html">Implementation Complexity Score</a> — how hard will your specific deployment be?</li>
+                </ul>
+                <div class="note">Each takes about 4 minutes. Free, AI-powered, no email required.</div>
+            </div>
+
+            <div class="article__sources">
+                Sources:
+                <a href="https://hbr.org/2026/02/why-ai-adoption-stalls-according-to-industry-data">HBR — Why AI Adoption Stalls</a> ·
+                Vendor pricing current as of July 2026: Anthropic, Make, Apollo public rate cards
+            </div>
+
+        </article>
+
+        <div class="article__cta">
+            <p>Want a number for your specific project instead of a range?</p>
+            <a href="../index.html#contact-form" class="btn">Let's Talk →</a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Yugam Systems Pte Ltd (Singapore)</p>
+        </div>
+    </footer>
+
+</body>
+</html>
