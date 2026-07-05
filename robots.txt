@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you.html
+Disallow: /yugam_logo_showcase.html
+Disallow: /content/
+Disallow: /_ops/
+Disallow: /worker/
+Disallow: /*.md$
+
+Sitemap: https://www.yugam.io/sitemap.xml

@@ -1,0 +1,34 @@
+# Yugam
+
+> Yugam is an AI transformation consultancy run by Rohit Kumar Maskara (Yugam Systems Pte Ltd, Singapore). Readiness-first consulting for founders and mid-market leadership teams: AI strategy, system architecture, and implementation grounded in how the business actually operates — data, processes, and people before tools.
+
+Rohit Kumar Maskara: a decade at Meta, Fortune 500 governance at KPMG, started on a manufacturing shop floor. B.Tech Industrial Engineering, MBA in Operations Strategy & Finance.
+
+Core position: AI tools are easy to buy. Knowing which ones a business needs — and whether the organization can support them — is the real work. Most AI projects fail for organizational reasons, not technical ones.
+
+## Services
+
+- [How We Work](https://www.yugam.io/#services): Three engagement tiers — Assess (2–4 weeks, readiness audit), Build (8–16 weeks, design and implement), Train (flexible, team enablement)
+- [Engagement Methodology](https://www.yugam.io/methodology.html): Phase-by-phase breakdown of how an engagement runs
+
+## Frameworks and articles
+
+- [The 4 Failure Modes That Kill AI Projects](https://www.yugam.io/blog-post-why-ai-deployments-fail.html): Why 70% of AI initiatives fail — a framework for diagnosing organizational readiness before writing code
+- [Why 95% of AI Projects Fail to Generate ROI](https://www.yugam.io/resources/article-2026-06-27-why-95-percent-fail.html): Three root causes from major 2026 studies (Deloitte, BCG, HBR, WEF) — all pointing to organizational readiness, not technology
+
+## Free diagnostic tools
+
+- [AI Transformation Index](https://www.yugam.io/ai-transformation-index/): 10-minute diagnostic — AI readiness score, leadership archetype, top 3 use cases
+- [AI Opportunity Finder](https://www.yugam.io/resources/ai-opportunity-finder.html): Which processes are worth automating
+- [Data Readiness Scan](https://www.yugam.io/resources/data-readiness.html): Whether existing data can support AI
+- [Team Readiness Check](https://www.yugam.io/resources/team-readiness.html): Whether teams will adopt AI tools
+- [Implementation Complexity Score](https://www.yugam.io/resources/complexity-score.html): How hard an AI implementation will be
+- [Cost-to-Deploy Calculator](https://www.yugam.io/resources/cost-calculator.html): Realistic AI implementation cost estimate
+- [AI Competitive Gap Analysis](https://www.yugam.io/resources/competitive-assessment.html): Competitive position on AI adoption
+- [AI Implementation Risk Playbook](https://www.yugam.io/resources/risk-playbook.html): Mapping projects against the 4-failure-mode framework
+
+## Resources
+
+- [The AI Stack](https://www.yugam.io/ai-stack.html): Opinionated, tested tool recommendations for SMBs and mid-market teams
+- [Prompt Library](https://www.yugam.io/prompt-library.html): Ready-to-use AI prompts for operations and customer experience
+- [About Rohit](https://www.yugam.io/about.html): Background and philosophy
