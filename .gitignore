@@ -16,3 +16,7 @@ services.html
 
 # Claude session files
 .claude/
+
+# Python cache
+*.pyc
+__pycache__/

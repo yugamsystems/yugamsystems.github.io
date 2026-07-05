@@ -1,0 +1,102 @@
+/* Yugam enhancement layer — loaded by every page after inline styles.
+   Progressive: nothing here is load-bearing; removing this file leaves a working site. */
+
+/* ---- global polish ---- */
+::selection { background: rgba(139, 105, 20, 0.22); color: inherit; }
+
+html { scroll-behavior: smooth; }
+
+:focus-visible {
+    outline: 2px solid var(--teak, #8B6914);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* ---- constellation hero (canvas injected by enhance.js) ---- */
+[data-constellation] { position: relative; }
+[data-constellation] > .yg-constellation {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+[data-constellation] > *:not(.yg-constellation) { position: relative; z-index: 1; }
+
+/* ---- reading progress bar (injected on long-form pages) ---- */
+.yg-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, var(--teak, #8B6914), var(--teak-hover, #A8924D));
+    z-index: 2000;
+    transition: width 80ms linear;
+}
+
+/* ---- scroll reveal (extends the homepage's .reveal system to every page) ---- */
+.yg-reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+                transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    /* Failsafe: if the observer never fires (throttled tab, JS hiccup),
+       pure CSS shows the content after 2s regardless. */
+    animation: yg-failsafe 1ms 2000ms forwards;
+}
+.yg-reveal.yg-visible { opacity: 1; transform: none; }
+@keyframes yg-failsafe { to { opacity: 1; transform: none; } }
+
+/* ---- card lift: one consistent hover language across the site ---- */
+.case-card, .insight-card, .stack-card, .beyond-card,
+.education-card, .total-card, .prompt-card, .faq__item, .ql-item {
+    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 300ms ease;
+}
+.case-card:hover, .insight-card:hover, .stack-card:hover,
+.beyond-card:hover, .education-card:hover, .prompt-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(26, 22, 18, 0.10), 0 2px 8px rgba(139, 105, 20, 0.08);
+    border-color: rgba(139, 105, 20, 0.35);
+}
+
+/* ---- metric values: stable digits while counting, teak emphasis ---- */
+.metric__value, [data-count] {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---- nav link underline sweep (skips filled CTA buttons) ---- */
+.nav__link:not(.nav-cta) {
+    position: relative;
+}
+.nav__link:not(.nav-cta)::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -3px;
+    height: 2px;
+    background: var(--teak, #8B6914);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav__link:not(.nav-cta):hover::after,
+.nav__link--active:not(.nav-cta)::after { transform: scaleX(1); }
+
+/* ---- buttons: gentle press feedback ---- */
+.btn:active, .btn--primary:active, .nav-cta:active { transform: translateY(1px) scale(0.99); }
+
+/* ---- article polish ---- */
+.article__callout, blockquote {
+    transition: border-color 300ms ease, box-shadow 300ms ease;
+}
+.article__callout:hover { box-shadow: 0 4px 20px rgba(139, 105, 20, 0.08); }
+
+/* ---- accessibility: motion off means off ---- */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .yg-reveal { opacity: 1; transform: none; transition: none; }
+    .yg-progress { transition: none; }
+    .case-card, .insight-card, .stack-card, .beyond-card,
+    .education-card, .total-card, .prompt-card, .faq__item, .ql-item { transition: none; }
+    .yg-constellation { display: none; }
+}
