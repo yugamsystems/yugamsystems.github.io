@@ -100,3 +100,5 @@ html { scroll-behavior: smooth; }
     .education-card, .total-card, .prompt-card, .faq__item, .ql-item { transition: none; }
     .yg-constellation { display: none; }
 }
+
+/* deploy nudge 20260706-1055 */
