@@ -37,40 +37,10 @@
 /* mono eyebrow label in teak */
 .hero .label { color: var(--teak) !important; letter-spacing: .26em !important; }
 
-/* ---- FOUNDER CARD: elevated ---- */
-.hero__photo-frame {
-    position: relative !important;
-    display: inline-block !important;
-    margin-bottom: 20px !important;
-}
-/* teak accent bar at top of photo */
-.hero__photo-frame::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--teak);
-    z-index: 1;
-    border-radius: 2px 2px 0 0;
-}
-/* rectangular portrait with warm shadow — filter unchanged from original */
-.hero__photo {
-    width: 260px !important;
-    height: 316px !important;
-    border-radius: 3px !important;
-    box-shadow: 0 8px 36px rgba(26,22,18,.14), 0 2px 8px rgba(26,22,18,.08) !important;
-}
+/* ---- FOUNDER CARD: subtle refinements, original round photo preserved ---- */
 .hero__name {
     font-size: 20px !important;
     margin-bottom: 3px !important;
-}
-.hero__title {
-    font-family: var(--font-mono) !important;
-    font-size: 10px !important;
-    letter-spacing: .18em !important;
-    text-transform: uppercase !important;
-    color: var(--teak) !important;
-    margin-bottom: 14px !important;
 }
 .hero__tag {
     font-size: 10px !important;
