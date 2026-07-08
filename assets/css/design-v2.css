@@ -272,6 +272,63 @@
     max-width: 560px;
 }
 
+/* ---- AI STACK HERO ---- */
+.stack-hero {
+    padding: 200px 0 80px !important;
+    position: relative;
+    overflow: hidden;
+}
+.stack-hero__headline {
+    font-size: clamp(44px, 5.5vw, 80px) !important;
+    line-height: .97 !important;
+    letter-spacing: -.015em !important;
+}
+.stack-hero .label { color: var(--teak) !important; }
+.stack-hero__cta a { color: var(--teak) !important; font-size: 13px !important; }
+
+/* ---- FAQ PAGE HEADER ---- */
+.page-header { padding: 120px 0 48px !important; max-width: 760px !important; }
+.page-header__tag {
+    font-family: var(--font-mono) !important;
+    font-size: 11px !important;
+    letter-spacing: .26em !important;
+    text-transform: uppercase !important;
+    color: var(--teak) !important;
+    display: block !important;
+    margin-bottom: 18px !important;
+}
+.page-header h1 {
+    font-family: var(--font-serif) !important;
+    font-size: clamp(32px, 4.2vw, 58px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -.012em !important;
+}
+.page-header p {
+    font-size: 16px !important;
+    line-height: 1.68 !important;
+    color: var(--bark) !important;
+    max-width: 520px !important;
+    margin-top: 14px !important;
+}
+
+/* ---- PROMPT LIBRARY HERO ---- */
+.hero .hero__title {
+    font-size: clamp(40px, 5.2vw, 76px) !important;
+    line-height: .97 !important;
+    letter-spacing: -.015em !important;
+}
+
+/* ---- ABOUT PAGE HERO: canvas support + reset about-wrap top pad ---- */
+.yg-page-hero {
+    position: relative;
+    overflow: hidden;
+}
+/* .about-wrap previously compensated for nav with 148px top padding;
+   now that yg-page-hero handles nav offset, drop it to normal spacing */
+.about-wrap { padding-top: 72px !important; }
+/* ---- METHOD HERO: canvas support ---- */
+.method-hero { position: relative; overflow: hidden; }
+
 /* ---- STICKY SPLIT PROCESS SECTION ---- */
 .yg-process {
     padding: 120px 0;
