@@ -185,11 +185,260 @@
 /* ---- Magnetic button: prevent layout shift during JS transform ---- */
 [data-magnetic] { will-change: transform; }
 
+/* ---- SERVICE CARDS: pillar hover — teak bar grows left edge ---- */
+.service-card {
+    position: relative !important;
+    transition: transform .38s cubic-bezier(.22,1,.36,1) !important;
+    overflow: hidden;
+}
+.service-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 2px; height: 0;
+    background: var(--teak);
+    transition: height .42s cubic-bezier(.22,1,.36,1);
+    z-index: 1;
+}
+.service-card:hover::before { height: 100%; }
+.service-card:hover { transform: translateX(7px) !important; }
+.service-card__number { color: var(--teak) !important; opacity: .5; }
+
+/* ---- INSIGHT CARDS: bottom teak sweep ---- */
+.insight-card {
+    position: relative;
+    transition: transform .35s cubic-bezier(.22,1,.36,1);
+    overflow: hidden;
+}
+.insight-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--teak);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform .38s cubic-bezier(.22,1,.36,1);
+}
+.insight-card:hover::after { transform: scaleX(1); }
+.insight-card:hover { transform: translateY(-4px); }
+
+/* ---- TOOL CARDS: consistent hover lift ---- */
+.tool-card {
+    transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s !important;
+}
+.tool-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 40px rgba(26,22,18,.1) !important;
+}
+
+/* ---- METHODOLOGY HERO: cinematic headline ---- */
+.method-hero { padding: 200px 0 90px !important; }
+.method-hero h1 {
+    font-size: clamp(44px, 5.5vw, 80px) !important;
+    line-height: .97 !important;
+    letter-spacing: -.015em !important;
+}
+.method-hero .label { color: var(--teak) !important; letter-spacing: .26em !important; }
+
+/* ---- ABOUT PAGE HERO ---- */
+.yg-page-hero {
+    padding: 180px 0 70px;
+    border-bottom: 1px solid var(--sand);
+}
+.yg-page-hero__label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--teak);
+    display: block;
+    margin-bottom: 24px;
+}
+.yg-page-hero__h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(40px, 5.2vw, 76px);
+    line-height: .97;
+    letter-spacing: -.015em;
+    color: var(--ink);
+    margin-bottom: 28px;
+    max-width: 760px;
+}
+.yg-page-hero__h1 em { font-style: italic; color: var(--teak); }
+.yg-page-hero__desc {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--bark);
+    max-width: 560px;
+}
+
+/* ---- STICKY SPLIT PROCESS SECTION ---- */
+.yg-process {
+    padding: 120px 0;
+    background: var(--stone);
+}
+.yg-process__wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+}
+.yg-process__sticky {
+    position: sticky;
+    top: 120px;
+}
+.yg-process__kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--teak);
+    display: block;
+    margin-bottom: 22px;
+}
+.yg-process__h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(32px, 3.5vw, 50px);
+    line-height: 1.05;
+    letter-spacing: -.012em;
+    color: var(--ink);
+    margin-bottom: 20px;
+}
+.yg-process__desc {
+    font-size: 16px;
+    line-height: 1.68;
+    color: var(--bark);
+    margin-bottom: 32px;
+}
+.yg-process__link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--teak);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap .25s;
+}
+.yg-process__link:hover { gap: 14px; }
+.yg-process__cards { display: flex; flex-direction: column; gap: 2px; }
+.yg-pillar {
+    position: relative;
+    padding: 36px 36px 36px 38px;
+    background: #fff;
+    border-bottom: 1px solid var(--sand);
+    transition: transform .35s cubic-bezier(.22,1,.36,1), background .25s;
+    cursor: default;
+    overflow: hidden;
+}
+.yg-pillar:first-child { border-top: 1px solid var(--sand); }
+.yg-pillar__bar {
+    position: absolute;
+    left: 0; top: 0;
+    width: 2px; height: 0;
+    background: var(--teak);
+    transition: height .42s cubic-bezier(.22,1,.36,1);
+}
+.yg-pillar:hover .yg-pillar__bar { height: 100%; }
+.yg-pillar:hover { transform: translateX(8px); background: var(--stone-light, #FAF8F5); }
+.yg-pillar__num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .2em;
+    color: var(--teak);
+    margin-bottom: 10px;
+    display: block;
+}
+.yg-pillar__title {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 6px;
+}
+.yg-pillar__duration {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--drift);
+    letter-spacing: .1em;
+    margin-bottom: 14px;
+    display: block;
+}
+.yg-pillar__desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--bark);
+}
+
+/* ---- ARTICLE HEADER: editorial typography ---- */
+.article-header {
+    padding: 120px 0 52px !important;
+    max-width: 780px !important;
+}
+.article-header__tag {
+    font-family: var(--font-mono) !important;
+    font-size: 11px !important;
+    letter-spacing: .26em !important;
+    text-transform: uppercase !important;
+    color: var(--teak) !important;
+    margin-bottom: 20px !important;
+    display: block !important;
+}
+.article-header h1 {
+    font-family: var(--font-serif) !important;
+    font-size: clamp(32px, 4.2vw, 58px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -.012em !important;
+    color: var(--ink) !important;
+    margin-bottom: 20px !important;
+}
+.article-header__meta {
+    font-size: 13px !important;
+    color: var(--drift) !important;
+    padding-top: 18px !important;
+    border-top: 1px solid var(--sand) !important;
+    margin-top: 20px !important;
+}
+.article-header__meta a { color: var(--teak) !important; }
+
+/* ---- ARTICLE BODY: editorial spacing and typography ---- */
+.article p { font-size: 17px !important; line-height: 1.78 !important; margin-bottom: 22px !important; }
+.article h2 {
+    font-family: var(--font-serif) !important;
+    font-size: clamp(22px, 2.8vw, 34px) !important;
+    letter-spacing: -.008em !important;
+    line-height: 1.15 !important;
+    margin-top: 56px !important;
+    margin-bottom: 18px !important;
+    color: var(--ink) !important;
+}
+.article__callout {
+    border-left: 3px solid var(--teak) !important;
+    padding: 20px 26px !important;
+    background: var(--stone) !important;
+    border-radius: 0 4px 4px 0 !important;
+    margin: 32px 0 !important;
+    font-size: 15px !important;
+    line-height: 1.68 !important;
+}
+.article__callout strong { color: var(--teak) !important; }
+.article__stat {
+    font-family: var(--font-mono) !important;
+    font-size: 12px !important;
+    letter-spacing: .14em !important;
+    color: var(--teak) !important;
+    text-transform: uppercase !important;
+    padding: 10px 0 !important;
+}
+
 /* ---- Reduced motion: respect user preference ---- */
 @media (prefers-reduced-motion: reduce) {
     .yg-manifesto__text .w { transition: none; }
     .yg-manifesto__rule { transition: none; }
     .yg-manifesto__attr { transition: none; }
+    .service-card, .insight-card, .tool-card, .yg-pillar { transition: none !important; }
+    .service-card::before, .insight-card::after, .yg-pillar__bar { transition: none; }
 }
 
 /* ---- Responsive ---- */
@@ -198,8 +447,14 @@
     .yg-manifesto__text { font-size: clamp(26px, 7vw, 44px); }
     .hero__photo { width: 190px !important; height: 230px !important; }
     .hero__headline { font-size: clamp(40px, 9vw, 70px) !important; }
+    .yg-process__wrap { grid-template-columns: 1fr; gap: 48px; }
+    .yg-process__sticky { position: static; }
+    .method-hero h1 { font-size: clamp(36px, 9vw, 60px) !important; }
+    .yg-page-hero__h1 { font-size: clamp(34px, 9vw, 60px); }
 }
 @media (max-width: 580px) {
     .yg-band__stats { grid-template-columns: 1fr 1fr; }
     .yg-manifesto { padding: 80px 24px; }
+    .yg-pillar { padding: 28px 24px 28px 26px; }
+    .article-header h1 { font-size: clamp(28px, 8vw, 42px) !important; }
 }
