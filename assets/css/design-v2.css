@@ -22,6 +22,56 @@
 .nav__link:not(.btn):hover::after,
 .nav__link--active:not(.btn)::after { transform: scaleX(1); }
 
+/* ---- HERO: position context + grain film texture ---- */
+.hero { position: relative !important; overflow: hidden; }
+/* Grain sits on top of everything at near-zero opacity — adds film texture */
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 10;
+}
+.hero .container { position: relative; z-index: 1; }
+
+/* ---- HEADLINE WORD REVEAL: spans injected by design-v2.js ---- */
+.hw {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .72s cubic-bezier(.22,1,.36,1),
+                transform .72s cubic-bezier(.22,1,.36,1);
+}
+.hw--vis { opacity: 1; transform: none; }
+
+/* ---- HERO SCROLL CUE: animated bar injected by design-v2.js ---- */
+.hero__scroll-cue {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity .5s;
+}
+.hero__scroll-cue__bar {
+    width: 1px;
+    height: 44px;
+    background: linear-gradient(to bottom, var(--teak), transparent);
+    transform-origin: top center;
+    animation: ygScrollPulse 2.4s ease-in-out infinite;
+}
+@keyframes ygScrollPulse {
+    0%   { opacity: 0;   transform: scaleY(0) translateY(0); }
+    35%  { opacity: 0.7; transform: scaleY(1) translateY(0); }
+    65%  { opacity: 0.7; transform: scaleY(1) translateY(0); }
+    100% { opacity: 0;   transform: scaleY(0.6) translateY(12px); }
+}
+
 /* ---- HERO: larger cinematic headline ---- */
 .hero__headline {
     font-size: clamp(48px, 6.5vw, 90px) !important;
@@ -307,8 +357,8 @@
     margin-top: 14px !important;
 }
 
-/* ---- PROMPT LIBRARY HERO ---- */
-.hero .hero__title {
+/* ---- PROMPT LIBRARY HERO: targets <h1 class="hero__title"> only ---- */
+h1.hero__title {
     font-size: clamp(40px, 5.2vw, 76px) !important;
     line-height: .97 !important;
     letter-spacing: -.015em !important;
@@ -479,6 +529,8 @@
 
 /* ---- Reduced motion: respect user preference ---- */
 @media (prefers-reduced-motion: reduce) {
+    .hw { transition: none; opacity: 1; transform: none; }
+    .hero__scroll-cue__bar { animation: none; opacity: 0.4; }
     .yg-manifesto__text .w { transition: none; }
     .yg-manifesto__rule { transition: none; }
     .yg-manifesto__attr { transition: none; }
@@ -490,7 +542,7 @@
 @media (max-width: 900px) {
     .yg-band__stats { grid-template-columns: repeat(2, 1fr); gap: 44px 30px; }
     .yg-manifesto__text { font-size: clamp(26px, 7vw, 44px); }
-    .hero__photo { width: 190px !important; height: 230px !important; }
+    .hero__photo { width: 200px !important; height: 200px !important; }
     .hero__headline { font-size: clamp(40px, 9vw, 70px) !important; }
     .yg-process__wrap { grid-template-columns: 1fr; gap: 48px; }
     .yg-process__sticky { position: static; }

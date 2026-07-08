@@ -121,7 +121,73 @@
         });
     }
 
+    /* ===== Homepage headline word reveal =======================================
+       Splits the hero h1 into per-word spans and staggers them in with a
+       translateY slide, matching the prototype's line-reveal intent while
+       staying robust across all viewport widths. Homepage only. */
+    function headlineWordReveal() {
+        if (reducedMotion) return;
+        var h1 = document.querySelector('.hero[data-constellation] .hero__headline');
+        if (!h1) return;
+
+        // Take over from the generic reveal system
+        h1.classList.remove('reveal', 'reveal-delay-1');
+        h1.style.opacity = '1';
+
+        var words = [];
+        var children = Array.prototype.slice.call(h1.childNodes);
+        h1.innerHTML = '';
+
+        children.forEach(function (node) {
+            if (node.nodeType === 3) { // plain text
+                var parts = node.textContent.split(/(\s+)/);
+                parts.forEach(function (part) {
+                    if (!part) return;
+                    if (/^\s+$/.test(part)) {
+                        h1.appendChild(document.createTextNode(part));
+                    } else {
+                        var span = document.createElement('span');
+                        span.className = 'hw';
+                        span.textContent = part;
+                        h1.appendChild(span);
+                        words.push(span);
+                    }
+                });
+            } else { // element node (em, strong…)
+                var wrap = document.createElement('span');
+                wrap.className = 'hw';
+                wrap.appendChild(node);
+                h1.appendChild(wrap);
+                words.push(wrap);
+            }
+        });
+
+        words.forEach(function (word, i) {
+            setTimeout(function () { word.classList.add('hw--vis'); }, 180 + i * 85);
+        });
+    }
+
+    /* ===== Hero scroll cue ====================================================
+       Injects a pulsing teak line at the bottom of the homepage hero.
+       Fades out once the user starts scrolling. */
+    function scrollCue() {
+        if (reducedMotion) return;
+        var hero = document.querySelector('.hero[data-constellation]');
+        if (!hero) return;
+
+        var cue = document.createElement('div');
+        cue.className = 'hero__scroll-cue';
+        cue.innerHTML = '<div class="hero__scroll-cue__bar"></div>';
+        hero.appendChild(cue);
+
+        window.addEventListener('scroll', function () {
+            cue.style.opacity = window.scrollY > 80 ? '0' : '1';
+        }, { passive: true });
+    }
+
     pageReveal();
     ambientConstellation();
+    headlineWordReveal();
+    scrollCue();
 
 })();
