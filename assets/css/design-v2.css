@@ -1,0 +1,205 @@
+/* Yugam design v2 — progressive visual enhancement.
+   Loaded AFTER inline styles. Removing this file leaves a working site. */
+
+/* ---- NAV: tighter frosted glass + link underline sweep ---- */
+.nav { transition: all .4s cubic-bezier(.22,1,.36,1); }
+.nav--scrolled {
+    background: rgba(244,239,233,.93) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+}
+.nav__link:not(.btn) { position: relative; }
+.nav__link:not(.btn)::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -4px;
+    height: 1.5px;
+    background: var(--teak);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform .28s cubic-bezier(.22,1,.36,1);
+}
+.nav__link:not(.btn):hover::after,
+.nav__link--active:not(.btn)::after { transform: scaleX(1); }
+
+/* ---- HERO: larger cinematic headline ---- */
+.hero__headline {
+    font-size: clamp(48px, 6.5vw, 90px) !important;
+    line-height: .97 !important;
+    letter-spacing: -.015em !important;
+    margin-bottom: 16px !important;
+}
+/* "easy" in italic teak — applied via <em> in the markup */
+.hero__headline em {
+    font-style: italic;
+    color: var(--teak);
+}
+/* mono eyebrow label in teak */
+.hero .label { color: var(--teak) !important; letter-spacing: .26em !important; }
+
+/* ---- FOUNDER CARD: elevated ---- */
+.hero__photo-frame {
+    position: relative !important;
+    display: inline-block !important;
+    margin-bottom: 20px !important;
+}
+/* teak accent bar at top of photo */
+.hero__photo-frame::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--teak);
+    z-index: 1;
+    border-radius: 2px 2px 0 0;
+}
+/* rectangular portrait with warm shadow */
+.hero__photo {
+    width: 260px !important;
+    height: 316px !important;
+    border-radius: 3px !important;
+    box-shadow: 0 8px 36px rgba(26,22,18,.14), 0 2px 8px rgba(26,22,18,.08) !important;
+}
+.hero__name {
+    font-size: 20px !important;
+    margin-bottom: 3px !important;
+}
+.hero__title {
+    font-family: var(--font-mono) !important;
+    font-size: 10px !important;
+    letter-spacing: .18em !important;
+    text-transform: uppercase !important;
+    color: var(--teak) !important;
+    margin-bottom: 14px !important;
+}
+.hero__tag {
+    font-size: 10px !important;
+    padding: 4px 10px !important;
+    border-radius: 2px !important;
+}
+.hero__bio { font-size: 12.5px !important; line-height: 1.65 !important; }
+
+/* ---- YG STAT BAND (dark full-bleed metrics) ---- */
+.yg-band {
+    background: var(--ink);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+.yg-band::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 82% 20%, rgba(139,105,20,.22), transparent 45%);
+    opacity: .5;
+    pointer-events: none;
+}
+.yg-band .container { position: relative; z-index: 1; }
+.yg-band__label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: #C9A94E;
+    margin-bottom: 50px;
+    display: block;
+}
+.yg-band__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+.yg-stat {
+    padding-left: 22px;
+    border-left: 1px solid rgba(201,169,78,.35);
+}
+.yg-stat__num {
+    font-family: var(--font-serif);
+    font-size: clamp(44px, 5vw, 66px);
+    line-height: 1;
+    color: #F4EFE9;
+    margin-bottom: 12px;
+    font-variant-numeric: tabular-nums;
+}
+.yg-stat__u { color: #C9A94E; }
+.yg-stat__lbl { font-size: 14px; line-height: 1.5; color: #9B9183; }
+
+/* ---- YG MANIFESTO (full-viewport quote break) ---- */
+.yg-manifesto {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+    padding: 120px 40px;
+    position: relative;
+    overflow: hidden;
+}
+.yg-manifesto::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 65% 50% at 50% 55%, rgba(139,105,20,.07), transparent 70%);
+    pointer-events: none;
+}
+.yg-manifesto__rule {
+    width: 0; height: 1px;
+    background: rgba(201,169,78,.35);
+    margin-bottom: 70px;
+    transition: width 1.2s cubic-bezier(.22,1,.36,1);
+    position: relative; z-index: 1;
+}
+.yg-manifesto__rule.vis { width: min(560px, 65vw); }
+.yg-manifesto__text {
+    font-family: var(--font-serif);
+    font-size: clamp(30px, 5vw, 76px);
+    line-height: 1.1;
+    color: #F4EFE9;
+    text-align: center;
+    max-width: 960px;
+    letter-spacing: -.01em;
+    position: relative; z-index: 1;
+}
+.yg-manifesto__text em { font-style: italic; color: #C9A94E; }
+.yg-manifesto__text .w {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .62s cubic-bezier(.22,1,.36,1),
+                transform .62s cubic-bezier(.22,1,.36,1);
+    white-space: pre;
+}
+.yg-manifesto__text .w.vis { opacity: 1; transform: none; }
+.yg-manifesto__attr {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #C9A94E;
+    opacity: 0;
+    margin-top: 48px;
+    transition: opacity .8s .2s;
+    position: relative; z-index: 1;
+}
+.yg-manifesto__attr.vis { opacity: .55; }
+
+/* ---- Magnetic button: prevent layout shift during JS transform ---- */
+[data-magnetic] { will-change: transform; }
+
+/* ---- Reduced motion: respect user preference ---- */
+@media (prefers-reduced-motion: reduce) {
+    .yg-manifesto__text .w { transition: none; }
+    .yg-manifesto__rule { transition: none; }
+    .yg-manifesto__attr { transition: none; }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+    .yg-band__stats { grid-template-columns: repeat(2, 1fr); gap: 44px 30px; }
+    .yg-manifesto__text { font-size: clamp(26px, 7vw, 44px); }
+    .hero__photo { width: 190px !important; height: 230px !important; }
+    .hero__headline { font-size: clamp(40px, 9vw, 70px) !important; }
+}
+@media (max-width: 580px) {
+    .yg-band__stats { grid-template-columns: 1fr 1fr; }
+    .yg-manifesto { padding: 80px 24px; }
+}

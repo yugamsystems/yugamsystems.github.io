@@ -1103,6 +1103,7 @@
 }
 </script>
 <link rel="stylesheet" href="assets/css/enhance.css">
+<link rel="stylesheet" href="assets/css/design-v2.css">
 <script defer src="assets/js/enhance.js"></script>
 </head>
 <body>
@@ -1159,7 +1160,7 @@
         <div class="container">
             <div class="hero__content">
                 <span class="label reveal">AI Strategy, System Architecture & Implementation</span>
-                <h1 class="hero__headline reveal reveal-delay-1">Implementing AI is the easy part.</h1>
+                <h1 class="hero__headline reveal reveal-delay-1">Implementing AI is the <em>easy</em> part.</h1>
                 <p class="hero__text reveal reveal-delay-2">The hard part is knowing whether your people, processes, and data are ready for it. AI tools are easy to buy. Knowing which ones your business needs — and whether your organization can support them — is the real work. I help founders and leadership teams design AI strategies grounded in how their business operates. Not how it looks on a slide deck.</p>
                 <div class="hero__actions reveal reveal-delay-3">
                     <a href="#contact-form" class="btn btn--primary">Let's Talk</a>
@@ -1183,6 +1184,31 @@
                     <span class="hero__tag">AI Deployment</span>
                 </div>
                 <p class="hero__bio">A decade at Meta. Fortune 500 governance at KPMG. Started on a manufacturing shop floor. B.Tech in Industrial Engineering. MBA in Operations Strategy &amp; Finance. I've seen how organizations work — from the inside.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== STAT BAND ==================== -->
+    <section class="yg-band">
+        <div class="container">
+            <span class="yg-band__label">Results from the field</span>
+            <div class="yg-band__stats">
+                <div class="yg-stat">
+                    <div class="yg-stat__num" data-count="94" data-suffix="%">94<span class="yg-stat__u">%</span></div>
+                    <div class="yg-stat__lbl">Process automation rate achieved in a 12-person operations team</div>
+                </div>
+                <div class="yg-stat">
+                    <div class="yg-stat__num" data-count="24" data-suffix="min">24<span class="yg-stat__u">min</span></div>
+                    <div class="yg-stat__lbl">Average onboarding time cut from 4 hours through AI-guided workflows</div>
+                </div>
+                <div class="yg-stat">
+                    <div class="yg-stat__num" data-count="240" data-prefix="$" data-suffix="K">$240<span class="yg-stat__u">K</span></div>
+                    <div class="yg-stat__lbl">Annual savings unlocked through intelligent document processing</div>
+                </div>
+                <div class="yg-stat">
+                    <div class="yg-stat__num" data-count="60" data-suffix="%">60<span class="yg-stat__u">%</span></div>
+                    <div class="yg-stat__lbl">Support tickets auto-resolved, freeing agents for complex cases</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1564,6 +1590,13 @@
         </div>
     </section>
 
+    <!-- ==================== MANIFESTO ==================== -->
+    <section class="yg-manifesto" id="manifesto" aria-label="The Yugam Readiness Principle">
+        <div class="yg-manifesto__rule"></div>
+        <p class="yg-manifesto__text" id="manifestoText" aria-label="AI without organizational readiness is just expensive software.">AI without organizational readiness is just <em>expensive software.</em></p>
+        <span class="yg-manifesto__attr">— The Yugam Readiness Principle</span>
+    </section>
+
     <!-- ==================== INSIGHTS ==================== -->
     <section class="insights" id="insights">
         <div class="container">
@@ -1774,6 +1807,93 @@
             document.querySelector('.newsletter__note').style.display = 'none';
             document.getElementById('newsletterThanks').style.display = 'block';
         }
+    </script>
+
+    <!-- Design v2: manifesto word-reveal + stat band count-up + magnetic buttons -->
+    <script>
+    (function(){
+        'use strict';
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        /* ---- Manifesto word-by-word reveal ---- */
+        var manifestoEl = document.getElementById('manifestoText');
+        if (manifestoEl) {
+            var raw = manifestoEl.innerHTML;
+            // Split preserving <em> tags: tokenise around them
+            var words = [];
+            var regex = /(<em>[^<]*<\/em>|[^\s]+)/g;
+            var match;
+            while ((match = regex.exec(raw)) !== null) {
+                words.push(match[1]);
+            }
+            manifestoEl.innerHTML = words.map(function(w){
+                return '<span class="w">' + w + '</span>';
+            }).join(' ');
+            // Also grab the rule and attr
+            var rule = document.querySelector('.yg-manifesto__rule');
+            var attr = document.querySelector('.yg-manifesto__attr');
+            var spans = manifestoEl.querySelectorAll('.w');
+            var fired = false;
+            var obs = new IntersectionObserver(function(entries){
+                if (entries[0].isIntersecting && !fired) {
+                    fired = true;
+                    if (reduced) {
+                        if (rule) rule.classList.add('vis');
+                        spans.forEach(function(s){ s.classList.add('vis'); });
+                        if (attr) attr.classList.add('vis');
+                        return;
+                    }
+                    if (rule) { setTimeout(function(){ rule.classList.add('vis'); }, 100); }
+                    spans.forEach(function(s, i){
+                        setTimeout(function(){ s.classList.add('vis'); }, 300 + i * 55);
+                    });
+                    if (attr) { setTimeout(function(){ attr.classList.add('vis'); }, 300 + spans.length * 55 + 200); }
+                }
+            }, { threshold: 0.35 });
+            obs.observe(document.getElementById('manifesto'));
+        }
+
+        /* ---- Stat band count-up ---- */
+        var statNums = document.querySelectorAll('.yg-stat__num[data-count]');
+        if (statNums.length) {
+            var bandObs = new IntersectionObserver(function(entries){
+                if (!entries[0].isIntersecting) return;
+                bandObs.disconnect();
+                statNums.forEach(function(el){
+                    var target = parseInt(el.getAttribute('data-count'), 10);
+                    var prefix = el.getAttribute('data-prefix') || '';
+                    var suffix = el.getAttribute('data-suffix') || '';
+                    var unitEl = el.querySelector('.yg-stat__u');
+                    if (reduced) return; // already shows final value in HTML
+                    var start = 0, dur = 1400, step = 16;
+                    var timer = setInterval(function(){
+                        start += step;
+                        var pct = Math.min(start / dur, 1);
+                        // ease-out cubic
+                        var ease = 1 - Math.pow(1 - pct, 3);
+                        var cur = Math.round(ease * target);
+                        el.childNodes[0].textContent = prefix + cur;
+                        if (unitEl) unitEl.textContent = suffix;
+                        if (pct >= 1) clearInterval(timer);
+                    }, 16);
+                });
+            }, { threshold: 0.5 });
+            bandObs.observe(document.querySelector('.yg-band'));
+        }
+
+        /* ---- Magnetic buttons ---- */
+        document.querySelectorAll('[data-magnetic]').forEach(function(el){
+            el.addEventListener('mousemove', function(e){
+                var r = el.getBoundingClientRect();
+                var dx = e.clientX - (r.left + r.width / 2);
+                var dy = e.clientY - (r.top + r.height / 2);
+                el.style.transform = 'translate(' + dx * 0.18 + 'px,' + dy * 0.18 + 'px)';
+            });
+            el.addEventListener('mouseleave', function(){
+                el.style.transform = '';
+            });
+        });
+    })();
     </script>
 </body>
 </html>
