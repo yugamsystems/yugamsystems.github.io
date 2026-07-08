@@ -53,12 +53,13 @@
     z-index: 1;
     border-radius: 2px 2px 0 0;
 }
-/* rectangular portrait with warm shadow */
+/* rectangular portrait with warm shadow — remove greyscale, warm tone */
 .hero__photo {
     width: 260px !important;
     height: 316px !important;
     border-radius: 3px !important;
     box-shadow: 0 8px 36px rgba(26,22,18,.14), 0 2px 8px rgba(26,22,18,.08) !important;
+    filter: sepia(10%) contrast(1.04) brightness(1.02) !important;
 }
 .hero__name {
     font-size: 20px !important;
@@ -181,6 +182,32 @@
     position: relative; z-index: 1;
 }
 .yg-manifesto__attr.vis { opacity: .55; }
+
+/* ---- Readiness quote card: teak left border ---- */
+.readiness__quote-card {
+    border-left: 3px solid var(--teak) !important;
+    padding-left: 28px !important;
+}
+.readiness__quote {
+    font-family: var(--font-serif) !important;
+    font-size: clamp(17px, 2vw, 22px) !important;
+    line-height: 1.55 !important;
+    color: var(--ink) !important;
+}
+
+/* ---- Case studies section heading ---- */
+.case-studies__header h2 {
+    font-size: clamp(32px, 4vw, 54px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -.012em !important;
+}
+
+/* ---- Newsletter heading ---- */
+.newsletter__heading {
+    font-size: clamp(26px, 3.5vw, 42px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -.01em !important;
+}
 
 /* ---- Magnetic button: prevent layout shift during JS transform ---- */
 [data-magnetic] { will-change: transform; }
