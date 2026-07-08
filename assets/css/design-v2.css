@@ -4,9 +4,9 @@
 /* ---- NAV: tighter frosted glass + link underline sweep ---- */
 .nav { transition: all .4s cubic-bezier(.22,1,.36,1); }
 .nav--scrolled {
-    background: rgba(244,239,233,.93) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
+    background: rgba(244,239,233,0.95) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
 }
 .nav__link:not(.btn) { position: relative; }
 .nav__link:not(.btn)::after {
@@ -53,13 +53,12 @@
     z-index: 1;
     border-radius: 2px 2px 0 0;
 }
-/* rectangular portrait with warm shadow — remove greyscale, warm tone */
+/* rectangular portrait with warm shadow — filter unchanged from original */
 .hero__photo {
     width: 260px !important;
     height: 316px !important;
     border-radius: 3px !important;
     box-shadow: 0 8px 36px rgba(26,22,18,.14), 0 2px 8px rgba(26,22,18,.08) !important;
-    filter: sepia(10%) contrast(1.04) brightness(1.02) !important;
 }
 .hero__name {
     font-size: 20px !important;
@@ -345,14 +344,6 @@
     letter-spacing: -.015em !important;
 }
 
-/* ---- ABOUT PAGE HERO: canvas support + reset about-wrap top pad ---- */
-.yg-page-hero {
-    position: relative;
-    overflow: hidden;
-}
-/* .about-wrap previously compensated for nav with 148px top padding;
-   now that yg-page-hero handles nav offset, drop it to normal spacing */
-.about-wrap { padding-top: 72px !important; }
 /* ---- METHOD HERO: canvas support ---- */
 .method-hero { position: relative; overflow: hidden; }
 
