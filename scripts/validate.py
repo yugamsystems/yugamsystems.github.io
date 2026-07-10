@@ -71,7 +71,8 @@ def main():
         for attr, target in re.findall(r'(href|src)="([^"#]+?)(?:#[^"]*)?"', h):
             if target.startswith(("http", "mailto", "data:", "//")):
                 continue
-            p = os.path.normpath(os.path.join(base, target))
+            clean = target.split("?")[0]
+            p = os.path.normpath(os.path.join(base, clean))
             if not os.path.exists(p):
                 bad.append(target)
         check(f"links {f}", not bad, ", ".join(bad[:3]))
