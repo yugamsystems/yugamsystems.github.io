@@ -516,7 +516,7 @@
 }
 
 /* ---- METHODOLOGY HERO: cinematic headline ---- */
-.method-hero { padding: 200px 0 90px !important; }
+.method-hero { padding: 88px 0 48px !important; }
 .method-hero h1 {
     font-size: clamp(44px, 5.5vw, 80px) !important;
     line-height: .97 !important;
@@ -557,7 +557,7 @@
 
 /* ---- AI STACK HERO ---- */
 .stack-hero {
-    padding: 200px 0 80px !important;
+    padding: 88px 0 48px !important;
     position: relative;
     overflow: hidden;
 }
