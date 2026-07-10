@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free AI Diagnostics — Know Where You Stand Before You Spend | Yugam</title>
+    <meta name="description" content="Eight free AI diagnostics — no email required. Know your readiness, risk, and real costs before committing to implementation.">
+    <link rel="canonical" href="https://www.yugam.io/diagnostics.html">
+    <meta property="og:title" content="Free AI Diagnostics — Yugam">
+    <meta property="og:description" content="Eight free AI diagnostics — no email required. Know your readiness, risk, and real costs before committing to implementation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.yugam.io/diagnostics.html">
+    <meta property="og:image" content="https://www.yugam.io/founder-photo.jpg">
+    <meta property="og:site_name" content="Yugam">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="assets/css/enhance.css">
+    <link rel="stylesheet" href="assets/css/design-v2.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --stone:#F4EFE9; --stone-light:#FAF8F5; --ink:#1A1612;
+            --teak:#8B6914; --teak-light:#C9A94E; --bark:#6B5E51;
+            --drift:#9B9183; --sand:#E8E1D8; --clay:#D4CBC0;
+            --font-serif:'DM Serif Display',Georgia,serif;
+            --font-sans:'Inter',system-ui,sans-serif;
+            --font-mono:'JetBrains Mono',ui-monospace,monospace;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-sans); background: var(--stone); color: var(--ink); line-height: 1.7; }
+        .container { max-width: 1120px; margin: 0 auto; padding: 0 80px; }
+        @media (max-width: 640px) { .container { padding: 0 22px; } }
+
+        /* Nav */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; transition: all 400ms ease; }
+        .nav--scrolled { background: rgba(244,239,233,0.95); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--clay); padding: 14px 0; }
+        .nav .container { display: flex; align-items: center; justify-content: space-between; }
+        .nav__logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .nav__logo-img { width: 32px; height: 32px; }
+        .nav__logo-text { font-family: var(--font-serif); font-size: 22px; color: var(--ink); }
+        .nav__links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav__link { font-size: 14px; color: var(--bark); text-decoration: none; }
+        .nav__link:hover, .nav__link--active { color: var(--teak); }
+        .nav__dropdown { position: relative; }
+        .nav__dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: #fff; border: 1px solid var(--sand); border-radius: 8px; padding: 8px; min-width: 220px; box-shadow: 0 8px 24px rgba(26,22,18,.1); z-index: 10; margin-top: 8px; }
+        .nav__dropdown:hover .nav__dropdown-menu { display: block; }
+        .nav__dropdown-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; font-size: 14px; color: var(--bark); text-decoration: none; border-radius: 5px; }
+        .nav__dropdown-item:hover { background: var(--stone); color: var(--teak); }
+        .nav__dropdown-item--active { color: var(--teak); }
+        .nav__dropdown-arrow { font-size: 10px; }
+        .nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+        .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: .3s; }
+        .nav__mobile { display: none; position: fixed; inset: 0; background: var(--stone); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+        .nav__mobile.open { display: flex; }
+        .nav__mobile a { font-size: 22px; color: var(--ink); text-decoration: none; font-family: var(--font-serif); }
+        .nav__mobile a:hover { color: var(--teak); }
+        .nav__mobile-close { position: absolute; top: 24px; right: 24px; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--ink); }
+        @media (max-width: 768px) { .nav__links { display: none; } .nav__hamburger { display: block; } }
+
+        /* Buttons */
+        .btn { display: inline-flex; align-items: center; gap: 6px; padding: 12px 24px; border-radius: 6px; font-size: 14px; font-weight: 500; text-decoration: none; cursor: pointer; border: none; transition: all .25s; }
+        .btn--primary { background: var(--teak); color: #fff; }
+        .btn--primary:hover { background: var(--ink); }
+        .btn--secondary { background: transparent; color: var(--ink); border: 1px solid var(--clay); }
+        .btn--secondary:hover { border-color: var(--ink); }
+
+        /* Page hero */
+        .diag-hero { padding: 160px 0 80px; }
+        .diag-hero__kicker { font-family: var(--font-mono); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--teak); display: block; margin-bottom: 20px; }
+        .diag-hero__h1 { font-family: var(--font-serif); font-size: clamp(40px,4.6vw,64px); line-height: 1.05; letter-spacing: -.012em; margin-bottom: 20px; max-width: 640px; }
+        .diag-hero__h1 em { font-style: italic; color: var(--teak); }
+        .diag-hero__sub { font-size: 17px; color: var(--bark); max-width: 520px; line-height: 1.7; }
+
+        /* Sections */
+        section { padding: var(--section-pad, 100px) 0; }
+        .section-h2 { font-family: var(--font-serif); font-size: clamp(30px,3vw,44px); margin-bottom: 8px; }
+        .section-sub { font-size: var(--fs-small, 13.5px); color: var(--drift); font-family: var(--font-mono); }
+
+        /* Go deeper grid */
+        .deeper-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 32px; }
+        @media (max-width: 900px) { .deeper-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 640px) { .deeper-grid { grid-template-columns: 1fr; } }
+        .deeper-card { display: flex; flex-direction: column; gap: 10px; }
+        .deeper-card__link { font-family: var(--font-mono); font-size: 12px; color: var(--teak); text-decoration: none; margin-top: auto; letter-spacing: .06em; }
+        .deeper-card__link:hover { color: var(--ink); }
+        .deeper-card__title { font-family: var(--font-serif); font-size: clamp(18px,2vw,24px); color: var(--ink); }
+
+        /* Honesty note */
+        .honesty-note { background: var(--stone-2, #EDE7DF); border-left: 3px solid var(--teak); padding: 28px 32px; border-radius: 0 8px 8px 0; margin-top: 48px; }
+        .honesty-note__kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--teak); display: block; margin-bottom: 14px; }
+        .honesty-note p { font-size: 16px; line-height: 1.7; color: var(--bark); }
+
+        /* Footer */
+        .footer { background: var(--ink); padding: 32px 0; }
+        .footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer__copy { font-size: 13px; color: var(--drift); }
+        .footer__social { display: flex; gap: 20px; }
+        .footer__social a { color: var(--drift); font-size: 18px; text-decoration: none; transition: color .2s; }
+        .footer__social a:hover { color: var(--teak-light); }
+
+        /* Reveal */
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <div class="container">
+            <a href="./index.html" class="nav__logo" aria-label="Yugam home">
+                <svg width="28" height="28" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="nav__logo-text">Yugam</span>
+            </a>
+            <ul class="nav__links">
+                <li><a href="./index.html" class="nav__link">Home</a></li>
+                <li><a href="./about.html" class="nav__link">About</a></li>
+                <li><a href="./ai-stack.html" class="nav__link">AI Stack</a></li>
+                <li><a href="./index.html#services" class="nav__link">Services</a></li>
+                <li class="nav__dropdown">
+                    <a href="#" class="nav__link nav__link--active">Resources <span class="nav__dropdown-arrow">&#9662;</span></a>
+                    <div class="nav__dropdown-menu">
+                        <a href="./methodology.html" class="nav__dropdown-item"><i class="ti ti-route"></i> Methodology</a>
+                        <a href="./diagnostics.html" class="nav__dropdown-item nav__dropdown-item--active"><i class="ti ti-stethoscope"></i> Diagnostics</a>
+                        <a href="./prompt-library.html" class="nav__dropdown-item"><i class="ti ti-clipboard-text"></i> Prompt Library</a>
+                        <a href="./faq.html" class="nav__dropdown-item"><i class="ti ti-help"></i> FAQ</a>
+                        <a href="./index.html#insights" class="nav__dropdown-item"><i class="ti ti-article"></i> Articles &amp; Insights</a>
+                    </div>
+                </li>
+                <li><a href="./index.html#contact-form" class="btn btn--primary" style="padding:10px 20px;font-size:13px;">Let's Talk</a></li>
+            </ul>
+            <button class="nav__hamburger" onclick="document.querySelector('.nav__mobile').classList.add('open')" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="nav__mobile" id="mobileMenu">
+        <button class="nav__mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close menu">&times;</button>
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./ai-stack.html">AI Stack</a>
+        <a href="./methodology.html">Methodology</a>
+        <a href="./diagnostics.html">Diagnostics</a>
+        <a href="./faq.html">FAQ</a>
+        <a href="./index.html#contact-form" class="btn btn--primary" onclick="this.parentElement.classList.remove('open')">Let's Talk</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="diag-hero">
+        <div class="container">
+            <span class="diag-hero__kicker">Free Diagnostics — no email required</span>
+            <h1 class="diag-hero__h1">Know where you stand <em>before</em> you spend.</h1>
+            <p class="diag-hero__sub">Eight tools to size up your readiness, your risk, and your real costs. Start with the assessment — the rest go deeper on specific questions.</p>
+        </div>
+    </section>
+
+    <!-- FEATURED 3 (D1 layout — same as homepage) -->
+    <section style="padding-top:0">
+        <div class="container">
+            <div class="diag-d1 reveal">
+                <div class="card card--dark diag-d1__featured">
+                    <span class="kicker" style="color:var(--teak-light)">Start here · 10 minutes</span>
+                    <h3 class="diag-d1__title">AI Transformation Index</h3>
+                    <p class="diag-d1__desc">Readiness score, leadership archetype, and the 3 use cases most likely to create immediate value for you.</p>
+                    <a href="./ai-transformation-index/index.html" class="btn btn--primary diag-d1__cta">Take the Assessment →</a>
+                </div>
+                <div class="card diag-d1__card reveal reveal-delay-1">
+                    <span class="kicker" style="color:var(--teak)">Risk</span>
+                    <h3 class="diag-d1__title" style="color:var(--ink)">Implementation Risk</h3>
+                    <p class="diag-d1__desc" style="color:var(--bark)">Map your project against the 4 failure modes before you commit resources.</p>
+                    <a href="resources/risk-playbook.html" class="diag-d1__link">Get the Playbook →</a>
+                </div>
+                <div class="card diag-d1__card reveal reveal-delay-2">
+                    <span class="kicker" style="color:var(--teak)">Cost</span>
+                    <h3 class="diag-d1__title" style="color:var(--ink)">Cost-to-Deploy</h3>
+                    <p class="diag-d1__desc" style="color:var(--bark)">A realistic estimate including the parts nobody tells you about.</p>
+                    <a href="resources/cost-calculator.html" class="diag-d1__link">Calculate Real Costs →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GO DEEPER — 5 tools -->
+    <section>
+        <div class="container">
+            <h2 class="section-h2 reveal">Go deeper <span class="section-sub" style="font-size:var(--fs-small)">5 more tools</span></h2>
+            <div class="deeper-grid">
+                <div class="card deeper-card reveal">
+                    <span class="kicker">Value</span>
+                    <h3 class="deeper-card__title">Cost-Savings Calculator</h3>
+                    <p style="font-size:var(--fs-small);color:var(--bark);line-height:1.65">Estimate what specific inefficiencies are costing you today — and what automating them could return.</p>
+                    <a href="resources/cost-calculator.html" class="deeper-card__link">Open tool →</a>
+                </div>
+                <div class="card deeper-card reveal reveal-delay-1">
+                    <span class="kicker">Prioritization</span>
+                    <h3 class="deeper-card__title">Use-Case Prioritizer</h3>
+                    <p style="font-size:var(--fs-small);color:var(--bark);line-height:1.65">Rank candidate AI projects by value and feasibility so you start with the one most likely to work.</p>
+                    <a href="resources/ai-opportunity-finder.html" class="deeper-card__link">Open tool →</a>
+                </div>
+                <div class="card deeper-card reveal reveal-delay-2">
+                    <span class="kicker">Data</span>
+                    <h3 class="deeper-card__title">Data Readiness Check</h3>
+                    <p style="font-size:var(--fs-small);color:var(--bark);line-height:1.65">A quick structured look at whether your data is organized enough to build on — or needs work first.</p>
+                    <a href="resources/data-readiness.html" class="deeper-card__link">Open tool →</a>
+                </div>
+                <div class="card deeper-card reveal">
+                    <span class="kicker">People</span>
+                    <h3 class="deeper-card__title">Team Adoption Survey</h3>
+                    <p style="font-size:var(--fs-small);color:var(--bark);line-height:1.65">Gauge whether your teams are ready to work alongside AI, and where change management will be needed.</p>
+                    <a href="resources/team-readiness.html" class="deeper-card__link">Open tool →</a>
+                </div>
+                <div class="card deeper-card reveal reveal-delay-1">
+                    <span class="kicker">Governance</span>
+                    <h3 class="deeper-card__title">AI Policy Generator</h3>
+                    <p style="font-size:var(--fs-small);color:var(--bark);line-height:1.65">Produce a starting-point usage policy tailored to your size and sector, ready to adapt with counsel.</p>
+                    <a href="resources/complexity-score.html" class="deeper-card__link">Open tool →</a>
+                </div>
+            </div>
+            <div class="honesty-note reveal">
+                <span class="honesty-note__kicker">A note on these tools</span>
+                <p>None of these ask for your email, and none of them try to sell you something at the end. They exist so you can arrive at a conversation already knowing where you stand. If a tool tells you you're not ready, that's the tool working.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__copy">© 2026 Yugam Systems Pte Ltd (Singapore)</div>
+            <div class="footer__social">
+                <a href="https://www.linkedin.com/in/rohitmaskara/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+                <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="ti ti-brand-youtube"></i></a>
+                <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><i class="ti ti-brand-x"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function revealVisible() {
+            document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight + 60) el.classList.add('visible');
+            });
+        }
+        revealVisible();
+        window.addEventListener('scroll', revealVisible, { passive: true });
+        window.addEventListener('load', revealVisible);
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('nav--scrolled', window.scrollY > 80);
+        }, { passive: true });
+
+        const dropdowns = document.querySelectorAll('.nav__dropdown');
+        dropdowns.forEach(d => {
+            const m = d.querySelector('.nav__dropdown-menu');
+            let t;
+            d.addEventListener('mouseenter', () => { clearTimeout(t); m.style.display='block'; });
+            d.addEventListener('mouseleave', () => { t = setTimeout(() => m.style.display='none', 180); });
+        });
+    </script>
+    <script src="assets/js/design-v2.js"></script>
+    <script defer src="assets/js/enhance.js"></script>
+</body>
+</html>

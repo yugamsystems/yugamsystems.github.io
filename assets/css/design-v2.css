@@ -174,6 +174,154 @@
 }
 .hero__bio { font-size: 12.5px !important; line-height: 1.65 !important; }
 
+/* ---- CREDENTIAL STRIP (R2 — below hero, above stat band) ---- */
+.cred-strip {
+    padding: 24px 80px;
+    border-top: 1px solid var(--clay);
+    border-bottom: 1px solid var(--clay);
+    display: flex;
+    align-items: baseline;
+    gap: 28px;
+    background: var(--stone);
+}
+.cred-strip__kicker {
+    font-family: var(--font-mono);
+    font-size: var(--fs-kicker);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teak);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.cred-strip__text {
+    font-family: var(--font-serif);
+    font-size: 21px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0;
+}
+@media (max-width: 640px) {
+    .cred-strip { flex-direction: column; gap: 10px; padding: 20px 22px; }
+    .cred-strip__text { font-size: 17px; }
+}
+
+/* ---- DIAGNOSTICS D1 LAYOUT ---- */
+.diag-section { padding: var(--section-pad) 0; }
+.diag-section__header { margin-bottom: 40px; }
+.diag-section__header h2 { margin-top: 8px; margin-bottom: 12px; }
+.diag-section__sub { font-size: var(--fs-lead); color: var(--bark); margin: 0; }
+
+.diag-d1 {
+    display: grid;
+    grid-template-columns: 1.55fr 1fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+}
+.diag-d1__featured {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.diag-d1__title {
+    font-family: var(--font-serif);
+    font-size: var(--fs-h3);
+    line-height: 1.1;
+    margin: 4px 0 0;
+}
+.card--dark .diag-d1__title { color: var(--stone); }
+.diag-d1__desc { font-size: var(--fs-body); line-height: 1.65; margin: 0; flex: 1; }
+.card--dark .diag-d1__desc { color: rgba(244,239,233,0.78); }
+.diag-d1__cta { align-self: flex-start; margin-top: auto; }
+.diag-d1__card { display: flex; flex-direction: column; gap: 10px; }
+.diag-d1__link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--teak);
+    text-decoration: none;
+    margin-top: auto;
+}
+.diag-d1__link:hover { color: var(--ink); }
+
+.diag-section__all { margin-top: 20px; text-align: right; }
+.diag-section__all-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--bark);
+    text-decoration: none;
+}
+.diag-section__all-link:hover { color: var(--teak); }
+
+@media (max-width: 900px) {
+    .diag-d1 { grid-template-columns: 1fr 1fr; }
+    .diag-d1__featured { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+    .diag-d1 { grid-template-columns: 1fr; }
+}
+
+/* ---- NEWSLETTER SLIM STRIP ---- */
+.newsletter-strip {
+    background: var(--ink);
+    padding: 28px 0;
+}
+.newsletter-strip__inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+.newsletter-strip__copy {
+    font-size: var(--fs-body);
+    color: rgba(244,239,233,0.72);
+    margin: 0;
+    flex: 1;
+    min-width: 200px;
+}
+.newsletter-strip__form {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.newsletter-strip__input {
+    background: rgba(244,239,233,0.1);
+    border: 1px solid rgba(244,239,233,0.2);
+    border-radius: 6px;
+    padding: 10px 14px;
+    color: var(--stone);
+    font-size: var(--fs-body);
+    width: 220px;
+    outline: none;
+}
+.newsletter-strip__input:focus { border-color: var(--teak-light); }
+.newsletter-strip__input::placeholder { color: rgba(244,239,233,0.35); }
+.newsletter-strip__btn {
+    background: var(--teak-light);
+    color: var(--ink);
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity .2s;
+}
+.newsletter-strip__btn:hover { opacity: 0.88; }
+.newsletter-strip__thanks {
+    display: none;
+    color: var(--teak-light);
+    font-family: var(--font-mono);
+    font-size: 13px;
+}
+@media (max-width: 640px) {
+    .newsletter-strip__inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .newsletter-strip__form { width: 100%; }
+    .newsletter-strip__input { flex: 1; width: auto; }
+}
+
 /* ---- YG STAT BAND (dark full-bleed metrics) ---- */
 .yg-band {
     background: var(--ink);
@@ -211,7 +359,7 @@
     font-family: var(--font-serif);
     font-size: clamp(44px, 5vw, 66px);
     line-height: 1;
-    color: #F4EFE9;
+    color: var(--teak-light);
     margin-bottom: 12px;
     font-variant-numeric: tabular-nums;
 }
