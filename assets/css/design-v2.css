@@ -13,6 +13,7 @@
   --card-border: #E4DCD0;
   --pos: #1F8A5B;
   --neg: #B4462A;
+  --teak-light: #C9A94E;
 
   /* Modular type scale (ratio ≈ 1.4) */
   --fs-display: clamp(48px, 6.5vw, 90px);   /* homepage hero H1 only */
@@ -27,6 +28,19 @@
   /* Spacing rhythm */
   --section-pad: clamp(72px, 9vw, 132px);
 }
+
+/* ============================================================
+   AMBIENT CONSTELLATION — canvas positioning for inner-page heroes.
+   enhance.css covers [data-constellation]; this covers [data-constellation-ambient].
+   ============================================================ */
+[data-constellation-ambient] { position: relative; overflow: hidden; }
+[data-constellation-ambient] > .yg-constellation {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+[data-constellation-ambient] > *:not(.yg-constellation) { position: relative; z-index: 1; }
 
 /* ============================================================
    CARD SYSTEM — C3: elevated white + dark featured variant.

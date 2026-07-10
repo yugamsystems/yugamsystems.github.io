@@ -306,219 +306,69 @@
             border-top: 1px solid var(--clay);
         }
 
-        /* ============ PHASE TIMELINE ============ */
-        .phase-timeline {
-            position: sticky;
-            top: 68px;
-            z-index: 90;
-            background: var(--stone-light);
-            border-bottom: 1px solid var(--clay);
-            padding: 0;
-        }
-        .phase-timeline__track {
-            display: flex;
-            align-items: stretch;
-            gap: 0;
-            border: 1px solid var(--clay);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .phase-pip {
-            flex: 1;
-            padding: 20px 16px;
-            border-right: 1px solid var(--clay);
-            background: var(--stone-light);
-            transition: background 200ms ease;
-            cursor: default;
-            text-decoration: none;
-        }
-        .phase-pip:last-child { border-right: none; }
-        .phase-pip:hover { background: var(--sand); }
-        .phase-pip__num {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--drift);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 6px;
-        }
-        .phase-pip__name {
-            font-family: var(--font-serif);
-            font-size: 15px;
-            color: var(--ink);
-            line-height: 1.3;
-            margin-bottom: 6px;
-        }
-        .phase-pip__weeks {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--teak);
-        }
-
         /* ============ PHASE SECTIONS ============ */
         .phases {
             padding: 60px 0 var(--section-pad);
         }
         .phase-section {
-            padding: 80px 0;
+            padding: 64px 0;
             border-top: 1px solid var(--clay);
         }
         .phase-section:first-child { border-top: none; }
-
         .phase-section__inner {
             display: grid;
-            grid-template-columns: 260px 1fr 260px;
-            gap: 60px;
+            grid-template-columns: 88px 1fr 220px;
+            gap: 48px;
             align-items: start;
         }
-
-        .phase-section__meta {
-            position: sticky;
-            top: 100px;
-        }
+        .phase-section__meta { padding-top: 8px; }
         .phase-section__num {
-            font-family: var(--font-mono);
+            font-family: var(--font-serif);
             font-size: 72px;
-            color: var(--clay);
+            color: var(--teak-light, #C9A94E);
             line-height: 1;
-            margin-bottom: 16px;
             display: block;
         }
-        .phase-section__title {
-            margin-bottom: 8px;
-        }
-        .phase-section__duration {
-            display: inline-block;
+        .phase-engagement {
             font-family: var(--font-mono);
-            font-size: 12px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--stone);
-            background: var(--teak);
-            padding: 4px 10px;
-            border-radius: 4px;
-            margin-top: 12px;
+            letter-spacing: 0.12em;
+            color: var(--teak);
+            display: block;
+            margin-top: 10px;
+        }
+        .phase-section__title {
+            font-family: var(--font-serif);
+            font-size: 26px;
+            color: var(--ink);
+            margin-bottom: 14px;
+            font-weight: 400;
         }
         .phase-section__desc {
-            margin-top: 20px;
             font-size: 15px;
             color: var(--bark);
-            line-height: 1.7;
+            line-height: 1.72;
         }
-        .phase-section__overlap {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 16px;
-            font-size: 13px;
-            color: var(--drift);
+        .output-panel {
+            background: var(--stone-2, #EDE7DF);
+            border-radius: 10px;
+            padding: 24px;
+        }
+        .output-panel__label {
             font-family: var(--font-mono);
-        }
-        .phase-section__overlap i { font-size: 14px; }
-
-        /* ============ STEP LIST ============ */
-        .steps {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-        .step {
-            background: var(--stone-light);
-            border: 1px solid var(--clay);
-            border-radius: 6px;
-            padding: 24px 28px;
-            transition: border-color 200ms ease;
-        }
-        .step:hover { border-color: var(--bark); }
-
-        .step__header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 8px;
-        }
-        .step__title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--ink);
-            line-height: 1.4;
-        }
-        .step__duration {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--teak);
-            white-space: nowrap;
-            padding-top: 2px;
-            flex-shrink: 0;
-        }
-        .step__desc {
-            font-size: 14px;
-            color: var(--bark);
-            line-height: 1.65;
-        }
-        .step--highlighted {
-            border-color: var(--teak);
-            background: #FDF9F2;
-        }
-        .step--highlighted .step__title::before {
-            content: '';
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background: var(--teak);
-            border-radius: 50%;
-            margin-right: 8px;
-            vertical-align: middle;
-            position: relative;
-            top: -1px;
-        }
-
-        /* ============ TOTALS BAR ============ */
-        .totals {
-            padding: 60px 0 var(--section-pad);
-            background: var(--sand);
-            border-top: 1px solid var(--clay);
-        }
-        .totals__inner {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-        .total-card {
-            text-align: center;
-            padding: 40px 32px;
-            background: var(--stone);
-            border-radius: 8px;
-            border: 1px solid var(--clay);
-        }
-        .total-card__value {
-            font-family: var(--font-serif);
-            font-size: 52px;
-            color: var(--ink);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-        .total-card__label {
-            font-family: var(--font-mono);
-            font-size: 12px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--drift);
-            margin-bottom: 12px;
-        }
-        .total-card__note {
-            font-size: 14px;
             color: var(--bark);
+            margin-bottom: 12px;
+            display: block;
         }
-
-        /* ============ PHASE FLASH ============ */
-        @keyframes phase-flash {
-            0%   { background: transparent; }
-            15%  { background: rgba(139, 105, 20, 0.07); }
-            100% { background: transparent; }
+        .output-panel__text {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.6;
         }
-        .phase-section--flash { animation: phase-flash 1.4s ease-out; }
 
         /* ============ BOTTOM CTA ============ */
         .cta-bottom {
@@ -674,8 +524,8 @@
         /* ============ RESPONSIVE ============ */
         @media (max-width: 1024px) {
             .phase-section__inner {
-                grid-template-columns: 200px 1fr;
-                gap: 48px;
+                grid-template-columns: 88px 1fr;
+                gap: 32px;
             }
             .output-panel { display: none; }
             .method-mapping__col + .method-mapping__col { margin-left: 16px; }
@@ -711,14 +561,9 @@
             .phase-section { padding: 48px 0; }
             .phase-section__inner {
                 grid-template-columns: 1fr;
-                gap: 32px;
+                gap: 24px;
             }
-            .phase-section__meta { position: static; }
             .phase-section__num { font-size: 48px; }
-
-            .totals__inner { grid-template-columns: 1fr; gap: 16px; }
-            .total-card { padding: 32px 24px; }
-            .total-card__value { font-size: 40px; }
 
             .cta-bottom__heading { font-size: 32px; }
 
@@ -783,7 +628,7 @@
         <div class="container">
             <div class="method-hero__content">
                 <span class="label label--accent reveal">Engagement Methodology</span>
-                <h1 class="reveal reveal-delay-1">How an engagement runs.</h1>
+                <h1 class="reveal reveal-delay-1">How an engagement <em style="color:var(--teak-light,#C9A94E);font-style:italic">actually</em> runs.</h1>
                 <p class="subheading reveal reveal-delay-2">Six phases from the first discovery call to the 90-day post-handover review. Every step has a clear output. No black boxes, no scope creep, no surprises.</p>
                 <div class="method-hero__note reveal reveal-delay-3">
                     <i class="ti ti-clock"></i>
@@ -801,56 +646,18 @@
                 <div class="method-mapping__col">
                     <div class="method-mapping__engagement">Engagement 01</div>
                     <div class="method-mapping__title">Assess</div>
-                    <div class="method-mapping__steps">Phases 1 &amp; 2</div>
+                    <div class="method-mapping__steps">Steps 1–2 · Discovery &amp; Readiness</div>
                 </div>
                 <div class="method-mapping__col">
                     <div class="method-mapping__engagement">Engagement 02</div>
                     <div class="method-mapping__title">Build</div>
-                    <div class="method-mapping__steps">Phases 3 &amp; 4</div>
+                    <div class="method-mapping__steps">Steps 3–4 · Strategy &amp; Pilot</div>
                 </div>
                 <div class="method-mapping__col">
                     <div class="method-mapping__engagement">Engagement 03</div>
                     <div class="method-mapping__title">Enable</div>
-                    <div class="method-mapping__steps">Phases 5 &amp; 6</div>
+                    <div class="method-mapping__steps">Steps 5–6 · Rollout &amp; Handover</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== PHASE TIMELINE ==================== -->
-    <section class="phase-timeline">
-        <div class="container">
-            <div class="phase-timeline__track">
-                <a href="#phase-1" class="phase-pip">
-                    <div class="phase-pip__num">01</div>
-                    <div class="phase-pip__name">Discovery &amp; Assessment</div>
-                    <div class="phase-pip__weeks">Wks 1–4</div>
-                </a>
-                <a href="#phase-2" class="phase-pip">
-                    <div class="phase-pip__num">02</div>
-                    <div class="phase-pip__name">Strategy &amp; Planning</div>
-                    <div class="phase-pip__weeks">Wks 3–6</div>
-                </a>
-                <a href="#phase-3" class="phase-pip">
-                    <div class="phase-pip__num">03</div>
-                    <div class="phase-pip__name">Build &amp; Pilot</div>
-                    <div class="phase-pip__weeks">Wks 5–20</div>
-                </a>
-                <a href="#phase-4" class="phase-pip">
-                    <div class="phase-pip__num">04</div>
-                    <div class="phase-pip__name">Measurement &amp; Governance</div>
-                    <div class="phase-pip__weeks">Wks 14–20</div>
-                </a>
-                <a href="#phase-5" class="phase-pip">
-                    <div class="phase-pip__num">05</div>
-                    <div class="phase-pip__name">Enable</div>
-                    <div class="phase-pip__weeks">Wks 18–26</div>
-                </a>
-                <a href="#phase-6" class="phase-pip">
-                    <div class="phase-pip__num">06</div>
-                    <div class="phase-pip__name">Handover &amp; Close</div>
-                    <div class="phase-pip__weeks">Final 2–3 wks</div>
-                </a>
             </div>
         </div>
     </section>
@@ -863,63 +670,16 @@
             <div class="phase-section" id="phase-1">
                 <div class="phase-section__inner">
                     <div class="phase-section__meta reveal">
-                        <span class="phase-engagement">Engagement 01 — Assess</span>
                         <span class="phase-section__num">01</span>
-                        <h3 class="phase-section__title">Discovery &amp; Assessment</h3>
-                        <span class="phase-section__duration">2–4 weeks</span>
-                        <p class="phase-section__desc">Before any strategy or tool selection, I need to understand how the business actually operates — not how it looks on an org chart. This phase is mostly listening and asking uncomfortable questions.</p>
+                        <span class="phase-engagement">Assess</span>
                     </div>
-                    <div class="steps reveal reveal-delay-1">
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Stakeholder interviews</div>
-                                <div class="step__duration">3–5 days</div>
-                            </div>
-                            <div class="step__desc">C-suite to frontline — the people closest to the work know where the friction is; leadership knows where the pressure comes from.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Business &amp; operations mapping</div>
-                                <div class="step__duration">2–3 days</div>
-                            </div>
-                            <div class="step__desc">Revenue model, cost drivers, key processes, and decision points — where things slow down, get made twice, or disappear when someone leaves.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Technology &amp; systems audit</div>
-                                <div class="step__duration">2–3 days</div>
-                            </div>
-                            <div class="step__desc">Current stack, data flows, vendor contracts — what exists, what it actually does, and what it costs.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Data audit</div>
-                                <div class="step__duration">3–5 days</div>
-                            </div>
-                            <div class="step__desc">Where data lives, who owns it, how clean it is — hidden blockers found here cost days to fix; found in Phase 3, they cost months.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Opportunity mapping</div>
-                                <div class="step__duration">2–3 days</div>
-                            </div>
-                            <div class="step__desc">AI candidates across all business units, scored on impact, feasibility, data availability, and time to value — a ranked list, not a wish list.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Go/no-go recommendation</div>
-                                <div class="step__duration">2–3 days</div>
-                            </div>
-                            <div class="step__desc">Where to start, where not to, roughly what it costs, and what would need to be true for it to succeed — including an honest read if the timing is wrong.</div>
-                        </div>
+                    <div class="reveal reveal-delay-1">
+                        <h3 class="phase-section__title">Discovery</h3>
+                        <p class="phase-section__desc">I learn how your business actually operates — the workflows, the bottlenecks, the informal knowledge. No AI talk yet; just understanding what you do and where the friction is.</p>
                     </div>
                     <div class="output-panel reveal reveal-delay-2">
-                        <div class="output-panel__label"><i class="ti ti-package"></i> Output</div>
-                        <ul class="output-panel__list">
-                            <li class="output-panel__item">Go/no-go recommendation</li>
-                            <li class="output-panel__item">Ranked opportunity map</li>
-                            <li class="output-panel__item">Data audit report</li>
-                        </ul>
+                        <span class="output-panel__label">Output</span>
+                        <p class="output-panel__text">A shared map of your operations and the highest-friction points.</p>
                     </div>
                 </div>
             </div>
@@ -928,81 +688,16 @@
             <div class="phase-section" id="phase-2">
                 <div class="phase-section__inner">
                     <div class="phase-section__meta reveal">
-                        <span class="phase-engagement">Engagement 01 — Assess</span>
                         <span class="phase-section__num">02</span>
-                        <h3 class="phase-section__title">Strategy &amp; Planning</h3>
-                        <span class="phase-section__duration">2–4 weeks</span>
-                        <p class="phase-section__desc">With the assessment complete, this phase converts findings into a committed plan. Use cases are selected, tools evaluated, architecture drafted, and the governance framework set up before any build work starts.</p>
-                        <div class="phase-section__overlap">
-                            <i class="ti ti-arrows-exchange"></i>
-                            Overlaps with Phase 1 end
-                        </div>
+                        <span class="phase-engagement">Assess</span>
                     </div>
-                    <div class="steps reveal reveal-delay-1">
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">AI strategy design</div>
-                                <div class="step__duration">1 week</div>
-                            </div>
-                            <div class="step__desc">Which use cases, in which order, build vs. buy vs. configure — sequenced by dependencies.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Vendor &amp; tool evaluation</div>
-                                <div class="step__duration">3–5 days</div>
-                            </div>
-                            <div class="step__desc">Shortlist and structured scoring against your specific requirements — not vendor marketing.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Architecture design</div>
-                                <div class="step__duration">3–5 days</div>
-                            </div>
-                            <div class="step__desc">How AI connects to existing systems — data pipelines, integration points, security model, and access controls — designed before any vendor is contracted.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Business case &amp; full cost model</div>
-                                <div class="step__duration">2–3 days</div>
-                            </div>
-                            <div class="step__desc">Total implementation cost: licences, internal time, data prep, change management, training, and ongoing maintenance.</div>
-                        </div>
-                        <div class="step--highlighted step">
-                            <div class="step__header">
-                                <div class="step__title">Baseline measurement</div>
-                                <div class="step__duration">1–2 days</div>
-                            </div>
-                            <div class="step__desc">Capture the before numbers now — without a pre-build baseline, there's no credible ROI figure at the end.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Risk register</div>
-                                <div class="step__duration">1–2 days</div>
-                            </div>
-                            <div class="step__desc">Technical, data, change management, and vendor risks — each rated and given a mitigation plan before the build starts.</div>
-                        </div>
-                        <div class="step--highlighted step">
-                            <div class="step__header">
-                                <div class="step__title">Governance &amp; compliance review</div>
-                                <div class="step__duration">1–2 days</div>
-                            </div>
-                            <div class="step__desc">Data privacy, audit trail design, and bias checklist — regulatory gaps found here take days to fix; found in Phase 3, they stop the build.</div>
-                        </div>
-                        <div class="step--highlighted step">
-                            <div class="step__header">
-                                <div class="step__title">Stakeholder &amp; change management plan</div>
-                                <div class="step__duration">1–2 days</div>
-                            </div>
-                            <div class="step__desc">Who needs to know what, when, and how — resistance mapping, communication cadence, and executive sponsorship alignment.</div>
-                        </div>
+                    <div class="reveal reveal-delay-1">
+                        <h3 class="phase-section__title">Readiness</h3>
+                        <p class="phase-section__desc">A structured audit across the three foundations: data organisation, process clarity, and team readiness. This is where I tell you honestly whether you're ready — and if not, what to fix first.</p>
                     </div>
                     <div class="output-panel reveal reveal-delay-2">
-                        <div class="output-panel__label"><i class="ti ti-package"></i> Output</div>
-                        <ul class="output-panel__list">
-                            <li class="output-panel__item">AI strategy document</li>
-                            <li class="output-panel__item">Architecture design</li>
-                            <li class="output-panel__item">Full cost model + risk register</li>
-                        </ul>
+                        <span class="output-panel__label">Output</span>
+                        <p class="output-panel__text">A go/no-go recommendation with a prioritised readiness plan.</p>
                     </div>
                 </div>
             </div>
@@ -1011,63 +706,16 @@
             <div class="phase-section" id="phase-3">
                 <div class="phase-section__inner">
                     <div class="phase-section__meta reveal">
-                        <span class="phase-engagement">Engagement 02 — Build</span>
                         <span class="phase-section__num">03</span>
-                        <h3 class="phase-section__title">Build &amp; Pilot</h3>
-                        <span class="phase-section__duration">8–16 weeks</span>
-                        <p class="phase-section__desc">The longest and most variable phase. Duration depends on the starting state of the data, the complexity of integrations, and how much custom build is required versus configuration. Iterative throughout — not a one-shot delivery.</p>
+                        <span class="phase-engagement">Build</span>
                     </div>
-                    <div class="steps reveal reveal-delay-1">
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Data preparation</div>
-                                <div class="step__duration">2–4 weeks</div>
-                            </div>
-                            <div class="step__desc">Cleaning, structuring, and connecting the data the AI system needs — the step most engagements underestimate.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Solution development</div>
-                                <div class="step__duration">4–8 weeks</div>
-                            </div>
-                            <div class="step__desc">Tool configuration, workflow automation, and custom integration — iterative, with working software shown to users early.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Internal QA &amp; testing</div>
-                                <div class="step__duration">1–2 weeks</div>
-                            </div>
-                            <div class="step__desc">Structured testing for edge cases, failure modes, and integration break points before any real users are involved.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Controlled pilot</div>
-                                <div class="step__duration">2–4 weeks</div>
-                            </div>
-                            <div class="step__desc">One team, one process, measured against the Phase 2 baseline — a pilot failure costs weeks; a launch failure costs months.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Post-pilot iteration</div>
-                                <div class="step__duration">1–2 weeks</div>
-                            </div>
-                            <div class="step__desc">Fix what the pilot revealed, document what changed, and decide: scale or redesign?</div>
-                        </div>
-                        <div class="step--highlighted step">
-                            <div class="step__header">
-                                <div class="step__title">Hypercare period</div>
-                                <div class="step__duration">2–4 weeks</div>
-                            </div>
-                            <div class="step__desc">Intensive support in the first weeks after go-live, when production reveals what testing didn't catch.</div>
-                        </div>
+                    <div class="reveal reveal-delay-1">
+                        <h3 class="phase-section__title">Strategy</h3>
+                        <p class="phase-section__desc">We prioritise use cases by value and feasibility, select tools (vendor-neutral — I don't resell anything), and architect the workflows around how your people already work.</p>
                     </div>
                     <div class="output-panel reveal reveal-delay-2">
-                        <div class="output-panel__label"><i class="ti ti-package"></i> Output</div>
-                        <ul class="output-panel__list">
-                            <li class="output-panel__item">Working AI system in production</li>
-                            <li class="output-panel__item">Pilot test results + iteration log</li>
-                            <li class="output-panel__item">Hypercare documentation</li>
-                        </ul>
+                        <span class="output-panel__label">Output</span>
+                        <p class="output-panel__text">A costed roadmap and a workflow architecture your team signs off on.</p>
                     </div>
                 </div>
             </div>
@@ -1076,60 +724,16 @@
             <div class="phase-section" id="phase-4">
                 <div class="phase-section__inner">
                     <div class="phase-section__meta reveal">
-                        <span class="phase-engagement">Engagement 02 — Build</span>
                         <span class="phase-section__num">04</span>
-                        <h3 class="phase-section__title">Measurement &amp; Governance</h3>
-                        <span class="phase-section__duration">2–3 weeks</span>
-                        <p class="phase-section__desc">Runs in parallel with the Build phase. The reporting infrastructure, dashboards, and governance framework are built while the AI system is being developed — so they're live on day one of production, not retrofitted afterwards.</p>
-                        <div class="phase-section__overlap">
-                            <i class="ti ti-arrows-exchange"></i>
-                            Runs in parallel with Phase 3
-                        </div>
+                        <span class="phase-engagement">Build</span>
                     </div>
-                    <div class="steps reveal reveal-delay-1">
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Executive dashboard</div>
-                                <div class="step__duration">3–5 days</div>
-                            </div>
-                            <div class="step__desc">Live AI performance metrics built to the decisions leadership needs to make — not the metrics that are easy to track.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Automated alerts &amp; anomaly detection</div>
-                                <div class="step__duration">2–3 days</div>
-                            </div>
-                            <div class="step__desc">System alerts when performance drops below threshold — catches model drift and data issues before they become business problems.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Reporting cadence &amp; templates</div>
-                                <div class="step__duration">2–3 days</div>
-                            </div>
-                            <div class="step__desc">Weekly operational and monthly executive reports, templated so the client runs them independently after handover.</div>
-                        </div>
-                        <div class="step--highlighted step">
-                            <div class="step__header">
-                                <div class="step__title">Data governance framework</div>
-                                <div class="step__duration">2–3 days</div>
-                            </div>
-                            <div class="step__desc">Ongoing data ownership, access controls, and quality standards — AI systems degrade when nobody owns the data.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">ROI documentation</div>
-                                <div class="step__duration">1–2 days</div>
-                            </div>
-                            <div class="step__desc">Formal before/after comparison against the Phase 2 baseline — the number that goes into the executive handover.</div>
-                        </div>
+                    <div class="reveal reveal-delay-1">
+                        <h3 class="phase-section__title">Pilot</h3>
+                        <p class="phase-section__desc">We build one real workflow end to end, with a measurement framework attached from day one. Small enough to move fast, real enough to prove value.</p>
                     </div>
                     <div class="output-panel reveal reveal-delay-2">
-                        <div class="output-panel__label"><i class="ti ti-package"></i> Output</div>
-                        <ul class="output-panel__list">
-                            <li class="output-panel__item">Executive dashboard live</li>
-                            <li class="output-panel__item">Data governance framework</li>
-                            <li class="output-panel__item">ROI documentation</li>
-                        </ul>
+                        <span class="output-panel__label">Output</span>
+                        <p class="output-panel__text">A working pilot and a baseline you can measure against.</p>
                     </div>
                 </div>
             </div>
@@ -1138,70 +742,16 @@
             <div class="phase-section" id="phase-5">
                 <div class="phase-section__inner">
                     <div class="phase-section__meta reveal">
-                        <span class="phase-engagement">Engagement 03 — Enable</span>
                         <span class="phase-section__num">05</span>
-                        <h3 class="phase-section__title">Enable</h3>
-                        <span class="phase-section__duration">4–8 weeks</span>
-                        <p class="phase-section__desc">The most commonly underinvested phase. A working AI system that your team doesn't use is a failed AI implementation. This phase is about making the change stick — not just delivering training sessions.</p>
+                        <span class="phase-engagement">Enable</span>
                     </div>
-                    <div class="steps reveal reveal-delay-1">
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Role-based needs assessment</div>
-                                <div class="step__duration">1 week</div>
-                            </div>
-                            <div class="step__desc">Different roles need different things — generic AI training is expensive and doesn't stick.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">SOP rewrite</div>
-                                <div class="step__duration">1–2 weeks</div>
-                            </div>
-                            <div class="step__desc">Updated SOPs for the AI-augmented way of working — without them, people revert to old habits within weeks.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Training material development</div>
-                                <div class="step__duration">1 week</div>
-                            </div>
-                            <div class="step__desc">Role-specific playbooks and worked examples from the actual deployed system — not generic demos.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Executive briefings</div>
-                                <div class="step__duration">2–3 sessions</div>
-                            </div>
-                            <div class="step__desc">Leadership sessions focused on governance decisions and dashboard interpretation — not on operating the tool.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Team workshops</div>
-                                <div class="step__duration">2–4 weeks</div>
-                            </div>
-                            <div class="step__desc">Hands-on, role-specific sessions on the actual system, using each participant's own real work.</div>
-                        </div>
-                        <div class="step--highlighted step">
-                            <div class="step__header">
-                                <div class="step__title">Super-user programme</div>
-                                <div class="step__duration">1 week setup, ongoing</div>
-                            </div>
-                            <div class="step__desc">2–3 internal champions per team trained more deeply to sustain adoption without ongoing external dependency.</div>
-                        </div>
-                        <div class="step--highlighted step">
-                            <div class="step__header">
-                                <div class="step__title">Adoption measurement</div>
-                                <div class="step__duration">4–6 weeks ongoing</div>
-                            </div>
-                            <div class="step__desc">Usage rates tracked weekly — training completion doesn't tell you if anyone is actually using the tool.</div>
-                        </div>
+                    <div class="reveal reveal-delay-1">
+                        <h3 class="phase-section__title">Rollout</h3>
+                        <p class="phase-section__desc">Role-specific training and hands-on enablement so adoption is earned, not imposed. The people who use the system help shape the last mile of it.</p>
                     </div>
                     <div class="output-panel reveal reveal-delay-2">
-                        <div class="output-panel__label"><i class="ti ti-package"></i> Output</div>
-                        <ul class="output-panel__list">
-                            <li class="output-panel__item">Role-based playbooks + updated SOPs</li>
-                            <li class="output-panel__item">Super-user programme established</li>
-                            <li class="output-panel__item">Adoption metrics tracking live</li>
-                        </ul>
+                        <span class="output-panel__label">Output</span>
+                        <p class="output-panel__text">Teams using the system in their real work, with support in place.</p>
                     </div>
                 </div>
             </div>
@@ -1210,56 +760,16 @@
             <div class="phase-section" id="phase-6">
                 <div class="phase-section__inner">
                     <div class="phase-section__meta reveal">
-                        <span class="phase-engagement">Engagement 03 — Enable</span>
                         <span class="phase-section__num">06</span>
-                        <h3 class="phase-section__title">Handover &amp; Close</h3>
-                        <span class="phase-section__duration">2–3 weeks</span>
-                        <p class="phase-section__desc">The engagement closes only when the client can operate independently. That means named internal owners, working documentation, and a clear escalation path — not a folder of files and a goodbye call.</p>
+                        <span class="phase-engagement">Enable</span>
                     </div>
-                    <div class="steps reveal reveal-delay-1">
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Documentation package</div>
-                                <div class="step__duration">1 week</div>
-                            </div>
-                            <div class="step__desc">Runbooks, architecture diagrams, vendor contacts, and maintenance schedules — everything needed to operate without calling anyone.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Internal ownership transfer</div>
-                                <div class="step__duration">2–3 days</div>
-                            </div>
-                            <div class="step__desc">Named internal owner for each system — not a team, a person — with a clear escalation path and transferred vendor contacts.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Executive handover session</div>
-                                <div class="step__duration">Half day</div>
-                            </div>
-                            <div class="step__desc">Formal close: what was built, what it returned against baseline, what to watch, and what comes next.</div>
-                        </div>
-                        <div class="step--highlighted step">
-                            <div class="step__header">
-                                <div class="step__title">90-day post-engagement review</div>
-                                <div class="step__duration">1 session</div>
-                            </div>
-                            <div class="step__desc">One structured follow-up call at day 90 — the most common failure mode isn't visible at handover, it surfaces 6–8 weeks later.</div>
-                        </div>
-                        <div class="step">
-                            <div class="step__header">
-                                <div class="step__title">Optional retainer scope</div>
-                                <div class="step__duration">As agreed</div>
-                            </div>
-                            <div class="step__desc">If ongoing support is warranted, scope, SLA, and pricing defined clearly and separately from the main engagement.</div>
-                        </div>
+                    <div class="reveal reveal-delay-1">
+                        <h3 class="phase-section__title">Handover</h3>
+                        <p class="phase-section__desc">A 90-day review, documentation your team owns, and a clear plan for what comes next. I engineer myself out of the picture — that's the point.</p>
                     </div>
                     <div class="output-panel reveal reveal-delay-2">
-                        <div class="output-panel__label"><i class="ti ti-package"></i> Output</div>
-                        <ul class="output-panel__list">
-                            <li class="output-panel__item">Full documentation package</li>
-                            <li class="output-panel__item">Internal ownership transferred</li>
-                            <li class="output-panel__item">90-day review scheduled</li>
-                        </ul>
+                        <span class="output-panel__label">Output</span>
+                        <p class="output-panel__text">Independent operation, a 90-day review, and a forward plan.</p>
                     </div>
                 </div>
             </div>
@@ -1267,39 +777,13 @@
         </div>
     </section>
 
-    <!-- ==================== TOTALS ============ -->
-    <section class="totals">
-        <div class="container">
-            <div class="totals__inner">
-                <div class="total-card reveal">
-                    <div class="total-card__label">Scope range</div>
-                    <div class="total-card__value">2–32 wks</div>
-                    <div class="total-card__note">An assessment alone takes 2–4 weeks. A full six-phase engagement runs up to 32 weeks.</div>
-                </div>
-                <div class="total-card reveal reveal-delay-1">
-                    <div class="total-card__label">Number of phases</div>
-                    <div class="total-card__value">6</div>
-                    <div class="total-card__note">each with clear deliverables and a decision gate before the next phase begins</div>
-                </div>
-                <div class="total-card reveal reveal-delay-2">
-                    <div class="total-card__label">Starting point</div>
-                    <div class="total-card__value">30 min</div>
-                    <div class="total-card__note">first conversation — no pitch deck, no pressure, just enough to know whether this makes sense</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== BOTTOM CTA ==================== -->
+        <!-- ==================== BOTTOM CTA ==================== -->
     <section class="cta-bottom">
         <div class="container">
             <div class="reveal">
                 <h2 class="cta-bottom__heading">Every engagement starts the same way.</h2>
-                <p class="cta-bottom__sub">A 30-minute conversation. No deck, no pressure. Just enough to know whether this makes sense.</p>
-                <div class="cta-bottom__buttons">
-                    <a href="./index.html#contact-form" class="btn btn--primary">Let's Talk</a>
-                    <a href="./ai-transformation-index/index.html" class="btn btn--secondary">Take the AI Assessment First</a>
-                </div>
+                <p class="cta-bottom__sub">A 30-minute conversation where I tell you honestly whether I can help.</p>
+                <a href="./index.html#contact-form" class="btn btn--primary">Book the Conversation →</a>
             </div>
         </div>
     </section>
@@ -1329,24 +813,7 @@
         setTimeout(revealVisible, 100);
         setTimeout(revealVisible, 500);
 
-        // Phase pip click — scroll to phase and flash it
-        document.querySelectorAll('.phase-pip').forEach(pip => {
-            pip.addEventListener('click', e => {
-                e.preventDefault();
-                const target = document.querySelector(pip.getAttribute('href'));
-                if (!target) return;
-                const navH = 68;
-                const timelineH = document.querySelector('.phase-timeline').offsetHeight;
-                const offset = target.getBoundingClientRect().top + window.scrollY - navH - timelineH - 16;
-                window.scrollTo({ top: offset, behavior: 'smooth' });
-                target.classList.remove('phase-section--flash');
-                void target.offsetWidth; // force reflow so re-adding restarts animation
-                setTimeout(() => target.classList.add('phase-section--flash'), 400);
-                setTimeout(() => target.classList.remove('phase-section--flash'), 1800);
-            });
-        });
-
-        const dropdowns = document.querySelectorAll('.nav__dropdown');
+const dropdowns = document.querySelectorAll('.nav__dropdown');
         let dropdownHideTimeout;
         dropdowns.forEach(dropdown => {
             const menu = dropdown.querySelector('.nav__dropdown-menu');
