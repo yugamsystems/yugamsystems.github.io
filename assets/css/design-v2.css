@@ -1,6 +1,81 @@
 /* Yugam design v2 — progressive visual enhancement.
    Loaded AFTER inline styles. Removing this file leaves a working site. */
 
+/* ============================================================
+   DESIGN TOKENS — source of truth for the refinement layer.
+   Color vars already exist in each page's inline <style>;
+   these add missing tokens + the full modular type scale.
+   ============================================================ */
+:root {
+  /* Colors — supplement inline vars */
+  --stone-2: #EDE7DF;
+  --card: #FFFFFF;
+  --card-border: #E4DCD0;
+  --pos: #1F8A5B;
+  --neg: #B4462A;
+
+  /* Modular type scale (ratio ≈ 1.4) */
+  --fs-display: clamp(48px, 6.5vw, 90px);   /* homepage hero H1 only */
+  --fs-h1:      clamp(40px, 4.6vw, 64px);   /* inner-page / article H1 */
+  --fs-h2:      clamp(30px, 3vw,   44px);   /* section headings */
+  --fs-h3:      clamp(22px, 2vw,   30px);   /* card / subsection headings */
+  --fs-lead:    17px;                        /* hero/section intro paragraph */
+  --fs-body:    16px;                        /* body copy, never below 16 */
+  --fs-small:   13.5px;                      /* card body, captions */
+  --fs-kicker:  12px;                        /* mono eyebrow/kicker */
+
+  /* Spacing rhythm */
+  --section-pad: clamp(72px, 9vw, 132px);
+}
+
+/* ============================================================
+   CARD SYSTEM — C3: elevated white + dark featured variant.
+   Replace stone-on-stone low-contrast cards site-wide.
+   ============================================================ */
+.card {
+  background: var(--card);
+  border: none;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(26,22,18,0.08);
+  transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(26,22,18,0.12);
+}
+.card--dark {
+  background: var(--ink);
+  color: var(--stone);
+  box-shadow: 0 14px 40px rgba(26,22,18,0.14);
+}
+.card--dark .kicker { color: var(--teak-light); }
+.card--dark:hover { box-shadow: 0 20px 50px rgba(26,22,18,0.18); }
+
+/* Kicker utility (mono eyebrow) */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: var(--fs-kicker);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teak);
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Type scale application */
+.hero__headline  { font-size: var(--fs-display) !important; }
+.yg-page-hero__h1,
+.stack-hero__headline,
+.method-hero h1,
+.article-header h1,
+.page-header h1 { font-size: var(--fs-h1) !important; }
+
+@media (max-width: 640px) {
+  .card { border-radius: 12px; padding: 20px; }
+}
+
 /* ---- NAV: tighter frosted glass + link underline sweep ---- */
 .nav { transition: all .4s cubic-bezier(.22,1,.36,1); }
 .nav--scrolled {
