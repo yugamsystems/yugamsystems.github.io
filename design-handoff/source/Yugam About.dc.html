@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style> body{margin:0;} a{color:#8B6914;text-decoration:none;} </style>
+</helmet>
+
+<div style="font-family:'Inter',sans-serif;background:#F4EFE9;">
+  <div id="page" style="width:1280px;color:#1A1612;background:#F4EFE9;overflow:hidden;">
+
+  <div style="background:#1A1612;color:#C9A94E;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;padding:8px 40px;display:flex;justify-content:space-between;">
+    <span>Mockup — About · Desktop 1280</span><span>Timeline fix · Meta role restored</span>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 80px;background:rgba(244,239,233,0.92);border-bottom:1px solid #E8E1D8;">
+    <div style="display:flex;align-items:center;gap:10px;"><div style="width:14px;height:20px;background:#8B6914;clip-path:ellipse(50% 55% at 50% 45%);"></div><span style="font-family:'DM Serif Display',serif;font-size:22px;">Yugam</span></div>
+    <div style="display:flex;gap:30px;font-size:13.5px;color:#6B5E51;align-items:center;">
+      <span>Home</span><span style="color:#1A1612;">About</span><span>AI Stack</span><span>Services</span><span>Resources ▾</span>
+      <span style="background:#8B6914;color:#F4EFE9;padding:9px 18px;border-radius:4px;font-weight:500;">Let's Talk</span>
+    </div>
+  </div>
+
+  <!-- INTRO two-column -->
+  <div style="padding:70px 80px 56px;display:grid;grid-template-columns:1.4fr 1fr;gap:64px;align-items:start;">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#8B6914;margin-bottom:18px;">About</div>
+      <h1 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:56px;line-height:1.05;margin:0 0 24px;">I've seen AI go wrong. That's why I do this.</h1>
+      <p style="font-size:16.5px;line-height:1.75;color:#6B5E51;margin:0 0 16px;">I'm Rohit. For a decade I sat inside one of the world's largest technology companies, watching how transformation actually happens — and how often it doesn't. Before that, Fortune-500 governance work at KPMG. Before that, a manufacturing shop floor, where I learned to read how work really flows.</p>
+      <p style="font-size:16.5px;line-height:1.75;color:#6B5E51;margin:0;">Yugam is the practice I built from that. I'm not a vendor and I don't resell tools. I tell founders and leadership teams the uncomfortable truth about whether their people, processes, and data are ready — before anyone spends a dollar on AI.</p>
+    </div>
+    <div style="text-align:center;">
+      <div style="width:260px;height:260px;border-radius:50%;margin:0 auto;background:repeating-linear-gradient(45deg,#E0D8CC 0 8px,#EFE8DE 8px 16px);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9B9183;box-shadow:0 18px 46px rgba(26,22,18,0.10);">FOUNDER PHOTO</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:21px;margin-top:18px;">Rohit Kumar Maskara</div>
+      <div style="font-size:14px;color:#9B9183;">AI Strategist and Systems Architect</div>
+    </div>
+  </div>
+
+  <!-- CREDENTIAL STRIP (R2) -->
+  <div style="padding:0 80px 56px;">
+    <div style="display:flex;align-items:center;gap:28px;padding:24px 0;border-top:1px solid #E0D8CC;border-bottom:1px solid #E0D8CC;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8B6914;white-space:nowrap;">The background —</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:21px;line-height:1.42;">A decade inside Meta running operations, strategy, product, and customer experience.<br>Advising Fortune 500 companies on risk management and process optimization at KPMG.<br>A career that began on a manufacturing shop floor, running hands-on operations — not preparing slide decks.</div>
+    </div>
+  </div>
+
+  <!-- TIMELINE (fixed — every role has its company/date header) -->
+  <div style="padding:0 80px 40px;">
+    <h2 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:34px;margin:0 0 30px;">The path here</h2>
+    <div id="timeline"></div>
+  </div>
+
+  <div style="background:#1A1612;padding:40px 80px;display:flex;justify-content:space-between;align-items:center;color:#9B9183;font-size:13px;">
+    <span>© 2026 Yugam Systems Pte Ltd (Singapore)</span>
+    <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;">LINKEDIN · YOUTUBE · X</span>
+  </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  roles() {
+    return [
+      { co:'Yugam', date:'June 2026 — Present', role:'Founder, AI Strategist and Systems Architect', d:'Independent advisory for founders and leadership at SMEs implementing AI \u2014 strategy, architecture, and enablement grounded in operational reality.' },
+      { co:'Meta', date:'2016 — 2026', role:'Program &amp; Operations Leadership', d:'A decade across operations and program leadership, ending as Senior Program Manager, Business Engineering. Led cross-functional transformation programs at global scale \u2014 the long view of why large organizations succeed or stall at adopting new technology, and how process, data, and people decide whether it actually lands.' },
+      { co:'KPMG', date:'2012 — 2015', role:'Governance, Risk &amp; Compliance', d:'Fortune-500 governance and process work. Where I learned to see the risk and controls layer that most technologists overlook.' },
+      { co:'Vedanta Aluminium Limited', date:'2010 — 2012', role:'Operations, Manufacturing Shop Floor', d:'Where it started \u2014 reading how work really flows on the plant floor, long before it was called transformation. Grounding I\u2019ve never lost.' },
+    ];
+  }
+  componentDidMount(){ this.paint(); }
+  componentDidUpdate(){ this.paint(); }
+  paint(){
+    const el=document.getElementById('timeline'); if(!el) return;
+    el.innerHTML = this.roles().map((r,i)=>`
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:40px;padding:26px 0;border-top:1px solid #E0D8CC;${i===0?'border-top:2px solid #1A1612;':''}">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:22px;color:#1A1612;">${r.co}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#8B6914;margin-top:4px;">${r.date}</div>
+        </div>
+        <div>
+          <div style="font-size:16px;font-weight:600;color:#1A1612;margin-bottom:6px;">${r.role}</div>
+          <div style="font-size:14px;line-height:1.7;color:#6B5E51;max-width:70ch;">${r.d}</div>
+        </div>
+      </div>`).join('');
+  }
+  renderVals(){ return {}; }
+}
+</script>
+</body>
+</html>

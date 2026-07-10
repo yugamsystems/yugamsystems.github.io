@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; }
+  a { color:#8B6914; text-decoration:none; }
+</style>
+</helmet>
+
+<div style="font-family:'Inter',sans-serif;background:#F4EFE9;">
+  <div id="page" style="width:1280px;color:#1A1612;background:#F4EFE9;overflow:hidden;">
+
+  <!-- MOCKUP LABEL -->
+  <div style="background:#1A1612;color:#C9A94E;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;padding:8px 40px;display:flex;justify-content:space-between;">
+    <span>Mockup — Homepage · Desktop 1280 · restructured</span><span>H1 · C3 · S1 · D1 · R2</span>
+  </div>
+
+  <!-- NAV -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 80px;background:rgba(244,239,233,0.92);border-bottom:1px solid #E8E1D8;">
+    <div style="display:flex;align-items:center;gap:10px;"><div style="width:14px;height:20px;background:#8B6914;border-radius:0 0 50% 50%;transform:rotate(0deg);clip-path:ellipse(50% 55% at 50% 45%);"></div><span style="font-family:'DM Serif Display',serif;font-size:22px;">Yugam</span></div>
+    <div style="display:flex;gap:30px;font-size:13.5px;color:#1A1612;align-items:center;">
+      <span>Home</span><span style="color:#6B5E51;">About</span><span style="color:#6B5E51;">AI Stack</span><span style="color:#6B5E51;">Services</span><span style="color:#6B5E51;">Resources ▾</span>
+      <span style="background:#8B6914;color:#F4EFE9;padding:9px 18px;border-radius:4px;font-weight:500;">Let's Talk</span>
+    </div>
+  </div>
+
+  <!-- HERO (H1 balanced) -->
+  <div style="padding:70px 80px 40px;position:relative;overflow:hidden;">
+    <!-- interactive constellation (kept — shown here as low-contrast atmosphere) -->
+    <svg width="1280" height="520" viewBox="0 0 1280 520" style="position:absolute;top:0;right:0;opacity:0.5;pointer-events:none;">
+      <g stroke="#B9AE9E" stroke-width="1" opacity="0.55">
+        <line x1="120" y1="70" x2="300" y2="150"></line><line x1="300" y1="150" x2="240" y2="330"></line>
+        <line x1="300" y1="150" x2="520" y2="90"></line><line x1="520" y1="90" x2="760" y2="180"></line>
+        <line x1="760" y1="180" x2="1000" y2="120"></line><line x1="1000" y1="120" x2="1160" y2="280"></line>
+        <line x1="760" y1="180" x2="880" y2="400"></line><line x1="240" y1="330" x2="480" y2="430"></line>
+        <line x1="880" y1="400" x2="1080" y2="440"></line><line x1="520" y1="90" x2="600" y2="300"></line>
+      </g>
+      <g fill="#9B9183">
+        <circle cx="120" cy="70" r="2.5"></circle><circle cx="300" cy="150" r="3"></circle><circle cx="240" cy="330" r="2.5"></circle>
+        <circle cx="520" cy="90" r="3"></circle><circle cx="760" cy="180" r="2.5"></circle><circle cx="600" cy="300" r="2.5"></circle>
+        <circle cx="880" cy="400" r="2.5"></circle><circle cx="480" cy="430" r="2"></circle><circle cx="1080" cy="440" r="2.5"></circle>
+        <circle cx="1160" cy="280" r="2"></circle>
+      </g>
+      <g fill="#8B6914">
+        <circle cx="1000" cy="120" r="3.5"></circle><circle cx="1080" cy="440" r="0"></circle>
+      </g>
+    </svg>
+    <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:70px;align-items:center;position:relative;z-index:1;">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#8B6914;margin-bottom:22px;">AI Strategy, System Architecture &amp; Implementation</div>
+        <h1 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:74px;line-height:1.02;letter-spacing:-0.01em;margin:0;">Implementing AI is the <span style="font-style:italic;color:#8B6914;">easy</span> part.</h1>
+        <p style="font-size:17px;line-height:1.7;color:#6B5E51;margin:26px 0 0;max-width:46ch;">The hard part is knowing whether your people, processes, and data are ready for it. I help founders and leadership teams design AI strategies grounded in how their business actually operates — not how it looks on a slide deck.</p>
+        <div style="display:flex;gap:24px;margin-top:32px;">
+          <span data-magnetic style="display:inline-block;background:#8B6914;color:#F4EFE9;padding:14px 26px;border-radius:5px;font-weight:500;font-size:14.5px;cursor:pointer;will-change:transform;">Let's Talk</span>
+          <span data-magnetic style="display:inline-block;border:1px solid #C9BBA6;color:#1A1612;padding:14px 26px;border-radius:5px;font-weight:500;font-size:14.5px;cursor:pointer;will-change:transform;">Take the AI Assessment</span>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:300px;height:300px;border-radius:50%;margin:0 auto;background:repeating-linear-gradient(45deg,#E0D8CC 0 8px,#EFE8DE 8px 16px);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9B9183;box-shadow:0 20px 50px rgba(26,22,18,0.10);">FOUNDER PHOTO</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:22px;margin-top:20px;">Rohit Kumar Maskara</div>
+        <div style="font-size:14px;color:#9B9183;margin-top:2px;">AI Transformation Architect</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREDENTIAL STRIP (R2 refined copy) -->
+  <div style="padding:0 80px 56px;">
+    <div style="display:flex;align-items:center;gap:28px;padding:24px 0;border-top:1px solid #E0D8CC;border-bottom:1px solid #E0D8CC;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8B6914;white-space:nowrap;">The background —</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:21px;line-height:1.3;color:#1A1612;">A decade running operations, strategy, and product at Meta. Risk and process work for the Fortune 500 at KPMG. A career that began on a manufacturing shop floor — running operations, not slide decks.</div>
+    </div>
+  </div>
+
+  <!-- STAT BAND (S1 dark, gold numbers) -->
+  <div style="background:#1A1612;padding:56px 80px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#9B9183;margin-bottom:30px;">Results from the field</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:44px;">
+      <div><div style="font-family:'DM Serif Display',serif;font-size:56px;line-height:1;color:#C9A94E;">82%</div><div style="font-size:13px;color:#9B9183;line-height:1.55;margin-top:10px;">Process automation — 12-person operations team, logistics</div></div>
+      <div><div style="font-family:'DM Serif Display',serif;font-size:56px;line-height:1;color:#C9A94E;">21min</div><div style="font-size:13px;color:#9B9183;line-height:1.55;margin-top:10px;">Contract review, cut from 4 hours — professional services</div></div>
+      <div><div style="font-family:'DM Serif Display',serif;font-size:56px;line-height:1;color:#C9A94E;">$240K</div><div style="font-size:13px;color:#9B9183;line-height:1.55;margin-top:10px;">Annual savings — intelligent document processing, manufacturing</div></div>
+      <div><div style="font-family:'DM Serif Display',serif;font-size:56px;line-height:1;color:#C9A94E;">53%</div><div style="font-size:13px;color:#9B9183;line-height:1.55;margin-top:10px;">Support tickets auto-resolved — SaaS support desk</div></div>
+    </div>
+  </div>
+
+  <!-- DIAGNOSTICS (D1) -->
+  <div style="padding:80px 80px 70px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8B6914;margin-bottom:12px;">Free AI Diagnostics — no email required</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:40px;line-height:1.1;margin:0 0 10px;max-width:20ch;">Understand your readiness before any conversation.</h2>
+    <p style="font-size:16px;line-height:1.7;color:#6B5E51;margin:0 0 34px;max-width:60ch;">Start here. See exactly where you stand — three tools to begin with, and the full set when you want to go deeper.</p>
+    <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:22px;align-items:stretch;">
+      <div style="background:#1A1612;border-radius:14px;padding:34px;color:#F4EFE9;box-shadow:0 14px 40px rgba(26,22,18,0.14);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#C9A94E;text-transform:uppercase;">Start here · 10 minutes</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:30px;margin:16px 0 12px;">AI Transformation Index</div>
+        <div style="font-size:14px;line-height:1.65;color:#B9AE9E;">The most comprehensive free diagnostic on the site. Discover your AI readiness score, your leadership archetype, and the 3 use cases most likely to create immediate value.</div>
+        <div style="display:inline-block;font-size:13px;color:#1A1612;background:#C9A94E;padding:11px 20px;border-radius:5px;margin-top:24px;font-weight:600;">Take the Assessment →</div>
+      </div>
+      <div style="background:#FFFFFF;border-radius:14px;padding:30px;box-shadow:0 10px 30px rgba(26,22,18,0.09);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#8B6914;text-transform:uppercase;letter-spacing:0.1em;">Risk</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:22px;margin:12px 0 10px;">Implementation Risk</div>
+        <div style="font-size:13.5px;line-height:1.6;color:#6B5E51;">Map your AI project against the 4-failure-mode framework before you commit resources.</div>
+        <div style="font-size:13px;color:#8B6914;font-weight:600;margin-top:20px;">Get the Playbook →</div>
+      </div>
+      <div style="background:#FFFFFF;border-radius:14px;padding:30px;box-shadow:0 10px 30px rgba(26,22,18,0.09);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#8B6914;text-transform:uppercase;letter-spacing:0.1em;">Cost</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:22px;margin:12px 0 10px;">Cost-to-Deploy</div>
+        <div style="font-size:13.5px;line-height:1.6;color:#6B5E51;">A realistic cost estimate that includes the parts nobody tells you about.</div>
+        <div style="font-size:13px;color:#8B6914;font-weight:600;margin-top:20px;">Calculate Real Costs →</div>
+      </div>
+    </div>
+    <div style="margin-top:26px;"><span style="font-size:14px;color:#8B6914;font-weight:600;border-bottom:1px solid #C9BBA6;padding-bottom:2px;">See all 8 diagnostics →</span></div>
+  </div>
+
+  <!-- AI STACK TEASER -->
+  <div style="padding:0 80px 80px;">
+    <div style="background:#EDE7DF;border-radius:16px;padding:52px 56px;">
+      <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:50px;align-items:center;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8B6914;margin-bottom:14px;">Recommended tools</div>
+          <h2 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:36px;line-height:1.1;margin:0 0 14px;">The AI Stack</h2>
+          <p style="font-size:15px;line-height:1.7;color:#6B5E51;margin:0 0 20px;">Tested, opinionated, and honest. Two or three well-configured tools beat a dozen half-deployed ones.</p>
+          <span style="font-size:14px;color:#8B6914;font-weight:600;border-bottom:1px solid #C9BBA6;padding-bottom:2px;">See all 21 tools →</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+          <div style="background:#FFFFFF;border-radius:12px;padding:22px;box-shadow:0 8px 24px rgba(26,22,18,0.07);"><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;color:#9B9183;text-transform:uppercase;letter-spacing:0.1em;">Productivity</div><div style="font-family:'DM Serif Display',serif;font-size:19px;margin:8px 0 6px;">Claude</div><div style="font-size:12px;line-height:1.55;color:#6B5E51;">Best reasoning model for business use right now.</div></div>
+          <div style="background:#FFFFFF;border-radius:12px;padding:22px;box-shadow:0 8px 24px rgba(26,22,18,0.07);"><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;color:#9B9183;text-transform:uppercase;letter-spacing:0.1em;">Automation</div><div style="font-family:'DM Serif Display',serif;font-size:19px;margin:8px 0 6px;">Make</div><div style="font-size:12px;line-height:1.55;color:#6B5E51;">Most flexible automation for non-technical teams.</div></div>
+          <div style="background:#FFFFFF;border-radius:12px;padding:22px;box-shadow:0 8px 24px rgba(26,22,18,0.07);"><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;color:#9B9183;text-transform:uppercase;letter-spacing:0.1em;">Sales</div><div style="font-family:'DM Serif Display',serif;font-size:19px;margin:8px 0 6px;">Apollo</div><div style="font-size:12px;line-height:1.55;color:#6B5E51;">Best-value prospecting platform for SMBs.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES (Assess / Build / Enable) -->
+  <div style="padding:0 80px 80px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8B6914;margin-bottom:12px;">Services</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:40px;line-height:1.1;margin:0 0 10px;">How we work</h2>
+    <p style="font-size:16px;line-height:1.7;color:#6B5E51;margin:0 0 34px;max-width:60ch;">Three ways to engage, depending on where you are. Every engagement starts with a 30-minute conversation — I tell you honestly whether I can help.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div style="background:#FFFFFF;border-radius:14px;padding:32px;box-shadow:0 10px 30px rgba(26,22,18,0.08);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#C9BBA6;">01</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:26px;margin:12px 0 6px;">Assess</div>
+        <div style="font-size:13px;color:#8B6914;font-family:'JetBrains Mono',monospace;margin-bottom:16px;">2–4 weeks</div>
+        <div style="font-size:13.5px;line-height:1.75;color:#6B5E51;">Readiness audit · opportunity mapping · risk assessment · data &amp; process review · a clear go/no-go recommendation.</div>
+      </div>
+      <div style="background:#FFFFFF;border-radius:14px;padding:32px;box-shadow:0 10px 30px rgba(26,22,18,0.08);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#C9BBA6;">02</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:26px;margin:12px 0 6px;">Build</div>
+        <div style="font-size:13px;color:#8B6914;font-family:'JetBrains Mono',monospace;margin-bottom:16px;">8–16 weeks</div>
+        <div style="font-size:13.5px;line-height:1.75;color:#6B5E51;">Strategy &amp; use-case prioritization · tool selection · workflow architecture · pilot build · measurement framework.</div>
+      </div>
+      <div style="background:#FFFFFF;border-radius:14px;padding:32px;box-shadow:0 10px 30px rgba(26,22,18,0.08);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#C9BBA6;">03</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:26px;margin:12px 0 6px;">Enable</div>
+        <div style="font-size:13px;color:#8B6914;font-family:'JetBrains Mono',monospace;margin-bottom:16px;">Flexible</div>
+        <div style="font-size:13.5px;line-height:1.75;color:#6B5E51;">Role-specific training · executive coaching · hands-on tool training · adoption measurement · 90-day review.</div>
+      </div>
+    </div>
+    <div style="margin-top:24px;"><span style="font-size:14px;color:#8B6914;font-weight:600;border-bottom:1px solid #C9BBA6;padding-bottom:2px;">See the full methodology →</span></div>
+  </div>
+
+  <!-- READINESS (moved before case studies) -->
+  <div style="background:#EDE7DF;padding:80px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8B6914;margin-bottom:12px;">Foundation Assessment</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:40px;line-height:1.12;margin:0 0 34px;max-width:22ch;">Three things I check before recommending any AI tool.</h2>
+    <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <div style="background:#FFFFFF;border-radius:12px;padding:26px;box-shadow:0 8px 24px rgba(26,22,18,0.06);"><div style="font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:6px;">Data Organization</div><div style="font-size:13.5px;line-height:1.65;color:#6B5E51;">Is your data structured, documented, and accessible — or scattered across spreadsheets, inboxes, and tribal knowledge?</div></div>
+        <div style="background:#FFFFFF;border-radius:12px;padding:26px;box-shadow:0 8px 24px rgba(26,22,18,0.06);"><div style="font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:6px;">Process Clarity</div><div style="font-size:13.5px;line-height:1.65;color:#6B5E51;">Are your procedures documented — or does critical knowledge live in people's heads, vulnerable to turnover?</div></div>
+        <div style="background:#FFFFFF;border-radius:12px;padding:26px;box-shadow:0 8px 24px rgba(26,22,18,0.06);"><div style="font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:6px;">Team Readiness</div><div style="font-size:13.5px;line-height:1.65;color:#6B5E51;">Are your teams prepared to work alongside AI — or will adoption stall because the change was imposed, not enabled?</div></div>
+      </div>
+      <div style="background:#1A1612;border-radius:14px;padding:38px;color:#F4EFE9;align-self:stretch;display:flex;flex-direction:column;justify-content:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:23px;line-height:1.4;font-style:italic;">"I've watched teams spend six months building an AI solution on top of data that no one trusted. The AI worked. The data and processes around it didn't. They had to start over."</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#C9A94E;margin-top:24px;text-transform:uppercase;">If data, process, or people are fragile — that's where I start. Every time.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE STUDIES (proof, after argument) -->
+  <div style="padding:80px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8B6914;margin-bottom:12px;">Case studies</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:40px;line-height:1.1;margin:0 0 34px;">What this looks like in practice.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div style="background:#FFFFFF;border-radius:14px;padding:30px;box-shadow:0 10px 30px rgba(26,22,18,0.08);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#8B6914;text-transform:uppercase;letter-spacing:0.1em;">Operations · illustrative</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;margin:10px 0 14px;">Demand Forecasting</div>
+        <div style="display:flex;gap:14px;margin-bottom:14px;"><div><div style="font-size:12px;color:#9B9183;">Before</div><div style="font-family:'DM Serif Display',serif;font-size:26px;color:#B4462A;">68%</div></div><div style="align-self:center;color:#C9BBA6;">→</div><div><div style="font-size:12px;color:#9B9183;">After</div><div style="font-family:'DM Serif Display',serif;font-size:26px;color:#1F8A5B;">94%</div></div></div>
+        <div style="font-size:13px;line-height:1.6;color:#6B5E51;">AI forecasting with automated inventory optimization. $240K annual savings, stockouts down 62%.</div>
+      </div>
+      <div style="background:#FFFFFF;border-radius:14px;padding:30px;box-shadow:0 10px 30px rgba(26,22,18,0.08);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#8B6914;text-transform:uppercase;letter-spacing:0.1em;">Prof. services · illustrative</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;margin:10px 0 14px;">Contract Review</div>
+        <div style="display:flex;gap:14px;margin-bottom:14px;"><div><div style="font-size:12px;color:#9B9183;">Before</div><div style="font-family:'DM Serif Display',serif;font-size:26px;color:#B4462A;">4 hrs</div></div><div style="align-self:center;color:#C9BBA6;">→</div><div><div style="font-size:12px;color:#9B9183;">After</div><div style="font-family:'DM Serif Display',serif;font-size:26px;color:#1F8A5B;">24 min</div></div></div>
+        <div style="font-size:13px;line-height:1.6;color:#6B5E51;">AI contract analysis with automated risk flagging. 40% faster deal closure, 20 hrs/week freed.</div>
+      </div>
+      <div style="background:#FFFFFF;border-radius:14px;padding:30px;box-shadow:0 10px 30px rgba(26,22,18,0.08);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#8B6914;text-transform:uppercase;letter-spacing:0.1em;">SaaS · illustrative</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;margin:10px 0 14px;">Support Triage</div>
+        <div style="display:flex;gap:14px;margin-bottom:14px;"><div><div style="font-size:12px;color:#9B9183;">Before</div><div style="font-family:'DM Serif Display',serif;font-size:26px;color:#B4462A;">8+ hrs</div></div><div style="align-self:center;color:#C9BBA6;">→</div><div><div style="font-size:12px;color:#9B9183;">After</div><div style="font-family:'DM Serif Display',serif;font-size:26px;color:#1F8A5B;">12 min</div></div></div>
+        <div style="font-size:13px;line-height:1.6;color:#6B5E51;">AI triage and response drafting. 60% of tickets auto-resolved, agents freed for complex cases.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS (3 engagements → 6 steps note) -->
+  <div style="background:#EDE7DF;padding:80px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8B6914;margin-bottom:12px;">How an engagement runs</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:40px;line-height:1.1;margin:0 0 8px;">Three engagements. Every one outputs something tangible.</h2>
+    <p style="font-size:15px;color:#6B5E51;margin:0 0 34px;">Expanded into six detailed steps on the <span style="color:#8B6914;font-weight:600;">Methodology</span> page. Each phase ends with a deliverable your team owns.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div style="border-top:2px solid #8B6914;padding-top:20px;"><div style="display:flex;justify-content:space-between;align-items:baseline;"><span style="font-family:'DM Serif Display',serif;font-size:34px;color:#C9BBA6;">01</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8B6914;">2–4 WKS</span></div><div style="font-family:'DM Serif Display',serif;font-size:22px;margin:10px 0 10px;">Assess</div><div style="font-size:13px;line-height:1.65;color:#6B5E51;">Readiness audit across data, process, people. Opportunity map ranked by value. <strong style="color:#1A1612;font-weight:600;">Output:</strong> a go/no-go recommendation with specifics.</div></div>
+      <div style="border-top:2px solid #8B6914;padding-top:20px;"><div style="display:flex;justify-content:space-between;align-items:baseline;"><span style="font-family:'DM Serif Display',serif;font-size:34px;color:#C9BBA6;">02</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8B6914;">8–16 WKS</span></div><div style="font-family:'DM Serif Display',serif;font-size:22px;margin:10px 0 10px;">Build</div><div style="font-size:13px;line-height:1.65;color:#6B5E51;">Strategy, vendor-neutral tool selection, workflow architecture, pilot build. <strong style="color:#1A1612;font-weight:600;">Output:</strong> a working system with a measurement framework.</div></div>
+      <div style="border-top:2px solid #8B6914;padding-top:20px;"><div style="display:flex;justify-content:space-between;align-items:baseline;"><span style="font-family:'DM Serif Display',serif;font-size:34px;color:#C9BBA6;">03</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8B6914;">6–8 WKS</span></div><div style="font-family:'DM Serif Display',serif;font-size:22px;margin:10px 0 10px;">Enable</div><div style="font-size:13px;line-height:1.65;color:#6B5E51;">Role-specific training and adoption support, with a 90-day review built in. <strong style="color:#1A1612;font-weight:600;">Output:</strong> your team running the system independently.</div></div>
+    </div>
+  </div>
+
+  <!-- MANIFESTO -->
+  <div style="background:#1A1612;padding:110px 80px;text-align:center;">
+    <div style="font-family:'DM Serif Display',serif;font-size:52px;line-height:1.22;color:#F4EFE9;max-width:20ch;margin:0 auto;">AI without organizational readiness is just <span style="font-style:italic;color:#C9A94E;">expensive software.</span></div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#9B9183;margin-top:34px;text-transform:uppercase;">— The Yugam Readiness Principle</div>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div style="padding:80px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8B6914;margin-bottom:12px;">Perspectives</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:36px;line-height:1.15;margin:0 0 34px;max-width:30ch;">Shaped on shop floors, in boardrooms, and inside one of the world's largest tech companies.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div style="background:#FFFFFF;border-radius:14px;padding:30px;box-shadow:0 10px 30px rgba(26,22,18,0.08);"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#8B6914;text-transform:uppercase;letter-spacing:0.1em;">Framework</div><div style="font-family:'DM Serif Display',serif;font-size:21px;margin:12px 0 10px;line-height:1.2;">The 4 Failure Modes That Kill AI Projects</div><div style="font-size:13px;line-height:1.6;color:#6B5E51;">Why 70% of AI initiatives fail — and why it has almost nothing to do with the technology.</div><div style="font-size:13px;color:#8B6914;font-weight:600;margin-top:18px;">Read Framework →</div></div>
+      <div style="background:#FFFFFF;border-radius:14px;padding:30px;box-shadow:0 10px 30px rgba(26,22,18,0.08);"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#8B6914;text-transform:uppercase;letter-spacing:0.1em;">Readiness</div><div style="font-family:'DM Serif Display',serif;font-size:21px;margin:12px 0 10px;line-height:1.2;">Why 95% of AI Projects Fail to Generate ROI</div><div style="font-size:13px;line-height:1.6;color:#6B5E51;">Three root causes show up in every major study this year. All point to organizational readiness.</div><div style="font-size:13px;color:#8B6914;font-weight:600;margin-top:18px;">Read Article →</div></div>
+      <div style="background:#FFFFFF;border-radius:14px;padding:30px;box-shadow:0 10px 30px rgba(26,22,18,0.08);"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#8B6914;text-transform:uppercase;letter-spacing:0.1em;">Pattern</div><div style="font-family:'DM Serif Display',serif;font-size:21px;margin:12px 0 10px;line-height:1.2;">How to Spot AI Opportunities in Your Business</div><div style="font-size:13px;line-height:1.6;color:#6B5E51;">A practical framework for where AI creates value versus where it adds complexity.</div><div style="font-size:13px;color:#8B6914;font-weight:600;margin-top:18px;">Read Framework →</div></div>
+    </div>
+  </div>
+
+  <!-- CONTACT (primary) + NEWSLETTER (slim) -->
+  <div style="padding:0 80px 70px;">
+    <div style="background:#EDE7DF;border-radius:16px;padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+      <div>
+        <h2 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:40px;margin:0 0 12px;">Let's talk.</h2>
+        <p style="font-size:15px;line-height:1.7;color:#6B5E51;margin:0;">Tell me a little about your business and what you're trying to figure out. I'll get back to you within a day.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="background:#FFFFFF;border:1px solid #E0D8CC;border-radius:8px;padding:14px 16px;font-size:13px;color:#9B9183;">Your name</div>
+        <div style="background:#FFFFFF;border:1px solid #E0D8CC;border-radius:8px;padding:14px 16px;font-size:13px;color:#9B9183;">rohit@yugam.io</div>
+        <div style="background:#FFFFFF;border:1px solid #E0D8CC;border-radius:8px;padding:14px 16px;height:64px;font-size:13px;color:#9B9183;">What are you trying to figure out?</div>
+        <div style="background:#8B6914;color:#F4EFE9;border-radius:8px;padding:14px;text-align:center;font-weight:600;font-size:14px;">Send Message</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding:20px 28px;border:1px solid #E0D8CC;border-radius:12px;">
+      <div style="font-size:14px;color:#6B5E51;"><span style="font-family:'DM Serif Display',serif;font-size:17px;color:#1A1612;">A weekly note on AI worth reading.</span> &nbsp; Short, practical takes for people who run businesses.</div>
+      <div style="display:flex;gap:10px;"><div style="background:#F4EFE9;border:1px solid #E0D8CC;border-radius:6px;padding:10px 16px;font-size:13px;color:#9B9183;">you@company.com</div><div style="background:#1A1612;color:#F4EFE9;border-radius:6px;padding:10px 18px;font-size:13px;">Subscribe</div></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:#1A1612;padding:40px 80px;display:flex;justify-content:space-between;align-items:center;color:#9B9183;font-size:13px;">
+    <span>© 2026 Yugam Systems Pte Ltd (Singapore)</span>
+    <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;">LINKEDIN · YOUTUBE · X</span>
+  </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    this._cleanup = [];
+    const btns = this.el ? this.el.querySelectorAll('[data-magnetic]') : document.querySelectorAll('[data-magnetic]');
+    btns.forEach((btn) => {
+      // proximity radius beyond the button edge that the pull begins to act within
+      const RADIUS = 45;   // px of influence outside the button
+      const PULL = 0.12;   // fraction of cursor offset the button travels
+      const MAX = 6;       // px hard cap so adjacent buttons never overlap
+      let raf = null, tx = 0, ty = 0, cx = 0, cy = 0;
+      const tick = () => {
+        tx += (cx - tx) * 0.18;
+        ty += (cy - ty) * 0.18;
+        btn.style.transform = `translate(${tx.toFixed(2)}px, ${ty.toFixed(2)}px)`;
+        if (Math.abs(cx - tx) > 0.1 || Math.abs(cy - ty) > 0.1) { raf = requestAnimationFrame(tick); }
+        else { btn.style.transform = `translate(${cx}px, ${cy}px)`; raf = null; }
+      };
+      const onMove = (e) => {
+        const r = btn.getBoundingClientRect();
+        const bcx = r.left + r.width / 2, bcy = r.top + r.height / 2;
+        const dx = e.clientX - bcx, dy = e.clientY - bcy;
+        const dist = Math.hypot(dx, dy);
+        const reach = Math.max(r.width, r.height) / 2 + RADIUS;
+        if (dist < reach) {
+          cx = Math.max(-MAX, Math.min(MAX, dx * PULL));
+          cy = Math.max(-MAX, Math.min(MAX, dy * PULL));
+        } else { cx = 0; cy = 0; }
+        btn.style.transition = 'none';
+        if (!raf) raf = requestAnimationFrame(tick);
+      };
+      const onLeave = () => {
+        cx = 0; cy = 0;
+        btn.style.transition = 'transform 0.45s cubic-bezier(0.22,1,0.36,1)';
+        btn.style.transform = 'translate(0,0)';
+        if (raf) { cancelAnimationFrame(raf); raf = null; }
+      };
+      window.addEventListener('mousemove', onMove);
+      btn.addEventListener('mouseleave', onLeave);
+      this._cleanup.push(() => { window.removeEventListener('mousemove', onMove); btn.removeEventListener('mouseleave', onLeave); });
+    });
+  }
+  componentWillUnmount() { if (this._cleanup) this._cleanup.forEach(fn => fn()); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

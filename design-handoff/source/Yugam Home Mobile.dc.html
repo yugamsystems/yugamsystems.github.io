@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style> body{margin:0;} a{color:#8B6914;text-decoration:none;} </style>
+</helmet>
+
+<div style="font-family:'Inter',sans-serif;background:#D9D2C7;padding:30px 0;display:flex;justify-content:center;">
+  <div id="page" style="width:375px;background:#F4EFE9;color:#1A1612;overflow:hidden;border-radius:26px;box-shadow:0 30px 70px rgba(26,22,18,0.22);border:8px solid #1A1612;">
+
+  <!-- NAV -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #E8E1D8;">
+    <div style="display:flex;align-items:center;gap:8px;"><div style="width:11px;height:16px;background:#8B6914;clip-path:ellipse(50% 55% at 50% 45%);"></div><span style="font-family:'DM Serif Display',serif;font-size:18px;">Yugam</span></div>
+    <div style="display:flex;flex-direction:column;gap:3px;"><span style="width:20px;height:2px;background:#1A1612;"></span><span style="width:20px;height:2px;background:#1A1612;"></span><span style="width:20px;height:2px;background:#1A1612;"></span></div>
+  </div>
+
+  <!-- HERO — photo first, capped ~200px, stacked -->
+  <div style="padding:30px 22px 26px;text-align:center;position:relative;overflow:hidden;">
+    <svg width="375" height="260" viewBox="0 0 375 260" style="position:absolute;top:0;left:0;opacity:0.35;pointer-events:none;"><g stroke="#B9AE9E" stroke-width="1" opacity="0.5"><line x1="60" y1="40" x2="160" y2="90"></line><line x1="160" y1="90" x2="300" y2="60"></line><line x1="160" y1="90" x2="120" y2="200"></line></g><g fill="#9B9183"><circle cx="60" cy="40" r="2"></circle><circle cx="300" cy="60" r="2"></circle><circle cx="120" cy="200" r="2"></circle></g><g fill="#8B6914"><circle cx="160" cy="90" r="3"></circle></g></svg>
+    <div style="position:relative;z-index:1;">
+      <div style="width:200px;height:200px;border-radius:50%;margin:0 auto 18px;background:repeating-linear-gradient(45deg,#E0D8CC 0 7px,#EFE8DE 7px 14px);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:#9B9183;box-shadow:0 14px 36px rgba(26,22,18,0.12);">FOUNDER PHOTO</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8B6914;margin-bottom:14px;">AI Strategy &amp; Implementation</div>
+      <h1 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:40px;line-height:1.05;margin:0;">Implementing AI is the <span style="font-style:italic;color:#8B6914;">easy</span> part.</h1>
+      <p style="font-size:16px;line-height:1.65;color:#6B5E51;margin:18px 0 0;">The hard part is knowing whether your people, processes, and data are ready for it.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:24px;">
+        <span data-magnetic style="display:block;background:#8B6914;color:#F4EFE9;padding:15px;border-radius:6px;font-weight:600;font-size:15px;">Let's Talk</span>
+        <span data-magnetic style="display:block;border:1px solid #C9BBA6;color:#1A1612;padding:15px;border-radius:6px;font-weight:600;font-size:15px;">Take the AI Assessment</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREDENTIAL STRIP -->
+  <div style="padding:18px 22px;border-top:1px solid #E0D8CC;border-bottom:1px solid #E0D8CC;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8B6914;margin-bottom:8px;">The background</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:17px;line-height:1.32;">A decade inside Meta. Fortune-500 work at KPMG. A career that began on a shop floor.</div>
+  </div>
+
+  <!-- STAT BAND stacked -->
+  <div style="background:#1A1612;padding:30px 22px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#9B9183;margin-bottom:18px;">Results from the field</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px 18px;">
+      <div><div style="font-family:'DM Serif Display',serif;font-size:38px;line-height:1;color:#C9A94E;">82%</div><div style="font-size:11.5px;color:#9B9183;line-height:1.5;margin-top:6px;">Process automation, logistics ops</div></div>
+      <div><div style="font-family:'DM Serif Display',serif;font-size:38px;line-height:1;color:#C9A94E;">21min</div><div style="font-size:11.5px;color:#9B9183;line-height:1.5;margin-top:6px;">Contract review, from 4 hours</div></div>
+      <div><div style="font-family:'DM Serif Display',serif;font-size:38px;line-height:1;color:#C9A94E;">$240K</div><div style="font-size:11.5px;color:#9B9183;line-height:1.5;margin-top:6px;">Annual savings, manufacturing</div></div>
+      <div><div style="font-family:'DM Serif Display',serif;font-size:38px;line-height:1;color:#C9A94E;">53%</div><div style="font-size:11.5px;color:#9B9183;line-height:1.5;margin-top:6px;">Tickets auto-resolved, SaaS</div></div>
+    </div>
+  </div>
+
+  <!-- DIAGNOSTICS stacked -->
+  <div style="padding:34px 22px 30px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8B6914;margin-bottom:10px;">Free Diagnostics</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:28px;line-height:1.12;margin:0 0 20px;">Understand your readiness first.</h2>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="background:#1A1612;border-radius:12px;padding:22px;color:#F4EFE9;"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:#C9A94E;text-transform:uppercase;">Start here · 10 min</div><div style="font-family:'DM Serif Display',serif;font-size:22px;margin:10px 0 8px;">AI Transformation Index</div><div style="font-size:13px;line-height:1.6;color:#B9AE9E;">Readiness score, archetype, and your top 3 use cases.</div><div style="display:inline-block;font-size:12.5px;color:#1A1612;background:#C9A94E;padding:10px 16px;border-radius:5px;margin-top:16px;font-weight:600;">Take the Assessment →</div></div>
+      <div style="background:#FFFFFF;border-radius:12px;padding:20px;box-shadow:0 8px 22px rgba(26,22,18,0.08);"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#8B6914;text-transform:uppercase;letter-spacing:0.1em;">Risk</div><div style="font-family:'DM Serif Display',serif;font-size:19px;margin:8px 0 6px;">Implementation Risk</div><div style="font-size:12.5px;line-height:1.55;color:#6B5E51;">Map your project against the 4 failure modes.</div></div>
+      <div style="background:#FFFFFF;border-radius:12px;padding:20px;box-shadow:0 8px 22px rgba(26,22,18,0.08);"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#8B6914;text-transform:uppercase;letter-spacing:0.1em;">Cost</div><div style="font-family:'DM Serif Display',serif;font-size:19px;margin:8px 0 6px;">Cost-to-Deploy</div><div style="font-size:12.5px;line-height:1.55;color:#6B5E51;">A realistic estimate, hidden costs included.</div></div>
+    </div>
+    <div style="margin-top:18px;text-align:center;"><span style="font-size:13px;color:#8B6914;font-weight:600;border-bottom:1px solid #C9BBA6;padding-bottom:2px;">See all 8 diagnostics →</span></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:#1A1612;padding:26px 22px;color:#9B9183;font-size:11px;text-align:center;">
+    <div style="font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;margin-bottom:8px;">LINKEDIN · YOUTUBE · X</div>
+    © 2026 Yugam Systems Pte Ltd
+  </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script>
+</body>
+</html>
