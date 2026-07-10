@@ -269,13 +269,21 @@
 
         /* ============ HERO ============ */
         .stack-hero {
-            padding: 200px 0 80px;
+            min-height: 52vh;
+            display: flex;
+            align-items: center;
             background: var(--stone);
+        }
+        .stack-hero .container {
+            width: 100%;
+            padding-top: 100px;
+            padding-bottom: 60px;
         }
         .stack-hero__content {
             max-width: 680px;
         }
         .stack-hero__headline {
+            font-size: var(--fs-h1, clamp(40px,4.6vw,64px));
             margin-bottom: 24px;
         }
         .stack-hero__cta {
@@ -527,6 +535,100 @@
         }
         .footer__social a:hover { color: var(--teak); }
 
+        /* ============ STARTER ROW ============ */
+        .starter-section {
+            padding: 56px 0;
+            border-bottom: 1px solid var(--clay);
+        }
+        .starter-section__kicker {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--teak);
+            margin-bottom: 24px;
+            display: block;
+        }
+        .starter-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .starter-card {
+            padding: 28px 24px;
+            border-radius: 14px;
+            border: 1px solid var(--clay);
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(26,22,18,.06);
+        }
+        .starter-card--dark {
+            background: var(--ink);
+            border-color: var(--ink);
+        }
+        .starter-card__name {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            color: var(--ink);
+            margin-bottom: 6px;
+            font-weight: 400;
+        }
+        .starter-card--dark .starter-card__name { color: #C9A94E; }
+        .starter-card__role {
+            font-size: 12px;
+            color: var(--drift);
+            margin-bottom: 14px;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .starter-card--dark .starter-card__role { color: var(--bark); }
+        .starter-card__take {
+            font-size: 14px;
+            color: var(--bark);
+            line-height: 1.6;
+        }
+        .starter-card--dark .starter-card__take { color: var(--sand); }
+
+        /* ============ CATEGORY GROUPS ============ */
+        .stack-group-head {
+            grid-column: 1 / -1;
+            padding: 36px 0 12px;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            border-top: 1px solid var(--clay);
+            margin-top: 8px;
+        }
+        .stack-group-head:first-child { border-top: none; padding-top: 16px; margin-top: 0; }
+        .stack-group-head h3 {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            color: var(--ink);
+            font-weight: 400;
+            margin: 0;
+        }
+        .stack-group-head__count {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--drift);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* TOP PICK TAG */
+        .top-pick-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 3px 8px;
+            background: rgba(31,138,91,0.1);
+            color: #1F8A5B;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
         /* ============ RESPONSIVE ============ */
         @media (max-width: 1024px) {
             h1 { font-size: 44px; }
@@ -542,7 +644,10 @@
             .nav__links { display: none; }
             .nav__hamburger { display: block; }
 
-            .stack-hero { padding: 140px 0 60px; }
+            .stack-hero { min-height: auto; }
+            .stack-hero .container { padding-top: 100px; padding-bottom: 50px; }
+            .starter-row { grid-template-columns: repeat(2, 1fr); }
+            .starter-card:nth-child(n+3) { display: none; }
 
             .filter-bar { top: 56px; }
             .filter-bar .container {
@@ -634,6 +739,35 @@
         </div>
     </section>
 
+    <!-- ==================== STARTER ROW ==================== -->
+    <section class="starter-section">
+        <div class="container">
+            <span class="starter-section__kicker">Start with these four</span>
+            <div class="starter-row">
+                <div class="starter-card starter-card--dark">
+                    <div class="starter-card__name">Claude</div>
+                    <div class="starter-card__role">AI Reasoning · General</div>
+                    <div class="starter-card__take">If you're picking one AI tool to start with, start here. The reasoning quality is a step above for complex business problems.</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-card__name">ChatGPT</div>
+                    <div class="starter-card__role">General-purpose AI · General</div>
+                    <div class="starter-card__take">The ecosystem is massive and the plugin library gives it reach into areas other tools don't cover. A solid default for teams just starting.</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-card__name">Zapier</div>
+                    <div class="starter-card__role">Workflow Automation · Operations</div>
+                    <div class="starter-card__take">Start here before building anything custom. Most businesses have 5–10 workflows Zapier can automate in an afternoon. The ROI is immediate.</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-card__name">HubSpot</div>
+                    <div class="starter-card__role">CRM + AI · Sales</div>
+                    <div class="starter-card__take">The free CRM is the best entry point for businesses without one. The AI features are practical — don't overbuy on tiers.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ==================== FILTER BAR ==================== -->
     <div class="filter-bar">
         <div class="container">
@@ -691,6 +825,7 @@
         const TOOLS = [
             {
                 name: 'Claude',
+                topPick: true,
                 category: 'general',
                 verdict: 'The strongest reasoning for complex business problems.',
                 description: 'Anthropic\'s AI assistant. Excels at long-form writing, analysis, coding, and nuanced reasoning across business contexts.',
@@ -700,6 +835,7 @@
             },
             {
                 name: 'ChatGPT',
+                topPick: true,
                 category: 'general',
                 verdict: 'The most versatile general-purpose AI assistant.',
                 description: 'OpenAI\'s flagship. Strong at conversation, image generation, web browsing, data analysis, and plugin integrations.',
@@ -718,6 +854,7 @@
             },
             {
                 name: 'Zapier',
+                topPick: true,
                 category: 'operations',
                 verdict: 'The simplest path to automating repetitive workflows.',
                 description: 'Connects 7,000+ apps with no-code automation. Build multi-step workflows between your existing tools in minutes.',
@@ -754,6 +891,7 @@
             },
             {
                 name: 'HubSpot',
+                topPick: true,
                 category: 'sales',
                 verdict: 'The CRM that grows with you, now with AI built in.',
                 description: 'Full CRM platform with AI-powered email writing, lead scoring, content generation, and workflow automation across sales, marketing, and service.',
@@ -893,31 +1031,50 @@
             container.innerHTML = html;
         }
 
-        function renderCards(tools) {
+        function toolCard(tool) {
+            const catLabel = CATEGORIES[tool.category] || tool.category;
+            const pricingClass = 'pricing--' + tool.pricing;
+            const pricingLabel = tool.pricing.charAt(0).toUpperCase() + tool.pricing.slice(1);
+            const topPickBadge = tool.topPick ? '<div class="top-pick-tag">Top Pick</div>' : '';
+            return '<div class="stack-card card" data-category="' + tool.category + '" data-name="' + tool.name.toLowerCase() + '">' +
+                topPickBadge +
+                '<div class="stack-card__header">' +
+                    '<span class="stack-card__name">' + tool.name + '</span>' +
+                    '<span class="stack-card__cat">' + catLabel + '</span>' +
+                '</div>' +
+                '<div class="stack-card__verdict">' + tool.verdict + '</div>' +
+                '<div class="stack-card__desc">' + tool.description + '</div>' +
+                '<div class="stack-card__meta"><span class="stack-card__meta-label">Best for: </span>' + tool.bestFor + '</div>' +
+                '<span class="stack-card__pricing ' + pricingClass + '">' + pricingLabel + '</span>' +
+                '<div class="stack-card__take">' +
+                    '<div class="stack-card__take-label">Rohit\'s take</div>' +
+                    '<p>' + tool.take + '</p>' +
+                '</div>' +
+            '</div>';
+        }
+
+        function renderCards(tools, isGrouped) {
             const grid = document.getElementById('stackGrid');
             if (tools.length === 0) {
                 grid.innerHTML = '<div class="stack-empty">No tools match your search.</div>';
                 return;
             }
-            grid.innerHTML = tools.map(tool => {
-                const catLabel = CATEGORIES[tool.category] || tool.category;
-                const pricingClass = 'pricing--' + tool.pricing;
-                const pricingLabel = tool.pricing.charAt(0).toUpperCase() + tool.pricing.slice(1);
-                return '<div class="stack-card" data-category="' + tool.category + '" data-name="' + tool.name.toLowerCase() + '">' +
-                    '<div class="stack-card__header">' +
-                        '<span class="stack-card__name">' + tool.name + '</span>' +
-                        '<span class="stack-card__cat">' + catLabel + '</span>' +
-                    '</div>' +
-                    '<div class="stack-card__verdict">' + tool.verdict + '</div>' +
-                    '<div class="stack-card__desc">' + tool.description + '</div>' +
-                    '<div class="stack-card__meta"><span class="stack-card__meta-label">Best for: </span>' + tool.bestFor + '</div>' +
-                    '<span class="stack-card__pricing ' + pricingClass + '">' + pricingLabel + '</span>' +
-                    '<div class="stack-card__take">' +
-                        '<div class="stack-card__take-label">Rohit\'s take</div>' +
-                        '<p>' + tool.take + '</p>' +
-                    '</div>' +
-                '</div>';
-            }).join('');
+            if (isGrouped) {
+                let html = '';
+                CATEGORY_ORDER.forEach(key => {
+                    const group = tools.filter(t => t.category === key);
+                    if (!group.length) return;
+                    const label = CATEGORIES[key];
+                    html += '<div class="stack-group-head">' +
+                        '<h3>' + label + '</h3>' +
+                        '<span class="stack-group-head__count">' + group.length + ' tool' + (group.length > 1 ? 's' : '') + '</span>' +
+                    '</div>';
+                    html += group.map(toolCard).join('');
+                });
+                grid.innerHTML = html;
+            } else {
+                grid.innerHTML = tools.map(toolCard).join('');
+            }
         }
 
         function filterTools() {
@@ -932,7 +1089,8 @@
                     tool.take.toLowerCase().includes(query);
                 return matchesCat && matchesSearch;
             });
-            renderCards(filtered);
+            const isGrouped = activeCategory === 'all' && !query;
+            renderCards(filtered, isGrouped);
             document.getElementById('stackCount').textContent = 'Showing ' + filtered.length + ' of ' + TOOLS.length + ' tools';
         }
 
