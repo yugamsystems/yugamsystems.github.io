@@ -478,10 +478,72 @@
         }
         .footer__social a:hover { color: var(--teak); }
 
+        /* ============ ABOUT HERO ============ */
+        .about-hero {
+            padding: 100px 0 56px;
+            background: var(--stone);
+            border-bottom: 1px solid var(--clay);
+        }
+        .about-hero__inner {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 72px;
+            align-items: center;
+        }
+        .about-hero__kicker {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--teak);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .about-hero__h1 {
+            font-family: var(--font-serif);
+            font-size: var(--fs-h1, clamp(40px,4.6vw,64px));
+            color: var(--ink);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 32px;
+        }
+        .about-cred-strip {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding-top: 28px;
+            border-top: 1px solid var(--clay);
+        }
+        .about-cred-strip p {
+            font-family: var(--font-serif);
+            font-size: 16px;
+            color: var(--bark);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        .about-hero__photo-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            filter: grayscale(30%) sepia(15%);
+            box-shadow: 0 4px 24px rgba(26,22,18,.12);
+        }
+
         /* ============ RESPONSIVE ============ */
         @media (max-width: 1024px) {
             h2 { font-size: 30px; }
             .about-wrap { grid-template-columns: 220px 1fr; gap: 48px; }
+            .about-hero__inner { grid-template-columns: 1fr 240px; gap: 48px; }
+            .about-hero__photo-img { width: 220px; height: 220px; }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero { padding: 90px 0 40px; }
+            .about-hero__inner { grid-template-columns: 1fr; gap: 32px; }
+            .about-hero__photo-img { width: 160px; height: 160px; margin: 0 auto; }
         }
 
         @media (max-width: 768px) {
@@ -598,6 +660,26 @@
         <a href="./index.html#contact-form" class="btn btn--primary" onclick="this.parentElement.classList.remove('open')">Let's Talk</a>
     </div>
 
+    <!-- ==================== HERO ==================== -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero__inner">
+                <div class="about-hero__text">
+                    <span class="about-hero__kicker reveal">About Rohit Kumar Maskara</span>
+                    <h1 class="about-hero__h1 reveal reveal-delay-1">AI Strategist and Systems Architect</h1>
+                    <div class="about-cred-strip reveal reveal-delay-2">
+                        <p>A decade inside Meta running operations, strategy, product, and customer experience.</p>
+                        <p>Advising Fortune 500 companies on risk management and process optimization at KPMG.</p>
+                        <p>A career that began on a manufacturing shop floor, running hands-on operations, not preparing slide decks.</p>
+                    </div>
+                </div>
+                <div class="about-hero__photo-wrap reveal reveal-delay-1">
+                    <img src="./founder-photo.jpg" alt="Rohit Kumar Maskara" class="about-hero__photo-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ==================== TWO-COL LAYOUT ==================== -->
     <div class="about-wrap">
 
@@ -610,7 +692,7 @@
             />
             <div class="reveal reveal-delay-1">
                 <div class="about-sidebar__name">Rohit Kumar Maskara</div>
-                <span class="about-sidebar__role">Founder, Yugam</span>
+                <span class="about-sidebar__role">AI Strategist and Systems Architect</span>
                 <div class="about-sidebar__location">
                     <i class="ti ti-map-pin" style="font-size:13px;"></i> Singapore
                 </div>
@@ -693,81 +775,36 @@
                     <div class="timeline-entry timeline-entry--current reveal">
                         <div class="timeline-entry__meta">
                             <span class="timeline-entry__company">Yugam</span>
-                            <span class="timeline-entry__years">2026 — present</span>
+                            <span class="timeline-entry__years">June 2026 – Present</span>
                         </div>
-                        <div class="timeline-entry__role">Founder &amp; AI Transformation Consultant</div>
-                        <div class="timeline-entry__note">AI transformation for mid-market businesses. Assess, build, and train.</div>
+                        <div class="timeline-entry__role">Founder, AI Strategist and Systems Architect</div>
+                        <div class="timeline-entry__note">Independent AI transformation advisory. Helping founders and leadership teams assess readiness, build strategy, and enable their people.</div>
                     </div>
 
                     <div class="timeline-entry reveal">
                         <div class="timeline-entry__meta">
                             <span class="timeline-entry__company">Meta</span>
-                            <span class="timeline-entry__years">2024 — 2026</span>
+                            <span class="timeline-entry__years">2016 – 2026</span>
                         </div>
-                        <div class="timeline-entry__role">Senior Program Manager, Customer Experience Strategy &amp; Operations</div>
-                        <div class="timeline-entry__note">Singapore. Led CX strategy programme for high-value advertisers across Asia Pacific.</div>
+                        <div class="timeline-entry__role">Operations, Strategy, Product &amp; Customer Experience</div>
+                        <div class="timeline-entry__note">A decade across Community Operations, Business Integrity, Sales Partnerships, and Customer Experience Strategy. Dublin, then Singapore.</div>
                     </div>
 
                     <div class="timeline-entry reveal">
                         <div class="timeline-entry__meta">
-                            <span class="timeline-entry__company">Meta</span>
-                            <span class="timeline-entry__years">2022 — 2024</span>
+                            <span class="timeline-entry__company">KPMG</span>
+                            <span class="timeline-entry__years">2012 – 2015</span>
                         </div>
-                        <div class="timeline-entry__role">Program Manager, Customer Experience Strategy &amp; Operations</div>
-                        <div class="timeline-entry__note">Singapore. Built and scaled support operations across APAC markets.</div>
-                    </div>
-
-                    <div class="timeline-entry reveal">
-                        <div class="timeline-entry__meta">
-                            <span class="timeline-entry__company">Facebook</span>
-                            <span class="timeline-entry__years">2019 — 2022</span>
-                        </div>
-                        <div class="timeline-entry__role">Sales Partnerships, Global Operations</div>
-                        <div class="timeline-entry__note">Singapore. Cross-functional operations across global sales partnerships.</div>
-                    </div>
-
-                    <div class="timeline-entry reveal">
-                        <div class="timeline-entry__meta">
-                            <span class="timeline-entry__company">Facebook</span>
-                            <span class="timeline-entry__years">2018 — 2019</span>
-                        </div>
-                        <div class="timeline-entry__role">Associate, Business Integrity</div>
-                        <div class="timeline-entry__note">Singapore. Risk and policy operations for business accounts.</div>
-                    </div>
-
-                    <div class="timeline-entry reveal">
-                        <div class="timeline-entry__meta">
-                            <span class="timeline-entry__company">Facebook</span>
-                            <span class="timeline-entry__years">2016 — 2018</span>
-                        </div>
-                        <div class="timeline-entry__role">Market Specialist, Community Operations</div>
-                        <div class="timeline-entry__note">Dublin. Content policy and trust operations across South Asian markets.</div>
-                    </div>
-
-                    <div class="timeline-entry reveal">
-                        <div class="timeline-entry__meta">
-                            <span class="timeline-entry__company">Indian School of Business</span>
-                            <span class="timeline-entry__years">2015 — 2016</span>
-                        </div>
-                        <div class="timeline-entry__role">MBA, Operations Management &amp; Finance</div>
-                        <div class="timeline-entry__note">Hyderabad. Full-time MBA focused on operations strategy and financial modelling.</div>
-                    </div>
-
-                    <div class="timeline-entry reveal">
-                        <div class="timeline-entry__meta">
-                            <span class="timeline-entry__company">KPMG India</span>
-                            <span class="timeline-entry__years">2012 — 2015</span>
-                        </div>
-                        <div class="timeline-entry__role">Executive → Senior, Risk Consulting</div>
+                        <div class="timeline-entry__role">Governance, Risk &amp; Compliance</div>
                         <div class="timeline-entry__note">Operational risk and process improvement for Fortune 500 clients across manufacturing, consumer goods, cement, and natural resources.</div>
                     </div>
 
                     <div class="timeline-entry reveal">
                         <div class="timeline-entry__meta">
-                            <span class="timeline-entry__company">Vedanta Aluminium</span>
-                            <span class="timeline-entry__years">2010 — 2012</span>
+                            <span class="timeline-entry__company">Vedanta Aluminium Limited</span>
+                            <span class="timeline-entry__years">2010 – 2012</span>
                         </div>
-                        <div class="timeline-entry__role">Assistant Manager, Production</div>
+                        <div class="timeline-entry__role">Operations, Manufacturing Shop Floor</div>
                         <div class="timeline-entry__note">Jharsuguda, Odisha. Led a team of 15. Reduced scrap generation by 44% through process re-engineering and SOP redesign.</div>
                     </div>
                 </div>
