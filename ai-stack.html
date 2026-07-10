@@ -267,6 +267,16 @@
             padding-left: 24px;
         }
 
+        /* Ambient constellation canvas positioning */
+        [data-constellation-ambient] { position: relative; overflow: hidden; }
+        [data-constellation-ambient] > canvas {
+            position: absolute !important;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        [data-constellation-ambient] > *:not(canvas) { position: relative; z-index: 1; }
+
         /* ============ HERO ============ */
         .stack-hero {
             min-height: 52vh;

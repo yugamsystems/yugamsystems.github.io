@@ -430,22 +430,19 @@
 
         /* ============ MAPPING BAR ============ */
         .method-mapping {
-            padding: 48px 0;
-            border-bottom: 1px solid var(--clay);
+            padding: 40px 0;
             background: var(--stone);
         }
         .method-mapping__grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0;
+            border: 1px solid var(--clay);
+            border-radius: 6px;
+            overflow: hidden;
         }
         .method-mapping__col {
             padding: 28px 32px;
             border-left: 3px solid var(--teak);
-        }
-        .method-mapping__col + .method-mapping__col {
-            border-left-color: var(--teak);
-            margin-left: 32px;
         }
         .method-mapping__engagement {
             font-family: var(--font-mono);
@@ -468,58 +465,15 @@
             font-family: var(--font-mono);
         }
 
-        /* ENGAGEMENT KICKER */
-        .phase-engagement {
-            font-family: var(--font-mono);
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--teak);
-            margin-bottom: 8px;
-            display: block;
+        /* Ambient constellation canvas — must be absolute so it doesn't push content down */
+        [data-constellation-ambient] { position: relative; overflow: hidden; }
+        [data-constellation-ambient] > canvas {
+            position: absolute !important;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
         }
-
-        /* OUTPUT PANEL */
-        .output-panel {
-            background: #EDE7DF;
-            border-radius: 10px;
-            padding: 24px;
-        }
-        .output-panel__label {
-            font-family: var(--font-mono);
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--bark);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .output-panel__label i { font-size: 14px; color: var(--teak); }
-        .output-panel__list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .output-panel__item {
-            font-size: 14px;
-            color: var(--ink);
-            line-height: 1.5;
-            padding-left: 16px;
-            position: relative;
-        }
-        .output-panel__item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--teak);
-        }
+        [data-constellation-ambient] > *:not(canvas) { position: relative; z-index: 1; }
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 1024px) {
@@ -627,14 +581,9 @@
     <section class="method-hero" data-constellation-ambient>
         <div class="container">
             <div class="method-hero__content">
-                <span class="label label--accent reveal">Engagement Methodology</span>
+                <span class="label label--accent reveal">Methodology</span>
                 <h1 class="reveal reveal-delay-1">How an engagement <em style="color:var(--teak-light,#C9A94E);font-style:italic">actually</em> runs.</h1>
-                <p class="subheading reveal reveal-delay-2">Six phases from the first discovery call to the 90-day post-handover review. Every step has a clear output. No black boxes, no scope creep, no surprises.</p>
-                <div class="method-hero__note reveal reveal-delay-3">
-                    <i class="ti ti-clock"></i>
-                    Assessment only: 2–4 weeks &nbsp;·&nbsp; Full engagement: up to 32 weeks
-                </div>
-                <p class="method-hero__aside reveal reveal-delay-3">Not every engagement runs all six phases. Where you enter depends on where you are — find out in a 30-minute conversation.</p>
+                <p class="subheading reveal reveal-delay-2">Three engagements — Assess, Build, Enable — expanded into six concrete steps. Each one ends with a deliverable your team owns, not a slide deck you file away.</p>
             </div>
         </div>
     </section>
