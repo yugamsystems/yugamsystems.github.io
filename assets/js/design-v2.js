@@ -107,18 +107,10 @@
         });
     }
 
-    /* ===== Page-load reveal ================================================
-       Fades the body in from transparent on first paint — eliminates any
-       flash of unstyled content on slower connections. */
+    /* ===== Page-load reveal ================================================ */
     function pageReveal() {
         if (reducedMotion) return;
-        document.documentElement.style.opacity = '0';
-        document.documentElement.style.transition = 'opacity .45s ease';
-        requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-                document.documentElement.style.opacity = '1';
-            });
-        });
+        document.documentElement.style.opacity = '1';
     }
 
     /* ===== Homepage headline word reveal =======================================
