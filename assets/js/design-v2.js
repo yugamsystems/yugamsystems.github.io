@@ -185,9 +185,48 @@
         }, { passive: true });
     }
 
+    /* ===== Magnetic CTA pull ====================================================
+       Applies a gentle pull-toward-cursor effect to [data-magnetic] elements.
+       Scoped to primary CTA only (hero pair + contact submit).
+       No-ops under prefers-reduced-motion. */
+    function magneticCTA() {
+        if (reducedMotion) return;
+        var els = document.querySelectorAll('[data-magnetic]');
+        if (!els.length) return;
+
+        var RADIUS = 45;
+        var PULL   = 0.12;
+        var MAX    = 6;
+
+        els.forEach(function (el) {
+            el.style.willChange  = 'transform';
+            el.style.transition  = 'transform 150ms ease';
+        });
+
+        document.addEventListener('mousemove', function (e) {
+            els.forEach(function (el) {
+                var rect = el.getBoundingClientRect();
+                var cx   = rect.left + rect.width  / 2;
+                var cy   = rect.top  + rect.height / 2;
+                var dx   = e.clientX - cx;
+                var dy   = e.clientY - cy;
+                var dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < RADIUS) {
+                    var tx = Math.max(-MAX, Math.min(MAX, dx * PULL));
+                    var ty = Math.max(-MAX, Math.min(MAX, dy * PULL));
+                    el.style.transform = 'translate(' + tx + 'px,' + ty + 'px)';
+                } else {
+                    el.style.transform = '';
+                }
+            });
+        }, { passive: true });
+    }
+
     pageReveal();
     ambientConstellation();
     headlineWordReveal();
     scrollCue();
+    magneticCTA();
 
 })();
