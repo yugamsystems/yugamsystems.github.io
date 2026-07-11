@@ -478,72 +478,49 @@
         }
         .footer__social a:hover { color: var(--teak); }
 
-        /* ============ ABOUT HERO ============ */
-        .about-hero {
-            padding: 88px 0 48px;
-            background: var(--stone);
-            border-bottom: 1px solid var(--clay);
+        /* ============ INTRO (top of scroll column) ============ */
+        .about-intro {
+            padding-bottom: 48px;
+            margin-bottom: 0;
         }
-        .about-hero__inner {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 72px;
-            align-items: center;
-        }
-        .about-hero__kicker {
+        .about-intro__kicker {
             font-family: var(--font-mono);
             font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             color: var(--teak);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             display: block;
         }
-        .about-hero__h1 {
+        .about-intro__h1 {
             font-family: var(--font-serif);
-            font-size: var(--fs-h1, clamp(40px,4.6vw,64px));
+            font-size: var(--fs-h1, clamp(36px,4.2vw,56px));
             color: var(--ink);
             font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 32px;
+            line-height: 1.15;
+            margin-bottom: 28px;
         }
-        .about-cred-strip {
+        .about-intro__cred {
             display: flex;
             flex-direction: column;
-            gap: 14px;
-            padding-top: 28px;
+            gap: 12px;
+            padding-top: 24px;
             border-top: 1px solid var(--clay);
         }
-        .about-cred-strip p {
+        .about-intro__cred p {
             font-family: var(--font-serif);
             font-size: 16px;
             color: var(--bark);
             line-height: 1.6;
             font-style: italic;
-        }
-        .about-hero__photo-img {
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: top center;
-            display: block;
-            filter: grayscale(30%) sepia(15%);
-            box-shadow: 0 4px 24px rgba(26,22,18,.12);
+            margin: 0;
         }
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 1024px) {
             h2 { font-size: 30px; }
             .about-wrap { grid-template-columns: 220px 1fr; gap: 48px; }
-            .about-hero__inner { grid-template-columns: 1fr 240px; gap: 48px; }
-            .about-hero__photo-img { width: 220px; height: 220px; }
-        }
-
-        @media (max-width: 768px) {
-            .about-hero { padding: 80px 0 36px; }
-            .about-hero__inner { grid-template-columns: 1fr; gap: 32px; }
-            .about-hero__photo-img { width: 160px; height: 160px; margin: 0 auto; }
+            .about-intro__h1 { font-size: clamp(30px, 3.6vw, 44px); }
         }
 
         @media (max-width: 768px) {
@@ -571,6 +548,11 @@
             .about-sidebar__facts,
             .about-sidebar__podcast,
             .about-sidebar__divider { display: none; }
+
+            .about-intro { padding-bottom: 36px; }
+            .about-intro__h1 { font-size: clamp(28px, 7vw, 36px); }
+            .about-intro__cred { gap: 10px; padding-top: 20px; }
+            .about-intro__cred p { font-size: 15px; }
 
             .education-grid { grid-template-columns: 1fr; }
             .beyond-grid { grid-template-columns: 1fr; }
@@ -660,26 +642,6 @@
         <a href="./index.html#contact-form" class="btn btn--primary" onclick="this.parentElement.classList.remove('open')">Let's Talk</a>
     </div>
 
-    <!-- ==================== HERO ==================== -->
-    <section class="about-hero">
-        <div class="container">
-            <div class="about-hero__inner">
-                <div class="about-hero__text">
-                    <span class="about-hero__kicker">About Rohit Kumar Maskara</span>
-                    <h1 class="about-hero__h1">AI Strategist and Systems Architect</h1>
-                    <div class="about-cred-strip">
-                        <p>A decade inside Meta running operations, strategy, product, and customer experience.</p>
-                        <p>Advising Fortune 500 companies on risk management and process optimization at KPMG.</p>
-                        <p>A career that began on a manufacturing shop floor, running hands-on operations, not preparing slide decks.</p>
-                    </div>
-                </div>
-                <div class="about-hero__photo-wrap">
-                    <img src="./founder-photo.jpg" alt="Rohit Kumar Maskara" class="about-hero__photo-img">
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ==================== TWO-COL LAYOUT ==================== -->
     <div class="about-wrap">
 
@@ -730,8 +692,19 @@
         <!-- SCROLLABLE CONTENT -->
         <main class="about-main">
 
+            <!-- HERO TEXT (top of scroll) -->
+            <div class="about-intro">
+                <span class="about-intro__kicker">About Rohit Kumar Maskara</span>
+                <h1 class="about-intro__h1">AI Strategist and Systems Architect</h1>
+                <div class="about-intro__cred">
+                    <p>A decade inside Meta running operations, strategy, product, and customer experience.</p>
+                    <p>Advising Fortune 500 companies on risk management and process optimization at KPMG.</p>
+                    <p>A career that began on a manufacturing shop floor, running hands-on operations, not preparing slide decks.</p>
+                </div>
+            </div>
+
             <!-- BIO -->
-            <div class="about-bio">
+            <div class="about-bio about-section">
                 <span class="label label--accent reveal">Background</span>
                 <p class="reveal">
                     I started on a factory floor at Vedanta Aluminium in Jharsuguda, Odisha — managing production shifts, leading a team of 15, and reducing scrap generation by 44% through process re-engineering. From there, nearly three years at KPMG India running operational risk and process improvement engagements for Fortune 500 clients across manufacturing, cement, and natural resources. Specific results: logistics costs down INR 2.4 crore for one client, a procurement cycle shortened by 10 days for another, lead consultant on five consecutive projects at a single client.
