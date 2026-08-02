@@ -19,6 +19,42 @@ Core position: AI tools are easy to buy. Knowing which ones a business needs —
 - [How Much Does AI Implementation Cost?](https://www.yugam.io/resources/article-2026-07-05-what-ai-implementation-costs.html): $25K–150K year one for mid-market; the four cost layers and the three patterns that blow up budgets
 - [FAQ](https://www.yugam.io/faq.html): Direct answers on AI readiness, costs, timelines, failure causes, tool selection, adoption, and how a Yugam engagement works
 
+## Workflow automation guides
+
+- [What Is AI Workflow Automation?](https://www.yugam.io/resources/article-2026-06-02-what-is-ai-workflow-automation.html): Plain-language guide for executives — what it is, what it does and doesn't do, and the right build sequence
+- [The One Workflow Your Team Should Automate First](https://www.yugam.io/resources/article-2026-06-04-first-workflow-to-automate.html): Lead follow-up costs the most hours and loses the most revenue — and it's the easiest to automate well
+- [What Is a Workflow Audit?](https://www.yugam.io/resources/article-2026-06-06-what-is-workflow-audit.html): How to map every step in a process before automating anything — skip it and you automate a process you never understood
+- [7 Repetitive Workflows Every Service Business Should Automate](https://www.yugam.io/resources/article-2026-06-09-seven-workflows-to-automate.html): Time cost, automation approach, and where to start for the seven biggest time drains
+- [How to Automate Business Reporting with AI](https://www.yugam.io/resources/article-2026-06-11-automate-business-reporting.html): Four steps to recover 15–20 hours a month on reporting across a five-person team
+- [10 AI Automation Ideas for Consulting Firms](https://www.yugam.io/resources/article-2026-06-13-ai-automation-consulting-firms.html): Ten specific workflows where consulting firms lose hours to manual repetition
+- [How to Build an AI-Powered Lead Follow-Up System](https://www.yugam.io/resources/article-2026-06-16-ai-lead-follow-up.html): Six steps to build an automated lead sequence without writing code
+- [AI Scheduling Automation for Service Businesses](https://www.yugam.io/resources/article-2026-06-18-ai-scheduling-automation.html): Recover 8–12 hours a month by automating the five scheduling steps that require zero judgment
+- [How to Automate Internal Operations](https://www.yugam.io/resources/article-2026-06-20-automate-internal-operations.html): Four workflows worth automating first on teams of 10–30 people
+- [AI-Powered Client Onboarding](https://www.yugam.io/resources/article-2026-06-23-ai-client-onboarding.html): Save 5+ hours per new client by mapping and automating predictable onboarding steps
+- [How to Automate Customer Support Workflows](https://www.yugam.io/resources/article-2026-06-25-automate-customer-support.html): Automate triage, status updates, and follow-ups — keep humans on the conversations that need judgment
+- [AI Workflow Automation: The Complete Guide](https://www.yugam.io/resources/article-2026-06-30-complete-automation-guide.html): Strategic framework for service businesses — which workflows to target, how to build them, and common mistakes
+
+## AI strategy and ROI
+
+- [How to Measure the ROI of AI Workflow Automation](https://www.yugam.io/resources/article-2026-07-02-measure-automation-roi.html): Payback periods, which metrics matter, and when the data says to scale
+- [AI Automation vs Hiring](https://www.yugam.io/resources/article-2026-07-04-automation-vs-hiring.html): Framework for deciding when to automate and when to hire based on what the work requires
+- [Build vs Buy: The AI Automation Decision Framework](https://www.yugam.io/resources/article-2026-07-21-build-vs-buy-automation.html): Decision framework based on workflow specificity, volume, and team capability
+
+## Tool evaluation
+
+- [2026 Guide to Workflow Automation Tools](https://www.yugam.io/resources/article-2026-07-07-workflow-automation-tools-guide.html): Honest evaluation of self-serve platforms, managed services, and custom builds
+- [Zapier vs Make: Choosing the Right Platform](https://www.yugam.io/resources/article-2026-07-09-zapier-vs-make.html): Advisory comparison of Zapier, Make, and n8n — which to start with, and when to skip platforms entirely
+- [When to Move Beyond Zapier and Make](https://www.yugam.io/resources/article-2026-07-11-beyond-zapier-make.html): Signals that tell you off-the-shelf automation tools are no longer enough
+- [What a Good AI Automation Partner Looks Like](https://www.yugam.io/resources/article-2026-07-14-choosing-ai-automation-partner.html): Advisor's checklist for evaluating the 12,000+ automation agencies competing for your attention
+- [How to Evaluate AI Automation Vendors](https://www.yugam.io/resources/article-2026-07-16-evaluate-automation-vendors.html): Structured scoring framework across six dimensions with pilot testing protocol
+- [Five Questions to Ask Any AI Automation Partner](https://www.yugam.io/resources/article-2026-07-18-questions-for-automation-partner.html): Five questions that separate credible partners from noise — ask before you sign
+
+## Case studies
+
+- [Consulting Firm Saved 12 Hours/Week on Reporting](https://www.yugam.io/resources/article-2026-07-23-consulting-reporting-case.html): Workflow audit and targeted automation recovered 12 hours weekly in three weeks
+- [Marketing Agency Grew Response Rates by 40%](https://www.yugam.io/resources/article-2026-07-28-agency-lead-automation-case.html): Automated lead follow-up cut response time from hours to minutes
+- [Agency Cut Onboarding Admin Time by 60%](https://www.yugam.io/resources/article-2026-07-30-agency-onboarding-case.html): Three automations reduced 6+ hour onboarding process to under 2.5 hours
+
 ## Free diagnostic tools
 
 - [AI Transformation Index](https://www.yugam.io/ai-transformation-index/): 10-minute diagnostic — AI readiness score, leadership archetype, top 3 use cases

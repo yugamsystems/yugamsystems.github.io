@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles & Insights — Yugam AI Transformation</title>
+    <meta name="description" content="Practical guides on AI workflow automation, tool evaluation, ROI measurement, and organizational readiness. Written by Rohit Kumar Maskara from a decade of operations experience at Meta and KPMG.">
+    <link rel="canonical" href="https://www.yugam.io/articles.html">
+    <meta property="og:title" content="Articles & Insights — Yugam AI Transformation">
+    <meta property="og:description" content="Practical guides on AI workflow automation, tool evaluation, ROI measurement, and organizational readiness.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.yugam.io/articles.html">
+    <meta property="og:image" content="https://www.yugam.io/founder-photo.jpg">
+    <meta property="og:site_name" content="Yugam">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 960px; margin: 0 auto; padding: 0 32px; }
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header__logo-text { font-family: var(--font-serif); font-size: 20px; color: var(--ink); }
+        .header__back { font-size: 14px; color: var(--drift); text-decoration: none; transition: color 300ms ease; }
+        .header__back:hover { color: var(--teak); }
+
+        .page-header {
+            padding: 80px 0 48px;
+            border-bottom: 1px solid var(--clay);
+        }
+        .page-header__tag {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 16px; display: block;
+        }
+        .page-header h1 { font-size: 36px; line-height: 1.2; margin-bottom: 12px; }
+        .page-header p { font-size: 17px; color: var(--bark); max-width: 640px; }
+
+        .section-label {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 24px; display: block;
+            padding-top: 48px;
+        }
+        .section-label:first-of-type { padding-top: 40px; }
+
+        .articles-list { padding-bottom: 80px; }
+
+        .article-item {
+            display: block;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--clay);
+            text-decoration: none;
+            transition: background 200ms ease;
+        }
+        .article-item:hover { background: var(--stone-light); margin: 0 -16px; padding: 24px 16px; border-radius: 6px; }
+        .article-item__meta {
+            font-family: var(--font-mono); font-size: 12px;
+            color: var(--drift); margin-bottom: 6px;
+            display: flex; gap: 16px;
+        }
+        .article-item__tag { color: var(--teak); }
+        .article-item__title {
+            font-family: var(--font-serif); font-size: 20px;
+            color: var(--ink); margin-bottom: 6px; line-height: 1.3;
+        }
+        .article-item__excerpt { font-size: 15px; color: var(--bark); line-height: 1.6; }
+
+        .footer { padding: 40px 0; border-top: 1px solid var(--clay); text-align: center; }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 28px; }
+            .container { padding: 0 20px; }
+            .page-header { padding: 60px 0 32px; }
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Articles & Insights — Yugam",
+  "description": "Practical guides on AI workflow automation, tool evaluation, ROI measurement, and organizational readiness.",
+  "url": "https://www.yugam.io/articles.html",
+  "author": { "@id": "https://www.yugam.io/#rohit" },
+  "publisher": { "@id": "https://www.yugam.io/#organization" },
+  "isPartOf": { "@id": "https://www.yugam.io/#website" },
+  "inLanguage": "en"
+}
+</script>
+<link rel="stylesheet" href="assets/css/enhance.css">
+<link rel="stylesheet" href="assets/css/design-v2.css?v=2">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="index.html" class="header__back">← Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="page-header">
+            <span class="page-header__tag">Articles & Insights</span>
+            <h1>Perspectives shaped on shop floors, in boardrooms, and inside one of the world's largest tech companies.</h1>
+            <p>Practical writing on AI workflow automation, tool evaluation, and organizational readiness — by Rohit Kumar Maskara.</p>
+        </section>
+
+        <div class="articles-list">
+
+            <span class="section-label">Case Studies</span>
+
+            <a href="resources/article-2026-07-30-agency-onboarding-case.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Case Study</span><span>July 2026</span></div>
+                <div class="article-item__title">How an Agency Cut Client Onboarding Admin Time by 60%</div>
+                <div class="article-item__excerpt">Three automations reduced a 6+ hour onboarding process to under 2.5 hours.</div>
+            </a>
+
+            <a href="resources/article-2026-07-28-agency-lead-automation-case.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Case Study</span><span>July 2026</span></div>
+                <div class="article-item__title">How a Marketing Agency Grew Response Rates by 40%</div>
+                <div class="article-item__excerpt">Automated lead follow-up cut response time from hours to minutes.</div>
+            </a>
+
+            <a href="resources/article-2026-07-23-consulting-reporting-case.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Case Study</span><span>July 2026</span></div>
+                <div class="article-item__title">How a Consulting Firm Saved 12 Hours Per Week on Reporting</div>
+                <div class="article-item__excerpt">A workflow audit and targeted automation recovered 12 hours weekly in three weeks.</div>
+            </a>
+
+            <span class="section-label">Tool Evaluation</span>
+
+            <a href="resources/article-2026-07-21-build-vs-buy-automation.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">AI Strategy</span><span>July 2026</span></div>
+                <div class="article-item__title">Build vs Buy: The AI Automation Decision Framework</div>
+                <div class="article-item__excerpt">When should you build custom automation vs buying a platform? A decision framework based on workflow specificity, volume, and team capability.</div>
+            </a>
+
+            <a href="resources/article-2026-07-18-questions-for-automation-partner.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Tool Evaluation</span><span>July 2026</span></div>
+                <div class="article-item__title">Five Questions to Ask Any AI Automation Partner Before Signing</div>
+                <div class="article-item__excerpt">Five questions that separate credible automation partners from the noise.</div>
+            </a>
+
+            <a href="resources/article-2026-07-16-evaluate-automation-vendors.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Tool Evaluation</span><span>July 2026</span></div>
+                <div class="article-item__title">How to Evaluate AI Automation Vendors: An Advisor's Framework</div>
+                <div class="article-item__excerpt">Structured scoring framework across six dimensions with a pilot testing protocol.</div>
+            </a>
+
+            <a href="resources/article-2026-07-14-choosing-ai-automation-partner.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Tool Evaluation</span><span>July 2026</span></div>
+                <div class="article-item__title">What a Good AI Automation Partner Looks Like</div>
+                <div class="article-item__excerpt">An advisor's checklist for evaluating the 12,000+ automation agencies competing for your attention.</div>
+            </a>
+
+            <a href="resources/article-2026-07-11-beyond-zapier-make.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Tool Evaluation</span><span>July 2026</span></div>
+                <div class="article-item__title">When to Move Beyond Zapier and Make</div>
+                <div class="article-item__excerpt">Signals that tell you off-the-shelf automation tools are no longer enough.</div>
+            </a>
+
+            <a href="resources/article-2026-07-09-zapier-vs-make.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Tool Evaluation</span><span>July 2026</span></div>
+                <div class="article-item__title">Zapier vs Make: Choosing the Right Automation Platform</div>
+                <div class="article-item__excerpt">Advisory comparison of Zapier, Make, and n8n — what I tell clients who ask which to start with.</div>
+            </a>
+
+            <a href="resources/article-2026-07-07-workflow-automation-tools-guide.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Tool Evaluation</span><span>July 2026</span></div>
+                <div class="article-item__title">The 2026 Guide to Workflow Automation Tools for Service Businesses</div>
+                <div class="article-item__excerpt">Honest evaluation of self-serve platforms, managed services, and custom builds.</div>
+            </a>
+
+            <span class="section-label">AI Strategy & ROI</span>
+
+            <a href="resources/article-2026-07-05-how-to-spot-ai-opportunities.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Framework</span><span>July 2026</span></div>
+                <div class="article-item__title">How to Spot AI Opportunities in Your Business</div>
+                <div class="article-item__excerpt">Four tests — volume, repeatability, data, cost of error — for finding the processes where AI creates value.</div>
+            </a>
+
+            <a href="resources/article-2026-07-05-what-ai-implementation-costs.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">AI Strategy</span><span>July 2026</span></div>
+                <div class="article-item__title">How Much Does AI Implementation Cost? A Realistic Breakdown</div>
+                <div class="article-item__excerpt">$25K–$150K in year one for mid-market. The four cost layers and the three patterns that blow up budgets.</div>
+            </a>
+
+            <a href="resources/article-2026-07-04-automation-vs-hiring.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">AI Strategy</span><span>July 2026</span></div>
+                <div class="article-item__title">AI Automation vs Hiring: Which Is the Smarter Investment?</div>
+                <div class="article-item__excerpt">A framework for deciding when to automate and when to hire — based on what the work requires.</div>
+            </a>
+
+            <a href="resources/article-2026-07-02-measure-automation-roi.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">AI Strategy</span><span>July 2026</span></div>
+                <div class="article-item__title">How to Measure the ROI of AI Workflow Automation</div>
+                <div class="article-item__excerpt">Payback periods, which metrics matter, and when the data says to scale.</div>
+            </a>
+
+            <a href="resources/article-2026-06-27-why-95-percent-fail.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Organisational Readiness</span><span>June 2026</span></div>
+                <div class="article-item__title">Why 95% of AI Projects Fail to Generate ROI</div>
+                <div class="article-item__excerpt">Three root causes from Deloitte, BCG, HBR, and the World Economic Forum. They all point to organizational readiness, not technology.</div>
+            </a>
+
+            <span class="section-label">Workflow Automation Guides</span>
+
+            <a href="resources/article-2026-06-30-complete-automation-guide.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Implementation</span><span>June 2026</span></div>
+                <div class="article-item__title">AI Workflow Automation for Service Businesses: The Complete Guide</div>
+                <div class="article-item__excerpt">Which workflows to target first, how to build them, and the mistakes that waste the investment.</div>
+            </a>
+
+            <a href="resources/article-2026-06-25-automate-customer-support.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Workflow Automation</span><span>June 2026</span></div>
+                <div class="article-item__title">How to Automate Customer Support Workflows Without Losing the Human Touch</div>
+                <div class="article-item__excerpt">Automate triage, status updates, and follow-ups. Keep humans on the conversations that need judgment.</div>
+            </a>
+
+            <a href="resources/article-2026-06-23-ai-client-onboarding.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Implementation</span><span>June 2026</span></div>
+                <div class="article-item__title">AI-Powered Client Onboarding: Save 5+ Hours Per New Client</div>
+                <div class="article-item__excerpt">Map and automate predictable onboarding steps to recover 4–6 hours per new client.</div>
+            </a>
+
+            <a href="resources/article-2026-06-20-automate-internal-operations.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Implementation</span><span>June 2026</span></div>
+                <div class="article-item__title">How to Automate Internal Operations for Small Service Teams</div>
+                <div class="article-item__excerpt">Four workflows worth automating first on teams of 10–30 people.</div>
+            </a>
+
+            <a href="resources/article-2026-06-18-ai-scheduling-automation.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Workflow Automation</span><span>June 2026</span></div>
+                <div class="article-item__title">AI Scheduling Automation: Stop Playing Calendar Tetris</div>
+                <div class="article-item__excerpt">Recover 8–12 hours a month by automating the five scheduling steps that require zero judgment.</div>
+            </a>
+
+            <a href="resources/article-2026-06-16-ai-lead-follow-up.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Implementation</span><span>June 2026</span></div>
+                <div class="article-item__title">How to Build an AI-Powered Lead Follow-Up System Without Writing Code</div>
+                <div class="article-item__excerpt">Six steps to build an automated lead sequence using tools you already pay for.</div>
+            </a>
+
+            <a href="resources/article-2026-06-13-ai-automation-consulting-firms.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Implementation</span><span>June 2026</span></div>
+                <div class="article-item__title">10 AI Automation Ideas for Consulting Firms</div>
+                <div class="article-item__excerpt">Ten specific workflows where consulting firms lose hours to manual repetition.</div>
+            </a>
+
+            <a href="resources/article-2026-06-11-automate-business-reporting.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Implementation</span><span>June 2026</span></div>
+                <div class="article-item__title">How to Automate Business Reporting with AI: Save 3–5 Hours Every Week</div>
+                <div class="article-item__excerpt">Four steps to recover 15–20 hours a month on reporting across a five-person team.</div>
+            </a>
+
+            <a href="resources/article-2026-06-09-seven-workflows-to-automate.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Workflow Automation</span><span>June 2026</span></div>
+                <div class="article-item__title">7 Repetitive Workflows Every Service Business Should Automate</div>
+                <div class="article-item__excerpt">Time cost, automation approach, and where to start for the seven biggest time drains.</div>
+            </a>
+
+            <a href="resources/article-2026-06-06-what-is-workflow-audit.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">AI Strategy</span><span>June 2026</span></div>
+                <div class="article-item__title">What Is a Workflow Audit? How to Map Manual Effort Before Automating</div>
+                <div class="article-item__excerpt">Map every step before automating anything. Skip it and you automate a process you never understood.</div>
+            </a>
+
+            <a href="resources/article-2026-06-04-first-workflow-to-automate.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">Workflow Automation</span><span>June 2026</span></div>
+                <div class="article-item__title">The One Workflow Your Team Should Automate First</div>
+                <div class="article-item__excerpt">Lead follow-up costs the most hours and loses the most revenue. It's also the easiest to automate well.</div>
+            </a>
+
+            <a href="resources/article-2026-06-02-what-is-ai-workflow-automation.html" class="article-item">
+                <div class="article-item__meta"><span class="article-item__tag">AI Strategy</span><span>June 2026</span></div>
+                <div class="article-item__title">What Is AI Workflow Automation? A Plain-Language Guide for Executives</div>
+                <div class="article-item__excerpt">What it is, what it does and doesn't do, and the right build sequence before buying anything.</div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Yugam Systems Pte Ltd (Singapore)</p>
+        </div>
+    </footer>
+
+</body>
+</html>
