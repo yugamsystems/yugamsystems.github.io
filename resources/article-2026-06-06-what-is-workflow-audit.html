@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is a Workflow Audit? How to Map Manual Effort Before Automating — Yugam</title>
+    <meta name="description" content="A workflow audit maps every step in a process before you automate anything. Skip it and you automate a process you never understood. Here is how to do one properly.">
+    <link rel="canonical" href="https://www.yugam.io/resources/article-2026-06-06-what-is-workflow-audit.html">
+    <meta property="og:title" content="What Is a Workflow Audit? How to Map Manual Effort Before Automating — Yugam">
+    <meta property="og:description" content="A workflow audit maps every step in a process before you automate anything. Skip it and you automate a process you never understood. Here is how to do one properly.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.yugam.io/resources/article-2026-06-06-what-is-workflow-audit.html">
+    <meta property="og:image" content="https://www.yugam.io/founder-photo.jpg">
+    <meta property="og:site_name" content="Yugam">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header__logo-text { font-family: var(--font-serif); font-size: 20px; color: var(--ink); }
+        .header__back { font-size: 14px; color: var(--drift); text-decoration: none; transition: color 300ms ease; }
+        .header__back:hover { color: var(--teak); }
+
+        .article-header {
+            padding: 80px 0 48px;
+            border-bottom: 1px solid var(--clay);
+        }
+        .article-header__tag {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 16px; display: block;
+        }
+        .article-header h1 {
+            font-size: 36px; line-height: 1.2; margin-bottom: 16px;
+        }
+        .article-header__meta {
+            font-size: 14px; color: var(--drift);
+        }
+        .article-header__meta a { color: var(--teak); text-decoration: none; }
+
+        .article {
+            padding: 48px 0 80px;
+        }
+        .article p {
+            margin-bottom: 24px;
+            color: var(--bark);
+        }
+        .article h2 {
+            font-size: 26px; margin-top: 48px; margin-bottom: 16px;
+        }
+        .article strong { color: var(--charcoal); }
+
+        .article__callout {
+            background: var(--sand); border-left: 3px solid var(--teak);
+            border-radius: 0 8px 8px 0; padding: 24px 28px;
+            margin: 32px 0; font-size: 15px; line-height: 1.7;
+        }
+        .article__callout strong { display: block; margin-bottom: 8px; color: var(--ink); }
+
+        .article__stat {
+            font-family: var(--font-mono); font-size: 14px;
+            color: var(--drift); margin-bottom: 24px;
+        }
+
+        .article__tools {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 32px; margin: 40px 0;
+        }
+        .article__tools p { margin-bottom: 16px; font-style: italic; color: var(--bark); }
+        .article__tools ul { list-style: none; margin-bottom: 16px; }
+        .article__tools li {
+            padding: 8px 0 8px 16px; position: relative; font-size: 15px;
+        }
+        .article__tools li::before {
+            content: ''; position: absolute; left: 0; top: 16px;
+            width: 4px; height: 4px; border-radius: 50%; background: var(--teak);
+        }
+        .article__tools li a { color: var(--teak); text-decoration: none; font-weight: 500; }
+        .article__tools li a:hover { color: var(--teak-hover); }
+        .article__tools .note { font-size: 13px; color: var(--drift); font-style: normal; }
+
+        .article__sources {
+            border-top: 1px solid var(--clay); padding-top: 24px; margin-top: 48px;
+            font-size: 13px; color: var(--drift);
+        }
+        .article__sources a { color: var(--drift); text-decoration: underline; }
+        .article__sources a:hover { color: var(--teak); }
+
+        .article__cta {
+            text-align: center; padding: 48px 0;
+        }
+        .article__cta p { color: var(--bark); margin-bottom: 16px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 6px; font-family: var(--font-sans);
+            font-size: 15px; font-weight: 500; text-decoration: none;
+            transition: all 300ms ease; background: var(--teak); color: var(--stone);
+        }
+        .btn:hover { background: var(--teak-hover); }
+
+        .footer { padding: 40px 0; border-top: 1px solid var(--clay); text-align: center; }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 28px; }
+            .article h2 { font-size: 22px; }
+            .container { padding: 0 20px; }
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is a Workflow Audit? How to Map Manual Effort Before Automating",
+  "description": "A workflow audit maps every step in a process before you automate anything. Skip it and you automate a process you never understood. Here is how to do one properly.",
+  "author": {
+    "@id": "https://www.yugam.io/#rohit"
+  },
+  "publisher": {
+    "@id": "https://www.yugam.io/#organization"
+  },
+  "datePublished": "2026-06-06",
+  "dateModified": "2026-06-09",
+  "mainEntityOfPage": "https://www.yugam.io/resources/article-2026-06-06-what-is-workflow-audit.html",
+  "url": "https://www.yugam.io/resources/article-2026-06-06-what-is-workflow-audit.html"
+}
+</script>
+<link rel="stylesheet" href="../assets/css/enhance.css">
+<link rel="stylesheet" href="../assets/css/design-v2.css?v=2">
+<script defer src="../assets/js/enhance.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="../index.html#insights" class="header__back">&larr; Back to Insights</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="article-header">
+            <span class="article-header__tag">AI Strategy</span>
+            <h1>What Is a Workflow Audit? How to Map Manual Effort Before Automating</h1>
+            <div class="article-header__meta">By <a href="../index.html">Rohit Kumar Maskara</a> &middot; June 2026</div>
+        </section>
+
+        <article class="article">
+
+            <p>A workflow audit is a structured, step-by-step review of how a specific process runs today — in the real world, not on a process document nobody follows.</p>
+
+            <p>It answers four questions: What tasks does a person complete manually, and how often? How long does each task take? Where do handoffs, delays, or errors happen? Which steps are genuinely repetitive and rule-based?</p>
+
+            <p>The output is a map. That map is what separates automation that saves time from automation that moves the same broken process into a different tool.</p>
+
+            <h2>Why the audit comes before the build</h2>
+
+            <p>I spent my first years on a manufacturing shop floor at Vedanta Aluminium. Before you automate a production station, you map every step: inputs, outputs, handoffs, exceptions, judgment calls. Skip the mapping and the automated station produces defects. The principle transfers directly to office workflows.</p>
+
+            <p>The pattern I see in advisory work is consistent. A team picks a tool, watches a tutorial, and starts connecting applications. Two weeks later the automation runs — but it does not match how the team works. Fields are wrong. Edge cases break it. Someone still manually cleans up the output. The automation created work instead of removing it.</p>
+
+            <p>When you map the manual effort first, you know exactly which steps are worth automating, which ones have exceptions that need human judgment, and which ones can be eliminated entirely. That clarity is what the audit produces.</p>
+
+            <div class="article__callout">
+                <strong>The cost of skipping this step:</strong>
+                An automation built on assumptions takes 2-3 weeks to build and 2-3 months to debug. An automation built on a mapped workflow takes 2-4 weeks to build and works on deployment. The audit itself takes 2-5 days. The math is clear.
+            </div>
+
+            <h2>What gets mapped</h2>
+
+            <p>A useful workflow audit focuses on one process at a time. Trying to map everything at once produces a document nobody acts on.</p>
+
+            <p><strong>Trigger and entry point.</strong> Where does the workflow start? A lead submitting a form, a client signing a contract, a manager requesting a report. The trigger defines the scope.</p>
+
+            <p><strong>Manual steps and owners.</strong> Every step a person completes by hand — who does it, how long it takes, how often. This is where the real time cost becomes visible.</p>
+
+            <p><strong>Tools involved.</strong> Which platforms does the workflow touch? HubSpot, Notion, Airtable, Slack, a spreadsheet, an inbox. Each tool handoff is a potential failure point and a potential automation connection.</p>
+
+            <p><strong>Decision points and exceptions.</strong> Where does someone make a judgment call? These steps often should not be automated. Identifying them early prevents over-engineering.</p>
+
+            <p><strong>Output and downstream impact.</strong> What does the workflow produce? A follow-up sent, a client record updated, a report delivered. The output defines what success looks like after automation.</p>
+
+            <h2>A concrete example: lead follow-up</h2>
+
+            <p>A consulting firm receives 30-40 inbound leads per week. Each lead requires a follow-up email within 24 hours, a record created in HubSpot, and a Slack notification to the account manager.</p>
+
+            <p>Before the audit, this takes roughly 45 minutes per day. One person handles it, usually at the end of the day — which means afternoon leads sometimes wait until the next morning.</p>
+
+            <p>The audit maps it like this:</p>
+
+            <p><strong>Check form submissions</strong> — SDR, 5 min, 3x daily<br>
+            <strong>Write and send follow-up email</strong> — SDR, 8 min per lead<br>
+            <strong>Create HubSpot contact record</strong> — SDR, 4 min per lead<br>
+            <strong>Notify account manager in Slack</strong> — SDR, 2 min per lead</p>
+
+            <p class="article__stat">Total manual time: 42 minutes per day, 3.5 hours per week.</p>
+
+            <p>Every step is rule-based. No judgment required. The audit makes that visible. Automating this sequence — creating the record, sending a templated follow-up, posting the Slack notification — recovers those 3.5 hours per week reliably.</p>
+
+            <p>Without the audit, someone would have estimated "about an hour a week" and treated it as low priority. The actual number — 3.5 hours, or 182 hours per year — makes the automation decision straightforward.</p>
+
+            <h2>Workflow audit vs. AI readiness assessment</h2>
+
+            <p>These are different things. An AI readiness assessment tells you whether your organisation is theoretically prepared for automation. It is advisory. It produces a report and recommendations.</p>
+
+            <p>A workflow audit is operational. It produces a map of a specific process, with specific time costs attached to specific steps. The output is immediately actionable.</p>
+
+            <p>Both have a place. But if you run a team of 10-50 people and need one broken workflow fixed, you need the audit. The readiness assessment is useful when you are planning a broader transformation across multiple departments.</p>
+
+            <h2>How to run a basic audit yourself</h2>
+
+            <p>You do not need to hire anyone to do a first-pass audit. Here is the framework:</p>
+
+            <p><strong>1. Pick one workflow.</strong> Choose the one your team complains about, or the one you know costs the most hours per week.</p>
+
+            <p><strong>2. Write down every step.</strong> Not how the process should work — how it works today. Sit with the person who does it. Watch them do it once. Write down every click, every copy-paste, every context switch.</p>
+
+            <p><strong>3. Assign a time estimate to each step.</strong> Even rough estimates reveal the real cost. A task someone calls "five minutes" often takes 12 when you time it.</p>
+
+            <p><strong>4. Mark which steps are rule-based.</strong> If a step follows the same logic every time, it is a candidate for automation.</p>
+
+            <p><strong>5. Mark which steps require judgment.</strong> These stay manual. They get a human-in-the-loop design, not an automated one.</p>
+
+            <p><strong>6. Add up the time.</strong> Weekly hours lost to this one workflow is your baseline. Multiply by 50 weeks for the annual cost.</p>
+
+            <div class="article__callout">
+                <strong>What teams consistently find:</strong>
+                One workflow costs 5-15 hours per week. At a fully loaded cost of $50-$75/hour, that is $13,000-$58,000 per year on a single process that could be 70-80% automated. The audit makes that number impossible to ignore.
+            </div>
+
+            <h2>Where outside help adds value</h2>
+
+            <p>The DIY framework handles straightforward workflows well. Where an experienced advisor adds value is in three areas:</p>
+
+            <p><strong>Spotting hidden complexity.</strong> A step that looks simple ("check the inbox") may involve three sub-decisions the person makes unconsciously. An outside observer catches those because they do not share the same muscle memory.</p>
+
+            <p><strong>Designing around exceptions.</strong> Every workflow has edge cases. The 80% path is easy to automate. The 20% — unusual inputs, missing data, escalation conditions — is where automations break. An experienced designer plans for those during the audit, not after the build.</p>
+
+            <p><strong>Post-automation tracking.</strong> Knowing the automation saved 14 hours last month is what makes the ROI conversation concrete. Setting up that tracking at audit time, rather than retrofitting it later, costs almost nothing and changes every subsequent resource conversation.</p>
+
+            <div class="article__tools">
+                <p>Two tools that complement a workflow audit:</p>
+                <ul>
+                    <li><a href="complexity-score.html">Implementation Complexity Score</a> — estimates how difficult a given automation would be to build</li>
+                    <li><a href="data-readiness.html">Data Readiness Scan</a> — checks whether your data infrastructure can support the automation you are planning</li>
+                </ul>
+                <div class="note">Each takes about 4 minutes. Free, AI-powered, no email required.</div>
+            </div>
+
+        </article>
+
+        <div class="article__cta">
+            <p>Want help mapping a workflow and assessing whether it is ready for automation?</p>
+            <a href="../index.html#contact-form" class="btn">Let's Talk &rarr;</a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Yugam Systems Pte Ltd (Singapore)</p>
+        </div>
+    </footer>
+
+</body>
+</html>

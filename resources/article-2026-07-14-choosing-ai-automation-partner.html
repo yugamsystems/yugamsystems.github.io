@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What a Good AI Automation Partner Looks Like — Yugam</title>
+    <meta name="description" content="The automation agency market has exploded to 12,000 providers. Here is an advisor's checklist for separating the credible ones from the noise.">
+    <link rel="canonical" href="https://www.yugam.io/resources/article-2026-07-14-choosing-ai-automation-partner.html">
+    <meta property="og:title" content="What a Good AI Automation Partner Looks Like — Yugam">
+    <meta property="og:description" content="The automation agency market has exploded to 12,000 providers. Here is an advisor's checklist for separating the credible ones from the noise.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.yugam.io/resources/article-2026-07-14-choosing-ai-automation-partner.html">
+    <meta property="og:image" content="https://www.yugam.io/founder-photo.jpg">
+    <meta property="og:site_name" content="Yugam">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header__logo-text { font-family: var(--font-serif); font-size: 20px; color: var(--ink); }
+        .header__back { font-size: 14px; color: var(--drift); text-decoration: none; transition: color 300ms ease; }
+        .header__back:hover { color: var(--teak); }
+
+        .article-header {
+            padding: 80px 0 48px;
+            border-bottom: 1px solid var(--clay);
+        }
+        .article-header__tag {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 16px; display: block;
+        }
+        .article-header h1 {
+            font-size: 36px; line-height: 1.2; margin-bottom: 16px;
+        }
+        .article-header__meta {
+            font-size: 14px; color: var(--drift);
+        }
+        .article-header__meta a { color: var(--teak); text-decoration: none; }
+
+        .article {
+            padding: 48px 0 80px;
+        }
+        .article p {
+            margin-bottom: 24px;
+            color: var(--bark);
+        }
+        .article h2 {
+            font-size: 26px; margin-top: 48px; margin-bottom: 16px;
+        }
+        .article strong { color: var(--charcoal); }
+
+        .article__callout {
+            background: var(--sand); border-left: 3px solid var(--teak);
+            border-radius: 0 8px 8px 0; padding: 24px 28px;
+            margin: 32px 0; font-size: 15px; line-height: 1.7;
+        }
+        .article__callout strong { display: block; margin-bottom: 8px; color: var(--ink); }
+
+        .article__stat {
+            font-family: var(--font-mono); font-size: 14px;
+            color: var(--drift); margin-bottom: 24px;
+        }
+
+        .article__tools {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 32px; margin: 40px 0;
+        }
+        .article__tools p { margin-bottom: 16px; font-style: italic; color: var(--bark); }
+        .article__tools ul { list-style: none; margin-bottom: 16px; }
+        .article__tools li {
+            padding: 8px 0 8px 16px; position: relative; font-size: 15px;
+        }
+        .article__tools li::before {
+            content: ''; position: absolute; left: 0; top: 16px;
+            width: 4px; height: 4px; border-radius: 50%; background: var(--teak);
+        }
+        .article__tools li a { color: var(--teak); text-decoration: none; font-weight: 500; }
+        .article__tools li a:hover { color: var(--teak-hover); }
+        .article__tools .note { font-size: 13px; color: var(--drift); font-style: normal; }
+
+        .article__sources {
+            border-top: 1px solid var(--clay); padding-top: 24px; margin-top: 48px;
+            font-size: 13px; color: var(--drift);
+        }
+        .article__sources a { color: var(--drift); text-decoration: underline; }
+        .article__sources a:hover { color: var(--teak); }
+
+        .article__cta {
+            text-align: center; padding: 48px 0;
+        }
+        .article__cta p { color: var(--bark); margin-bottom: 16px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 6px; font-family: var(--font-sans);
+            font-size: 15px; font-weight: 500; text-decoration: none;
+            transition: all 300ms ease; background: var(--teak); color: var(--stone);
+        }
+        .btn:hover { background: var(--teak-hover); }
+
+        .footer { padding: 40px 0; border-top: 1px solid var(--clay); text-align: center; }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 28px; }
+            .article h2 { font-size: 22px; }
+            .container { padding: 0 20px; }
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What a Good AI Automation Partner Looks Like",
+  "description": "The automation agency market has exploded to 12,000 providers. Here is an advisor's checklist for separating the credible ones from the noise.",
+  "author": {
+    "@id": "https://www.yugam.io/#rohit"
+  },
+  "publisher": {
+    "@id": "https://www.yugam.io/#organization"
+  },
+  "datePublished": "2026-07-14",
+  "dateModified": "2026-07-14",
+  "mainEntityOfPage": "https://www.yugam.io/resources/article-2026-07-14-choosing-ai-automation-partner.html",
+  "url": "https://www.yugam.io/resources/article-2026-07-14-choosing-ai-automation-partner.html"
+}
+</script>
+<link rel="stylesheet" href="../assets/css/enhance.css">
+<link rel="stylesheet" href="../assets/css/design-v2.css?v=2">
+<script defer src="../assets/js/enhance.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="../index.html#insights" class="header__back">&larr; Back to Insights</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="article-header">
+            <span class="article-header__tag">Tool Evaluation</span>
+            <h1>What a Good AI Automation Partner Looks Like</h1>
+            <div class="article-header__meta">By <a href="../index.html">Rohit Kumar Maskara</a> &middot; July 2026</div>
+        </section>
+
+        <article class="article">
+
+            <p>The AI automation agency market grew from roughly 2,000 providers in 2024 to over 12,000 in 2026. That is a 6x increase in two years. The demand is real — service businesses with 10 to 50 people are sitting on workflows that burn 10 to 20 hours per week in manual effort. The supply, however, is uneven.</p>
+
+            <p>I advise clients through this selection process regularly. About half the agencies I evaluate on their behalf fall short on at least two of the criteria below. A third of them fall short on four or more. The ones that clear every bar tend to be small, founder-led, and specific about what they do and do not take on.</p>
+
+            <p>This is the checklist I use. Eight criteria, in the order I evaluate them.</p>
+
+            <h2>1. They map your workflow before proposing a solution</h2>
+
+            <p>This is the single most reliable signal. A good partner spends the first engagement understanding how your team works today — step by step, tool by tool, exception by exception. They document the manual effort, the handoffs, and the judgment calls before they propose anything.</p>
+
+            <p>An agency that jumps to a solution in the first call has not earned the right to build anything. They are fitting your problem into a template they already have, not designing for your operation.</p>
+
+            <p>At KPMG, I worked inside governance and risk frameworks for Fortune 500 companies. The principle was the same: you do not prescribe a control until you have mapped the process it protects. The same discipline applies to automation. Map first. Build second.</p>
+
+            <div class="article__callout">
+                <strong>What to ask:</strong>
+                "Walk me through how your first two weeks with a new client look." If the answer does not include a discovery or mapping phase, you are talking to a template shop.
+            </div>
+
+            <h2>2. They start with one workflow, not a roadmap</h2>
+
+            <p>Beware the agency that wants to scope a 6-month engagement before delivering a single result. Good partners start narrow. One workflow. Measurable outcome. A before-and-after on hours spent. If that goes well, you expand. If it does not, you part ways having risked very little.</p>
+
+            <p>The single-workflow entry model also tests the agency's ability to deliver under constraint. Any firm can produce a strategy deck. Fewer can take a broken onboarding process and make it run in 3 weeks.</p>
+
+            <h2>3. They name the tools they use — and explain why</h2>
+
+            <p>The automation stack matters. A partner that builds everything on Zapier is making a different bet than one that uses n8n, Make, or custom Python scripts. None of these choices are inherently wrong, but the partner should be able to explain why they chose a specific tool for your workflow.</p>
+
+            <p>"We use Zapier because your workflow is simple, your team already has Zapier, and the integration coverage fits your tool stack" is a good answer. "We use our proprietary platform" with no further detail is a red flag.</p>
+
+            <h2>4. Their founder or lead has operational experience, not just technical skill</h2>
+
+            <p>Automation is an operations problem dressed as a technology problem. The person designing your workflow rebuild should understand how teams operate under pressure, how processes break at scale, and what happens when an automated step fails on a Friday afternoon with a client waiting.</p>
+
+            <p>Look for experience running operations, managing teams, or building systems inside organizations with real complexity. Technical skill matters, but operational judgment matters more. An engineer who has never managed a team will design a technically elegant automation that your ops manager cannot troubleshoot when it breaks.</p>
+
+            <h2>5. They measure outcomes in hours recovered, not tasks automated</h2>
+
+            <p>"We automated 47 tasks" is a vanity metric. "Your team recovered 12 hours per week and your onboarding cycle dropped from 5 days to 2" is a business outcome. Good partners frame their results in terms your CFO can understand: hours saved, cycle time reduced, error rate decreased.</p>
+
+            <p>Ask for specific numbers from past engagements. If the agency cannot point to a client where they measured the before-and-after in hours or dollars, their results tracking is not mature enough for a serious engagement.</p>
+
+            <div class="article__callout">
+                <strong>A useful benchmark:</strong>
+                For a workflow that consumes 10 or more hours per week, the market rate for an outcome-based engagement is roughly $5,000. The ROI math works if the engagement recovers those hours within 4 to 6 weeks. Ask the agency to show you that math for your specific case.
+            </div>
+
+            <h2>6. They offer post-automation monitoring</h2>
+
+            <p>The workflow goes live. Then what? Automated workflows break. APIs change. Data formats shift. Volume spikes expose edge cases that did not appear in testing. A good partner monitors the workflow after launch — not indefinitely, but for a defined period — and fixes what breaks without charging for a new engagement.</p>
+
+            <p>Ask about their support model after handoff. "We build it and hand it over" is honest, but it means you own the maintenance from day one. "We monitor for 30 days and include fixes for issues we caused" is better. "We track performance and report on hours saved monthly" is best.</p>
+
+            <h2>7. They are transparent about what they cannot do</h2>
+
+            <p>Every agency has limits. A 3-person shop cannot automate 15 workflows in parallel across 4 departments. A Zapier-native firm cannot handle workflows that require custom API integrations with legacy systems. A new agency with 6 months of history cannot point to long-term client outcomes.</p>
+
+            <p>A good partner names these limits before you discover them. They tell you what they are not equipped to handle and, ideally, where to go instead. The willingness to say "that is outside our scope" is a stronger credibility signal than a capabilities deck that claims to do everything.</p>
+
+            <h2>8. They do not require a long-term commitment before proving value</h2>
+
+            <p>Retainers and long-term contracts are appropriate after a partner has delivered a measurable result. They are not appropriate as a prerequisite to getting started. If an agency requires a 6-month retainer before they have automated a single workflow, the incentive structure is misaligned. They get paid whether they deliver or not.</p>
+
+            <p>The best model I have seen: a scoped engagement for one workflow, with a clear deliverable and timeline. If it works, the client signs a retainer for ongoing support and additional workflows. If it does not, both sides move on.</p>
+
+            <h2>Red flags to watch for</h2>
+
+            <p>Beyond the checklist, these patterns should make you pause:</p>
+
+            <p><strong>They lead with AI as a brand, not as a tool.</strong> "AI-powered" in the agency name, on every page, and in every pitch — but no specificity about which models, which APIs, or which tasks the AI performs. AI is a set of tools. A credible partner names the tools and explains what each one does in your workflow.</p>
+
+            <p><strong>Their case studies are anonymized to the point of being unverifiable.</strong> "A mid-size professional services firm saved 40% of their time." Which firm? What workflow? What does 40% mean in hours? Anonymization is sometimes necessary, but if every case study reads like a press release with the names removed, there is nothing to verify.</p>
+
+            <p><strong>They cannot explain their pricing model in one sentence.</strong> Per-workflow, per-hour, outcome-based, retainer — all of these are legitimate. "It depends" without any further structure means they are pricing based on what they think you will pay, not on a consistent model.</p>
+
+            <p><strong>They push for access to systems before scoping the work.</strong> Admin access to your CRM, your billing system, and your communication tools should come after a signed agreement and a defined scope. An agency that asks for credentials in the first meeting has a process problem.</p>
+
+            <div class="article__tools">
+                <p>Before you start evaluating partners, it helps to know where your own organization stands:</p>
+                <ul>
+                    <li><a href="complexity-score.html">Implementation Complexity Score</a> — how complex is the workflow you want automated?</li>
+                    <li><a href="team-readiness.html">Team Readiness Check</a> — will your team adopt the automated workflow?</li>
+                    <li><a href="ai-opportunity-finder.html">AI Opportunity Finder</a> — which workflows should you automate first?</li>
+                </ul>
+                <div class="note">Each takes about 4 minutes. Free, AI-powered, no email required.</div>
+            </div>
+
+        </article>
+
+        <div class="article__cta">
+            <p>Need help vetting automation partners for your business?</p>
+            <a href="../index.html#contact-form" class="btn">Let's Talk &rarr;</a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Yugam Systems Pte Ltd (Singapore)</p>
+        </div>
+    </footer>
+
+</body>
+</html>

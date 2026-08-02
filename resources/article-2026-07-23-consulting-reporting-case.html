@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How a Consulting Firm Saved 12 Hours Per Week by Automating Reporting — Yugam</title>
+    <meta name="description" content="A mid-sized consulting firm was losing 12 hours every week to manual reporting. A workflow audit and targeted automation recovered that time in three weeks.">
+    <link rel="canonical" href="https://www.yugam.io/resources/article-2026-07-23-consulting-reporting-case.html">
+    <meta property="og:title" content="How a Consulting Firm Saved 12 Hours Per Week by Automating Reporting — Yugam">
+    <meta property="og:description" content="A mid-sized consulting firm was losing 12 hours every week to manual reporting. A workflow audit and targeted automation recovered that time in three weeks.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.yugam.io/resources/article-2026-07-23-consulting-reporting-case.html">
+    <meta property="og:image" content="https://www.yugam.io/founder-photo.jpg">
+    <meta property="og:site_name" content="Yugam">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header__logo-text { font-family: var(--font-serif); font-size: 20px; color: var(--ink); }
+        .header__back { font-size: 14px; color: var(--drift); text-decoration: none; transition: color 300ms ease; }
+        .header__back:hover { color: var(--teak); }
+
+        .article-header {
+            padding: 80px 0 48px;
+            border-bottom: 1px solid var(--clay);
+        }
+        .article-header__tag {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 16px; display: block;
+        }
+        .article-header h1 {
+            font-size: 36px; line-height: 1.2; margin-bottom: 16px;
+        }
+        .article-header__meta {
+            font-size: 14px; color: var(--drift);
+        }
+        .article-header__meta a { color: var(--teak); text-decoration: none; }
+
+        .article {
+            padding: 48px 0 80px;
+        }
+        .article p {
+            margin-bottom: 24px;
+            color: var(--bark);
+        }
+        .article h2 {
+            font-size: 26px; margin-top: 48px; margin-bottom: 16px;
+        }
+        .article strong { color: var(--charcoal); }
+
+        .article__callout {
+            background: var(--sand); border-left: 3px solid var(--teak);
+            border-radius: 0 8px 8px 0; padding: 24px 28px;
+            margin: 32px 0; font-size: 15px; line-height: 1.7;
+        }
+        .article__callout strong { display: block; margin-bottom: 8px; color: var(--ink); }
+
+        .article__stat {
+            font-family: var(--font-mono); font-size: 14px;
+            color: var(--drift); margin-bottom: 24px;
+        }
+
+        .article__tools {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 32px; margin: 40px 0;
+        }
+        .article__tools p { margin-bottom: 16px; font-style: italic; color: var(--bark); }
+        .article__tools ul { list-style: none; margin-bottom: 16px; }
+        .article__tools li {
+            padding: 8px 0 8px 16px; position: relative; font-size: 15px;
+        }
+        .article__tools li::before {
+            content: ''; position: absolute; left: 0; top: 16px;
+            width: 4px; height: 4px; border-radius: 50%; background: var(--teak);
+        }
+        .article__tools li a { color: var(--teak); text-decoration: none; font-weight: 500; }
+        .article__tools li a:hover { color: var(--teak-hover); }
+        .article__tools .note { font-size: 13px; color: var(--drift); font-style: normal; }
+
+        .article__sources {
+            border-top: 1px solid var(--clay); padding-top: 24px; margin-top: 48px;
+            font-size: 13px; color: var(--drift);
+        }
+        .article__sources a { color: var(--drift); text-decoration: underline; }
+        .article__sources a:hover { color: var(--teak); }
+
+        .article__cta {
+            text-align: center; padding: 48px 0;
+        }
+        .article__cta p { color: var(--bark); margin-bottom: 16px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 6px; font-family: var(--font-sans);
+            font-size: 15px; font-weight: 500; text-decoration: none;
+            transition: all 300ms ease; background: var(--teak); color: var(--stone);
+        }
+        .btn:hover { background: var(--teak-hover); }
+
+        .footer { padding: 40px 0; border-top: 1px solid var(--clay); text-align: center; }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 28px; }
+            .article h2 { font-size: 22px; }
+            .container { padding: 0 20px; }
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How a Consulting Firm Saved 12 Hours Per Week by Automating Reporting",
+  "description": "A mid-sized consulting firm was losing 12 hours every week to manual reporting. A workflow audit and targeted automation recovered that time in three weeks.",
+  "author": {
+    "@id": "https://www.yugam.io/#rohit"
+  },
+  "publisher": {
+    "@id": "https://www.yugam.io/#organization"
+  },
+  "datePublished": "2026-07-23",
+  "dateModified": "2026-07-25",
+  "mainEntityOfPage": "https://www.yugam.io/resources/article-2026-07-23-consulting-reporting-case.html",
+  "url": "https://www.yugam.io/resources/article-2026-07-23-consulting-reporting-case.html"
+}
+</script>
+<link rel="stylesheet" href="../assets/css/enhance.css">
+<link rel="stylesheet" href="../assets/css/design-v2.css?v=2">
+<script defer src="../assets/js/enhance.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="../index.html#insights" class="header__back">&larr; Back to Insights</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="article-header">
+            <span class="article-header__tag">Case Study</span>
+            <h1>How a Consulting Firm Saved 12 Hours Per Week by Automating Reporting</h1>
+            <div class="article-header__meta">By <a href="../index.html">Rohit Kumar Maskara</a> &middot; July 2026</div>
+        </section>
+
+        <article class="article">
+
+            <p>A 14-person consulting firm came to me with an operations problem they had been tolerating for two years. Three consultants were spending a combined 12 hours every week assembling client reports. The work followed the same pattern each time — pull numbers from three tools, paste into a slide deck, format, email. No thinking required. Just time.</p>
+
+            <p>The firm's COO ran the cost calculation: 12 hours per week, at their blended consultant rate, amounted to roughly $62,000 per year spent on copy-paste work. She wanted it fixed. Here is what we found, what we built, and what the team did with the time they recovered.</p>
+
+            <h2>The workflow before automation</h2>
+
+            <p>Each Monday and Wednesday, three consultants repeated the same sequence:</p>
+
+            <p><strong>Step 1:</strong> Pull project status data from Airtable. <strong>Step 2:</strong> Pull hours logged from a separate time-tracking tool. <strong>Step 3:</strong> Pull client communication notes from HubSpot. <strong>Step 4:</strong> Combine everything into a formatted weekly report — either Google Slides or a PDF. <strong>Step 5:</strong> Email the report to the client, copy the internal project lead.</p>
+
+            <p>Five steps. None required judgment. All required time. The trigger for the engagement was a senior consultant who flagged that she was spending nearly a full day each week on reporting alone. She was right to be frustrated — that day was coming directly out of billable capacity.</p>
+
+            <h2>The workflow audit</h2>
+
+            <p>Before recommending any tool or automation, I mapped the actual process with the team. This is where advisory work earns its keep. Mapping a workflow before touching it almost always surfaces problems the team has stopped noticing.</p>
+
+            <p>In this case, four things stood out:</p>
+
+            <p><strong>Two of the three data sources had API access that had never been turned on.</strong> The Airtable and HubSpot accounts both supported direct data pulls. Nobody had configured them because nobody had mapped the reporting process end to end.</p>
+
+            <p><strong>The report format was 90% identical every week.</strong> Only the data values changed. The layout, headers, section order, and distribution list were static. A templated approach could handle this without human intervention.</p>
+
+            <p><strong>The email distribution list had not changed in eight months.</strong> It was being manually typed or copied each time.</p>
+
+            <p><strong>One consultant was manually reformatting numbers that were already formatted correctly in the source tool.</strong> This happens more often than you would expect. People inherit manual steps from whoever trained them and never question whether the step is still necessary.</p>
+
+            <div class="article__callout">
+                <strong>The mapping insight:</strong>
+                Half the manual effort in this workflow was not data gathering. It was moving data between tools that were never connected — plus formatting corrections that did not need to happen. This distinction matters because it changes the automation design entirely.
+            </div>
+
+            <h2>The redesigned workflow</h2>
+
+            <p>After mapping, the rebuild was straightforward. The automated workflow runs on a set schedule each week:</p>
+
+            <p><strong>1.</strong> Pull project status data from Airtable via API. <strong>2.</strong> Pull logged hours from the time-tracking tool. <strong>3.</strong> Pull recent client notes from HubSpot. <strong>4.</strong> Populate a pre-built report template with that week's data. <strong>5.</strong> Generate a formatted PDF. <strong>6.</strong> Send the report to the correct distribution list with a pre-written subject line.</p>
+
+            <p>The sequence runs without anyone touching it. The only human step remaining is an optional three-minute review before the email goes out. Down from three hours per report.</p>
+
+            <h2>Results</h2>
+
+            <p>The firm recovered 12 hours per week across the team. Over a month, roughly 48 hours. Over a quarter, nearly 150.</p>
+
+            <p>The senior consultant who raised the issue redirected her recovered time toward two client accounts that had been receiving less attention than they needed. Within six weeks of the automation going live, one of those accounts expanded its engagement. The reporting automation did not cause that expansion directly — but the recovered time made it possible.</p>
+
+            <p class="article__stat">12 hours/week recovered. ~$62,000/year in consultant capacity freed. Time to live: 3 weeks from audit to deployment.</p>
+
+            <p>That is the real return on automating a workflow. Not just the hours saved, but what the team does with those hours once they have them back.</p>
+
+            <h2>Why this worked in three weeks</h2>
+
+            <p>Scope control. The engagement covered one workflow. Not five. Not a "digital transformation." One workflow, mapped and rebuilt.</p>
+
+            <p>The mapping took four days. The build took about a week. Testing and handover filled the third week. Total elapsed time: 19 days from kickoff to a working system.</p>
+
+            <p>Starting with one workflow matters for a reason beyond speed. It produces a measurable result that the team can see and feel. That result builds internal confidence to tackle the next workflow — which in this case was client onboarding. Without the first win, the second conversation would not have happened.</p>
+
+            <h2>Why a Zapier sequence would not have worked here</h2>
+
+            <p>The firm had considered Zapier. The COO downloaded it, spent four hours on a Saturday trying to connect Airtable to Google Slides, and abandoned it. The automation ran for one test cycle but broke when a field name changed in Airtable.</p>
+
+            <p>Self-serve tools are useful when the workflow is simple and the person configuring them has time to maintain them. For a consulting firm where the COO is already stretched across operations, client relationships, and hiring — that time does not exist. The tool was fine. The resourcing was the problem.</p>
+
+            <p>An advisory engagement handles the mapping, the build, and the edge cases. The firm's team approves the logic and the outputs. They do not need to learn the tool or debug it when a trigger fails at 11pm on a Sunday.</p>
+
+            <div class="article__tools">
+                <p>If your team is spending hours on manual reporting, these tools can help you assess the opportunity:</p>
+                <ul>
+                    <li><a href="ai-opportunity-finder.html">AI Opportunity Finder</a> — identify which workflows are costing you the most hours</li>
+                    <li><a href="data-readiness.html">Data Readiness Scan</a> — check whether your data sources can support automation</li>
+                    <li><a href="cost-calculator.html">AI Cost Calculator</a> — estimate the ROI of automating your reporting workflow</li>
+                </ul>
+                <div class="note">Each takes about 4 minutes. Free, AI-powered, no email required.</div>
+            </div>
+
+        </article>
+
+        <div class="article__cta">
+            <p>Have a reporting workflow that is eating into your team's billable hours?</p>
+            <a href="../index.html#contact-form" class="btn">Let's Talk &rarr;</a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Yugam Systems Pte Ltd (Singapore)</p>
+        </div>
+    </footer>
+
+</body>
+</html>

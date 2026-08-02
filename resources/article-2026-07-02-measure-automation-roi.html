@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Measure the ROI of AI Workflow Automation — Yugam</title>
+    <meta name="description" content="A practical framework for measuring returns after AI automation goes live — payback periods, which metrics matter, and when the data says to scale.">
+    <link rel="canonical" href="https://www.yugam.io/resources/article-2026-07-02-measure-automation-roi.html">
+    <meta property="og:title" content="How to Measure the ROI of AI Workflow Automation — Yugam">
+    <meta property="og:description" content="A practical framework for measuring returns after AI automation goes live — payback periods, which metrics matter, and when the data says to scale.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.yugam.io/resources/article-2026-07-02-measure-automation-roi.html">
+    <meta property="og:image" content="https://www.yugam.io/founder-photo.jpg">
+    <meta property="og:site_name" content="Yugam">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header__logo-text { font-family: var(--font-serif); font-size: 20px; color: var(--ink); }
+        .header__back { font-size: 14px; color: var(--drift); text-decoration: none; transition: color 300ms ease; }
+        .header__back:hover { color: var(--teak); }
+
+        .article-header {
+            padding: 80px 0 48px;
+            border-bottom: 1px solid var(--clay);
+        }
+        .article-header__tag {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 16px; display: block;
+        }
+        .article-header h1 {
+            font-size: 36px; line-height: 1.2; margin-bottom: 16px;
+        }
+        .article-header__meta {
+            font-size: 14px; color: var(--drift);
+        }
+        .article-header__meta a { color: var(--teak); text-decoration: none; }
+
+        .article {
+            padding: 48px 0 80px;
+        }
+        .article p {
+            margin-bottom: 24px;
+            color: var(--bark);
+        }
+        .article h2 {
+            font-size: 26px; margin-top: 48px; margin-bottom: 16px;
+        }
+        .article strong { color: var(--charcoal); }
+
+        .article__callout {
+            background: var(--sand); border-left: 3px solid var(--teak);
+            border-radius: 0 8px 8px 0; padding: 24px 28px;
+            margin: 32px 0; font-size: 15px; line-height: 1.7;
+        }
+        .article__callout strong { display: block; margin-bottom: 8px; color: var(--ink); }
+
+        .article__stat {
+            font-family: var(--font-mono); font-size: 14px;
+            color: var(--drift); margin-bottom: 24px;
+        }
+
+        .article__tools {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 32px; margin: 40px 0;
+        }
+        .article__tools p { margin-bottom: 16px; font-style: italic; color: var(--bark); }
+        .article__tools ul { list-style: none; margin-bottom: 16px; }
+        .article__tools li {
+            padding: 8px 0 8px 16px; position: relative; font-size: 15px;
+        }
+        .article__tools li::before {
+            content: ''; position: absolute; left: 0; top: 16px;
+            width: 4px; height: 4px; border-radius: 50%; background: var(--teak);
+        }
+        .article__tools li a { color: var(--teak); text-decoration: none; font-weight: 500; }
+        .article__tools li a:hover { color: var(--teak-hover); }
+        .article__tools .note { font-size: 13px; color: var(--drift); font-style: normal; }
+
+        .article__sources {
+            border-top: 1px solid var(--clay); padding-top: 24px; margin-top: 48px;
+            font-size: 13px; color: var(--drift);
+        }
+        .article__sources a { color: var(--drift); text-decoration: underline; }
+        .article__sources a:hover { color: var(--teak); }
+
+        .article__cta {
+            text-align: center; padding: 48px 0;
+        }
+        .article__cta p { color: var(--bark); margin-bottom: 16px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 6px; font-family: var(--font-sans);
+            font-size: 15px; font-weight: 500; text-decoration: none;
+            transition: all 300ms ease; background: var(--teak); color: var(--stone);
+        }
+        .btn:hover { background: var(--teak-hover); }
+
+        .footer { padding: 40px 0; border-top: 1px solid var(--clay); text-align: center; }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 28px; }
+            .article h2 { font-size: 22px; }
+            .container { padding: 0 20px; }
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Measure the ROI of AI Workflow Automation",
+  "description": "A practical framework for measuring returns after AI automation goes live — payback periods, which metrics matter, and when the data says to scale.",
+  "author": {
+    "@id": "https://www.yugam.io/#rohit"
+  },
+  "publisher": {
+    "@id": "https://www.yugam.io/#organization"
+  },
+  "datePublished": "2026-07-02",
+  "dateModified": "2026-07-05",
+  "mainEntityOfPage": "https://www.yugam.io/resources/article-2026-07-02-measure-automation-roi.html",
+  "url": "https://www.yugam.io/resources/article-2026-07-02-measure-automation-roi.html"
+}
+</script>
+<link rel="stylesheet" href="../assets/css/enhance.css">
+<link rel="stylesheet" href="../assets/css/design-v2.css?v=2">
+<script defer src="../assets/js/enhance.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="../index.html#insights" class="header__back">&larr; Back to Insights</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="article-header">
+            <span class="article-header__tag">AI Strategy</span>
+            <h1>How to Measure the ROI of AI Workflow Automation</h1>
+            <div class="article-header__meta">By <a href="../index.html">Rohit Kumar Maskara</a> &middot; July 2026</div>
+        </section>
+
+        <article class="article">
+
+            <p>You deployed an AI workflow. It runs. No one complains about it. The question now: did it earn back what you spent?</p>
+
+            <p>I advise clients on this regularly, and the measurement failure I see is almost always the same. Teams automate a process, declare victory because the tool is running, and never establish whether the investment returned anything. Six months later someone asks for the number and nobody has it.</p>
+
+            <p>This piece covers what to measure, when to measure it, and how to tell when an automation has earned the right to be scaled.</p>
+
+            <h2>Establish a baseline before you change anything</h2>
+
+            <p>Pick the workflow you automated. Write down three numbers from <em>before</em> the automation went live:</p>
+
+            <p><strong>1. Hours per week</strong> the team spent on the manual version of the task.</p>
+
+            <p><strong>2. Fully loaded hourly cost</strong> of the person doing the work. Salary, benefits, overhead. For a mid-level operations person in most markets, that lands between $45 and $65 per hour.</p>
+
+            <p><strong>3. Error or delay rate.</strong> How often the task produced a mistake or missed a deadline. A lead follow-up that fires 18 hours late is a delay. A client record entered into the CRM with the wrong contract value is an error. Both have costs.</p>
+
+            <p class="article__stat">If you did not capture these before the automation went live, estimate them now. Interview the person who used to do the work. Pull historical timestamps. Imperfect data beats no data.</p>
+
+            <h2>The ROI formula</h2>
+
+            <p>The math is straightforward:</p>
+
+            <div class="article__callout">
+                <strong>ROI = (Value recovered - Cost of automation) / Cost of automation</strong>
+                Value recovered = hours saved per month x hourly cost, plus the cost of errors and delays that no longer occur.
+            </div>
+
+            <p>A worked example. Your operations coordinator spends 12 hours a week rebuilding a client report deck. Fully loaded cost: $55/hour. That is $660/week, roughly $2,860/month, going into a task that produces no new revenue.</p>
+
+            <p>You automate the reporting workflow. The coordinator now spends 1 hour per week reviewing and editing the output. You have recovered 11 hours per week — about $2,420/month in labor value.</p>
+
+            <p>The automation cost $6,000 to build (tool subscription, configuration, testing). Payback period: 2.5 months. Every month after that is net positive.</p>
+
+            <p class="article__stat">Typical payback for a well-scoped workflow automation: 45–90 days.</p>
+
+            <h2>The second-order return: redirected capacity</h2>
+
+            <p>Labor cost recovery is the first-order gain. The second-order gain is what the team does with the hours they got back.</p>
+
+            <p>If your account manager was spending 8 hours a week on manual onboarding data entry and that time now goes into client calls, the value of those 8 hours has increased. Client-facing time generates revenue. Data entry does not.</p>
+
+            <p>Track this explicitly. At day 30 and day 60 after an automation goes live, ask the person whose time was freed: "What are you spending those hours on now?" If the answer is client work, business development, or project delivery, document it. That data strengthens every future automation business case you build internally.</p>
+
+            <h2>Which metrics to track post-deployment</h2>
+
+            <p>Not every metric applies to every workflow. Pick two or three that directly reflect the problem you were solving.</p>
+
+            <p><strong>Time metrics:</strong> Hours per week on the task (before vs. after). Time from trigger to completion — for example, minutes from lead form submission to first follow-up. Number of manual interventions the workflow requires per week.</p>
+
+            <p><strong>Quality metrics:</strong> Error rate in the output (data mismatches, missed steps). Completion rate — what percentage of runs finish end-to-end without a human fix. Delay rate — how often the workflow fires late or out of sequence.</p>
+
+            <p><strong>Business impact metrics:</strong> Lead response time, if the workflow touches sales. Client onboarding time-to-active. Report delivery consistency. Revenue per recovered hour, if you can attribute it.</p>
+
+            <p>Review these weekly for the first 90 days. After that, monthly is enough unless something breaks.</p>
+
+            <h2>Four mistakes that distort the ROI picture</h2>
+
+            <p><strong>Measuring the wrong signal.</strong> You automate lead follow-up but track email open rates instead of follow-up completion rate and response time. Open rates tell you about your subject lines. Completion rate tells you whether the automation did its job.</p>
+
+            <p><strong>Ignoring maintenance costs.</strong> The cost of an automation includes the build, the platform subscription, and the ongoing time to fix it when a connected tool updates its API or a new edge case surfaces. A realistic ROI calculation includes all three. I have seen teams report 10x ROI while ignoring $800/month in platform fees and 3 hours/week of a developer's time keeping the thing alive.</p>
+
+            <p><strong>Measuring too early.</strong> The first two weeks after any new workflow goes live are an adjustment period. Edge cases surface. The team adapts. Do not take your ROI snapshot in week one. Take it at day 30 and again at day 90.</p>
+
+            <p><strong>Automating an unmapped process.</strong> If you automated a workflow without first documenting exactly how it ran manually, your ROI measurement has no denominator. You cannot calculate time saved if you never established how much time the manual version consumed. When I was building governance systems at KPMG, the first rule of any process change was: measure the current state before you touch anything. That rule holds for AI automation just as well.</p>
+
+            <h2>A realistic timeline</h2>
+
+            <p><strong>Weeks 1-2:</strong> Workflow mapped, automation built and tested.</p>
+
+            <p><strong>Weeks 3-4:</strong> Live with monitoring. Edge cases identified and resolved.</p>
+
+            <p><strong>Day 30:</strong> First ROI snapshot. Compare hours, error rates, and costs before and after.</p>
+
+            <p><strong>Day 60:</strong> Second snapshot. Add the redirected capacity data — what the team is doing with recovered hours.</p>
+
+            <p><strong>Day 90:</strong> Full ROI picture including downstream business impact. This is when you decide whether to scale.</p>
+
+            <p class="article__stat">If a workflow saves 10+ hours/week and reaches positive ROI by day 60, it qualifies for scaling to adjacent processes.</p>
+
+            <h2>When to scale and when to stop</h2>
+
+            <p>A positive ROI at day 90 is not an automatic green light to automate everything else. The question is whether the next workflow has similar characteristics: high volume, repeatable steps, clear trigger, low judgment requirement.</p>
+
+            <p>I advise clients to rank their remaining manual workflows by weekly hours consumed, then evaluate the top three for automation readiness. If the workflow requires frequent human judgment calls — a negotiation, a creative decision, a context-dependent exception — it is a poor automation candidate regardless of the hours involved.</p>
+
+            <p>Stop scaling when the next workflow on your list requires more customization than configuration. That is the point where the cost curve bends upward and payback periods stretch past six months.</p>
+
+            <h2>Building the internal business case</h2>
+
+            <p>If you need to present ROI to a board or leadership team, keep it to one page with three sections:</p>
+
+            <p><strong>Before:</strong> Hours per week, cost per month, error rate, what the team was not doing because of this task.</p>
+
+            <p><strong>After:</strong> Hours per week now, cost per month now, error rate now, what the team is doing with recovered time.</p>
+
+            <p><strong>The math:</strong> Total cost of the automation. Monthly value recovered. Payback period. Projected 12-month net value.</p>
+
+            <p>Skip the slides about AI capabilities. Executives respond to time and money. Show them both.</p>
+
+            <div class="article__tools">
+                <p>To evaluate where your next automation investment should go, these diagnostic tools can help:</p>
+                <ul>
+                    <li><a href="ai-opportunity-finder.html">AI Opportunity Finder</a> — identify which workflows are worth automating</li>
+                    <li><a href="cost-calculator.html">AI Cost Calculator</a> — estimate the build cost and payback period</li>
+                    <li><a href="data-readiness.html">Data Readiness Scan</a> — check whether your data can support the automation</li>
+                </ul>
+                <div class="note">Each takes about 4 minutes. Free, AI-powered, no email required.</div>
+            </div>
+
+        </article>
+
+        <div class="article__cta">
+            <p>Want to map the ROI of a specific workflow in your organization?</p>
+            <a href="../index.html#contact-form" class="btn">Let's Talk &rarr;</a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Yugam Systems Pte Ltd (Singapore)</p>
+        </div>
+    </footer>
+
+</body>
+</html>

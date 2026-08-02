@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zapier vs Make: Choosing the Right Automation Platform — Yugam</title>
+    <meta name="description" content="An advisory comparison of Zapier, Make, and n8n — what I tell clients who ask which platform to start with, and when to skip platforms entirely.">
+    <link rel="canonical" href="https://www.yugam.io/resources/article-2026-07-09-zapier-vs-make.html">
+    <meta property="og:title" content="Zapier vs Make: Choosing the Right Automation Platform — Yugam">
+    <meta property="og:description" content="An advisory comparison of Zapier, Make, and n8n — what I tell clients who ask which platform to start with, and when to skip platforms entirely.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.yugam.io/resources/article-2026-07-09-zapier-vs-make.html">
+    <meta property="og:image" content="https://www.yugam.io/founder-photo.jpg">
+    <meta property="og:site_name" content="Yugam">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header__logo-text { font-family: var(--font-serif); font-size: 20px; color: var(--ink); }
+        .header__back { font-size: 14px; color: var(--drift); text-decoration: none; transition: color 300ms ease; }
+        .header__back:hover { color: var(--teak); }
+
+        .article-header {
+            padding: 80px 0 48px;
+            border-bottom: 1px solid var(--clay);
+        }
+        .article-header__tag {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 16px; display: block;
+        }
+        .article-header h1 {
+            font-size: 36px; line-height: 1.2; margin-bottom: 16px;
+        }
+        .article-header__meta {
+            font-size: 14px; color: var(--drift);
+        }
+        .article-header__meta a { color: var(--teak); text-decoration: none; }
+
+        .article {
+            padding: 48px 0 80px;
+        }
+        .article p {
+            margin-bottom: 24px;
+            color: var(--bark);
+        }
+        .article h2 {
+            font-size: 26px; margin-top: 48px; margin-bottom: 16px;
+        }
+        .article strong { color: var(--charcoal); }
+
+        .article__callout {
+            background: var(--sand); border-left: 3px solid var(--teak);
+            border-radius: 0 8px 8px 0; padding: 24px 28px;
+            margin: 32px 0; font-size: 15px; line-height: 1.7;
+        }
+        .article__callout strong { display: block; margin-bottom: 8px; color: var(--ink); }
+
+        .article__stat {
+            font-family: var(--font-mono); font-size: 14px;
+            color: var(--drift); margin-bottom: 24px;
+        }
+
+        .article__tools {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 32px; margin: 40px 0;
+        }
+        .article__tools p { margin-bottom: 16px; font-style: italic; color: var(--bark); }
+        .article__tools ul { list-style: none; margin-bottom: 16px; }
+        .article__tools li {
+            padding: 8px 0 8px 16px; position: relative; font-size: 15px;
+        }
+        .article__tools li::before {
+            content: ''; position: absolute; left: 0; top: 16px;
+            width: 4px; height: 4px; border-radius: 50%; background: var(--teak);
+        }
+        .article__tools li a { color: var(--teak); text-decoration: none; font-weight: 500; }
+        .article__tools li a:hover { color: var(--teak-hover); }
+        .article__tools .note { font-size: 13px; color: var(--drift); font-style: normal; }
+
+        .article__sources {
+            border-top: 1px solid var(--clay); padding-top: 24px; margin-top: 48px;
+            font-size: 13px; color: var(--drift);
+        }
+        .article__sources a { color: var(--drift); text-decoration: underline; }
+        .article__sources a:hover { color: var(--teak); }
+
+        .article__cta {
+            text-align: center; padding: 48px 0;
+        }
+        .article__cta p { color: var(--bark); margin-bottom: 16px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 6px; font-family: var(--font-sans);
+            font-size: 15px; font-weight: 500; text-decoration: none;
+            transition: all 300ms ease; background: var(--teak); color: var(--stone);
+        }
+        .btn:hover { background: var(--teak-hover); }
+
+        .footer { padding: 40px 0; border-top: 1px solid var(--clay); text-align: center; }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 28px; }
+            .article h2 { font-size: 22px; }
+            .container { padding: 0 20px; }
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Zapier vs Make: Choosing the Right Automation Platform",
+  "description": "An advisory comparison of Zapier, Make, and n8n — what I tell clients who ask which platform to start with, and when to skip platforms entirely.",
+  "author": {
+    "@id": "https://www.yugam.io/#rohit"
+  },
+  "publisher": {
+    "@id": "https://www.yugam.io/#organization"
+  },
+  "datePublished": "2026-07-09",
+  "dateModified": "2026-07-12",
+  "mainEntityOfPage": "https://www.yugam.io/resources/article-2026-07-09-zapier-vs-make.html",
+  "url": "https://www.yugam.io/resources/article-2026-07-09-zapier-vs-make.html"
+}
+</script>
+<link rel="stylesheet" href="../assets/css/enhance.css">
+<link rel="stylesheet" href="../assets/css/design-v2.css?v=2">
+<script defer src="../assets/js/enhance.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="../index.html#insights" class="header__back">&larr; Back to Insights</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="article-header">
+            <span class="article-header__tag">Tool Evaluation</span>
+            <h1>Zapier vs Make: Choosing the Right Automation Platform</h1>
+            <div class="article-header__meta">By <a href="../index.html">Rohit Kumar Maskara</a> &middot; July 2026</div>
+        </section>
+
+        <article class="article">
+
+            <p>I get this question from clients at least once a week: "Should we use Zapier or Make?" The honest answer is that the platform matters less than whether you have mapped the workflow you are about to automate. But since they always want a direct answer, here is how I advise the decision.</p>
+
+            <p>I will cover Zapier, Make, and a third option — n8n — that deserves a seat at the table for teams with technical resources. I will also cover when to skip all three and take a different approach entirely.</p>
+
+            <h2>Zapier: fast to start, expensive to scale</h2>
+
+            <p>Zapier connects over 7,000 apps. A non-technical person can build a working automation in under an hour. "When a HubSpot deal moves to Closed Won, create a project in Asana, send a Slack message to the account team, and add a row to the revenue tracker." That kind of workflow runs reliably on Zapier with minimal setup.</p>
+
+            <p><strong>Where Zapier earns its place:</strong> Speed to first automation. Breadth of integrations. Low technical barrier. If someone on the team has 2 hours and a clear idea of what to build, Zapier will get them from zero to a running workflow faster than any alternative.</p>
+
+            <p><strong>Where Zapier creates problems:</strong> Pricing scales with task volume. A team running 5 active automations can hit plan limits quickly, and the jump from the $29/month tier to the $99/month tier happens sooner than expected. At scale, a busy Zapier account can cost $300-$600/month.</p>
+
+            <p>More importantly, Zapier handles linear workflows well and conditional workflows poorly. If your lead follow-up sequence needs to branch — different messages for enterprise vs. mid-market, different timing for inbound vs. outbound, different owners based on territory — the Zap becomes fragile. You end up building multiple Zaps to handle what should be one workflow, and debugging across them is tedious.</p>
+
+            <p class="article__stat">Best fit: teams with simple, linear workflows and someone who can own the build. Budget: $30-$100/month for light use.</p>
+
+            <h2>Make: more power, steeper ramp</h2>
+
+            <p>Make (formerly Integromat) is the tool I recommend when the workflow has branches, loops, or error handling requirements. Its visual scenario builder lets you map complex logic — "if the deal is above $50K, route to the senior AE; if below, auto-assign by territory; if no territory is set, flag for ops review." That kind of conditional path is natural in Make and awkward in Zapier.</p>
+
+            <p><strong>Where Make earns its place:</strong> Complex multi-step workflows. Lower per-operation cost than Zapier at volume. Better error handling — you can define what happens when a step fails, retry logic, and fallback paths. For an ops manager who thinks in systems, Make is the more capable tool.</p>
+
+            <p><strong>Where Make creates problems:</strong> The learning curve is real. A non-technical founder who picks up Zapier in an afternoon will spend a week getting comfortable with Make's module system. The interface rewards users who understand data types, JSON structures, and conditional logic. If that sounds like a second job, it is.</p>
+
+            <p>Make also shares a limitation with Zapier: the platform does not help you decide <em>what</em> to automate. It does not tell you whether the process you are about to automate is well-structured or broken. It does not validate whether the result saves meaningful time. You bring the strategy. Make provides the execution layer.</p>
+
+            <p class="article__stat">Best fit: ops-comfortable teams with multi-step, conditional workflows. Budget: $10-$60/month for moderate use — roughly 40-60% less than equivalent Zapier usage.</p>
+
+            <h2>n8n: full control, full responsibility</h2>
+
+            <p>n8n is the open-source option. Self-hosted or cloud-hosted. No per-operation fees. Full control over the infrastructure, the data, and the logic.</p>
+
+            <p>I recommend n8n to clients who have an engineering resource — even a part-time one — and care about data residency, cost predictability at scale, or building automations that interact with internal APIs and databases that Zapier and Make do not natively support.</p>
+
+            <p><strong>Where n8n earns its place:</strong> No usage-based pricing. Runs on your own infrastructure. Supports custom code nodes alongside visual building. Can connect to internal systems that commercial platforms cannot reach.</p>
+
+            <p><strong>Where n8n creates problems:</strong> Setup and maintenance require a technical person. Self-hosting means you own uptime, backups, and security. The community is growing but the documentation and support ecosystem are thinner than Zapier or Make. If the person who set up n8n leaves the company, the next person needs real engineering skills to maintain it.</p>
+
+            <p class="article__stat">Best fit: teams with a developer or technical ops person, workflows involving internal systems, or high-volume use where per-operation pricing becomes expensive.</p>
+
+            <h2>A direct comparison</h2>
+
+            <div class="article__callout">
+                <strong>Zapier vs Make vs n8n at a glance:</strong>
+                Ease of use: Zapier (high) > Make (moderate) > n8n (low without engineering support).<br><br>
+                Complexity ceiling: n8n (high) > Make (high) > Zapier (medium).<br><br>
+                Cost at scale: n8n (lowest — no per-operation fees) < Make (moderate) < Zapier (highest).<br><br>
+                Workflow discovery and strategy: None of them. All three are execution tools, not advisory tools. They do exactly what you build. If you automate a broken process, they run the broken process faster.
+            </div>
+
+            <h2>When to skip all three</h2>
+
+            <p>A platform is the right answer when you know exactly what to build and someone can own the ongoing maintenance. When either condition is missing, the platform becomes shelf-ware — set up with enthusiasm, abandoned within three months when the first API change breaks a critical step and nobody has bandwidth to fix it.</p>
+
+            <p>Two situations where I tell clients to skip the platform decision entirely:</p>
+
+            <p><strong>The workflow has never been mapped.</strong> If you cannot describe every step of the manual process — triggers, handoffs, decision points, exceptions — you are not ready to automate. The mapping step comes first. It takes 2-3 days, produces the documentation you need for any build, and often reveals that the process itself needs redesign before any automation makes sense.</p>
+
+            <p><strong>Previous attempts have failed.</strong> If the team has tried Zapier or Make before and the automation broke or was never finished, the problem is not the tool. The problem is either an unmapped process, an unsupported complexity level, or no owner for ongoing maintenance. Buying a different platform does not fix any of those.</p>
+
+            <p>In both cases, the productive first step is mapping the workflow with someone who has done it before, then deciding which tool — or whether a custom build — fits the result.</p>
+
+            <h2>What I tell clients who ask</h2>
+
+            <p>The recommendation depends on four variables:</p>
+
+            <p><strong>1. Who will own it?</strong> If you have an ops person with bandwidth, Zapier or Make. If you have an engineer, n8n. If nobody has bandwidth, you need a partner to build it — the platform choice is secondary.</p>
+
+            <p><strong>2. How complex is the workflow?</strong> Linear and simple: Zapier. Conditional, multi-step, or involving error handling: Make or n8n. Involves internal APIs or custom databases: n8n or a custom build.</p>
+
+            <p><strong>3. What is the volume?</strong> Under 1,000 operations per month: pricing differences are negligible, go with the easiest tool for your team. Over 5,000 per month: Make or n8n will cost meaningfully less than Zapier.</p>
+
+            <p><strong>4. Has the workflow been mapped?</strong> If yes, pick the platform and build. If no, map it first. Running a decade of operational teams across Meta's global offices taught me that the mapping step prevents more rework than any other investment in the process. Two days of mapping saves two months of debugging a poorly scoped automation.</p>
+
+            <div class="article__tools">
+                <p>Before choosing a platform, assess whether your workflows and data are ready for automation:</p>
+                <ul>
+                    <li><a href="ai-opportunity-finder.html">AI Opportunity Finder</a> — identify which workflows are worth automating first</li>
+                    <li><a href="data-readiness.html">Data Readiness Scan</a> — check whether your systems can support automated workflows</li>
+                    <li><a href="complexity-score.html">Implementation Complexity Score</a> — estimate how complex the build will be</li>
+                    <li><a href="competitive-assessment.html">Competitive Assessment</a> — see where your automation maturity stands relative to your sector</li>
+                </ul>
+                <div class="note">Each takes about 4 minutes. Free, AI-powered, no email required.</div>
+            </div>
+
+        </article>
+
+        <div class="article__cta">
+            <p>Not sure which platform fits your workflow? I can map the process and recommend the right approach.</p>
+            <a href="../index.html#contact-form" class="btn">Let's Talk &rarr;</a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Yugam Systems Pte Ltd (Singapore)</p>
+        </div>
+    </footer>
+
+</body>
+</html>

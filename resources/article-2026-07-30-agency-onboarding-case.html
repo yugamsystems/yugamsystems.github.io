@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How an Agency Cut Client Onboarding Admin Time by 60% with AI — Yugam</title>
+    <meta name="description" content="An 18-person digital marketing agency had a 12-step manual onboarding process consuming 8 hours a week. A workflow audit and targeted automation cut admin time by 60% and eliminated onboarding errors.">
+    <link rel="canonical" href="https://www.yugam.io/resources/article-2026-07-30-agency-onboarding-case.html">
+    <meta property="og:title" content="How an Agency Cut Client Onboarding Admin Time by 60% with AI — Yugam">
+    <meta property="og:description" content="An 18-person digital marketing agency had a 12-step manual onboarding process consuming 8 hours a week. A workflow audit and targeted automation cut admin time by 60% and eliminated onboarding errors.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.yugam.io/resources/article-2026-07-30-agency-onboarding-case.html">
+    <meta property="og:image" content="https://www.yugam.io/founder-photo.jpg">
+    <meta property="og:site_name" content="Yugam">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #F4EFE9;
+            --stone-light: #FAF8F5;
+            --sand: #E8E1D8;
+            --clay: #D4CBC0;
+            --drift: #9B9183;
+            --bark: #6B5E51;
+            --charcoal: #2C2520;
+            --ink: #1A1612;
+            --teak: #8B6914;
+            --teak-hover: #A8924D;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bark);
+            background: var(--stone);
+            font-size: 17px;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        h1, h2, h3 { font-family: var(--font-serif); color: var(--ink); font-weight: 400; }
+
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 239, 233, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--clay);
+            padding: 16px 0;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .header__logo-text { font-family: var(--font-serif); font-size: 20px; color: var(--ink); }
+        .header__back { font-size: 14px; color: var(--drift); text-decoration: none; transition: color 300ms ease; }
+        .header__back:hover { color: var(--teak); }
+
+        .article-header {
+            padding: 80px 0 48px;
+            border-bottom: 1px solid var(--clay);
+        }
+        .article-header__tag {
+            font-family: var(--font-mono); font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--teak); margin-bottom: 16px; display: block;
+        }
+        .article-header h1 {
+            font-size: 36px; line-height: 1.2; margin-bottom: 16px;
+        }
+        .article-header__meta {
+            font-size: 14px; color: var(--drift);
+        }
+        .article-header__meta a { color: var(--teak); text-decoration: none; }
+
+        .article {
+            padding: 48px 0 80px;
+        }
+        .article p {
+            margin-bottom: 24px;
+            color: var(--bark);
+        }
+        .article h2 {
+            font-size: 26px; margin-top: 48px; margin-bottom: 16px;
+        }
+        .article strong { color: var(--charcoal); }
+
+        .article__callout {
+            background: var(--sand); border-left: 3px solid var(--teak);
+            border-radius: 0 8px 8px 0; padding: 24px 28px;
+            margin: 32px 0; font-size: 15px; line-height: 1.7;
+        }
+        .article__callout strong { display: block; margin-bottom: 8px; color: var(--ink); }
+
+        .article__stat {
+            font-family: var(--font-mono); font-size: 14px;
+            color: var(--drift); margin-bottom: 24px;
+        }
+
+        .article__tools {
+            background: var(--stone-light); border: 1px solid var(--clay);
+            border-radius: 12px; padding: 32px; margin: 40px 0;
+        }
+        .article__tools p { margin-bottom: 16px; font-style: italic; color: var(--bark); }
+        .article__tools ul { list-style: none; margin-bottom: 16px; }
+        .article__tools li {
+            padding: 8px 0 8px 16px; position: relative; font-size: 15px;
+        }
+        .article__tools li::before {
+            content: ''; position: absolute; left: 0; top: 16px;
+            width: 4px; height: 4px; border-radius: 50%; background: var(--teak);
+        }
+        .article__tools li a { color: var(--teak); text-decoration: none; font-weight: 500; }
+        .article__tools li a:hover { color: var(--teak-hover); }
+        .article__tools .note { font-size: 13px; color: var(--drift); font-style: normal; }
+
+        .article__sources {
+            border-top: 1px solid var(--clay); padding-top: 24px; margin-top: 48px;
+            font-size: 13px; color: var(--drift);
+        }
+        .article__sources a { color: var(--drift); text-decoration: underline; }
+        .article__sources a:hover { color: var(--teak); }
+
+        .article__cta {
+            text-align: center; padding: 48px 0;
+        }
+        .article__cta p { color: var(--bark); margin-bottom: 16px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 6px; font-family: var(--font-sans);
+            font-size: 15px; font-weight: 500; text-decoration: none;
+            transition: all 300ms ease; background: var(--teak); color: var(--stone);
+        }
+        .btn:hover { background: var(--teak-hover); }
+
+        .footer { padding: 40px 0; border-top: 1px solid var(--clay); text-align: center; }
+        .footer p { font-size: 13px; color: var(--drift); }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 28px; }
+            .article h2 { font-size: 22px; }
+            .container { padding: 0 20px; }
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How an Agency Cut Client Onboarding Admin Time by 60% with AI",
+  "description": "An 18-person digital marketing agency had a 12-step manual onboarding process consuming 8 hours a week. A workflow audit and targeted automation cut admin time by 60% and eliminated onboarding errors.",
+  "author": {
+    "@id": "https://www.yugam.io/#rohit"
+  },
+  "publisher": {
+    "@id": "https://www.yugam.io/#organization"
+  },
+  "datePublished": "2026-07-30",
+  "dateModified": "2026-08-01",
+  "mainEntityOfPage": "https://www.yugam.io/resources/article-2026-07-30-agency-onboarding-case.html",
+  "url": "https://www.yugam.io/resources/article-2026-07-30-agency-onboarding-case.html"
+}
+</script>
+<link rel="stylesheet" href="../assets/css/enhance.css">
+<link rel="stylesheet" href="../assets/css/design-v2.css?v=2">
+<script defer src="../assets/js/enhance.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="header__logo">
+                <svg width="16" height="26" viewBox="0 0 56 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 0C46 12 56 26 56 42C56 58 46 72 28 84C10 72 0 58 0 42C0 26 10 12 28 0Z" fill="var(--teak)"/>
+                </svg>
+                <span class="header__logo-text">Yugam</span>
+            </a>
+            <a href="../index.html#insights" class="header__back">&larr; Back to Insights</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="article-header">
+            <span class="article-header__tag">Case Study</span>
+            <h1>How an Agency Cut Client Onboarding Admin Time by 60% with AI</h1>
+            <div class="article-header__meta">By <a href="../index.html">Rohit Kumar Maskara</a> &middot; July 2026</div>
+        </section>
+
+        <article class="article">
+
+            <p>An 18-person digital marketing agency was onboarding 6 to 10 new clients per month. Each new client required 12 manual steps — creating folders, copying contract data into HubSpot, setting up a Notion workspace, sending a welcome email, distributing an intake form, chasing the form when it came back late, scheduling a kickoff call, and notifying the delivery team. The account manager running this process spent roughly 60 minutes per client. Across 8 clients a month, that was 8 hours a week.</p>
+
+            <p>Two clients in Q1 2026 had delayed kickoffs because intake forms sat in inboxes over a long weekend. One of them raised it in their 90-day review. The agency's founder asked me to look at the process.</p>
+
+            <h2>The 12-step manual process</h2>
+
+            <p>I mapped the full onboarding sequence with the account manager. Twelve distinct steps, each triggered by the one before it:</p>
+
+            <p><strong>1.</strong> Receive signed contract via email. <strong>2.</strong> Create a new client folder in Google Drive. <strong>3.</strong> Copy client details from the contract into HubSpot. <strong>4.</strong> Create a Notion workspace from a saved template (manually). <strong>5.</strong> Send a welcome email with login instructions. <strong>6.</strong> Send an intake questionnaire via a separate form tool. <strong>7.</strong> Follow up if the form is not completed within 48 hours. <strong>8.</strong> Copy intake responses into the Notion workspace. <strong>9.</strong> Create tasks in the project management tool. <strong>10.</strong> Schedule a kickoff call via back-and-forth email. <strong>11.</strong> Send a calendar invite with a Zoom link. <strong>12.</strong> Notify the delivery team in Slack.</p>
+
+            <p>Each step took between 5 and 20 minutes. The account manager doing this work was also responsible for client communication, upsells, and renewals. The onboarding admin was directly competing with revenue-generating activities for her time.</p>
+
+            <h2>What the workflow audit revealed</h2>
+
+            <p>I asked three questions about each step: Who does this? What triggers it? What data does it need?</p>
+
+            <p>The mapping surfaced a chain reaction problem. Steps 1 through 4 were all triggered by the same event — a signed contract arriving via email. But they were executed sequentially by hand, with minutes or hours of dead time between each one. There was no reason they could not fire simultaneously from a single trigger.</p>
+
+            <p>Steps 6 through 8 formed a loop. Send the intake form. Wait. Chase. Wait. Copy the responses. This loop existed only because there was no automated follow-up. The account manager was manually monitoring whether a form had been completed, then manually reminding the client.</p>
+
+            <p>Steps 9 and 10 were blocked by step 8. The entire downstream sequence — task creation, kickoff scheduling, team notification — stalled whenever the intake form was slow. A three-day delay on the intake form meant a three-day delay on everything that followed.</p>
+
+            <div class="article__callout">
+                <strong>The structural problem:</strong>
+                The 12-step sequence had a single trigger (signed contract) but no automation from that trigger forward. Every step depended on a person noticing that the previous step was done, then manually starting the next one. The process was a relay race run by one person — and she was also running three other races at the same time.
+            </div>
+
+            <h2>The redesigned workflow</h2>
+
+            <p>The rebuild collapsed the 12 manual steps into a single trigger with automated execution. When a contract is signed via the e-signature tool, the following happens without human input:</p>
+
+            <p>A new client record is created in HubSpot with all contract details populated. A Google Drive folder is created from a template, named correctly, and shared with the right team members. A Notion workspace is created from a master template and pre-filled with the client name, start date, and service scope. A welcome email goes out from the account manager's address, including login details and a link to the intake form.</p>
+
+            <p>A follow-up email is scheduled to send automatically at the 48-hour mark if the intake form has not been completed. Once the form is submitted, responses are written directly into the Notion workspace. Tasks are created in the project management tool based on the service type in the contract. A kickoff call is scheduled via a link embedded in the welcome email — no back-and-forth. The delivery team gets a Slack notification with the client name, service scope, and a link to the Notion workspace.</p>
+
+            <p>The account manager's role shifted from executing all 12 steps to two things: reviewing the Notion workspace after intake, and joining the kickoff call. Everything else runs without her.</p>
+
+            <h2>Results after four weeks</h2>
+
+            <p><strong>Admin time per new client:</strong> ~60 minutes down to ~10 minutes. <strong>Time to send welcome email:</strong> 2-4 hours after signing down to under 3 minutes. <strong>Intake form completion rate:</strong> 71% up to 89%, because of the automated 48-hour follow-up. <strong>Average days to kickoff call:</strong> 5.2 days down to 2.8 days. <strong>Onboarding errors (wrong folder, missing data):</strong> ~3 per month down to zero in the first four weeks.</p>
+
+            <p class="article__stat">60% reduction in onboarding admin time. Kickoff calls 46% faster. Zero data-entry errors in month one.</p>
+
+            <p>The recovered hours went directly into proactive client communication and upsell conversations. The account manager reported that for the first time in over a year, she had time to call existing clients without a specific issue to discuss — just relationship maintenance. Two of those calls led to scope expansions within six weeks.</p>
+
+            <h2>Why previous attempts failed</h2>
+
+            <p>The agency had tried a Zapier sequence six months earlier. It broke because the trigger was unreliable — contract emails arrived in slightly different formats from different clients, and the automation could not parse them consistently. The data mapping was also wrong; field names in HubSpot did not match the automation's expectations.</p>
+
+            <p>Both problems were preventable. The workflow mapping step surfaces exactly these issues before any build begins. When you document the trigger conditions, the data fields, and the edge cases in advance, the build is faster and the result survives contact with real-world variation.</p>
+
+            <p>The other factor: scope. The agency had initially wanted to automate onboarding, lead follow-up, monthly reporting, and invoice reminders simultaneously. That is a six-month project with a high failure rate. Starting with onboarding alone produced a measurable win in three weeks, which gave the team the confidence and the evidence to fund the next workflow.</p>
+
+            <h2>Onboarding as an automation starting point</h2>
+
+            <p>Client onboarding is one of the cleanest automation candidates in a service business. It is predictable — the same steps happen for every client. It is repeatable — you do it multiple times per month. It is triggered by a single clear event — a signed contract. And the cost of doing it manually is measurable in hours per week.</p>
+
+            <p>At my previous role managing operations across Meta's regional teams, I saw the same pattern at scale: the processes that respond best to automation are the ones that are high-frequency, low-judgment, and triggered by a defined event. Onboarding meets all three criteria. If your agency is growing and your account managers are spending more time on admin than client relationships, that is the signal.</p>
+
+            <div class="article__tools">
+                <p>If your onboarding process feels like it should be faster, these tools can help you assess the opportunity:</p>
+                <ul>
+                    <li><a href="ai-opportunity-finder.html">AI Opportunity Finder</a> — identify which workflows are costing your team the most hours</li>
+                    <li><a href="complexity-score.html">Implementation Complexity Score</a> — gauge how complex the automation would be for your tool stack</li>
+                    <li><a href="data-readiness.html">Data Readiness Scan</a> — check whether your systems can support automated data flows</li>
+                </ul>
+                <div class="note">Each takes about 4 minutes. Free, AI-powered, no email required.</div>
+            </div>
+
+        </article>
+
+        <div class="article__cta">
+            <p>Spending too many hours on manual client onboarding?</p>
+            <a href="../index.html#contact-form" class="btn">Let's Talk &rarr;</a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Yugam Systems Pte Ltd (Singapore)</p>
+        </div>
+    </footer>
+
+</body>
+</html>
